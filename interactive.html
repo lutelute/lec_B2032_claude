@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="css/style.css">
     <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
     <header class="main-header">
@@ -16,229 +17,855 @@
 
     <nav class="main-nav">
         <a href="index.html">ダッシュボード</a>
-        <a href="lecture.html">講義資料</a>
+        <a href="lecture.html">講義一覧</a>
         <a href="interactive.html" class="active">インタラクティブ学習</a>
     </nav>
 
+    <div class="tool-nav">
+        <a href="#wave-simulator">波動シミュレータ</a>
+        <a href="#em-wave-3d">電磁波3D</a>
+        <a href="#spectrum-explorer">スペクトル探索</a>
+        <a href="#blackbody">黒体放射</a>
+        <a href="#diffraction">回折シミュレータ</a>
+        <a href="#doppler">ドップラー効果</a>
+        <a href="#maxwell-viz">マクスウェル方程式</a>
+        <a href="#spin-resonance">スピン共鳴</a>
+        <a href="#photoelectric">光電効果</a>
+        <a href="#calculator">計算機</a>
+        <a href="#quiz">理解度チェック</a>
+    </div>
+
     <main class="interactive-content">
-        <!-- 波動シミュレータ -->
+        <!-- 1. 波動シミュレータ（強化版） -->
         <section class="tool-section" id="wave-simulator">
-            <h2>🌊 波動シミュレータ</h2>
-            <p class="tool-description">電磁波の基本的な性質をシミュレーションで理解しましょう。波長、周波数、振幅を変化させて波の形を観察できます。</p>
+            <h2>🌊 波動シミュレータ（強化版）</h2>
+            <p class="tool-description">電磁波の基本的な性質を詳細にシミュレーションします。単一波、重ね合わせ、定在波、波束など様々なモードで波動現象を観察できます。</p>
 
-            <canvas id="waveCanvas" class="simulation-canvas"></canvas>
-
-            <div class="controls">
-                <div class="control-group">
-                    <label for="wavelength">波長 λ</label>
-                    <input type="range" id="wavelength" min="20" max="200" value="80">
-                    <span class="control-value" id="wavelengthValue">80 px</span>
-                </div>
-                <div class="control-group">
-                    <label for="amplitude">振幅 A</label>
-                    <input type="range" id="amplitude" min="10" max="100" value="50">
-                    <span class="control-value" id="amplitudeValue">50 px</span>
-                </div>
-                <div class="control-group">
-                    <label for="speed">速度</label>
-                    <input type="range" id="speed" min="1" max="10" value="3">
-                    <span class="control-value" id="speedValue">3</span>
-                </div>
-                <div class="control-group">
-                    <label for="waveType">波の種類</label>
-                    <select id="waveType">
-                        <option value="sine">正弦波</option>
-                        <option value="em">電磁波（E・B）</option>
-                    </select>
-                </div>
-                <div class="control-group">
-                    <button class="btn btn-start" id="startWave">開始</button>
-                    <button class="btn btn-stop" id="stopWave">停止</button>
+            <div class="simulation-container">
+                <canvas id="waveCanvas" class="simulation-canvas"></canvas>
+                <div class="wave-info-panel">
+                    <div class="info-item">
+                        <span class="label">波長 λ:</span>
+                        <span id="waveInfoLambda">80 px</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="label">周波数 f:</span>
+                        <span id="waveInfoFreq">3.75 Hz</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="label">周期 T:</span>
+                        <span id="waveInfoPeriod">0.27 s</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="label">速度 v:</span>
+                        <span id="waveInfoSpeed">300 px/s</span>
+                    </div>
                 </div>
             </div>
 
-            <div class="equation-box" style="margin-top: 1rem;">
-                <div class="title">表示中の波動方程式</div>
-                <div id="waveEquation">\[ E(x,t) = A \sin\left(\frac{2\pi}{\lambda}x - \omega t\right) \]</div>
-                <p id="waveParams">λ = 80 px, A = 50 px, f = <span id="calcFreq">0</span> Hz</p>
+            <div class="controls-panel">
+                <div class="control-row">
+                    <div class="control-group">
+                        <label for="waveMode">モード</label>
+                        <select id="waveMode">
+                            <option value="single">単一正弦波</option>
+                            <option value="em">電磁波（E・B場）</option>
+                            <option value="superposition">波の重ね合わせ</option>
+                            <option value="standing">定在波</option>
+                            <option value="packet">波束（パルス）</option>
+                            <option value="interference">二波源干渉</option>
+                        </select>
+                    </div>
+                    <div class="control-group">
+                        <label for="wavelength">波長 λ (px)</label>
+                        <input type="range" id="wavelength" min="20" max="300" value="80">
+                        <span class="control-value" id="wavelengthValue">80</span>
+                    </div>
+                    <div class="control-group">
+                        <label for="amplitude">振幅 A (px)</label>
+                        <input type="range" id="amplitude" min="10" max="120" value="60">
+                        <span class="control-value" id="amplitudeValue">60</span>
+                    </div>
+                </div>
+                <div class="control-row">
+                    <div class="control-group">
+                        <label for="speed">速度</label>
+                        <input type="range" id="speed" min="1" max="20" value="5">
+                        <span class="control-value" id="speedValue">5</span>
+                    </div>
+                    <div class="control-group" id="wave2Controls" style="display:none;">
+                        <label for="wavelength2">第2波 波長</label>
+                        <input type="range" id="wavelength2" min="20" max="300" value="100">
+                        <span class="control-value" id="wavelength2Value">100</span>
+                    </div>
+                    <div class="control-group buttons">
+                        <button class="btn btn-start" id="startWave">▶ 開始</button>
+                        <button class="btn btn-stop" id="stopWave">⏸ 停止</button>
+                        <button class="btn btn-reset" id="resetWave">↺ リセット</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="equation-display">
+                <div class="equation-box">
+                    <div class="title">現在の波動方程式</div>
+                    <div id="waveEquation">\[ y(x,t) = A \sin\left(\frac{2\pi}{\lambda}x - \omega t\right) \]</div>
+                </div>
+            </div>
+
+            <div class="theory-section">
+                <h4>理論的背景</h4>
+                <div class="theory-content">
+                    <p><strong>正弦波</strong>は最も基本的な波動であり、フーリエ解析によればあらゆる周期的な波形は正弦波の重ね合わせで表現できます。</p>
+                    <ul>
+                        <li><strong>波長 λ</strong>: 空間的な1周期の長さ [m]</li>
+                        <li><strong>周波数 f</strong>: 時間的な振動数 [Hz = 1/s]</li>
+                        <li><strong>角周波数 ω</strong>: ω = 2πf [rad/s]</li>
+                        <li><strong>波数 k</strong>: k = 2π/λ [rad/m]</li>
+                        <li><strong>位相速度</strong>: v = fλ = ω/k</li>
+                    </ul>
+                </div>
             </div>
         </section>
 
-        <!-- スペクトル探索 -->
+        <!-- 2. 電磁波3D可視化 -->
+        <section class="tool-section" id="em-wave-3d">
+            <h2>⚡ 電磁波3D可視化</h2>
+            <p class="tool-description">電磁波の電場と磁場の空間的な関係を3次元的に観察します。偏光状態も確認できます。</p>
+
+            <canvas id="emWave3DCanvas" class="simulation-canvas" style="height: 450px;"></canvas>
+
+            <div class="controls-panel">
+                <div class="control-row">
+                    <div class="control-group">
+                        <label for="polarization">偏光状態</label>
+                        <select id="polarization">
+                            <option value="linear-x">直線偏光（水平）</option>
+                            <option value="linear-y">直線偏光（垂直）</option>
+                            <option value="linear-45">直線偏光（45°）</option>
+                            <option value="circular-r">右円偏光</option>
+                            <option value="circular-l">左円偏光</option>
+                            <option value="elliptical">楕円偏光</option>
+                        </select>
+                    </div>
+                    <div class="control-group">
+                        <label for="viewAngle">視点角度</label>
+                        <input type="range" id="viewAngle" min="0" max="360" value="30">
+                        <span class="control-value" id="viewAngleValue">30°</span>
+                    </div>
+                    <div class="control-group">
+                        <label for="showComponents">表示</label>
+                        <div class="checkbox-group">
+                            <label><input type="checkbox" id="showE" checked> 電場 E</label>
+                            <label><input type="checkbox" id="showB" checked> 磁場 B</label>
+                            <label><input type="checkbox" id="showS"> ポインティング S</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="info-cards">
+                <div class="info-card">
+                    <h5>電場 E</h5>
+                    <p>電荷に力を及ぼす場。電磁波では進行方向に垂直に振動。</p>
+                    <div class="formula">\(\vec{E} \perp \vec{k}\)</div>
+                </div>
+                <div class="info-card">
+                    <h5>磁場 B</h5>
+                    <p>電流や磁石に力を及ぼす場。E と k の両方に垂直。</p>
+                    <div class="formula">\(\vec{B} = \frac{1}{c}\hat{k} \times \vec{E}\)</div>
+                </div>
+                <div class="info-card">
+                    <h5>ポインティングベクトル S</h5>
+                    <p>エネルギー流束密度。E × B の方向に伝播。</p>
+                    <div class="formula">\(\vec{S} = \frac{1}{\mu_0}\vec{E} \times \vec{B}\)</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. 電磁波スペクトル探索（強化版） -->
         <section class="tool-section" id="spectrum-explorer">
-            <h2>🌈 電磁波スペクトル探索</h2>
-            <p class="tool-description">電磁波スペクトルの各領域について学びましょう。スライダーを動かして、異なる波長の電磁波の特性を確認できます。</p>
+            <h2>🌈 電磁波スペクトル探索（強化版）</h2>
+            <p class="tool-description">電磁波スペクトル全体を探索し、各領域の特性、発生源、応用を詳しく学びます。対数スケールで20桁以上の波長範囲をカバー。</p>
 
-            <div class="spectrum-vis">
+            <div class="spectrum-container">
+                <div class="spectrum-bar">
+                    <div class="spectrum-region gamma" data-region="gamma">γ線</div>
+                    <div class="spectrum-region xray" data-region="xray">X線</div>
+                    <div class="spectrum-region uv" data-region="uv">紫外線</div>
+                    <div class="spectrum-region visible" data-region="visible">可視光</div>
+                    <div class="spectrum-region ir" data-region="ir">赤外線</div>
+                    <div class="spectrum-region microwave" data-region="microwave">マイクロ波</div>
+                    <div class="spectrum-region radio" data-region="radio">電波</div>
+                </div>
                 <div class="spectrum-marker" id="spectrumMarker"></div>
-            </div>
-            <div class="spectrum-labels">
-                <span>γ線</span>
-                <span>X線</span>
-                <span>紫外線</span>
-                <span>可視光</span>
-                <span>赤外線</span>
-                <span>マイクロ波</span>
-                <span>電波</span>
+                <div class="spectrum-scale">
+                    <span>10⁻¹⁴ m</span>
+                    <span>10⁻¹² m</span>
+                    <span>10⁻¹⁰ m</span>
+                    <span>10⁻⁸ m</span>
+                    <span>10⁻⁶ m</span>
+                    <span>10⁻⁴ m</span>
+                    <span>10⁻² m</span>
+                    <span>1 m</span>
+                    <span>10² m</span>
+                </div>
             </div>
 
-            <div class="controls">
-                <div class="control-group" style="flex-grow: 1;">
+            <div class="controls-panel">
+                <div class="control-group full-width">
                     <label for="spectrumSlider">波長（対数スケール）</label>
                     <input type="range" id="spectrumSlider" min="0" max="100" value="50" style="width: 100%;">
                 </div>
             </div>
 
-            <div id="spectrumInfo" style="background: #f8fafc; padding: 1.5rem; border-radius: 8px; margin-top: 1rem;">
-                <h4 id="spectrumName" style="color: var(--primary-color); margin-bottom: 0.5rem;">可視光線</h4>
-                <p><strong>波長:</strong> <span id="spectrumWavelength">550 nm</span></p>
-                <p><strong>周波数:</strong> <span id="spectrumFrequency">545 THz</span></p>
-                <p><strong>光子エネルギー:</strong> <span id="spectrumEnergy">2.25 eV</span></p>
-                <p><strong>主な用途:</strong> <span id="spectrumUse">照明、通信、視覚</span></p>
-                <p id="spectrumDesc" style="margin-top: 0.5rem; color: var(--text-light);"></p>
+            <div id="spectrumDetails" class="spectrum-details">
+                <div class="detail-header">
+                    <h4 id="spectrumName">可視光線</h4>
+                    <span id="spectrumIcon" class="region-icon">👁️</span>
+                </div>
+                <div class="detail-grid">
+                    <div class="detail-item">
+                        <span class="label">波長</span>
+                        <span id="spectrumWavelength" class="value">550 nm</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="label">周波数</span>
+                        <span id="spectrumFrequency" class="value">545 THz</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="label">光子エネルギー</span>
+                        <span id="spectrumEnergy" class="value">2.25 eV</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="label">温度等価</span>
+                        <span id="spectrumTemp" class="value">26,100 K</span>
+                    </div>
+                </div>
+                <div class="detail-sections">
+                    <div class="detail-section">
+                        <h5>発生源</h5>
+                        <p id="spectrumSource">太陽、白熱電球、LED、レーザー</p>
+                    </div>
+                    <div class="detail-section">
+                        <h5>主な応用</h5>
+                        <p id="spectrumUse">照明、光通信、ディスプレイ、光学機器</p>
+                    </div>
+                    <div class="detail-section">
+                        <h5>検出方法</h5>
+                        <p id="spectrumDetection">目、フォトダイオード、CCD/CMOS</p>
+                    </div>
+                    <div class="detail-section">
+                        <h5>物質との相互作用</h5>
+                        <p id="spectrumInteraction">電子の価電子帯遷移、分子振動（IR）</p>
+                    </div>
+                </div>
             </div>
         </section>
 
-        <!-- マクスウェル方程式可視化 -->
+        <!-- 4. 黒体放射シミュレータ -->
+        <section class="tool-section" id="blackbody">
+            <h2>🔥 黒体放射シミュレータ</h2>
+            <p class="tool-description">プランクの放射則に基づく黒体放射スペクトルをシミュレーションします。温度を変化させてウィーンの変位則、シュテファン・ボルツマンの法則を確認できます。</p>
+
+            <div class="simulation-container">
+                <canvas id="blackbodyCanvas" class="simulation-canvas" style="height: 350px;"></canvas>
+                <div class="blackbody-preview" id="blackbodyPreview">
+                    <div class="color-display" id="bbColorDisplay"></div>
+                    <span id="bbTempDisplay">5800 K</span>
+                </div>
+            </div>
+
+            <div class="controls-panel">
+                <div class="control-row">
+                    <div class="control-group">
+                        <label for="bbTemp">温度 T (K)</label>
+                        <input type="range" id="bbTemp" min="500" max="20000" value="5800" step="100">
+                        <span class="control-value" id="bbTempValue">5800 K</span>
+                    </div>
+                    <div class="control-group">
+                        <label for="bbPreset">プリセット</label>
+                        <select id="bbPreset">
+                            <option value="5800">太陽表面 (5800 K)</option>
+                            <option value="3000">白熱電球 (3000 K)</option>
+                            <option value="6500">昼光色LED (6500 K)</option>
+                            <option value="2700">電球色 (2700 K)</option>
+                            <option value="10000">青白い星 (10000 K)</option>
+                            <option value="800">溶岩 (800 K)</option>
+                        </select>
+                    </div>
+                    <div class="control-group">
+                        <label><input type="checkbox" id="showWien" checked> ウィーンの変位則</label>
+                        <label><input type="checkbox" id="showClassical"> レイリー・ジーンズ</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="results-panel">
+                <div class="result-item">
+                    <span class="label">ピーク波長 λ_max</span>
+                    <span id="peakWavelength" class="value">500 nm</span>
+                    <span class="formula">\(\lambda_{max} = \frac{2.898 \times 10^{-3}}{T}\)</span>
+                </div>
+                <div class="result-item">
+                    <span class="label">全放射パワー密度</span>
+                    <span id="totalPower" class="value">6.32 × 10⁷ W/m²</span>
+                    <span class="formula">\(j^* = \sigma T^4\)</span>
+                </div>
+                <div class="result-item">
+                    <span class="label">可視光の割合</span>
+                    <span id="visibleFraction" class="value">37%</span>
+                </div>
+            </div>
+
+            <div class="theory-section">
+                <h4>プランクの放射則</h4>
+                <div class="equation-box">
+                    \[ B(\lambda, T) = \frac{2hc^2}{\lambda^5} \frac{1}{e^{hc/\lambda k_B T} - 1} \]
+                </div>
+                <p>この式は、量子仮説（エネルギーの離散化 E = nhf）から導かれ、紫外発散問題を解決した。量子力学誕生のきっかけとなった重要な式である。</p>
+            </div>
+        </section>
+
+        <!-- 5. 回折・干渉シミュレータ -->
+        <section class="tool-section" id="diffraction">
+            <h2>🔬 回折・干渉シミュレータ</h2>
+            <p class="tool-description">単スリット回折、二重スリット干渉、回折格子による光の回折パターンをシミュレーションします。</p>
+
+            <div class="simulation-container">
+                <canvas id="diffractionCanvas" class="simulation-canvas" style="height: 400px;"></canvas>
+            </div>
+
+            <div class="controls-panel">
+                <div class="control-row">
+                    <div class="control-group">
+                        <label for="diffractionMode">モード</label>
+                        <select id="diffractionMode">
+                            <option value="single">単スリット回折</option>
+                            <option value="double">二重スリット干渉</option>
+                            <option value="grating">回折格子</option>
+                            <option value="circular">円形開口回折</option>
+                        </select>
+                    </div>
+                    <div class="control-group">
+                        <label for="slitWidth">スリット幅 a (μm)</label>
+                        <input type="range" id="slitWidth" min="1" max="100" value="20">
+                        <span class="control-value" id="slitWidthValue">20 μm</span>
+                    </div>
+                    <div class="control-group">
+                        <label for="slitSeparation">スリット間隔 d (μm)</label>
+                        <input type="range" id="slitSeparation" min="10" max="500" value="100">
+                        <span class="control-value" id="slitSeparationValue">100 μm</span>
+                    </div>
+                </div>
+                <div class="control-row">
+                    <div class="control-group">
+                        <label for="diffWavelength">波長 λ (nm)</label>
+                        <input type="range" id="diffWavelength" min="380" max="780" value="550">
+                        <span class="control-value" id="diffWavelengthValue">550 nm</span>
+                    </div>
+                    <div class="control-group">
+                        <label for="screenDistance">スクリーン距離 L (m)</label>
+                        <input type="range" id="screenDistance" min="0.1" max="5" step="0.1" value="1">
+                        <span class="control-value" id="screenDistanceValue">1.0 m</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="results-panel">
+                <div class="result-item">
+                    <span class="label">中央極大の半幅</span>
+                    <span id="centralWidth" class="value">27.5 mm</span>
+                </div>
+                <div class="result-item">
+                    <span class="label">干渉縞間隔</span>
+                    <span id="fringeSpacing" class="value">5.5 mm</span>
+                </div>
+                <div class="result-item">
+                    <span class="label">第1極小の位置</span>
+                    <span id="firstMinimum" class="value">±27.5 mm</span>
+                </div>
+            </div>
+
+            <div class="theory-section">
+                <h4>回折理論</h4>
+                <div class="formula-grid">
+                    <div class="formula-item">
+                        <h5>単スリット回折</h5>
+                        \[ I(\theta) = I_0 \left(\frac{\sin\beta}{\beta}\right)^2 \]
+                        \[ \beta = \frac{\pi a \sin\theta}{\lambda} \]
+                    </div>
+                    <div class="formula-item">
+                        <h5>二重スリット干渉</h5>
+                        \[ I(\theta) = I_0 \cos^2\left(\frac{\pi d \sin\theta}{\lambda}\right) \]
+                    </div>
+                    <div class="formula-item">
+                        <h5>回折格子</h5>
+                        \[ d\sin\theta = m\lambda \]
+                        <p>(m = 0, ±1, ±2, ...)</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 6. ドップラー効果シミュレータ -->
+        <section class="tool-section" id="doppler">
+            <h2>🚀 ドップラー効果シミュレータ</h2>
+            <p class="tool-description">光のドップラー効果をシミュレーションします。相対論的効果も含め、赤方偏移・青方偏移を観察できます。</p>
+
+            <div class="simulation-container">
+                <canvas id="dopplerCanvas" class="simulation-canvas" style="height: 350px;"></canvas>
+            </div>
+
+            <div class="controls-panel">
+                <div class="control-row">
+                    <div class="control-group">
+                        <label for="dopplerVelocity">相対速度 v/c</label>
+                        <input type="range" id="dopplerVelocity" min="-0.9" max="0.9" step="0.01" value="0.3">
+                        <span class="control-value" id="dopplerVelocityValue">0.30c (9.0×10⁷ m/s)</span>
+                    </div>
+                    <div class="control-group">
+                        <label for="sourceWavelength">光源波長 (nm)</label>
+                        <input type="range" id="sourceWavelength" min="380" max="780" value="550">
+                        <span class="control-value" id="sourceWavelengthValue">550 nm</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="doppler-display">
+                <div class="wavelength-comparison">
+                    <div class="wavelength-box source">
+                        <div class="color-bar" id="sourceColor"></div>
+                        <span class="label">光源での波長</span>
+                        <span id="sourceWL" class="value">550 nm</span>
+                    </div>
+                    <div class="arrow" id="dopplerArrow">→</div>
+                    <div class="wavelength-box observed">
+                        <div class="color-bar" id="observedColor"></div>
+                        <span class="label">観測される波長</span>
+                        <span id="observedWL" class="value">715 nm</span>
+                    </div>
+                </div>
+                <div class="shift-info">
+                    <span id="shiftType" class="shift-label redshift">赤方偏移</span>
+                    <span id="redshiftZ">z = 0.30</span>
+                </div>
+            </div>
+
+            <div class="theory-section">
+                <h4>相対論的ドップラー効果</h4>
+                <div class="equation-box">
+                    <p><strong>遠ざかる場合（赤方偏移）:</strong></p>
+                    \[ f_{obs} = f_s \sqrt{\frac{1 - \beta}{1 + \beta}} \quad (\beta = v/c) \]
+                    <p><strong>赤方偏移パラメータ:</strong></p>
+                    \[ z = \frac{\lambda_{obs} - \lambda_s}{\lambda_s} = \sqrt{\frac{1 + \beta}{1 - \beta}} - 1 \]
+                </div>
+                <p>宇宙論では、遠方銀河の赤方偏移から宇宙膨張の速度（ハッブルの法則）が測定される。z > 1 の天体も多数観測されている。</p>
+            </div>
+        </section>
+
+        <!-- 7. マクスウェル方程式可視化（強化版） -->
         <section class="tool-section" id="maxwell-viz">
-            <h2>⚡ マクスウェル方程式可視化</h2>
-            <p class="tool-description">マクスウェル方程式の各項が表す物理的意味を視覚的に理解しましょう。</p>
+            <h2>📐 マクスウェル方程式可視化</h2>
+            <p class="tool-description">マクスウェル方程式の各項が表す物理的意味をインタラクティブに理解します。</p>
 
-            <div class="maxwell-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem;">
-                <div class="maxwell-card" style="background: linear-gradient(135deg, #fef3c7, #fef9c3); padding: 1.5rem; border-radius: 12px; border-left: 4px solid #f59e0b;">
-                    <h4 style="color: #b45309;">① ガウスの法則（電場）</h4>
-                    <div class="equation" style="background: white;">\[ \nabla \cdot \vec{E} = \frac{\rho}{\epsilon_0} \]</div>
-                    <p><strong>意味:</strong> 電荷は電場の「湧き出し」の源である</p>
-                    <canvas id="gaussECanvas" width="280" height="150" style="background: #1e293b; border-radius: 8px; margin-top: 0.5rem;"></canvas>
+            <div class="maxwell-tabs">
+                <button class="maxwell-tab active" data-eq="gauss-e">ガウス(E)</button>
+                <button class="maxwell-tab" data-eq="gauss-b">ガウス(B)</button>
+                <button class="maxwell-tab" data-eq="faraday">ファラデー</button>
+                <button class="maxwell-tab" data-eq="ampere">アンペール</button>
+            </div>
+
+            <div class="maxwell-content" id="maxwell-gauss-e">
+                <div class="maxwell-grid">
+                    <div class="maxwell-viz-area">
+                        <canvas id="gaussECanvas" width="400" height="350"></canvas>
+                        <div class="viz-controls">
+                            <label>電荷位置: <input type="range" id="chargePos" min="0" max="100" value="50"></label>
+                            <label>電荷量: <input type="range" id="chargeAmount" min="-5" max="5" value="3"></label>
+                        </div>
+                    </div>
+                    <div class="maxwell-explain">
+                        <h4>ガウスの法則（電場）</h4>
+                        <div class="equation-box">
+                            <p><strong>微分形:</strong></p>
+                            \[ \nabla \cdot \vec{E} = \frac{\rho}{\epsilon_0} \]
+                            <p><strong>積分形:</strong></p>
+                            \[ \oint_S \vec{E} \cdot d\vec{A} = \frac{Q_{enc}}{\epsilon_0} \]
+                        </div>
+                        <div class="explanation">
+                            <p><strong>物理的意味:</strong> 電荷は電場の「湧き出し」の源である。正電荷からは電場線が湧き出し、負電荷には吸い込まれる。</p>
+                            <p><strong>∇·E の意味:</strong> 電場の発散（divergence）。ある点で電場線が広がっている度合いを表す。</p>
+                            <p><strong>応用:</strong> 対称性の高い電荷分布（球、円筒、平面）の電場計算に有用。</p>
+                        </div>
+                    </div>
                 </div>
+            </div>
 
-                <div class="maxwell-card" style="background: linear-gradient(135deg, #dbeafe, #eff6ff); padding: 1.5rem; border-radius: 12px; border-left: 4px solid #3b82f6;">
-                    <h4 style="color: #1d4ed8;">② ガウスの法則（磁場）</h4>
-                    <div class="equation" style="background: white;">\[ \nabla \cdot \vec{B} = 0 \]</div>
-                    <p><strong>意味:</strong> 磁気単極子は存在しない（磁力線は閉じている）</p>
-                    <canvas id="gaussBCanvas" width="280" height="150" style="background: #1e293b; border-radius: 8px; margin-top: 0.5rem;"></canvas>
+            <div class="maxwell-content" id="maxwell-gauss-b" style="display:none;">
+                <div class="maxwell-grid">
+                    <div class="maxwell-viz-area">
+                        <canvas id="gaussBCanvas" width="400" height="350"></canvas>
+                    </div>
+                    <div class="maxwell-explain">
+                        <h4>ガウスの法則（磁場）</h4>
+                        <div class="equation-box">
+                            \[ \nabla \cdot \vec{B} = 0 \]
+                            \[ \oint_S \vec{B} \cdot d\vec{A} = 0 \]
+                        </div>
+                        <div class="explanation">
+                            <p><strong>物理的意味:</strong> 磁気単極子（モノポール）は存在しない。磁力線は常に閉じたループを形成する。</p>
+                            <p><strong>帰結:</strong> 任意の閉曲面を貫く磁束の総和は常にゼロ。磁石を半分に割っても、N極とS極が再び現れる。</p>
+                            <p><strong>理論的興味:</strong> 大統一理論はモノポールの存在を予言するが、未発見。</p>
+                        </div>
+                    </div>
                 </div>
+            </div>
 
-                <div class="maxwell-card" style="background: linear-gradient(135deg, #dcfce7, #f0fdf4); padding: 1.5rem; border-radius: 12px; border-left: 4px solid #22c55e;">
-                    <h4 style="color: #16a34a;">③ ファラデーの法則</h4>
-                    <div class="equation" style="background: white;">\[ \nabla \times \vec{E} = -\frac{\partial \vec{B}}{\partial t} \]</div>
-                    <p><strong>意味:</strong> 変化する磁場が電場を誘起する</p>
-                    <canvas id="faradayCanvas" width="280" height="150" style="background: #1e293b; border-radius: 8px; margin-top: 0.5rem;"></canvas>
+            <div class="maxwell-content" id="maxwell-faraday" style="display:none;">
+                <div class="maxwell-grid">
+                    <div class="maxwell-viz-area">
+                        <canvas id="faradayCanvas" width="400" height="350"></canvas>
+                        <div class="viz-controls">
+                            <label>磁場変化率: <input type="range" id="dBdt" min="-5" max="5" value="2"></label>
+                            <button id="animateFaraday" class="btn btn-start">アニメーション</button>
+                        </div>
+                    </div>
+                    <div class="maxwell-explain">
+                        <h4>ファラデーの電磁誘導の法則</h4>
+                        <div class="equation-box">
+                            <p><strong>微分形:</strong></p>
+                            \[ \nabla \times \vec{E} = -\frac{\partial \vec{B}}{\partial t} \]
+                            <p><strong>積分形:</strong></p>
+                            \[ \oint_C \vec{E} \cdot d\vec{l} = -\frac{d\Phi_B}{dt} \]
+                        </div>
+                        <div class="explanation">
+                            <p><strong>物理的意味:</strong> 変化する磁場は電場を誘導する。マイナス符号はレンツの法則（誘導電流は変化を妨げる方向に流れる）を表す。</p>
+                            <p><strong>応用:</strong> 発電機、変圧器、誘導加熱、ワイヤレス充電</p>
+                        </div>
+                    </div>
                 </div>
+            </div>
 
-                <div class="maxwell-card" style="background: linear-gradient(135deg, #fce7f3, #fdf2f8); padding: 1.5rem; border-radius: 12px; border-left: 4px solid #ec4899;">
-                    <h4 style="color: #db2777;">④ アンペール-マクスウェルの法則</h4>
-                    <div class="equation" style="background: white;">\[ \nabla \times \vec{B} = \mu_0\vec{J} + \mu_0\epsilon_0\frac{\partial \vec{E}}{\partial t} \]</div>
-                    <p><strong>意味:</strong> 電流と変化する電場が磁場を生じる</p>
-                    <canvas id="ampereCanvas" width="280" height="150" style="background: #1e293b; border-radius: 8px; margin-top: 0.5rem;"></canvas>
+            <div class="maxwell-content" id="maxwell-ampere" style="display:none;">
+                <div class="maxwell-grid">
+                    <div class="maxwell-viz-area">
+                        <canvas id="ampereCanvas" width="400" height="350"></canvas>
+                        <div class="viz-controls">
+                            <label>電流: <input type="range" id="current" min="0" max="10" value="5"></label>
+                            <label><input type="checkbox" id="showDisplacement"> 変位電流を表示</label>
+                        </div>
+                    </div>
+                    <div class="maxwell-explain">
+                        <h4>アンペール-マクスウェルの法則</h4>
+                        <div class="equation-box">
+                            \[ \nabla \times \vec{B} = \mu_0 \vec{J} + \mu_0 \epsilon_0 \frac{\partial \vec{E}}{\partial t} \]
+                        </div>
+                        <div class="explanation">
+                            <p><strong>物理的意味:</strong> 電流と変化する電場が磁場を生じる。第2項（変位電流）はマクスウェルが追加した項で、電磁波の存在を可能にする。</p>
+                            <p><strong>変位電流の重要性:</strong> コンデンサの極板間など、伝導電流がない場所でも磁場の連続性を保証する。</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
 
-        <!-- スピン共鳴シミュレータ -->
+        <!-- 8. スピン共鳴シミュレータ（強化版） -->
         <section class="tool-section" id="spin-resonance">
-            <h2>🔄 スピン共鳴シミュレータ</h2>
-            <p class="tool-description">磁場中での電子スピンの歳差運動と共鳴現象を観察しましょう。</p>
+            <h2>🔄 スピン共鳴シミュレータ（強化版）</h2>
+            <p class="tool-description">NMR/ESRの基礎となるスピン歳差運動と共鳴吸収をシミュレーションします。ブロッホ方程式に基づくダイナミクスを観察できます。</p>
 
-            <canvas id="spinCanvas" class="simulation-canvas" style="height: 350px;"></canvas>
-
-            <div class="controls">
-                <div class="control-group">
-                    <label for="magneticField">磁場 B₀ (T)</label>
-                    <input type="range" id="magneticField" min="0.1" max="2" step="0.1" value="0.5">
-                    <span class="control-value" id="fieldValue">0.5 T</span>
-                </div>
-                <div class="control-group">
-                    <label for="rfFrequency">RF周波数 (GHz)</label>
-                    <input type="range" id="rfFrequency" min="1" max="60" step="0.5" value="14">
-                    <span class="control-value" id="rfValue">14 GHz</span>
-                </div>
-                <div class="control-group">
-                    <label for="rfPower">RF強度</label>
-                    <input type="range" id="rfPower" min="0" max="100" value="50">
-                    <span class="control-value" id="powerValue">50%</span>
+            <div class="simulation-container">
+                <div class="spin-display">
+                    <canvas id="spinCanvas3D" class="simulation-canvas" style="height: 400px;"></canvas>
+                    <canvas id="spinSignalCanvas" style="width: 100%; height: 150px;"></canvas>
                 </div>
             </div>
 
-            <div id="resonanceStatus" style="background: #f8fafc; padding: 1rem; border-radius: 8px; margin-top: 1rem; text-align: center;">
-                <p>ラーモア周波数: <strong id="larmorFreq">14.0 GHz</strong></p>
-                <p>共鳴状態: <span id="resonanceIndicator" style="padding: 0.25rem 0.75rem; border-radius: 20px; background: #fee2e2; color: #991b1b;">非共鳴</span></p>
+            <div class="controls-panel">
+                <div class="control-row">
+                    <div class="control-group">
+                        <label for="spinType">スピン種類</label>
+                        <select id="spinType">
+                            <option value="electron">電子スピン (ESR)</option>
+                            <option value="proton">¹H核 (NMR)</option>
+                            <option value="carbon13">¹³C核 (NMR)</option>
+                        </select>
+                    </div>
+                    <div class="control-group">
+                        <label for="magneticField">静磁場 B₀ (T)</label>
+                        <input type="range" id="magneticField" min="0.1" max="15" step="0.1" value="1.5">
+                        <span class="control-value" id="fieldValue">1.5 T</span>
+                    </div>
+                </div>
+                <div class="control-row">
+                    <div class="control-group">
+                        <label for="rfFrequency">RF周波数 (MHz/GHz)</label>
+                        <input type="range" id="rfFrequency" min="0" max="100" value="50">
+                        <span class="control-value" id="rfValue">63.9 MHz</span>
+                    </div>
+                    <div class="control-group">
+                        <label for="rfPower">RF強度 B₁</label>
+                        <input type="range" id="rfPower" min="0" max="100" value="30">
+                        <span class="control-value" id="powerValue">30%</span>
+                    </div>
+                    <div class="control-group">
+                        <label for="pulseType">パルスタイプ</label>
+                        <select id="pulseType">
+                            <option value="cw">連続波 (CW)</option>
+                            <option value="90pulse">90°パルス</option>
+                            <option value="180pulse">180°パルス</option>
+                            <option value="fid">FID観測</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div class="resonance-info">
+                <div class="info-item large">
+                    <span class="label">ラーモア周波数</span>
+                    <span id="larmorFreq" class="value">63.87 MHz</span>
+                </div>
+                <div class="info-item">
+                    <span class="label">共鳴状態</span>
+                    <span id="resonanceIndicator" class="status off-resonance">非共鳴</span>
+                </div>
+                <div class="info-item">
+                    <span class="label">スピン温度</span>
+                    <span id="spinTemp" class="value">300 K</span>
+                </div>
+            </div>
+
+            <div class="theory-section">
+                <h4>磁気共鳴の原理</h4>
+                <div class="equation-box">
+                    <p><strong>ラーモア周波数:</strong></p>
+                    \[ \omega_0 = \gamma B_0 \]
+                    <p><strong>ブロッホ方程式:</strong></p>
+                    \[ \frac{d\vec{M}}{dt} = \gamma \vec{M} \times \vec{B} - \frac{M_x \hat{x} + M_y \hat{y}}{T_2} - \frac{(M_z - M_0)\hat{z}}{T_1} \]
+                </div>
             </div>
         </section>
 
-        <!-- 理解度チェッククイズ -->
-        <section class="tool-section" id="quiz">
-            <h2>📝 理解度チェック</h2>
-            <p class="tool-description">講義内容の理解度を確認しましょう。全10問のクイズに挑戦してください。</p>
+        <!-- 9. 光電効果シミュレータ -->
+        <section class="tool-section" id="photoelectric">
+            <h2>💡 光電効果シミュレータ</h2>
+            <p class="tool-description">光電効果を通じて光の粒子性を理解します。光子エネルギーと仕事関数の関係、阻止電圧の測定をシミュレーションします。</p>
 
-            <div class="quiz-container" id="quizContainer">
-                <!-- クイズは JavaScript で動的に生成 -->
+            <div class="simulation-container">
+                <canvas id="photoelectricCanvas" class="simulation-canvas" style="height: 400px;"></canvas>
             </div>
 
-            <div style="text-align: center; margin-top: 1.5rem;">
-                <button class="btn btn-primary" id="submitQuiz" style="padding: 1rem 2rem; font-size: 1.1rem;">回答を確認</button>
-                <button class="btn btn-reset" id="resetQuiz" style="margin-left: 1rem;">やり直す</button>
+            <div class="controls-panel">
+                <div class="control-row">
+                    <div class="control-group">
+                        <label for="peMetal">金属の種類</label>
+                        <select id="peMetal">
+                            <option value="2.28">ナトリウム (W = 2.28 eV)</option>
+                            <option value="4.08">アルミニウム (W = 4.08 eV)</option>
+                            <option value="4.65">銅 (W = 4.65 eV)</option>
+                            <option value="5.10">金 (W = 5.10 eV)</option>
+                            <option value="4.50" selected>亜鉛 (W = 4.50 eV)</option>
+                        </select>
+                    </div>
+                    <div class="control-group">
+                        <label for="peWavelength">入射光波長 (nm)</label>
+                        <input type="range" id="peWavelength" min="100" max="700" value="300">
+                        <span class="control-value" id="peWavelengthValue">300 nm</span>
+                    </div>
+                </div>
+                <div class="control-row">
+                    <div class="control-group">
+                        <label for="peIntensity">光強度</label>
+                        <input type="range" id="peIntensity" min="1" max="100" value="50">
+                        <span class="control-value" id="peIntensityValue">50%</span>
+                    </div>
+                    <div class="control-group">
+                        <label for="peVoltage">阻止電圧 V (V)</label>
+                        <input type="range" id="peVoltage" min="-5" max="5" step="0.1" value="0">
+                        <span class="control-value" id="peVoltageValue">0.0 V</span>
+                    </div>
+                </div>
             </div>
 
-            <div class="quiz-result" id="quizResult" style="display: none;">
-                <h3>結果</h3>
-                <div class="score-display"><span id="quizScore">0</span>/10</div>
-                <p id="quizMessage"></p>
+            <div class="results-panel photoelectric-results">
+                <div class="result-item">
+                    <span class="label">光子エネルギー</span>
+                    <span id="photonEnergy" class="value">4.13 eV</span>
+                </div>
+                <div class="result-item">
+                    <span class="label">仕事関数</span>
+                    <span id="workFunction" class="value">4.50 eV</span>
+                </div>
+                <div class="result-item">
+                    <span class="label">電子の最大運動エネルギー</span>
+                    <span id="maxKE" class="value">0 eV (放出なし)</span>
+                </div>
+                <div class="result-item">
+                    <span class="label">限界波長</span>
+                    <span id="thresholdWL" class="value">276 nm</span>
+                </div>
+            </div>
+
+            <div class="theory-section">
+                <h4>光電効果の方程式（アインシュタイン）</h4>
+                <div class="equation-box">
+                    \[ hf = W + K_{max} = W + eV_s \]
+                    <p>h: プランク定数、f: 光の周波数、W: 仕事関数、K_max: 放出電子の最大運動エネルギー、V_s: 阻止電圧</p>
+                </div>
+                <p>光電効果の実験事実（光強度に依らない最大運動エネルギー、限界周波数の存在）は、光の波動説では説明できず、アインシュタインの光量子仮説によって初めて説明された。</p>
             </div>
         </section>
 
-        <!-- 公式計算機 -->
+        <!-- 10. 電磁波計算機（強化版） -->
         <section class="tool-section" id="calculator">
-            <h2>🔢 電磁波計算機</h2>
-            <p class="tool-description">波長、周波数、エネルギーの相互変換ができます。</p>
+            <h2>🔢 電磁波計算機（強化版）</h2>
+            <p class="tool-description">電磁波に関する様々な物理量を相互に計算できます。</p>
 
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem;">
-                <div style="background: #f8fafc; padding: 1.5rem; border-radius: 12px;">
-                    <h4>波長 → 周波数・エネルギー</h4>
-                    <div style="margin: 1rem 0;">
-                        <label>波長:</label>
-                        <input type="number" id="calcWavelength" value="550" style="width: 100px; padding: 0.5rem; margin: 0 0.5rem;">
-                        <select id="wavelengthUnit" style="padding: 0.5rem;">
-                            <option value="1e-9">nm</option>
+            <div class="calculator-grid">
+                <div class="calc-card">
+                    <h4>基本変換</h4>
+                    <div class="calc-input">
+                        <label>波長</label>
+                        <input type="number" id="calcWavelength" value="550">
+                        <select id="wavelengthUnit">
+                            <option value="1e-12">pm</option>
+                            <option value="1e-9" selected>nm</option>
                             <option value="1e-6">μm</option>
                             <option value="1e-3">mm</option>
                             <option value="1">m</option>
                         </select>
                     </div>
                     <button class="btn btn-primary" onclick="calculateFromWavelength()">計算</button>
-                    <div id="wavelengthResult" style="margin-top: 1rem;"></div>
+                    <div id="wavelengthResult" class="calc-result"></div>
                 </div>
 
-                <div style="background: #f8fafc; padding: 1.5rem; border-radius: 12px;">
-                    <h4>周波数 → 波長・エネルギー</h4>
-                    <div style="margin: 1rem 0;">
-                        <label>周波数:</label>
-                        <input type="number" id="calcFrequency" value="545" style="width: 100px; padding: 0.5rem; margin: 0 0.5rem;">
-                        <select id="frequencyUnit" style="padding: 0.5rem;">
-                            <option value="1e12">THz</option>
+                <div class="calc-card">
+                    <h4>周波数から計算</h4>
+                    <div class="calc-input">
+                        <label>周波数</label>
+                        <input type="number" id="calcFrequency" value="545">
+                        <select id="frequencyUnit">
+                            <option value="1e12" selected>THz</option>
                             <option value="1e9">GHz</option>
                             <option value="1e6">MHz</option>
                             <option value="1e3">kHz</option>
+                            <option value="1">Hz</option>
                         </select>
                     </div>
                     <button class="btn btn-primary" onclick="calculateFromFrequency()">計算</button>
-                    <div id="frequencyResult" style="margin-top: 1rem;"></div>
+                    <div id="frequencyResult" class="calc-result"></div>
                 </div>
 
-                <div style="background: #f8fafc; padding: 1.5rem; border-radius: 12px;">
-                    <h4>エネルギー → 波長・周波数</h4>
-                    <div style="margin: 1rem 0;">
-                        <label>エネルギー:</label>
-                        <input type="number" id="calcEnergy" value="2.25" style="width: 100px; padding: 0.5rem; margin: 0 0.5rem;">
-                        <select id="energyUnit" style="padding: 0.5rem;">
-                            <option value="1.602e-19">eV</option>
+                <div class="calc-card">
+                    <h4>エネルギーから計算</h4>
+                    <div class="calc-input">
+                        <label>エネルギー</label>
+                        <input type="number" id="calcEnergy" value="2.25">
+                        <select id="energyUnit">
+                            <option value="1.602e-19" selected>eV</option>
                             <option value="1.602e-16">keV</option>
+                            <option value="1.602e-13">MeV</option>
                             <option value="1">J</option>
                         </select>
                     </div>
                     <button class="btn btn-primary" onclick="calculateFromEnergy()">計算</button>
-                    <div id="energyResult" style="margin-top: 1rem;"></div>
+                    <div id="energyResult" class="calc-result"></div>
                 </div>
+
+                <div class="calc-card">
+                    <h4>黒体放射</h4>
+                    <div class="calc-input">
+                        <label>温度 (K)</label>
+                        <input type="number" id="calcBBTemp" value="5800">
+                    </div>
+                    <button class="btn btn-primary" onclick="calculateBlackbody()">計算</button>
+                    <div id="blackbodyResult" class="calc-result"></div>
+                </div>
+
+                <div class="calc-card">
+                    <h4>ドップラーシフト</h4>
+                    <div class="calc-input">
+                        <label>相対速度 v/c</label>
+                        <input type="number" id="calcVelocity" value="0.1" step="0.01">
+                        <label>元の波長 (nm)</label>
+                        <input type="number" id="calcOriginalWL" value="550">
+                    </div>
+                    <button class="btn btn-primary" onclick="calculateDoppler()">計算</button>
+                    <div id="dopplerResult" class="calc-result"></div>
+                </div>
+
+                <div class="calc-card">
+                    <h4>回折極限</h4>
+                    <div class="calc-input">
+                        <label>波長 (nm)</label>
+                        <input type="number" id="calcDiffWL" value="550">
+                        <label>開口径 (mm)</label>
+                        <input type="number" id="calcAperture" value="50">
+                    </div>
+                    <button class="btn btn-primary" onclick="calculateDiffraction()">計算</button>
+                    <div id="diffractionResult" class="calc-result"></div>
+                </div>
+            </div>
+
+            <div class="constants-reference">
+                <h4>物理定数</h4>
+                <table class="data-table">
+                    <tr><td>光速 c</td><td>2.998 × 10⁸ m/s</td></tr>
+                    <tr><td>プランク定数 h</td><td>6.626 × 10⁻³⁴ J·s</td></tr>
+                    <tr><td>ボルツマン定数 k_B</td><td>1.381 × 10⁻²³ J/K</td></tr>
+                    <tr><td>電気素量 e</td><td>1.602 × 10⁻¹⁹ C</td></tr>
+                    <tr><td>真空の誘電率 ε₀</td><td>8.854 × 10⁻¹² F/m</td></tr>
+                    <tr><td>真空の透磁率 μ₀</td><td>4π × 10⁻⁷ H/m</td></tr>
+                </table>
+            </div>
+        </section>
+
+        <!-- 11. 理解度チェッククイズ（拡張版） -->
+        <section class="tool-section" id="quiz">
+            <h2>📝 理解度チェック（拡張版）</h2>
+            <p class="tool-description">講義内容の理解度を確認します。難易度別に問題を選択できます。</p>
+
+            <div class="quiz-settings">
+                <div class="control-group">
+                    <label for="quizDifficulty">難易度</label>
+                    <select id="quizDifficulty">
+                        <option value="basic">基礎（10問）</option>
+                        <option value="intermediate">標準（15問）</option>
+                        <option value="advanced">発展（20問）</option>
+                    </select>
+                </div>
+                <div class="control-group">
+                    <label for="quizTopic">トピック</label>
+                    <select id="quizTopic">
+                        <option value="all">全範囲</option>
+                        <option value="basics">電磁波の基礎</option>
+                        <option value="spectrum">スペクトルと色</option>
+                        <option value="maxwell">マクスウェル方程式</option>
+                        <option value="quantum">量子論</option>
+                        <option value="applications">応用</option>
+                    </select>
+                </div>
+                <button class="btn btn-primary" id="startQuiz">クイズ開始</button>
+            </div>
+
+            <div class="quiz-container" id="quizContainer">
+                <!-- クイズ問題がここに動的に生成される -->
+            </div>
+
+            <div class="quiz-actions" style="display: none;" id="quizActions">
+                <button class="btn btn-primary" id="submitQuiz">回答を確認</button>
+                <button class="btn btn-reset" id="resetQuiz">やり直す</button>
+            </div>
+
+            <div class="quiz-result" id="quizResult" style="display: none;">
+                <h3>結果</h3>
+                <div class="score-display">
+                    <span id="quizScore">0</span>/<span id="quizTotal">10</span>
+                </div>
+                <div class="score-percentage" id="scorePercentage">0%</div>
+                <p id="quizMessage"></p>
+                <div class="score-breakdown" id="scoreBreakdown"></div>
             </div>
         </section>
     </main>
@@ -248,6 +875,6 @@
         <p>担当: 福成 雅史 / 石川 裕也</p>
     </footer>
 
-    <script src="js/interactive.js"></script>
+    <script src="js/interactive-enhanced.js"></script>
 </body>
 </html>

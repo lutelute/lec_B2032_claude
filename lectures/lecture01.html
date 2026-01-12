@@ -1,0 +1,691 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>第1回: 電磁波とは - 電磁波と物質</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/lecture.css">
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+    <header class="main-header">
+        <h1>電磁波と物質</h1>
+        <p class="subtitle">第1回: 電磁波とは - 序論及びガイダンス</p>
+    </header>
+
+    <nav class="main-nav">
+        <a href="../index.html">ダッシュボード</a>
+        <a href="../lecture.html">講義一覧</a>
+        <a href="../interactive.html">インタラクティブ学習</a>
+    </nav>
+
+    <main class="lecture-content">
+        <div class="lecture-header">
+            <div class="lecture-meta">
+                <span class="lecture-number">Lecture 01</span>
+                <span class="lecture-duration">学習時間目安: 90-120分</span>
+            </div>
+            <h2>電磁波とは</h2>
+            <p class="lecture-objectives">
+                <strong>学習目標:</strong> 電磁波の基本概念を理解し、波動としての性質と粒子としての性質を説明できるようになる。電磁波スペクトルの全体像を把握し、各領域の特徴と応用を理解する。
+            </p>
+        </div>
+
+        <!-- セクション1: 電磁波の定義と発見 -->
+        <section class="content-section">
+            <h3>1.1 電磁波とは何か</h3>
+
+            <h4>1.1.1 電磁波の定義</h4>
+            <p>電磁波（electromagnetic wave）とは、電場と磁場が互いに誘導し合いながら空間を伝播する波動現象である。電磁波は、他の波動（音波、水面波など）とは異なり、媒質を必要とせず真空中でも伝播できるという特徴を持つ。</p>
+
+            <p>電磁波の基本的な特徴は以下の通りである：</p>
+            <ul>
+                <li><strong>横波である</strong>: 電場ベクトル \(\vec{E}\) と磁場ベクトル \(\vec{B}\) は、波の進行方向に対して垂直に振動する</li>
+                <li><strong>電場と磁場は互いに垂直</strong>: \(\vec{E} \perp \vec{B}\) かつ両者は進行方向にも垂直</li>
+                <li><strong>真空中で光速で伝播</strong>: 速度 \(c = 2.998 \times 10^8\) m/s</li>
+                <li><strong>エネルギーと運動量を運ぶ</strong>: 電磁波はエネルギーを空間的に輸送する</li>
+            </ul>
+
+            <div class="figure-container">
+                <div class="em-wave-diagram" id="emWaveDiagram"></div>
+                <figcaption>図1.1: 電磁波の構造。電場（青）と磁場（赤）が互いに垂直に振動しながら、z方向に進行する。</figcaption>
+            </div>
+
+            <h4>1.1.2 電磁波の数学的記述</h4>
+            <p>最も単純な電磁波である平面波は、以下のように記述される：</p>
+
+            <div class="equation-box">
+                <div class="title">平面電磁波の数学的表現</div>
+                \[ \vec{E}(z,t) = E_0 \cos(kz - \omega t + \phi) \hat{x} \]
+                \[ \vec{B}(z,t) = B_0 \cos(kz - \omega t + \phi) \hat{y} \]
+                <p>ここで、\(E_0\) と \(B_0\) は電場と磁場の振幅、\(k = 2\pi/\lambda\) は波数、\(\omega = 2\pi f\) は角周波数、\(\phi\) は初期位相である。</p>
+            </div>
+
+            <p>電場と磁場の振幅には以下の関係がある：</p>
+            <div class="equation">
+                \[ \frac{E_0}{B_0} = c \]
+            </div>
+            <p>この関係は、マクスウェル方程式から直接導かれる重要な結果である。</p>
+
+            <div class="derivation">
+                <h4>導出: 電場と磁場の振幅比</h4>
+                <div class="derivation-step">
+                    <span class="step-num">1</span>
+                    <strong>ファラデーの法則から出発する</strong>
+                    <p>ファラデーの法則は \(\nabla \times \vec{E} = -\frac{\partial \vec{B}}{\partial t}\) である。</p>
+                </div>
+                <div class="derivation-step">
+                    <span class="step-num">2</span>
+                    <strong>平面波を代入</strong>
+                    <p>\(\vec{E} = E_0 \cos(kz - \omega t) \hat{x}\) を代入すると：</p>
+                    \[ \nabla \times \vec{E} = \frac{\partial E_x}{\partial z} \hat{y} = -kE_0 \sin(kz - \omega t) \hat{y} \]
+                </div>
+                <div class="derivation-step">
+                    <span class="step-num">3</span>
+                    <strong>右辺を計算</strong>
+                    <p>\(-\frac{\partial \vec{B}}{\partial t} = -\frac{\partial}{\partial t}[B_0 \cos(kz - \omega t)] \hat{y} = -\omega B_0 \sin(kz - \omega t) \hat{y}\)</p>
+                </div>
+                <div class="derivation-step">
+                    <span class="step-num">4</span>
+                    <strong>両辺を比較</strong>
+                    <p>\(-kE_0 = -\omega B_0\) より \(\frac{E_0}{B_0} = \frac{\omega}{k} = \frac{2\pi f}{2\pi/\lambda} = f\lambda = c\)</p>
+                </div>
+            </div>
+
+            <h4>1.1.3 複素数表示</h4>
+            <p>電磁波の計算では、複素数表示がしばしば便利である：</p>
+            <div class="equation-box">
+                <div class="title">複素数表示</div>
+                \[ \tilde{E}(z,t) = E_0 e^{i(kz - \omega t)} \]
+                \[ \tilde{B}(z,t) = B_0 e^{i(kz - \omega t)} \]
+                <p>実際の物理量は実部を取る: \(\vec{E} = \text{Re}[\tilde{E}]\)</p>
+            </div>
+            <p>複素数表示の利点は、微分演算が簡単になることである（時間微分 → \(-i\omega\)、空間微分 → \(ik\)）。</p>
+        </section>
+
+        <!-- セクション2: 電磁波発見の歴史 -->
+        <section class="content-section">
+            <h3>1.2 電磁波発見の歴史</h3>
+
+            <h4>1.2.1 マクスウェルの理論的予言（1864年）</h4>
+            <p>ジェームズ・クラーク・マクスウェル（James Clerk Maxwell, 1831-1879）は、電磁気学の基礎方程式を統一し、電磁波の存在を理論的に予言した。これは物理学史上最も重要な理論的発見の一つである。</p>
+
+            <div class="column history">
+                <h4>コラム: マクスウェルの偉大な発見</h4>
+                <p>マクスウェルが電磁気学の方程式を整理していた時、一つの重大な問題に気づいた。当時知られていたアンペールの法則 \(\nabla \times \vec{B} = \mu_0 \vec{J}\) は、電流の連続性と矛盾していたのである。</p>
+                <p>コンデンサの充電過程を考えてみよう。導線には電流が流れているが、コンデンサの極板間（誘電体部分）には電荷の移動がない。しかし、アンペールの法則を極板間を含む閉曲面に適用すると、電流の不連続性が生じてしまう。</p>
+                <p>マクスウェルはこの問題を解決するため、「変位電流」\(\epsilon_0 \frac{\partial \vec{E}}{\partial t}\) という項を導入した：</p>
+                \[ \nabla \times \vec{B} = \mu_0 \vec{J} + \mu_0 \epsilon_0 \frac{\partial \vec{E}}{\partial t} \]
+                <p>この追加項は、時間変化する電場が磁場を生じることを意味する。ファラデーの法則（時間変化する磁場が電場を生じる）と合わせると、電場と磁場が互いを誘導し合って空間を伝播する波動—すなわち電磁波—が存在することが示される。</p>
+                <p>さらに驚くべきことに、マクスウェルが計算した電磁波の速度 \(c = 1/\sqrt{\mu_0 \epsilon_0}\) は、当時測定されていた光速と一致した。マクスウェルは「光は電磁波の一種である」と結論づけた。これは、光学と電磁気学という異なる分野を統一する画期的な発見であった。</p>
+            </div>
+
+            <h4>1.2.2 ヘルツの実験的検証（1887年）</h4>
+            <p>ハインリヒ・ヘルツ（Heinrich Hertz, 1857-1894）は、マクスウェルの予言から約20年後、実験により電磁波の存在を実証した。</p>
+
+            <div class="figure-container">
+                <div class="hertz-experiment" id="hertzExperiment"></div>
+                <figcaption>図1.2: ヘルツの実験装置の概念図。送信器（左）と受信器（右）</figcaption>
+            </div>
+
+            <p>ヘルツの実験装置は以下の要素から構成されていた：</p>
+            <ul>
+                <li><strong>送信器</strong>: 誘導コイルで高電圧を発生させ、火花放電により電磁波を発生</li>
+                <li><strong>受信器</strong>: 小さなループアンテナと火花ギャップ。電磁波を受信すると微小な火花が観測される</li>
+            </ul>
+
+            <p>ヘルツは以下の重要な事実を実験的に確認した：</p>
+            <ol>
+                <li>電磁波は有限の速度で伝播する（光速と一致）</li>
+                <li>電磁波は反射、屈折、偏光など、光と同じ性質を示す</li>
+                <li>電磁波は定在波を形成し、その波長を測定できる</li>
+            </ol>
+
+            <div class="example-box">
+                <h4>例題1.1: ヘルツの実験での波長測定</h4>
+                <p><strong>問題:</strong> ヘルツは金属板で電磁波を反射させて定在波を作り、節と腹の位置を測定した。隣り合う節の間隔が33 cmであったとき、電磁波の周波数はいくらか。</p>
+                <div class="solution">
+                    <p><strong>解答:</strong></p>
+                    <p>定在波において、隣り合う節の間隔は半波長 \(\lambda/2\) に等しい。</p>
+                    \[ \frac{\lambda}{2} = 0.33 \text{ m} \]
+                    \[ \lambda = 0.66 \text{ m} \]
+                    <p>周波数は \(f = c/\lambda\) より：</p>
+                    \[ f = \frac{3.0 \times 10^8}{0.66} = 4.5 \times 10^8 \text{ Hz} = 450 \text{ MHz} \]
+                </div>
+            </div>
+
+            <h4>1.2.3 その後の発展</h4>
+            <p>電磁波の発見は、人類の技術と科学に革命的な変化をもたらした：</p>
+
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>年</th>
+                        <th>発明者/発見者</th>
+                        <th>業績</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1895</td>
+                        <td>マルコーニ</td>
+                        <td>無線電信の実用化</td>
+                    </tr>
+                    <tr>
+                        <td>1895</td>
+                        <td>レントゲン</td>
+                        <td>X線の発見</td>
+                    </tr>
+                    <tr>
+                        <td>1900</td>
+                        <td>プランク</td>
+                        <td>量子仮説（黒体放射）</td>
+                    </tr>
+                    <tr>
+                        <td>1905</td>
+                        <td>アインシュタイン</td>
+                        <td>光量子仮説（光電効果）</td>
+                    </tr>
+                    <tr>
+                        <td>1923</td>
+                        <td>コンプトン</td>
+                        <td>コンプトン散乱（光子の粒子性）</td>
+                    </tr>
+                    <tr>
+                        <td>1960</td>
+                        <td>メイマン</td>
+                        <td>レーザーの発明</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <!-- セクション3: 電磁波の基本関係式 -->
+        <section class="content-section">
+            <h3>1.3 電磁波の基本関係式</h3>
+
+            <h4>1.3.1 波長・周波数・速度の関係</h4>
+            <p>すべての波動に共通する基本関係式として、波長 \(\lambda\)、周波数 \(f\)、伝播速度 \(v\) の間には以下の関係がある：</p>
+
+            <div class="equation-box important">
+                <div class="title">波の基本関係式</div>
+                \[ v = f\lambda \]
+                <p>真空中の電磁波の場合: \(c = f\lambda\)</p>
+            </div>
+
+            <p>この式の物理的意味を理解しよう：</p>
+            <ul>
+                <li>\(\lambda\) [m]: 波の1周期分の長さ（空間的な周期）</li>
+                <li>\(f\) [Hz = 1/s]: 1秒間に観測点を通過する波の数（時間的な周期の逆数）</li>
+                <li>したがって、\(f\lambda\) は「1秒間に波が進む距離」= 速度となる</li>
+            </ul>
+
+            <h4>1.3.2 角周波数と波数</h4>
+            <p>理論的な取り扱いでは、角周波数 \(\omega\) と波数 \(k\) がよく用いられる：</p>
+
+            <div class="equation-box">
+                <div class="title">角周波数と波数</div>
+                \[ \omega = 2\pi f \quad \text{[rad/s]} \]
+                \[ k = \frac{2\pi}{\lambda} \quad \text{[rad/m]} \]
+                <p>これらを用いると: \(c = \frac{\omega}{k}\)</p>
+            </div>
+
+            <h4>1.3.3 周期と波長の関係</h4>
+            <p>周期 \(T\) は周波数の逆数である：</p>
+            <div class="equation">
+                \[ T = \frac{1}{f} \]
+            </div>
+            <p>光速の定義 \(c = f\lambda\) より：</p>
+            <div class="equation">
+                \[ \lambda = cT \]
+            </div>
+            <p>これは「1周期の間に電磁波が進む距離が波長である」ことを示している。</p>
+
+            <div class="example-box">
+                <h4>例題1.2: FMラジオ波の波長</h4>
+                <p><strong>問題:</strong> FMラジオ放送の周波数は約80 MHzである。この電波の波長を求めよ。</p>
+                <div class="solution">
+                    <p><strong>解答:</strong></p>
+                    \[ \lambda = \frac{c}{f} = \frac{3.0 \times 10^8 \text{ m/s}}{80 \times 10^6 \text{ Hz}} = 3.75 \text{ m} \]
+                    <p>これは、効率的な受信のためのアンテナ長（約\(\lambda/4 \approx 1\) m）と一致する。</p>
+                </div>
+            </div>
+
+            <div class="example-box">
+                <h4>例題1.3: 可視光の周波数</h4>
+                <p><strong>問題:</strong> 波長550 nm（緑色光）の周波数と周期を求めよ。</p>
+                <div class="solution">
+                    <p><strong>解答:</strong></p>
+                    <p>周波数:</p>
+                    \[ f = \frac{c}{\lambda} = \frac{3.0 \times 10^8}{550 \times 10^{-9}} = 5.45 \times 10^{14} \text{ Hz} = 545 \text{ THz} \]
+                    <p>周期:</p>
+                    \[ T = \frac{1}{f} = \frac{1}{5.45 \times 10^{14}} = 1.83 \times 10^{-15} \text{ s} = 1.83 \text{ fs} \]
+                    <p>可視光の周期は約2フェムト秒という極めて短い時間である。</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- セクション4: 電磁波スペクトル -->
+        <section class="content-section">
+            <h3>1.4 電磁波スペクトル</h3>
+
+            <h4>1.4.1 電磁波スペクトルの全体像</h4>
+            <p>電磁波は波長（または周波数）によって分類される。以下に電磁波スペクトルの全体像を示す：</p>
+
+            <div class="spectrum-diagram" id="spectrumDiagram"></div>
+
+            <table class="data-table spectrum-table">
+                <thead>
+                    <tr>
+                        <th>種類</th>
+                        <th>波長範囲</th>
+                        <th>周波数範囲</th>
+                        <th>光子エネルギー</th>
+                        <th>発生源</th>
+                        <th>主な応用</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="gamma">
+                        <td>γ線（ガンマ線）</td>
+                        <td>&lt; 10 pm</td>
+                        <td>&gt; 30 EHz</td>
+                        <td>&gt; 124 keV</td>
+                        <td>原子核崩壊、宇宙線</td>
+                        <td>がん治療、滅菌</td>
+                    </tr>
+                    <tr class="xray">
+                        <td>X線</td>
+                        <td>10 pm - 10 nm</td>
+                        <td>30 PHz - 30 EHz</td>
+                        <td>124 eV - 124 keV</td>
+                        <td>制動放射、特性X線</td>
+                        <td>医療診断、結晶解析</td>
+                    </tr>
+                    <tr class="uv">
+                        <td>紫外線</td>
+                        <td>10 - 400 nm</td>
+                        <td>750 THz - 30 PHz</td>
+                        <td>3.1 - 124 eV</td>
+                        <td>太陽、放電管</td>
+                        <td>殺菌、リソグラフィ</td>
+                    </tr>
+                    <tr class="visible">
+                        <td>可視光</td>
+                        <td>400 - 700 nm</td>
+                        <td>430 - 750 THz</td>
+                        <td>1.8 - 3.1 eV</td>
+                        <td>熱放射、LED、レーザー</td>
+                        <td>照明、光通信、視覚</td>
+                    </tr>
+                    <tr class="ir">
+                        <td>赤外線</td>
+                        <td>700 nm - 1 mm</td>
+                        <td>300 GHz - 430 THz</td>
+                        <td>1.2 meV - 1.8 eV</td>
+                        <td>熱放射</td>
+                        <td>暖房、センサー、通信</td>
+                    </tr>
+                    <tr class="microwave">
+                        <td>マイクロ波</td>
+                        <td>1 mm - 1 m</td>
+                        <td>300 MHz - 300 GHz</td>
+                        <td>1.2 μeV - 1.2 meV</td>
+                        <td>マグネトロン、ジャイロトロン</td>
+                        <td>レーダー、電子レンジ、通信</td>
+                    </tr>
+                    <tr class="radio">
+                        <td>電波</td>
+                        <td>&gt; 1 m</td>
+                        <td>&lt; 300 MHz</td>
+                        <td>&lt; 1.2 μeV</td>
+                        <td>アンテナ、発振回路</td>
+                        <td>ラジオ、テレビ、通信</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h4>1.4.2 各波長領域の詳細</h4>
+
+            <h5>ガンマ線（γ線）</h5>
+            <p>ガンマ線は最も波長が短く、エネルギーが高い電磁波である。主に原子核の崩壊過程や、宇宙の高エネルギー現象から発生する。</p>
+            <ul>
+                <li><strong>発生機構</strong>: 原子核のエネルギー準位遷移、対消滅、高エネルギー電子の制動放射</li>
+                <li><strong>特徴</strong>: 極めて高い透過力、電離作用が強い</li>
+                <li><strong>応用</strong>: がん治療（ガンマナイフ）、医療機器の滅菌、非破壊検査</li>
+            </ul>
+
+            <h5>X線</h5>
+            <p>X線は1895年にレントゲンによって発見された。物質に対する透過力が高く、医療診断に革命をもたらした。</p>
+            <ul>
+                <li><strong>発生機構</strong>:
+                    <ul>
+                        <li>制動放射: 高速電子が原子核の電場で減速される際に放出</li>
+                        <li>特性X線: 内殻電子の遷移に伴う放出</li>
+                    </ul>
+                </li>
+                <li><strong>応用</strong>: 医療画像診断、手荷物検査、X線結晶構造解析、CT（コンピュータ断層撮影）</li>
+            </ul>
+
+            <div class="column application">
+                <h4>コラム: X線結晶構造解析とDNA二重らせん</h4>
+                <p>X線結晶構造解析は、結晶にX線を照射して得られる回折パターンから、物質の原子配列を決定する手法である。この技術は、1953年のDNA二重らせん構造の発見に決定的な役割を果たした。</p>
+                <p>ロザリンド・フランクリンが撮影したDNAのX線回折写真（Photo 51）は、DNAがらせん構造を持つことを示す決定的な証拠となった。この写真から、ワトソンとクリックは二重らせんモデルを構築した。</p>
+                <p>X線回折の原理は、ブラッグの法則で説明される：</p>
+                \[ 2d\sin\theta = n\lambda \]
+                <p>ここで \(d\) は結晶格子面の間隔、\(\theta\) は入射角、\(\lambda\) はX線の波長である。</p>
+            </div>
+
+            <h5>紫外線</h5>
+            <p>紫外線は可視光より波長が短く、人間の目には見えない。太陽光に含まれ、生物に様々な影響を与える。</p>
+            <ul>
+                <li><strong>分類</strong>:
+                    <ul>
+                        <li>UV-A (315-400 nm): 皮膚の深部に到達、老化の原因</li>
+                        <li>UV-B (280-315 nm): 日焼け、ビタミンD生成</li>
+                        <li>UV-C (100-280 nm): オゾン層で吸収、殺菌に利用</li>
+                    </ul>
+                </li>
+                <li><strong>応用</strong>: 殺菌、半導体リソグラフィ、蛍光分析、紙幣偽造防止</li>
+            </ul>
+
+            <h5>可視光</h5>
+            <p>可視光は人間の目で知覚できる唯一の電磁波領域である。この狭い帯域（約380-780 nm）が「見える」理由は、太陽の放射スペクトルのピークがこの領域にあり、地球上の生物がこれに適応したためと考えられる。</p>
+
+            <div class="derivation">
+                <h4>導出: 太陽表面温度と放射ピーク</h4>
+                <div class="derivation-step">
+                    <span class="step-num">1</span>
+                    <strong>ウィーンの変位則</strong>
+                    <p>黒体放射のピーク波長と温度の関係：</p>
+                    \[ \lambda_{max} T = b = 2.898 \times 10^{-3} \text{ m·K} \]
+                </div>
+                <div class="derivation-step">
+                    <span class="step-num">2</span>
+                    <strong>太陽表面温度の推定</strong>
+                    <p>可視光のピーク（約500 nm = 5 × 10⁻⁷ m）を仮定すると：</p>
+                    \[ T = \frac{b}{\lambda_{max}} = \frac{2.898 \times 10^{-3}}{5 \times 10^{-7}} = 5800 \text{ K} \]
+                </div>
+                <div class="derivation-step">
+                    <span class="step-num">3</span>
+                    <strong>結論</strong>
+                    <p>この値は太陽表面（光球）の実測温度（約5778 K）とよく一致する。</p>
+                </div>
+            </div>
+
+            <h5>赤外線</h5>
+            <p>赤外線は1800年にハーシェルによって発見された。すべての物体は温度に応じて赤外線を放射している。</p>
+            <ul>
+                <li><strong>分類</strong>:
+                    <ul>
+                        <li>近赤外線 (0.7-2.5 μm): 光通信、暗視装置</li>
+                        <li>中赤外線 (2.5-25 μm): 分光分析、ガス検出</li>
+                        <li>遠赤外線 (25 μm - 1 mm): 熱画像、天文観測</li>
+                    </ul>
+                </li>
+                <li><strong>応用</strong>: リモコン、暖房、赤外線分光、サーモグラフィ</li>
+            </ul>
+
+            <h5>マイクロ波</h5>
+            <p>マイクロ波は波長1 mm〜1 mの電磁波である。レーダーや通信、電子レンジなど広く利用されている。</p>
+            <ul>
+                <li><strong>特徴</strong>: 指向性が高い、大気中での減衰が比較的小さい</li>
+                <li><strong>応用</strong>: 電子レンジ（2.45 GHz）、携帯電話、Wi-Fi、レーダー、衛星通信</li>
+            </ul>
+
+            <h5>電波</h5>
+            <p>電波は最も波長が長い電磁波である。回折により障害物を回り込んで伝播できる。</p>
+            <ul>
+                <li><strong>分類</strong>:
+                    <ul>
+                        <li>超長波 (VLF): 潜水艦通信</li>
+                        <li>長波 (LF): 船舶通信</li>
+                        <li>中波 (MF): AMラジオ</li>
+                        <li>短波 (HF): 国際放送、アマチュア無線</li>
+                        <li>超短波 (VHF): FMラジオ、テレビ</li>
+                        <li>極超短波 (UHF): 携帯電話、テレビ</li>
+                    </ul>
+                </li>
+            </ul>
+        </section>
+
+        <!-- セクション5: 電磁波のエネルギー -->
+        <section class="content-section">
+            <h3>1.5 電磁波のエネルギー</h3>
+
+            <h4>1.5.1 電磁場のエネルギー密度</h4>
+            <p>電磁場はエネルギーを持つ。電場と磁場のエネルギー密度（単位体積あたりのエネルギー）は：</p>
+
+            <div class="equation-box">
+                <div class="title">電磁場のエネルギー密度</div>
+                <p>電場のエネルギー密度:</p>
+                \[ u_E = \frac{1}{2}\epsilon_0 E^2 \]
+                <p>磁場のエネルギー密度:</p>
+                \[ u_B = \frac{1}{2\mu_0} B^2 \]
+                <p>電磁波では両者は等しい: \(u_E = u_B\)</p>
+            </div>
+
+            <div class="derivation">
+                <h4>導出: 電磁波のエネルギー等分配</h4>
+                <div class="derivation-step">
+                    <span class="step-num">1</span>
+                    <strong>電場と磁場の関係を用いる</strong>
+                    <p>電磁波では \(E = cB\)、また \(c = 1/\sqrt{\mu_0\epsilon_0}\)</p>
+                </div>
+                <div class="derivation-step">
+                    <span class="step-num">2</span>
+                    <strong>磁場のエネルギー密度を書き換える</strong>
+                    \[ u_B = \frac{B^2}{2\mu_0} = \frac{(E/c)^2}{2\mu_0} = \frac{E^2}{2\mu_0 c^2} \]
+                </div>
+                <div class="derivation-step">
+                    <span class="step-num">3</span>
+                    <strong>\(c^2 = 1/(\mu_0\epsilon_0)\) を代入</strong>
+                    \[ u_B = \frac{E^2 \mu_0\epsilon_0}{2\mu_0} = \frac{\epsilon_0 E^2}{2} = u_E \]
+                </div>
+                <div class="derivation-step">
+                    <span class="step-num">4</span>
+                    <strong>全エネルギー密度</strong>
+                    \[ u = u_E + u_B = \epsilon_0 E^2 = \frac{B^2}{\mu_0} \]
+                </div>
+            </div>
+
+            <h4>1.5.2 ポインティングベクトル</h4>
+            <p>電磁波によるエネルギーの流れ（単位面積・単位時間あたりのエネルギー）はポインティングベクトルで表される：</p>
+
+            <div class="equation-box important">
+                <div class="title">ポインティングベクトル</div>
+                \[ \vec{S} = \frac{1}{\mu_0} \vec{E} \times \vec{B} \]
+                <p>単位: [W/m²]（エネルギー流束密度）</p>
+            </div>
+
+            <p>平面電磁波の場合、時間平均のエネルギー流束（強度）は：</p>
+            <div class="equation">
+                \[ I = \langle S \rangle = \frac{1}{2}\epsilon_0 c E_0^2 = \frac{c}{2\mu_0} B_0^2 \]
+            </div>
+
+            <div class="example-box">
+                <h4>例題1.4: 太陽光の電場強度</h4>
+                <p><strong>問題:</strong> 地表での太陽光の強度は約1000 W/m²である。この電磁波の電場振幅と磁場振幅を求めよ。</p>
+                <div class="solution">
+                    <p><strong>解答:</strong></p>
+                    <p>強度と電場振幅の関係より：</p>
+                    \[ I = \frac{1}{2}\epsilon_0 c E_0^2 \]
+                    \[ E_0 = \sqrt{\frac{2I}{\epsilon_0 c}} = \sqrt{\frac{2 \times 1000}{8.85 \times 10^{-12} \times 3 \times 10^8}} \]
+                    \[ E_0 = \sqrt{7.5 \times 10^5} = 870 \text{ V/m} \]
+                    <p>磁場振幅：</p>
+                    \[ B_0 = \frac{E_0}{c} = \frac{870}{3 \times 10^8} = 2.9 \times 10^{-6} \text{ T} = 2.9 \text{ μT} \]
+                </div>
+            </div>
+
+            <h4>1.5.3 光子のエネルギー</h4>
+            <p>量子論によると、電磁波は光子（photon）と呼ばれる粒子の集まりとして振る舞う。1個の光子が持つエネルギーは：</p>
+
+            <div class="equation-box important">
+                <div class="title">プランク-アインシュタインの関係式</div>
+                \[ E = hf = \frac{hc}{\lambda} \]
+                <p>h = 6.626 × 10⁻³⁴ J·s（プランク定数）</p>
+            </div>
+
+            <p>電子ボルト(eV)単位では：</p>
+            <div class="equation">
+                \[ E \text{ [eV]} = \frac{1240}{\lambda \text{ [nm]}} \]
+            </div>
+            <p>この便利な関係式を覚えておくと、波長からエネルギーを素早く計算できる。</p>
+
+            <div class="example-box">
+                <h4>例題1.5: 各種電磁波の光子エネルギー</h4>
+                <p><strong>問題:</strong> 以下の電磁波の光子エネルギーをeVで求めよ。</p>
+                <ol>
+                    <li>FMラジオ波（80 MHz）</li>
+                    <li>電子レンジのマイクロ波（2.45 GHz）</li>
+                    <li>緑色光（550 nm）</li>
+                    <li>医療用X線（0.01 nm）</li>
+                </ol>
+                <div class="solution">
+                    <p><strong>解答:</strong></p>
+                    <p>\(E = hf\) を用い、1 eV = 1.602 × 10⁻¹⁹ J で換算する。</p>
+                    <ol>
+                        <li>FMラジオ: \(E = \frac{6.626 \times 10^{-34} \times 80 \times 10^6}{1.602 \times 10^{-19}} = 3.3 \times 10^{-7}\) eV</li>
+                        <li>マイクロ波: \(E = \frac{6.626 \times 10^{-34} \times 2.45 \times 10^9}{1.602 \times 10^{-19}} = 1.0 \times 10^{-5}\) eV</li>
+                        <li>緑色光: \(E = \frac{1240}{550} = 2.25\) eV</li>
+                        <li>X線: \(E = \frac{1240}{0.01} = 124000\) eV = 124 keV</li>
+                    </ol>
+                    <p>電波やマイクロ波の光子エネルギーは極めて小さく、個々の光子としての効果は観測しにくい。一方、X線やγ線は1個の光子でも物質に大きな影響を与えうる。</p>
+                </div>
+            </div>
+
+            <h4>1.5.4 放射圧</h4>
+            <p>光子は運動量も持つ。光子の運動量は：</p>
+            <div class="equation">
+                \[ p = \frac{E}{c} = \frac{h}{\lambda} \]
+            </div>
+            <p>電磁波が物体に当たると、運動量の授受により圧力（放射圧）が生じる：</p>
+            <div class="equation-box">
+                <div class="title">放射圧</div>
+                <p>完全吸収面: \(P = \frac{I}{c}\)</p>
+                <p>完全反射面: \(P = \frac{2I}{c}\)</p>
+            </div>
+
+            <div class="example-box">
+                <h4>例題1.6: 太陽光の放射圧</h4>
+                <p><strong>問題:</strong> 地表での太陽光強度1000 W/m²による放射圧を、完全吸収面と完全反射面の両方の場合について求めよ。</p>
+                <div class="solution">
+                    <p><strong>解答:</strong></p>
+                    <p>完全吸収面:</p>
+                    \[ P = \frac{I}{c} = \frac{1000}{3 \times 10^8} = 3.3 \times 10^{-6} \text{ Pa} = 3.3 \text{ μPa} \]
+                    <p>完全反射面:</p>
+                    \[ P = \frac{2I}{c} = 6.7 \times 10^{-6} \text{ Pa} = 6.7 \text{ μPa} \]
+                    <p>これは大気圧（約10⁵ Pa）に比べて極めて小さいが、宇宙空間では無視できない。ソーラーセイル宇宙船はこの放射圧を推進力として利用する。</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- セクション6: 波動性と粒子性 -->
+        <section class="content-section">
+            <h3>1.6 電磁波の二重性</h3>
+
+            <h4>1.6.1 波動としての性質</h4>
+            <p>電磁波は以下の典型的な波動現象を示す：</p>
+            <ul>
+                <li><strong>干渉</strong>: 2つ以上の波が重ね合わさって強め合ったり弱め合ったりする</li>
+                <li><strong>回折</strong>: 波が障害物の端を回り込む</li>
+                <li><strong>偏光</strong>: 電場の振動方向に関する現象</li>
+                <li><strong>ドップラー効果</strong>: 光源と観測者の相対運動による周波数変化</li>
+            </ul>
+
+            <h4>1.6.2 粒子としての性質</h4>
+            <p>一方、電磁波は以下の現象では粒子（光子）として振る舞う：</p>
+            <ul>
+                <li><strong>光電効果</strong>: 金属表面から電子を放出させる（アインシュタイン、1905年）</li>
+                <li><strong>コンプトン散乱</strong>: X線が電子に散乱される際の波長変化（コンプトン、1923年）</li>
+                <li><strong>黒体放射</strong>: 熱平衡状態の放射スペクトル（プランク、1900年）</li>
+            </ul>
+
+            <div class="key-point">
+                <h4>波動・粒子の二重性</h4>
+                <p>電磁波は、観測する現象によって波動として振る舞ったり、粒子として振る舞ったりする。これは「どちらが本当か」という問題ではなく、自然界の根本的な性質である。量子力学では、この二重性は相補性原理として理解される。</p>
+            </div>
+
+            <h4>1.6.3 波動性と粒子性の使い分け</h4>
+            <p>一般に、以下の目安が成り立つ：</p>
+            <ul>
+                <li><strong>多数の光子</strong>を扱う場合 → 波動として扱う（干渉、回折など）</li>
+                <li><strong>少数の光子</strong>を扱う場合 → 粒子として扱う（光電効果、光検出器など）</li>
+                <li><strong>光子エネルギーが高い</strong>場合 → 粒子性が顕著（X線、γ線）</li>
+                <li><strong>波長が対象のサイズより大きい</strong>場合 → 波動性が顕著（回折現象）</li>
+            </ul>
+        </section>
+
+        <!-- 演習問題 -->
+        <section class="content-section exercises">
+            <h3>演習問題</h3>
+
+            <div class="exercise">
+                <h4>問題1.1 基礎</h4>
+                <p>以下の電磁波について、波長、周波数、光子エネルギーを相互に変換せよ。</p>
+                <ol>
+                    <li>波長 632.8 nm（He-Neレーザー）の周波数とエネルギー</li>
+                    <li>周波数 5 GHz（Wi-Fi）の波長とエネルギー</li>
+                    <li>エネルギー 13.6 eV（水素原子の電離エネルギー）の波長と周波数</li>
+                </ol>
+            </div>
+
+            <div class="exercise">
+                <h4>問題1.2 応用</h4>
+                <p>100 Wの電球が全方向に均等に可視光（平均波長500 nm）を放射しているとする。電球から1 m離れた点で、1秒間に単位面積を通過する光子の数を求めよ。</p>
+            </div>
+
+            <div class="exercise">
+                <h4>問題1.3 発展</h4>
+                <p>レーザー光を完全反射鏡に照射して物体を浮上させることを考える。質量1 gの物体を地表で浮上させるために必要なレーザーの出力（反射面に到達するパワー）を求めよ。このような「光浮上」は現実的か考察せよ。</p>
+            </div>
+
+            <div class="exercise">
+                <h4>問題1.4 考察</h4>
+                <p>電子レンジのマイクロ波（2.45 GHz）と携帯電話の電波（約2 GHz）は周波数が近いが、電子レンジは食品を加熱でき、携帯電話は人体をほとんど加熱しない。この違いはなぜ生じるか、物理的に説明せよ。</p>
+            </div>
+        </section>
+
+        <!-- まとめ -->
+        <section class="content-section summary">
+            <h3>第1回のまとめ</h3>
+            <div class="summary-box">
+                <h4>学習した主要概念</h4>
+                <ul>
+                    <li>電磁波は電場と磁場が互いに誘導し合って伝播する横波である</li>
+                    <li>真空中の電磁波の速度は \(c = 3 \times 10^8\) m/s（光速）</li>
+                    <li>基本関係式: \(c = f\lambda\)</li>
+                    <li>電磁波スペクトルは、γ線からラジオ波まで広範囲にわたる</li>
+                    <li>光子のエネルギー: \(E = hf = hc/\lambda\)</li>
+                    <li>電磁波は波動性と粒子性の両方を持つ（二重性）</li>
+                </ul>
+            </div>
+
+            <div class="summary-box">
+                <h4>重要公式</h4>
+                <div class="formula-list">
+                    <p>\(c = f\lambda = 2.998 \times 10^8\) m/s</p>
+                    <p>\(E = hf = \frac{hc}{\lambda}\)、\(E\text{[eV]} = \frac{1240}{\lambda\text{[nm]}}\)</p>
+                    <p>\(\vec{S} = \frac{1}{\mu_0}\vec{E} \times \vec{B}\)（ポインティングベクトル）</p>
+                    <p>\(I = \frac{1}{2}\epsilon_0 c E_0^2\)（電磁波の強度）</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ナビゲーション -->
+        <nav class="lecture-nav">
+            <a href="../lecture.html" class="nav-prev">← 講義一覧へ</a>
+            <a href="lecture02.html" class="nav-next">第2回: 可視光の色 →</a>
+        </nav>
+    </main>
+
+    <footer>
+        <p>福井大学 共通教育科目 B2032 電磁波と物質</p>
+        <p>担当: 福成 雅史 / 石川 裕也</p>
+    </footer>
+
+    <script src="../js/lecture.js"></script>
+</body>
+</html>

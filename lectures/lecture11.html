@@ -1,0 +1,1091 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>第11回: 量子力学の始まり - 電磁波と物質</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/lecture.css">
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+    <header class="main-header">
+        <h1>電磁波と物質</h1>
+        <p class="subtitle">第11回: 量子力学の始まり</p>
+    </header>
+
+    <nav class="main-nav">
+        <a href="../index.html">ダッシュボード</a>
+        <a href="../lecture.html">講義一覧</a>
+        <a href="../interactive.html">インタラクティブ学習</a>
+    </nav>
+
+    <main class="lecture-content">
+        <div class="lecture-header">
+            <div class="lecture-meta">
+                <span class="lecture-number">Lecture 11</span>
+                <span class="lecture-duration">学習時間目安: 120-150分</span>
+            </div>
+            <h2>量子力学の始まり</h2>
+            <p class="lecture-objectives">
+                <strong>学習目標:</strong> 19世紀末から20世紀初頭にかけて古典物理学が直面した問題を理解し、量子力学誕生の歴史的背景を学ぶ。黒体放射、光電効果、コンプトン効果、原子スペクトルなどの現象を通じて、エネルギーの量子化と光の粒子性という革命的な概念を理解する。
+            </p>
+        </div>
+
+        <!-- セクション1: 古典物理学の限界 -->
+        <section class="content-section">
+            <h3>11.1 古典物理学の危機</h3>
+
+            <h4>11.1.1 19世紀末の物理学</h4>
+            <p>19世紀末、古典物理学は完成の域に達したと考えられていた。ニュートン力学、マクスウェルの電磁気学、熱力学は、自然界の現象を見事に説明した。1900年頃、有名な物理学者ケルビン卿は「物理学の空には2つの小さな雲があるだけ」と述べたという。</p>
+
+            <p>その「2つの雲」とは：</p>
+            <ul>
+                <li><strong>第1の雲：エーテルの問題</strong> - マイケルソン-モーリーの実験で光のエーテル（媒質）が検出されなかった問題。これは1905年のアインシュタインの特殊相対性理論で解決された。</li>
+                <li><strong>第2の雲：黒体放射の問題</strong> - 熱平衡にある物体からの放射スペクトルが古典理論で説明できなかった問題。これが量子力学の出発点となった。</li>
+            </ul>
+
+            <p>実際には、さらに多くの問題が古典物理学では解決不可能であった：</p>
+            <ul>
+                <li>原子の安定性（電子はなぜ原子核に落ち込まないのか）</li>
+                <li>原子スペクトルの離散的な線（なぜ特定の波長のみが放射・吸収されるのか）</li>
+                <li>光電効果の閾振動数の存在</li>
+                <li>比熱の低温での異常</li>
+            </ul>
+
+            <div class="column history">
+                <h4>コラム: 「物理学は完成した」という伝説</h4>
+                <p>1900年頃、物理学者たちが「物理学は完成した」と考えていたという話は有名だが、実際はより複雑である。</p>
+                <p>確かに、古典物理学の枠組みは精緻で、多くの現象を正確に予測した。しかし、先端的な研究者たちは、上述のような未解決問題を深刻に受け止めていた。</p>
+                <p>興味深いのは、量子力学を創始したマックス・プランク自身が、保守的な物理学者であったことである。彼は「最後の手段」として量子仮説を導入し、長年その物理的意味を受け入れることに抵抗した。</p>
+                <p>一方、若きアインシュタインは、光量子仮説（1905年）でプランクの発見を真剣に受け止め、光の粒子性という革命的な結論を引き出した。この違いが、科学における世代間の思考の柔軟性の違いを示しているかもしれない。</p>
+            </div>
+        </section>
+
+        <!-- セクション2: 黒体放射 -->
+        <section class="content-section">
+            <h3>11.2 黒体放射とプランクの量子仮説</h3>
+
+            <h4>11.2.1 黒体とは</h4>
+            <p><strong>黒体</strong>（black body）とは、入射したすべての電磁波を完全に吸収する理想的な物体である。キルヒホッフの法則により、良い吸収体は良い放射体でもある。したがって、黒体は与えられた温度で最大のエネルギーを放射する。</p>
+
+            <div class="key-point">
+                <h4>黒体の実現</h4>
+                <p>理想的な黒体は、小さな穴を開けた空洞として実現できる。穴に入射した光は内部で多重反射し、ほぼ完全に吸収される。この空洞から出てくる放射（空洞放射）は、壁の材質によらず温度のみで決まる。</p>
+            </div>
+
+            <h4>11.2.2 黒体放射のスペクトル</h4>
+            <p>黒体放射のスペクトル（単位波長あたりのエネルギー密度）は、温度のみに依存する普遍的な形を持つ。19世紀末の実験により、以下の特徴が知られていた：</p>
+
+            <ul>
+                <li>全ての温度でスペクトルはピークを持つ単峰型</li>
+                <li>温度が上がるとピーク波長が短くなる（ウィーンの変位則）</li>
+                <li>温度が上がると全放射エネルギーが増大する（シュテファン-ボルツマンの法則）</li>
+            </ul>
+
+            <div class="equation-box">
+                <div class="title">実験的に知られていた法則</div>
+                <p><strong>シュテファン-ボルツマンの法則（1879年）:</strong></p>
+                \[ P = \sigma T^4 \]
+                <p>σ = 5.67 × 10⁻⁸ W/(m²·K⁴)：シュテファン-ボルツマン定数</p>
+                <p><strong>ウィーンの変位則（1893年）:</strong></p>
+                \[ \lambda_{max} T = b = 2.898 \times 10^{-3} \text{ m·K} \]
+            </div>
+
+            <h4>11.2.3 古典理論の失敗：紫外破綻</h4>
+            <p>古典統計力学に基づくレイリー-ジーンズの法則は、低周波数領域では実験と一致するが、高周波数では無限大に発散するという致命的な問題を持っていた。これを<strong>紫外破綻</strong>（ultraviolet catastrophe）という。</p>
+
+            <div class="derivation">
+                <h4>導出: レイリー-ジーンズの法則</h4>
+                <div class="derivation-step">
+                    <span class="step-num">1</span>
+                    <strong>空洞内のモード数</strong>
+                    <p>一辺 L の立方体空洞内の電磁波のモード数（周波数 ν から ν + dν の間）は：</p>
+                    \[ g(\nu)d\nu = \frac{8\pi\nu^2}{c^3}d\nu \]
+                </div>
+                <div class="derivation-step">
+                    <span class="step-num">2</span>
+                    <strong>古典的エネルギー等分配則</strong>
+                    <p>古典統計力学では、各振動モードは平均エネルギー \(k_B T\) を持つ：</p>
+                    \[ \langle E \rangle = k_B T \]
+                </div>
+                <div class="derivation-step">
+                    <span class="step-num">3</span>
+                    <strong>レイリー-ジーンズの法則</strong>
+                    \[ u(\nu)d\nu = g(\nu) \cdot k_B T \cdot d\nu = \frac{8\pi\nu^2 k_B T}{c^3}d\nu \]
+                </div>
+                <div class="derivation-step">
+                    <span class="step-num">4</span>
+                    <strong>紫外破綻</strong>
+                    <p>全エネルギー密度を計算すると：</p>
+                    \[ u_{total} = \int_0^\infty u(\nu)d\nu = \int_0^\infty \frac{8\pi\nu^2 k_B T}{c^3}d\nu \rightarrow \infty \]
+                    <p>高周波数で積分が発散し、無限大となる。これは明らかに非物理的である。</p>
+                </div>
+            </div>
+
+            <h4>11.2.4 プランクの量子仮説</h4>
+            <p>1900年12月14日、マックス・プランク（Max Planck, 1858-1947）は歴史的な発表を行った。彼は、実験データを説明するために、エネルギーが連続的ではなく<strong>離散的な値</strong>しか取れないと仮定した。</p>
+
+            <div class="equation-box important">
+                <div class="title">プランクの量子仮説</div>
+                <p>振動数 ν の振動子のエネルギーは、以下の離散的な値のみを取りうる：</p>
+                \[ E_n = nh\nu \quad (n = 0, 1, 2, 3, ...) \]
+                <p>h = 6.626 × 10⁻³⁴ J·s：プランク定数</p>
+                <p>エネルギーの最小単位（量子）は hν である。</p>
+            </div>
+
+            <div class="derivation">
+                <h4>導出: プランクの放射法則</h4>
+                <div class="derivation-step">
+                    <span class="step-num">1</span>
+                    <strong>量子化されたエネルギー準位</strong>
+                    <p>振動数 ν の振動子は E_n = nhν のエネルギーのみを持てる。</p>
+                </div>
+                <div class="derivation-step">
+                    <span class="step-num">2</span>
+                    <strong>ボルツマン分布</strong>
+                    <p>温度 T での各準位の占有確率は：</p>
+                    \[ P_n = \frac{e^{-E_n/k_B T}}{\sum_{m=0}^{\infty} e^{-E_m/k_B T}} = \frac{e^{-nh\nu/k_B T}}{\sum_{m=0}^{\infty} e^{-mh\nu/k_B T}} \]
+                </div>
+                <div class="derivation-step">
+                    <span class="step-num">3</span>
+                    <strong>平均エネルギーの計算</strong>
+                    <p>x = h\nu/(k_B T) とおくと、等比級数の公式より：</p>
+                    \[ \langle E \rangle = \sum_{n=0}^{\infty} E_n P_n = \frac{\sum_{n=0}^{\infty} nh\nu e^{-nx}}{\sum_{n=0}^{\infty} e^{-nx}} = h\nu \frac{d}{dx}\ln\left(\sum_{n=0}^{\infty} e^{-nx}\right) \]
+                    \[ = h\nu \frac{d}{dx}\ln\left(\frac{1}{1-e^{-x}}\right) = \frac{h\nu}{e^{h\nu/k_B T} - 1} \]
+                </div>
+                <div class="derivation-step">
+                    <span class="step-num">4</span>
+                    <strong>プランクの放射法則</strong>
+                    <p>エネルギー密度は：</p>
+                    \[ u(\nu) = g(\nu) \cdot \langle E \rangle = \frac{8\pi\nu^2}{c^3} \cdot \frac{h\nu}{e^{h\nu/k_B T} - 1} \]
+                    \[ u(\nu) = \frac{8\pi h\nu^3}{c^3} \cdot \frac{1}{e^{h\nu/k_B T} - 1} \]
+                </div>
+            </div>
+
+            <div class="equation-box important">
+                <div class="title">プランクの放射法則</div>
+                <p><strong>周波数表示:</strong></p>
+                \[ u(\nu) = \frac{8\pi h\nu^3}{c^3} \cdot \frac{1}{e^{h\nu/k_B T} - 1} \]
+                <p><strong>波長表示:</strong></p>
+                \[ u(\lambda) = \frac{8\pi hc}{\lambda^5} \cdot \frac{1}{e^{hc/\lambda k_B T} - 1} \]
+            </div>
+
+            <h4>11.2.5 極限の確認</h4>
+            <p>プランクの式は、低周波数ではレイリー-ジーンズの法則に、高周波数ではウィーンの放射法則に一致する。</p>
+
+            <div class="derivation">
+                <h4>導出: 低周波数極限と高周波数極限</h4>
+                <div class="derivation-step">
+                    <span class="step-num">1</span>
+                    <strong>低周波数極限（hν << k_B T）</strong>
+                    <p>\(e^{h\nu/k_B T} \approx 1 + h\nu/k_B T\) より：</p>
+                    \[ u(\nu) \approx \frac{8\pi h\nu^3}{c^3} \cdot \frac{1}{h\nu/k_B T} = \frac{8\pi\nu^2 k_B T}{c^3} \]
+                    <p>これはレイリー-ジーンズの法則と一致。</p>
+                </div>
+                <div class="derivation-step">
+                    <span class="step-num">2</span>
+                    <strong>高周波数極限（hν >> k_B T）</strong>
+                    <p>\(e^{h\nu/k_B T} >> 1\) より：</p>
+                    \[ u(\nu) \approx \frac{8\pi h\nu^3}{c^3} e^{-h\nu/k_B T} \]
+                    <p>これはウィーンの放射法則と一致。</p>
+                </div>
+            </div>
+
+            <div class="example-box">
+                <h4>例題11.1: ウィーンの変位則の導出</h4>
+                <p><strong>問題:</strong> プランクの放射法則からウィーンの変位則を導出せよ。</p>
+                <div class="solution">
+                    <p><strong>解答:</strong></p>
+                    <p>波長表示の u(λ) のピーク位置を求める。\(\frac{du}{d\lambda} = 0\) の条件：</p>
+                    \[ \frac{d}{d\lambda}\left[\frac{1}{\lambda^5(e^{hc/\lambda k_B T} - 1)}\right] = 0 \]
+                    <p>x = hc/(λk_B T) と置換すると、条件は：</p>
+                    \[ (5 - x)e^x = 5 \]
+                    <p>これを数値的に解くと x ≈ 4.965。したがって：</p>
+                    \[ \frac{hc}{\lambda_{max} k_B T} = 4.965 \]
+                    \[ \lambda_{max} T = \frac{hc}{4.965 k_B} = \frac{6.626 \times 10^{-34} \times 3 \times 10^8}{4.965 \times 1.38 \times 10^{-23}} \]
+                    \[ \lambda_{max} T = 2.898 \times 10^{-3} \text{ m·K} \]
+                </div>
+            </div>
+
+            <div class="example-box">
+                <h4>例題11.2: 太陽の表面温度</h4>
+                <p><strong>問題:</strong> 太陽光のスペクトルピークが波長約 500 nm にあるとき、太陽の表面温度を見積もれ。</p>
+                <div class="solution">
+                    <p><strong>解答:</strong></p>
+                    <p>ウィーンの変位則より：</p>
+                    \[ T = \frac{b}{\lambda_{max}} = \frac{2.898 \times 10^{-3}}{500 \times 10^{-9}} = 5796 \text{ K} \approx 5800 \text{ K} \]
+                    <p>これは太陽表面（光球）の実測温度とよく一致する。</p>
+                </div>
+            </div>
+
+            <div class="column history">
+                <h4>コラム: プランク定数の発見</h4>
+                <p>プランク定数 h = 6.626 × 10⁻³⁴ J·s は、量子力学の基本定数である。プランクは黒体放射の実験データから、この定数の値を驚くべき精度で決定した。</p>
+                <p>興味深いことに、プランク自身は量子仮説を「数学的トリック」と考え、その物理的実在性には懐疑的だった。彼は古典物理学の枠内で黒体放射を説明しようと長年努力したが、成功しなかった。</p>
+                <p>プランクは1918年にノーベル物理学賞を受賞したが、彼の量子仮説が物理学に革命をもたらすとは、当時の彼自身も十分には認識していなかった。真に革命的な一歩は、1905年のアインシュタインによる光量子仮説であった。</p>
+            </div>
+        </section>
+
+        <!-- セクション3: 光電効果 -->
+        <section class="content-section">
+            <h3>11.3 光電効果とアインシュタインの光量子仮説</h3>
+
+            <h4>11.3.1 光電効果の発見</h4>
+            <p><strong>光電効果</strong>（photoelectric effect）は、1887年にハインリヒ・ヘルツにより偶然発見された。金属表面に光を照射すると、電子が放出される現象である。</p>
+
+            <h4>11.3.2 光電効果の実験事実</h4>
+            <p>光電効果の詳細な実験（レーナルト、1902年）により、以下の事実が明らかになった：</p>
+
+            <div class="key-point">
+                <h4>光電効果の観測事実</h4>
+                <ol>
+                    <li><strong>閾振動数の存在</strong>：光の振動数がある閾値（ν₀）以下では、光をいくら強くしても電子は放出されない</li>
+                    <li><strong>瞬時性</strong>：閾振動数以上の光を照射すると、光の強度がどんなに弱くても電子は即座に放出される</li>
+                    <li><strong>光電子の最大運動エネルギー</strong>：光の振動数のみに依存し、光の強度には依存しない</li>
+                    <li><strong>光電子の数</strong>：光の強度に比例する</li>
+                </ol>
+            </div>
+
+            <h4>11.3.3 古典論の困難</h4>
+            <p>古典的な波動理論では、これらの事実を説明できない：</p>
+
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>観測事実</th>
+                        <th>古典論の予測</th>
+                        <th>矛盾</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>閾振動数の存在</td>
+                        <td>強度が十分なら振動数によらず電子放出</td>
+                        <td>閾値が存在する理由を説明できない</td>
+                    </tr>
+                    <tr>
+                        <td>瞬時性</td>
+                        <td>エネルギー蓄積に時間が必要</td>
+                        <td>10⁻⁹秒以下で放出される</td>
+                    </tr>
+                    <tr>
+                        <td>最大運動エネルギー</td>
+                        <td>強度に依存するはず</td>
+                        <td>振動数のみに依存</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="derivation">
+                <h4>導出: 古典論による電子のエネルギー蓄積時間</h4>
+                <div class="derivation-step">
+                    <span class="step-num">1</span>
+                    <strong>設定</strong>
+                    <p>光強度 I = 1 W/m²、原子の断面積 A ≈ (0.1 nm)² = 10⁻²⁰ m²</p>
+                    <p>電子を放出するのに必要なエネルギー W ≈ 1 eV ≈ 1.6 × 10⁻¹⁹ J</p>
+                </div>
+                <div class="derivation-step">
+                    <span class="step-num">2</span>
+                    <strong>エネルギー蓄積率</strong>
+                    <p>原子1個が単位時間に受け取るエネルギー：</p>
+                    \[ P = I \cdot A = 1 \times 10^{-20} = 10^{-20} \text{ W} \]
+                </div>
+                <div class="derivation-step">
+                    <span class="step-num">3</span>
+                    <strong>蓄積時間</strong>
+                    \[ t = \frac{W}{P} = \frac{1.6 \times 10^{-19}}{10^{-20}} = 16 \text{ s} \]
+                </div>
+                <div class="derivation-step">
+                    <span class="step-num">4</span>
+                    <strong>矛盾</strong>
+                    <p>古典論では電子放出に数秒〜数十秒かかるはずだが、実験では10⁻⁹秒以下で放出される。これは古典論の決定的な破綻を示す。</p>
+                </div>
+            </div>
+
+            <h4>11.3.4 アインシュタインの光量子仮説</h4>
+            <p>1905年、アルベルト・アインシュタイン（Albert Einstein, 1879-1955）は、光電効果を説明するため、光が<strong>光量子</strong>（photon、光子）という粒子の集まりであるという革命的な仮説を提唱した。</p>
+
+            <div class="equation-box important">
+                <div class="title">アインシュタインの光量子仮説</div>
+                <p>振動数 ν の光は、エネルギー hν を持つ光子の集まりである：</p>
+                \[ E_{photon} = h\nu = \frac{hc}{\lambda} \]
+                <p>光子は1個ずつ電子と相互作用し、そのエネルギーを電子に与える。</p>
+            </div>
+
+            <h4>11.3.5 光電効果の方程式</h4>
+            <p>光量子仮説に基づく光電効果の説明：</p>
+
+            <div class="derivation">
+                <h4>導出: アインシュタインの光電効果方程式</h4>
+                <div class="derivation-step">
+                    <span class="step-num">1</span>
+                    <strong>エネルギー保存則</strong>
+                    <p>1個の光子が1個の電子にエネルギー hν を与える。</p>
+                </div>
+                <div class="derivation-step">
+                    <span class="step-num">2</span>
+                    <strong>仕事関数</strong>
+                    <p>電子が金属表面を脱出するのに必要な最小エネルギーを仕事関数 W（または φ）という。</p>
+                </div>
+                <div class="derivation-step">
+                    <span class="step-num">3</span>
+                    <strong>光電効果方程式</strong>
+                    <p>エネルギー保存則より：</p>
+                    \[ h\nu = W + K_{max} \]
+                    <p>したがって、光電子の最大運動エネルギーは：</p>
+                    \[ K_{max} = h\nu - W = h(\nu - \nu_0) \]
+                    <p>ここで \(\nu_0 = W/h\) は閾振動数。</p>
+                </div>
+            </div>
+
+            <div class="equation-box important">
+                <div class="title">アインシュタインの光電効果方程式</div>
+                \[ K_{max} = h\nu - W \]
+                <p>または</p>
+                \[ eV_s = h\nu - W \]
+                <p>\(K_{max}\)：光電子の最大運動エネルギー、W：仕事関数</p>
+                <p>\(V_s\)：阻止電圧（光電子を止めるのに必要な電圧）</p>
+            </div>
+
+            <h4>11.3.6 光電効果方程式による説明</h4>
+            <p>光量子仮説は、すべての観測事実を自然に説明する：</p>
+
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>観測事実</th>
+                        <th>光量子仮説による説明</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>閾振動数</td>
+                        <td>\(h\nu < W\) のとき、光子のエネルギーが仕事関数より小さいため電子を放出できない</td>
+                    </tr>
+                    <tr>
+                        <td>瞬時性</td>
+                        <td>1個の光子が1個の電子と相互作用し、即座にエネルギーを与える</td>
+                    </tr>
+                    <tr>
+                        <td>\(K_{max}\)が振動数依存</td>
+                        <td>\(K_{max} = h\nu - W\) より、振動数のみで決まる</td>
+                    </tr>
+                    <tr>
+                        <td>電子数が強度比例</td>
+                        <td>光強度が大きい＝光子数が多い＝相互作用する電子数が多い</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="example-box">
+                <h4>例題11.3: 光電効果の計算</h4>
+                <p><strong>問題:</strong> カリウム（仕事関数 W = 2.3 eV）の表面に波長 400 nm の光を照射した。(a) 光電子が放出されるか判定し、(b) 放出される場合、光電子の最大運動エネルギーと最大速度を求めよ。</p>
+                <div class="solution">
+                    <p><strong>解答:</strong></p>
+                    <p>(a) 光子のエネルギー：</p>
+                    \[ E = \frac{hc}{\lambda} = \frac{1240 \text{ eV·nm}}{400 \text{ nm}} = 3.10 \text{ eV} \]
+                    <p>E = 3.10 eV > W = 2.3 eV なので、光電子は放出される。</p>
+                    <p>(b) 最大運動エネルギー：</p>
+                    \[ K_{max} = h\nu - W = 3.10 - 2.3 = 0.80 \text{ eV} = 1.28 \times 10^{-19} \text{ J} \]
+                    <p>最大速度：</p>
+                    \[ v_{max} = \sqrt{\frac{2K_{max}}{m_e}} = \sqrt{\frac{2 \times 1.28 \times 10^{-19}}{9.11 \times 10^{-31}}} = 5.3 \times 10^5 \text{ m/s} \]
+                </div>
+            </div>
+
+            <div class="example-box">
+                <h4>例題11.4: 閾波長の計算</h4>
+                <p><strong>問題:</strong> 銀の仕事関数は 4.7 eV である。光電効果が起こる最長波長（閾波長）を求めよ。</p>
+                <div class="solution">
+                    <p><strong>解答:</strong></p>
+                    <p>閾振動数での光子エネルギーは仕事関数に等しい：</p>
+                    \[ h\nu_0 = W \]
+                    \[ \frac{hc}{\lambda_0} = W \]
+                    \[ \lambda_0 = \frac{hc}{W} = \frac{1240 \text{ eV·nm}}{4.7 \text{ eV}} = 264 \text{ nm} \]
+                    <p>銀の光電効果は紫外線領域（λ < 264 nm）でのみ起こる。</p>
+                </div>
+            </div>
+
+            <h4>11.3.7 ミリカンの実験</h4>
+            <p>1916年、ロバート・ミリカン（Robert Millikan）は精密な実験により、アインシュタインの光電効果方程式を検証した。彼は様々な金属に対して、阻止電圧 \(V_s\) と光の振動数 ν の関係を測定した。</p>
+
+            <div class="equation-box">
+                <div class="title">阻止電圧と振動数の関係</div>
+                \[ eV_s = h\nu - W \]
+                \[ V_s = \frac{h}{e}\nu - \frac{W}{e} \]
+                <p>グラフ：\(V_s\) vs ν は直線となり、傾き h/e からプランク定数を決定できる</p>
+            </div>
+
+            <p>ミリカンの実験結果：</p>
+            <ul>
+                <li>\(V_s\) vs ν のグラフは確かに直線</li>
+                <li>傾き h/e から得られた h の値は、プランクが黒体放射から求めた値と一致</li>
+                <li>異なる金属では y 切片（-W/e）が異なる</li>
+            </ul>
+
+            <p>皮肉なことに、ミリカンはアインシュタインの光量子仮説に懐疑的で、それを否定しようとして実験を行った。しかし、彼の精密な実験は逆に光量子仮説を決定的に支持する結果となった。ミリカンは1923年にノーベル物理学賞を受賞した。</p>
+
+            <div class="column tip">
+                <h4>コラム: 光電効果の応用</h4>
+                <p>光電効果は現代の多くの技術に応用されている：</p>
+                <ul>
+                    <li><strong>光電子増倍管（PMT）</strong>：微弱光検出、粒子物理学実験</li>
+                    <li><strong>太陽電池</strong>：光を電気エネルギーに変換（内部光電効果を利用）</li>
+                    <li><strong>CCDイメージセンサー</strong>：デジタルカメラ、天文観測</li>
+                    <li><strong>光電子分光</strong>：物質の電子状態分析（XPS、UPS）</li>
+                    <li><strong>光音響効果</strong>：物質の光学特性測定</li>
+                </ul>
+                <p>アインシュタインは光量子仮説の発見により1921年にノーベル物理学賞を受賞した。彼のより有名な業績である相対性理論ではなく、光電効果の理論的説明が受賞理由であった。</p>
+            </div>
+        </section>
+
+        <!-- セクション4: コンプトン効果 -->
+        <section class="content-section">
+            <h3>11.4 コンプトン効果</h3>
+
+            <h4>11.4.1 X線の散乱</h4>
+            <p>1923年、アーサー・コンプトン（Arthur Compton, 1892-1962）は、X線を物質に照射したときの散乱を研究し、光の粒子性を決定的に証明した。</p>
+
+            <h4>11.4.2 コンプトン効果の観測</h4>
+            <p>コンプトンは以下を発見した：</p>
+
+            <div class="key-point">
+                <h4>コンプトン効果の特徴</h4>
+                <ul>
+                    <li>散乱X線の波長は、入射X線より長くなる（波長シフト）</li>
+                    <li>波長シフトの大きさは散乱角 θ に依存する</li>
+                    <li>波長シフトは散乱物質の種類によらない（普遍定数）</li>
+                    <li>入射波長と同じ波長成分も観測される</li>
+                </ul>
+            </div>
+
+            <h4>11.4.3 コンプトンの解釈</h4>
+            <p>コンプトンは、X線光子と電子の弾性衝突として現象を説明した。これは光子が運動量を持つ「粒子」であることを直接示す証拠である。</p>
+
+            <div class="derivation">
+                <h4>導出: コンプトン散乱の公式</h4>
+                <div class="derivation-step">
+                    <span class="step-num">1</span>
+                    <strong>光子のエネルギーと運動量</strong>
+                    <p>入射光子：\(E = h\nu = pc\)、\(p = h/\lambda\)</p>
+                    <p>散乱光子：\(E' = h\nu' = p'c\)、\(p' = h/\lambda'\)</p>
+                </div>
+                <div class="derivation-step">
+                    <span class="step-num">2</span>
+                    <strong>電子（初め静止）</strong>
+                    <p>散乱後の電子の運動エネルギー \(K_e\)、運動量 \(p_e\)</p>
+                    <p>相対論的関係：\((K_e + m_e c^2)^2 = (p_e c)^2 + (m_e c^2)^2\)</p>
+                </div>
+                <div class="derivation-step">
+                    <span class="step-num">3</span>
+                    <strong>エネルギー保存則</strong>
+                    \[ h\nu + m_e c^2 = h\nu' + (K_e + m_e c^2) \]
+                    \[ h\nu - h\nu' = K_e \]
+                </div>
+                <div class="derivation-step">
+                    <span class="step-num">4</span>
+                    <strong>運動量保存則</strong>
+                    <p>x方向：\(\frac{h}{\lambda} = \frac{h}{\lambda'}\cos\theta + p_e\cos\phi\)</p>
+                    <p>y方向：\(0 = \frac{h}{\lambda'}\sin\theta - p_e\sin\phi\)</p>
+                </div>
+                <div class="derivation-step">
+                    <span class="step-num">5</span>
+                    <strong>連立方程式を解く</strong>
+                    <p>電子の角度 φ を消去し、相対論的エネルギー-運動量関係を用いると：</p>
+                    \[ \lambda' - \lambda = \frac{h}{m_e c}(1 - \cos\theta) \]
+                </div>
+            </div>
+
+            <div class="equation-box important">
+                <div class="title">コンプトン散乱の公式</div>
+                \[ \Delta\lambda = \lambda' - \lambda = \frac{h}{m_e c}(1 - \cos\theta) = \lambda_C(1 - \cos\theta) \]
+                <p>ここで \(\lambda_C = \frac{h}{m_e c} = 2.426 \times 10^{-12}\) m = 2.426 pm</p>
+                <p>\(\lambda_C\)：コンプトン波長（電子の）</p>
+            </div>
+
+            <h4>11.4.4 コンプトン波長の物理的意味</h4>
+            <p>コンプトン波長 \(\lambda_C = h/(m_e c)\) は、静止質量エネルギー \(m_e c^2\) を持つ光子の波長に等しい：</p>
+            <div class="equation">
+                \[ E_{photon} = \frac{hc}{\lambda_C} = \frac{hc \cdot m_e c}{h} = m_e c^2 \]
+            </div>
+            <p>コンプトン波長は量子力学的効果が重要になるスケールを表す。</p>
+
+            <div class="example-box">
+                <h4>例題11.5: コンプトン散乱</h4>
+                <p><strong>問題:</strong> 波長 0.071 nm のX線が自由電子により 90° の方向に散乱された。(a) 散乱X線の波長、(b) 反跳電子の運動エネルギーを求めよ。</p>
+                <div class="solution">
+                    <p><strong>解答:</strong></p>
+                    <p>(a) 波長シフト：</p>
+                    \[ \Delta\lambda = \lambda_C(1 - \cos 90°) = 2.426 \times 10^{-3} \times (1 - 0) = 2.426 \text{ pm} \]
+                    <p>散乱X線の波長：</p>
+                    \[ \lambda' = \lambda + \Delta\lambda = 71 + 2.426 = 73.43 \text{ pm} = 0.0734 \text{ nm} \]
+                    <p>(b) 反跳電子の運動エネルギー（エネルギー保存則より）：</p>
+                    \[ K_e = h\nu - h\nu' = hc\left(\frac{1}{\lambda} - \frac{1}{\lambda'}\right) \]
+                    \[ K_e = 1240 \text{ eV·nm} \times \left(\frac{1}{0.071} - \frac{1}{0.0734}\right) \]
+                    \[ K_e = 1240 \times (14.08 - 13.62) = 1240 \times 0.46 = 570 \text{ eV} \]
+                </div>
+            </div>
+
+            <div class="example-box">
+                <h4>例題11.6: 最大波長シフト</h4>
+                <p><strong>問題:</strong> コンプトン散乱における波長シフトの最大値と、それが起こる散乱角を求めよ。</p>
+                <div class="solution">
+                    <p><strong>解答:</strong></p>
+                    <p>\(\Delta\lambda = \lambda_C(1 - \cos\theta)\) は \(\cos\theta = -1\)（θ = 180°）のとき最大：</p>
+                    \[ \Delta\lambda_{max} = \lambda_C(1 - (-1)) = 2\lambda_C = 4.85 \text{ pm} \]
+                    <p>これは後方散乱（180°散乱）で起こる。このとき、光子は電子に最大のエネルギーを与える。</p>
+                </div>
+            </div>
+
+            <h4>11.4.5 コンプトン効果の意義</h4>
+            <p>コンプトン効果は、光の粒子性を決定的に証明した：</p>
+            <ul>
+                <li>光子がエネルギーだけでなく<strong>運動量</strong>を持つことを示した</li>
+                <li>光子と電子の衝突が、粒子間の弾性衝突として完全に記述できることを示した</li>
+                <li>波長シフトが散乱物質によらないことは、光子が普遍的な性質を持つことを示す</li>
+            </ul>
+
+            <p>コンプトンは1927年にノーベル物理学賞を受賞した。</p>
+
+            <div class="column application">
+                <h4>コラム: コンプトン散乱の応用</h4>
+                <p><strong>1. 医療診断：コンプトンカメラ</strong></p>
+                <p>ガンマ線を検出する際、コンプトン散乱を利用して放射線源の位置を特定できる。PET（陽電子放出断層撮影）の高度化に応用されている。</p>
+                <p><strong>2. 宇宙物理学：逆コンプトン散乱</strong></p>
+                <p>高エネルギー電子が低エネルギー光子と衝突すると、光子がエネルギーを得る（逆コンプトン散乱）。宇宙ジェットやブレーザーからの高エネルギーガンマ線の生成機構として重要。</p>
+                <p><strong>3. 材料分析：コンプトンプロファイル</strong></p>
+                <p>物質中の電子の運動量分布を反映して、コンプトン散乱スペクトルが広がる。これを解析することで、電子構造の情報が得られる。</p>
+            </div>
+        </section>
+
+        <!-- セクション5: 原子スペクトル -->
+        <section class="content-section">
+            <h3>11.5 原子スペクトルとボーアの原子模型</h3>
+
+            <h4>11.5.1 原子スペクトルの謎</h4>
+            <p>19世紀後半、分光学の発展により、原子が放出・吸収する光が特定の波長（線スペクトル）であることが知られていた。特に水素原子のスペクトルは詳しく研究された。</p>
+
+            <div class="equation-box">
+                <div class="title">水素原子のスペクトル系列</div>
+                <p><strong>バルマー系列（1885年）:</strong> 可視光領域</p>
+                \[ \frac{1}{\lambda} = R_H\left(\frac{1}{2^2} - \frac{1}{n^2}\right) \quad (n = 3, 4, 5, ...) \]
+                <p><strong>リュードベリの一般式（1888年）:</strong></p>
+                \[ \frac{1}{\lambda} = R_H\left(\frac{1}{n_1^2} - \frac{1}{n_2^2}\right) \quad (n_2 > n_1) \]
+                <p>\(R_H = 1.097 \times 10^7\) m⁻¹：リュードベリ定数</p>
+            </div>
+
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>系列名</th>
+                        <th>n₁</th>
+                        <th>n₂</th>
+                        <th>波長領域</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>ライマン系列</td>
+                        <td>1</td>
+                        <td>2, 3, 4, ...</td>
+                        <td>紫外線</td>
+                    </tr>
+                    <tr>
+                        <td>バルマー系列</td>
+                        <td>2</td>
+                        <td>3, 4, 5, ...</td>
+                        <td>可視光</td>
+                    </tr>
+                    <tr>
+                        <td>パッシェン系列</td>
+                        <td>3</td>
+                        <td>4, 5, 6, ...</td>
+                        <td>近赤外</td>
+                    </tr>
+                    <tr>
+                        <td>ブラケット系列</td>
+                        <td>4</td>
+                        <td>5, 6, 7, ...</td>
+                        <td>赤外</td>
+                    </tr>
+                    <tr>
+                        <td>プント系列</td>
+                        <td>5</td>
+                        <td>6, 7, 8, ...</td>
+                        <td>遠赤外</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <p>なぜ特定の波長のみが観測されるのか、古典物理学では説明できなかった。</p>
+
+            <h4>11.5.2 ラザフォードの原子模型とその問題</h4>
+            <p>1911年、ラザフォードはα粒子散乱実験から、原子の質量の大部分が小さな正電荷の核（原子核）に集中していることを発見した。この<strong>有核原子模型</strong>では、電子は原子核の周りを軌道運動すると考えられた。</p>
+
+            <div class="key-point">
+                <h4>古典物理学の予言する問題</h4>
+                <ol>
+                    <li><strong>原子の不安定性</strong>：加速度運動する電子は電磁波を放射してエネルギーを失い、10⁻¹⁰秒程度で原子核に落ち込むはず</li>
+                    <li><strong>連続スペクトル</strong>：落ち込む過程で連続的に周波数が変化する電磁波を放射するはず（線スペクトルと矛盾）</li>
+                </ol>
+            </div>
+
+            <h4>11.5.3 ボーアの原子模型</h4>
+            <p>1913年、ニールス・ボーア（Niels Bohr, 1885-1962）は、プランクとアインシュタインの量子論を原子に適用し、水素原子のスペクトルを説明する模型を提唱した。</p>
+
+            <div class="equation-box important">
+                <div class="title">ボーアの仮説（量子条件）</div>
+                <ol style="text-align: left;">
+                    <li><strong>定常状態の仮説</strong>：電子は特定の軌道（定常状態）のみをとり、その軌道上では電磁波を放射しない</li>
+                    <li><strong>量子条件</strong>：許される軌道は、角運動量が ℏ = h/(2π) の整数倍であるもの：
+                    \[ L = mvr = n\hbar \quad (n = 1, 2, 3, ...) \]</li>
+                    <li><strong>振動数条件</strong>：電子が異なる定常状態間を遷移するとき、エネルギー差に等しい光子を放出または吸収：
+                    \[ h\nu = E_{n_2} - E_{n_1} \]</li>
+                </ol>
+            </div>
+
+            <div class="derivation">
+                <h4>導出: ボーア模型による水素原子のエネルギー準位</h4>
+                <div class="derivation-step">
+                    <span class="step-num">1</span>
+                    <strong>力のつりあい（円運動）</strong>
+                    <p>クーロン力が向心力となる：</p>
+                    \[ \frac{ke^2}{r^2} = \frac{mv^2}{r} \]
+                    <p>ここで k = 1/(4πε₀) = 8.99 × 10⁹ N·m²/C²</p>
+                </div>
+                <div class="derivation-step">
+                    <span class="step-num">2</span>
+                    <strong>量子条件</strong>
+                    \[ mvr = n\hbar \]
+                </div>
+                <div class="derivation-step">
+                    <span class="step-num">3</span>
+                    <strong>軌道半径の導出</strong>
+                    <p>(1)から \(v^2 = ke^2/(mr)\)、(2)から \(v = n\hbar/(mr)\)</p>
+                    <p>代入して：</p>
+                    \[ \frac{n^2\hbar^2}{m^2 r^2} = \frac{ke^2}{mr} \]
+                    \[ r_n = \frac{n^2\hbar^2}{mke^2} = n^2 a_0 \]
+                    <p>ここで \(a_0 = \frac{\hbar^2}{mke^2} = 0.529\) Å（ボーア半径）</p>
+                </div>
+                <div class="derivation-step">
+                    <span class="step-num">4</span>
+                    <strong>エネルギーの計算</strong>
+                    <p>運動エネルギー：\(K = \frac{1}{2}mv^2 = \frac{ke^2}{2r}\)</p>
+                    <p>位置エネルギー：\(U = -\frac{ke^2}{r}\)</p>
+                    <p>全エネルギー：</p>
+                    \[ E_n = K + U = -\frac{ke^2}{2r_n} = -\frac{mk^2e^4}{2\hbar^2 n^2} \]
+                </div>
+                <div class="derivation-step">
+                    <span class="step-num">5</span>
+                    <strong>エネルギー準位</strong>
+                    \[ E_n = -\frac{13.6 \text{ eV}}{n^2} \quad (n = 1, 2, 3, ...) \]
+                </div>
+            </div>
+
+            <div class="equation-box important">
+                <div class="title">ボーア模型の結果</div>
+                <p><strong>軌道半径:</strong></p>
+                \[ r_n = n^2 a_0 = n^2 \times 0.529 \text{ Å} \]
+                <p><strong>エネルギー準位:</strong></p>
+                \[ E_n = -\frac{13.6 \text{ eV}}{n^2} = -\frac{hcR_H}{n^2} \]
+                <p><strong>スペクトルの波長:</strong></p>
+                \[ \frac{1}{\lambda} = R_H\left(\frac{1}{n_1^2} - \frac{1}{n_2^2}\right) \]
+            </div>
+
+            <h4>11.5.4 リュードベリ定数の導出</h4>
+            <p>ボーア模型から理論的にリュードベリ定数を導出できる：</p>
+
+            <div class="derivation">
+                <h4>導出: リュードベリ定数</h4>
+                <div class="derivation-step">
+                    <span class="step-num">1</span>
+                    <strong>遷移によるスペクトル</strong>
+                    <p>準位 n₂ から n₁ への遷移（n₂ > n₁）で放出される光子のエネルギー：</p>
+                    \[ h\nu = E_{n_2} - E_{n_1} = 13.6 \text{ eV}\left(\frac{1}{n_1^2} - \frac{1}{n_2^2}\right) \]
+                </div>
+                <div class="derivation-step">
+                    <span class="step-num">2</span>
+                    <strong>波長への変換</strong>
+                    \[ \frac{hc}{\lambda} = 13.6 \text{ eV}\left(\frac{1}{n_1^2} - \frac{1}{n_2^2}\right) \]
+                    \[ \frac{1}{\lambda} = \frac{13.6 \text{ eV}}{hc}\left(\frac{1}{n_1^2} - \frac{1}{n_2^2}\right) \]
+                </div>
+                <div class="derivation-step">
+                    <span class="step-num">3</span>
+                    <strong>リュードベリ定数</strong>
+                    \[ R_H = \frac{13.6 \text{ eV}}{hc} = \frac{m_e k^2 e^4}{4\pi\hbar^3 c} = 1.097 \times 10^7 \text{ m}^{-1} \]
+                </div>
+            </div>
+
+            <p>この理論値は実験値と優れた一致を示し、ボーア模型の成功を決定的にした。</p>
+
+            <div class="example-box">
+                <h4>例題11.7: 水素原子のバルマー系列</h4>
+                <p><strong>問題:</strong> バルマー系列の最初の3本の線（Hα、Hβ、Hγ）の波長を計算せよ。</p>
+                <div class="solution">
+                    <p><strong>解答:</strong></p>
+                    <p>バルマー系列は n₁ = 2 への遷移。リュードベリ定数 R_H = 1.097 × 10⁷ m⁻¹</p>
+                    <p><strong>Hα線（n₂ = 3 → n₁ = 2）:</strong></p>
+                    \[ \frac{1}{\lambda} = R_H\left(\frac{1}{4} - \frac{1}{9}\right) = 1.097 \times 10^7 \times \frac{5}{36} = 1.52 \times 10^6 \text{ m}^{-1} \]
+                    \[ \lambda = 656 \text{ nm（赤）} \]
+                    <p><strong>Hβ線（n₂ = 4 → n₁ = 2）:</strong></p>
+                    \[ \frac{1}{\lambda} = R_H\left(\frac{1}{4} - \frac{1}{16}\right) = 1.097 \times 10^7 \times \frac{3}{16} = 2.06 \times 10^6 \text{ m}^{-1} \]
+                    \[ \lambda = 486 \text{ nm（青緑）} \]
+                    <p><strong>Hγ線（n₂ = 5 → n₁ = 2）:</strong></p>
+                    \[ \frac{1}{\lambda} = R_H\left(\frac{1}{4} - \frac{1}{25}\right) = 1.097 \times 10^7 \times \frac{21}{100} = 2.30 \times 10^6 \text{ m}^{-1} \]
+                    \[ \lambda = 434 \text{ nm（紫）} \]
+                </div>
+            </div>
+
+            <div class="example-box">
+                <h4>例題11.8: 水素原子のイオン化エネルギー</h4>
+                <p><strong>問題:</strong> 基底状態（n = 1）の水素原子をイオン化するのに必要なエネルギーを eV と波長で求めよ。</p>
+                <div class="solution">
+                    <p><strong>解答:</strong></p>
+                    <p>イオン化とは電子を n = ∞（自由電子）に遷移させること。</p>
+                    \[ E_{ionization} = E_\infty - E_1 = 0 - (-13.6) = 13.6 \text{ eV} \]
+                    <p>対応する波長：</p>
+                    \[ \lambda = \frac{hc}{E} = \frac{1240 \text{ eV·nm}}{13.6 \text{ eV}} = 91.2 \text{ nm} \]
+                    <p>これはライマン系列の系列限界（短波長側の限界）に相当する。</p>
+                </div>
+            </div>
+
+            <h4>11.5.5 ボーア模型の限界</h4>
+            <p>ボーア模型は水素原子の線スペクトルを見事に説明したが、いくつかの限界があった：</p>
+
+            <ul>
+                <li>多電子原子への拡張が困難</li>
+                <li>スペクトル線の強度を予測できない</li>
+                <li>角運動量の量子条件に物理的根拠がない</li>
+                <li>電子の軌道概念は古典的であり、不確定性原理と矛盾</li>
+            </ul>
+
+            <p>これらの問題は、1920年代のド・ブロイ、シュレーディンガー、ハイゼンベルクらによる本格的な量子力学の建設により解決された。</p>
+
+            <div class="column history">
+                <h4>コラム: ボーアの対応原理</h4>
+                <p>ボーアは、量子論と古典論の関係について重要な洞察を示した。<strong>対応原理</strong>（correspondence principle）によると、量子数 n が大きい極限で、量子論の予測は古典論の予測に一致しなければならない。</p>
+                <p>例えば、水素原子で n が非常に大きい場合：</p>
+                <ul>
+                    <li>軌道半径 r_n = n² a₀ は大きくなる</li>
+                    <li>隣り合う準位間のエネルギー差 ΔE は小さくなる</li>
+                    <li>放出される光子の周波数は、電子の軌道運動周波数に近づく</li>
+                </ul>
+                <p>対応原理は、量子力学と古典力学が「滑らかにつながる」ことを保証し、新しい理論を構築する際の指針となった。</p>
+            </div>
+        </section>
+
+        <!-- セクション6: 波動と粒子の二重性 -->
+        <section class="content-section">
+            <h3>11.6 波動-粒子の二重性</h3>
+
+            <h4>11.6.1 光の二重性のまとめ</h4>
+            <p>ここまで学んできた現象から、光が<strong>波動</strong>と<strong>粒子</strong>の両方の性質を持つことが明らかになった：</p>
+
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>現象</th>
+                        <th>波動性</th>
+                        <th>粒子性</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>干渉・回折</td>
+                        <td>○（説明可能）</td>
+                        <td>×（説明困難）</td>
+                    </tr>
+                    <tr>
+                        <td>偏光</td>
+                        <td>○</td>
+                        <td>×</td>
+                    </tr>
+                    <tr>
+                        <td>黒体放射</td>
+                        <td>×（紫外破綻）</td>
+                        <td>○（プランクの量子化）</td>
+                    </tr>
+                    <tr>
+                        <td>光電効果</td>
+                        <td>×</td>
+                        <td>○（光子仮説）</td>
+                    </tr>
+                    <tr>
+                        <td>コンプトン散乱</td>
+                        <td>×</td>
+                        <td>○（粒子の衝突）</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h4>11.6.2 光子の性質</h4>
+            <div class="equation-box">
+                <div class="title">光子の特性</div>
+                <p><strong>エネルギー:</strong> \(E = h\nu = \frac{hc}{\lambda}\)</p>
+                <p><strong>運動量:</strong> \(p = \frac{h}{\lambda} = \frac{h\nu}{c} = \frac{E}{c}\)</p>
+                <p><strong>静止質量:</strong> \(m_0 = 0\)（質量を持たない粒子）</p>
+                <p><strong>相対論的エネルギー-運動量関係:</strong></p>
+                \[ E^2 = (pc)^2 + (m_0 c^2)^2 \]
+                <p>光子（\(m_0 = 0\)）の場合：\(E = pc\)</p>
+            </div>
+
+            <h4>11.6.3 ド・ブロイの物質波仮説</h4>
+            <p>1924年、ルイ・ド・ブロイ（Louis de Broglie, 1892-1987）は、光の二重性が物質にも当てはまると提唱した。すなわち、<strong>すべての物質は波動性を持つ</strong>。</p>
+
+            <div class="equation-box important">
+                <div class="title">ド・ブロイの物質波</div>
+                <p>運動量 p を持つ粒子のド・ブロイ波長：</p>
+                \[ \lambda = \frac{h}{p} = \frac{h}{mv} \]
+                <p>光子の関係式 \(p = h/\lambda\) を逆に読んだ形。</p>
+            </div>
+
+            <p>ド・ブロイの仮説は、1927年にデイヴィソンとガーマー、および G.P. トムソンにより、電子の回折実験で実証された。ド・ブロイは1929年にノーベル物理学賞を受賞した。</p>
+
+            <div class="derivation">
+                <h4>導出: ボーアの量子条件とド・ブロイ波</h4>
+                <div class="derivation-step">
+                    <span class="step-num">1</span>
+                    <strong>電子の波動性</strong>
+                    <p>ボーア軌道上の電子にド・ブロイ波を適用すると、その波長は \(\lambda = h/(mv)\)</p>
+                </div>
+                <div class="derivation-step">
+                    <span class="step-num">2</span>
+                    <strong>定常波の条件</strong>
+                    <p>電子波が軌道上で定常波を形成する条件は、軌道の周長がド・ブロイ波長の整数倍：</p>
+                    \[ 2\pi r = n\lambda = n\frac{h}{mv} \]
+                </div>
+                <div class="derivation-step">
+                    <span class="step-num">3</span>
+                    <strong>ボーアの量子条件の導出</strong>
+                    <p>整理すると：</p>
+                    \[ mvr = n\frac{h}{2\pi} = n\hbar \]
+                    <p>これはまさにボーアの量子条件である！</p>
+                </div>
+            </div>
+
+            <p>ド・ブロイの物質波の考え方により、ボーアの量子条件に物理的根拠が与えられた。これが後のシュレーディンガー波動方程式への道を開いた。</p>
+
+            <div class="example-box">
+                <h4>例題11.9: 様々な粒子のド・ブロイ波長</h4>
+                <p><strong>問題:</strong> 以下の粒子のド・ブロイ波長を計算せよ。</p>
+                <ol>
+                    <li>100 eV で加速された電子</li>
+                    <li>室温（300 K）の熱運動をする窒素分子</li>
+                    <li>時速 100 km で走る質量 1 kg のボール</li>
+                </ol>
+                <div class="solution">
+                    <p><strong>解答:</strong></p>
+                    <p>(1) 電子（非相対論的）：</p>
+                    \[ p = \sqrt{2m_e E} = \sqrt{2 \times 9.11 \times 10^{-31} \times 100 \times 1.6 \times 10^{-19}} = 5.4 \times 10^{-24} \text{ kg·m/s} \]
+                    \[ \lambda = \frac{h}{p} = \frac{6.63 \times 10^{-34}}{5.4 \times 10^{-24}} = 0.123 \text{ nm} \]
+                    <p>(2) 窒素分子（\(M = 28 \times 1.66 \times 10^{-27}\) kg）：</p>
+                    \[ v_{rms} = \sqrt{\frac{3k_B T}{M}} = \sqrt{\frac{3 \times 1.38 \times 10^{-23} \times 300}{4.65 \times 10^{-26}}} = 517 \text{ m/s} \]
+                    \[ \lambda = \frac{h}{Mv} = \frac{6.63 \times 10^{-34}}{4.65 \times 10^{-26} \times 517} = 2.8 \times 10^{-11} \text{ m} = 0.028 \text{ nm} \]
+                    <p>(3) ボール：</p>
+                    \[ v = 100 \text{ km/h} = 27.8 \text{ m/s} \]
+                    \[ \lambda = \frac{h}{mv} = \frac{6.63 \times 10^{-34}}{1 \times 27.8} = 2.4 \times 10^{-35} \text{ m} \]
+                    <p>巨視的物体のド・ブロイ波長は極めて小さく、波動性は観測不可能。これが日常世界で量子効果が見えない理由である。</p>
+                </div>
+            </div>
+
+            <div class="key-point">
+                <h4>波動-粒子の二重性の要点</h4>
+                <ul>
+                    <li>光も物質も、波動と粒子の両方の性質を持つ</li>
+                    <li>どちらの性質が顕著に現れるかは、実験条件による</li>
+                    <li>波長 λ と運動量 p の関係は普遍的：\(\lambda = h/p\)</li>
+                    <li>古典的な「波動か粒子か」という二分法は不適切</li>
+                    <li>量子力学では「量子」という新しい概念で統一的に記述</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- セクション7: 量子力学への道 -->
+        <section class="content-section">
+            <h3>11.7 量子力学への道</h3>
+
+            <h4>11.7.1 量子論の発展年表</h4>
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>年</th>
+                        <th>発見者</th>
+                        <th>業績</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1900</td>
+                        <td>プランク</td>
+                        <td>エネルギー量子仮説（黒体放射）</td>
+                    </tr>
+                    <tr>
+                        <td>1905</td>
+                        <td>アインシュタイン</td>
+                        <td>光量子仮説（光電効果）</td>
+                    </tr>
+                    <tr>
+                        <td>1913</td>
+                        <td>ボーア</td>
+                        <td>原子模型（水素スペクトル）</td>
+                    </tr>
+                    <tr>
+                        <td>1923</td>
+                        <td>コンプトン</td>
+                        <td>X線散乱（光子の運動量）</td>
+                    </tr>
+                    <tr>
+                        <td>1924</td>
+                        <td>ド・ブロイ</td>
+                        <td>物質波仮説</td>
+                    </tr>
+                    <tr>
+                        <td>1925</td>
+                        <td>ハイゼンベルク</td>
+                        <td>行列力学</td>
+                    </tr>
+                    <tr>
+                        <td>1926</td>
+                        <td>シュレーディンガー</td>
+                        <td>波動力学</td>
+                    </tr>
+                    <tr>
+                        <td>1927</td>
+                        <td>ハイゼンベルク</td>
+                        <td>不確定性原理</td>
+                    </tr>
+                    <tr>
+                        <td>1928</td>
+                        <td>ディラック</td>
+                        <td>相対論的量子力学</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h4>11.7.2 不確定性原理</h4>
+            <p>1927年、ハイゼンベルク（Werner Heisenberg）は、量子力学の根本原理として<strong>不確定性原理</strong>を発表した。</p>
+
+            <div class="equation-box important">
+                <div class="title">ハイゼンベルクの不確定性原理</div>
+                <p><strong>位置と運動量:</strong></p>
+                \[ \Delta x \cdot \Delta p_x \geq \frac{\hbar}{2} \]
+                <p><strong>エネルギーと時間:</strong></p>
+                \[ \Delta E \cdot \Delta t \geq \frac{\hbar}{2} \]
+                <p>ここで Δx, Δp 等は物理量の「不確定さ」（標準偏差）</p>
+            </div>
+
+            <p>不確定性原理の意味：</p>
+            <ul>
+                <li>位置を精密に測定すると、運動量の不確定さが大きくなる（その逆も同様）</li>
+                <li>これは測定技術の限界ではなく、<strong>自然界の根本的性質</strong></li>
+                <li>古典的な「軌道」の概念は量子力学では意味を持たない</li>
+                <li>ボーア模型の電子軌道は、確率分布（電子雲）に置き換えられる</li>
+            </ul>
+
+            <div class="example-box">
+                <h4>例題11.10: 水素原子の大きさと不確定性原理</h4>
+                <p><strong>問題:</strong> 不確定性原理を用いて、水素原子の基底状態の大きさ（ボーア半径のオーダー）を見積もれ。</p>
+                <div class="solution">
+                    <p><strong>解答:</strong></p>
+                    <p>電子が原子核の周りに閉じ込められているとすると、その位置の不確定さは原子サイズ程度：\(\Delta x \sim a\)</p>
+                    <p>不確定性原理より、運動量の不確定さは：\(\Delta p \sim \hbar/a\)</p>
+                    <p>運動量自体もこのオーダー：\(p \sim \hbar/a\)</p>
+                    <p>運動エネルギー：\(K \sim \frac{p^2}{2m} \sim \frac{\hbar^2}{2ma^2}\)</p>
+                    <p>ポテンシャルエネルギー：\(U \sim -\frac{ke^2}{a}\)</p>
+                    <p>全エネルギー：\(E \sim \frac{\hbar^2}{2ma^2} - \frac{ke^2}{a}\)</p>
+                    <p>エネルギー最小の条件 \(dE/da = 0\)：</p>
+                    \[ -\frac{\hbar^2}{ma^3} + \frac{ke^2}{a^2} = 0 \]
+                    \[ a = \frac{\hbar^2}{mke^2} = a_0 \text{（ボーア半径）} \]
+                    <p>不確定性原理から原子の大きさのオーダーが正しく導かれた。</p>
+                </div>
+            </div>
+
+            <div class="column history">
+                <h4>コラム: 量子力学の解釈問題</h4>
+                <p>量子力学の数学的体系は確立されたが、その「意味」については今日でも議論が続いている。</p>
+                <p><strong>コペンハーゲン解釈（ボーア、ハイゼンベルク）</strong>：測定前の物理量は定まった値を持たない。測定により状態が「収縮」する。</p>
+                <p><strong>多世界解釈（エヴェレット）</strong>：測定ごとに宇宙が分岐し、全ての可能性が別々の世界で実現する。</p>
+                <p><strong>隠れた変数理論（ボーム）</strong>：確率的に見えるのは、我々が知らない変数があるため。</p>
+                <p>アインシュタインは量子力学の確率的性質に満足せず、「神はサイコロを振らない」と述べた。彼とボーアの論争は物理学史に残る知的討論であった。</p>
+                <p>現代では、量子もつれやベルの不等式の実験により、局所的な隠れた変数理論は否定されている。しかし、量子力学の「正しい解釈」については、物理学者の間でも合意がない。</p>
+            </div>
+        </section>
+
+        <!-- 演習問題 -->
+        <section class="content-section exercises">
+            <h3>演習問題</h3>
+
+            <div class="exercise">
+                <h4>問題11.1 基礎</h4>
+                <p>温度 5500 K の黒体について、(a) 放射スペクトルのピーク波長、(b) 単位面積あたりの全放射パワー、(c) ピーク波長での光子1個のエネルギーを求めよ。</p>
+            </div>
+
+            <div class="exercise">
+                <h4>問題11.2 応用</h4>
+                <p>亜鉛の仕事関数は 4.3 eV である。(a) 光電効果を起こす最長波長、(b) 波長 200 nm の紫外線を照射したときの光電子の最大運動エネルギーと最大速度を求めよ。</p>
+            </div>
+
+            <div class="exercise">
+                <h4>問題11.3 発展</h4>
+                <p>コンプトン散乱において、入射X線の波長が λ₀ = 0.1 nm のとき、(a) 散乱角 60°、90°、180° での波長シフト、(b) 各散乱角での反跳電子の運動エネルギー、(c) 反跳電子の最大運動エネルギーを求めよ。</p>
+            </div>
+
+            <div class="exercise">
+                <h4>問題11.4 考察</h4>
+                <p>水素原子のイオン化エネルギーは 13.6 eV である。(a) ヘリウムイオン He⁺（水素様イオン、Z = 2）のイオン化エネルギーを予測せよ。(b) ボーア模型で一般の水素様イオン（核電荷 Z）のエネルギー準位を導出せよ。(c) なぜヘリウム原子（中性）にはボーア模型を直接適用できないか説明せよ。</p>
+            </div>
+
+            <div class="exercise">
+                <h4>問題11.5 総合</h4>
+                <p>電子顕微鏡では、電子のド・ブロイ波長が分解能を決定する。(a) 分解能 0.1 nm を達成するために必要な加速電圧を非相対論的近似で計算せよ。(b) この電圧で加速された電子の速度を求め、光速との比を計算せよ。相対論的効果は無視できるか。(c) 電子顕微鏡が光学顕微鏡より高分解能である理由を、波長の観点から説明せよ。</p>
+            </div>
+        </section>
+
+        <!-- まとめ -->
+        <section class="content-section summary">
+            <h3>第11回のまとめ</h3>
+            <div class="summary-box">
+                <h4>学習した主要概念</h4>
+                <ul>
+                    <li>古典物理学は黒体放射（紫外破綻）、光電効果、原子の安定性などを説明できなかった</li>
+                    <li>プランクの量子仮説：エネルギーは hν の整数倍のみをとる（E = nhν）</li>
+                    <li>アインシュタインの光量子仮説：光はエネルギー hν を持つ光子の集まり</li>
+                    <li>光電効果方程式：K_max = hν - W</li>
+                    <li>コンプトン効果：光子の粒子性を示す。波長シフト Δλ = λ_C(1 - cosθ)</li>
+                    <li>ボーアの原子模型：角運動量の量子化 mvr = nℏ、エネルギー E_n = -13.6 eV/n²</li>
+                    <li>ド・ブロイの物質波：全ての物質は波動性を持つ。λ = h/p</li>
+                    <li>ハイゼンベルクの不確定性原理：Δx·Δp ≥ ℏ/2</li>
+                </ul>
+            </div>
+
+            <div class="summary-box">
+                <h4>重要公式</h4>
+                <div class="formula-list">
+                    <p>プランク定数: h = 6.626 × 10⁻³⁴ J·s</p>
+                    <p>光子のエネルギー: \(E = h\nu = \frac{hc}{\lambda}\)、\(E \text{[eV]} = \frac{1240}{\lambda \text{[nm]}}\)</p>
+                    <p>光子の運動量: \(p = \frac{h}{\lambda} = \frac{E}{c}\)</p>
+                    <p>光電効果: \(K_{max} = h\nu - W\)</p>
+                    <p>コンプトン散乱: \(\Delta\lambda = \lambda_C(1-\cos\theta)\)、\(\lambda_C = 2.426\) pm</p>
+                    <p>水素原子: \(E_n = -\frac{13.6 \text{ eV}}{n^2}\)、\(r_n = n^2 \times 0.529\) Å</p>
+                    <p>ド・ブロイ波長: \(\lambda = \frac{h}{p} = \frac{h}{mv}\)</p>
+                    <p>不確定性原理: \(\Delta x \cdot \Delta p \geq \frac{\hbar}{2}\)</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ナビゲーション -->
+        <nav class="lecture-nav">
+            <a href="lecture10.html" class="nav-prev">← 第10回: 電磁波の伝播・回折</a>
+            <a href="lecture12.html" class="nav-next">第12回: 量子力学の基礎 →</a>
+        </nav>
+    </main>
+
+    <footer>
+        <p>福井大学 共通教育科目 B2032 電磁波と物質</p>
+        <p>担当: 福成 雅史 / 石川 裕也</p>
+    </footer>
+
+    <script src="../js/lecture.js"></script>
+</body>
+</html>

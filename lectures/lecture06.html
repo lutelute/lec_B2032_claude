@@ -1,0 +1,733 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>第6回: 磁気共鳴 - 電磁波と物質</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/lecture.css">
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+    <header class="main-header">
+        <h1>電磁波と物質</h1>
+        <p class="subtitle">第6回: 磁気共鳴</p>
+    </header>
+
+    <nav class="main-nav">
+        <a href="../index.html">ダッシュボード</a>
+        <a href="../lecture.html">講義一覧</a>
+        <a href="../interactive.html">インタラクティブ学習</a>
+    </nav>
+
+    <main class="lecture-content">
+        <div class="lecture-header">
+            <div class="lecture-meta">
+                <span class="lecture-number">Lecture 06</span>
+                <span class="lecture-duration">学習時間目安: 90-120分</span>
+            </div>
+            <h2>磁気共鳴</h2>
+            <p class="lecture-objectives">
+                <strong>学習目標:</strong> 磁気共鳴現象の基本原理を理解する。核磁気共鳴（NMR）と電子スピン共鳴（ESR）の物理的基礎を学び、ラーモア歳差運動、共鳴条件、緩和過程について理解を深める。特にNMRの原理とMRIへの応用について詳しく学習する。
+            </p>
+        </div>
+
+        <!-- セクション1: 磁気共鳴の基本原理 -->
+        <section class="content-section">
+            <h3>6.1 磁気共鳴の基本原理</h3>
+
+            <h4>6.1.1 磁気共鳴とは</h4>
+            <p>磁気共鳴（magnetic resonance）とは、磁気モーメントを持つ粒子（核スピンや電子スピン）が静磁場中に置かれたとき、特定の周波数の電磁波を吸収・放出する現象である。この共鳴周波数はラーモア周波数と呼ばれ、静磁場の強さに比例する。</p>
+
+            <div class="key-point">
+                <h4>磁気共鳴の本質</h4>
+                <p>磁気モーメントが外部磁場中で量子化されたエネルギー準位を持つとき、隣接準位間のエネルギー差に等しいエネルギーを持つ電磁波（光子）を吸収・放出する。これは原子の光学遷移と同じ原理だが、使用する電磁波の周波数が大きく異なる。</p>
+            </div>
+
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>磁気共鳴の種類</th>
+                        <th>対象</th>
+                        <th>典型的な周波数</th>
+                        <th>磁場 1 T での共鳴周波数</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>核磁気共鳴（NMR）</td>
+                        <td>原子核スピン</td>
+                        <td>MHz（ラジオ波）</td>
+                        <td>42.6 MHz（¹H）</td>
+                    </tr>
+                    <tr>
+                        <td>電子スピン共鳴（ESR/EPR）</td>
+                        <td>不対電子スピン</td>
+                        <td>GHz（マイクロ波）</td>
+                        <td>28 GHz</td>
+                    </tr>
+                    <tr>
+                        <td>強磁性共鳴（FMR）</td>
+                        <td>強磁性体の磁化</td>
+                        <td>GHz</td>
+                        <td>材料依存</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h4>6.1.2 ラーモア歳差運動</h4>
+            <p>磁気モーメント \(\vec{\mu}\) が静磁場 \(\vec{B}_0\) 中に置かれると、トルクを受けて歳差運動を行う。</p>
+
+            <div class="equation-box important">
+                <div class="title">ラーモア歳差運動</div>
+                <p>トルク: \(\vec{\tau} = \vec{\mu} \times \vec{B}_0\)</p>
+                <p>運動方程式: \(\frac{d\vec{\mu}}{dt} = \gamma \vec{\mu} \times \vec{B}_0\)</p>
+                <p>ラーモア周波数: \(\omega_L = \gamma B_0\)　または　\(f_L = \frac{\gamma B_0}{2\pi}\)</p>
+                <p>\(\gamma\): 磁気回転比（核種または粒子に固有）</p>
+            </div>
+
+            <div class="derivation">
+                <h4>導出: ラーモア周波数</h4>
+                <div class="derivation-step">
+                    <span class="step-num">1</span>
+                    <strong>古典的な運動方程式</strong>
+                    <p>角運動量 \(\vec{L}\) と磁気モーメントの関係 \(\vec{\mu} = \gamma\vec{L}\) を用いると：</p>
+                    \[ \frac{d\vec{L}}{dt} = \vec{\tau} = \vec{\mu} \times \vec{B}_0 = \gamma\vec{L} \times \vec{B}_0 \]
+                </div>
+                <div class="derivation-step">
+                    <span class="step-num">2</span>
+                    <strong>成分表示（\(\vec{B}_0 = B_0\hat{z}\)）</strong>
+                    \[ \frac{dL_x}{dt} = \gamma B_0 L_y, \quad \frac{dL_y}{dt} = -\gamma B_0 L_x, \quad \frac{dL_z}{dt} = 0 \]
+                </div>
+                <div class="derivation-step">
+                    <span class="step-num">3</span>
+                    <strong>解の導出</strong>
+                    <p>\(L_+ = L_x + iL_y\) とおくと：</p>
+                    \[ \frac{dL_+}{dt} = -i\gamma B_0 L_+ \]
+                    \[ L_+(t) = L_+(0)e^{-i\omega_L t} \]
+                    <p>ここで \(\omega_L = \gamma B_0\) がラーモア角周波数。</p>
+                </div>
+                <div class="derivation-step">
+                    <span class="step-num">4</span>
+                    <strong>物理的解釈</strong>
+                    <p>磁気モーメントは静磁場方向（z軸）周りに角速度 \(\omega_L\) で歳差運動する。z成分 \(\mu_z\) は保存される。</p>
+                </div>
+            </div>
+
+            <h4>6.1.3 量子力学的記述</h4>
+            <p>量子力学的には、磁場中のスピンは離散的なエネルギー準位を持つ。スピン I の粒子は \(2I + 1\) 個の準位に分裂する（ゼーマン分裂）。</p>
+
+            <div class="equation-box">
+                <div class="title">ゼーマンエネルギー</div>
+                \[ E_m = -\gamma\hbar m B_0 = -g\mu_N m B_0 \]
+                <p>\(m = I, I-1, ..., -I\)：磁気量子数</p>
+                <p>\(\mu_N = e\hbar/(2m_p) = 5.051 \times 10^{-27}\) J/T：核磁子</p>
+                <p>隣接準位間のエネルギー差: \(\Delta E = \gamma\hbar B_0 = \hbar\omega_L\)</p>
+            </div>
+
+            <div class="example-box">
+                <h4>例題6.1: プロトンNMRの共鳴周波数</h4>
+                <p><strong>問題:</strong> 水素原子核（プロトン）の磁気回転比は \(\gamma_H = 2.675 \times 10^8\) rad/(T·s) である。(a) 1.5 T（医療用MRI）、(b) 11.7 T（高分解能NMR）での共鳴周波数を求めよ。</p>
+                <div class="solution">
+                    <p><strong>解答:</strong></p>
+                    <p>(a) 1.5 T の場合：</p>
+                    \[ f_L = \frac{\gamma_H B_0}{2\pi} = \frac{2.675 \times 10^8 \times 1.5}{2\pi} = 63.9 \text{ MHz} \]
+                    <p>(b) 11.7 T の場合：</p>
+                    \[ f_L = \frac{2.675 \times 10^8 \times 11.7}{2\pi} = 500 \text{ MHz} \]
+                    <p>医療用MRIではラジオ波帯（数十MHz）、高分解能NMRではUHF帯（数百MHz）の電磁波を使用する。</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- セクション2: 核磁気共鳴（NMR） -->
+        <section class="content-section">
+            <h3>6.2 核磁気共鳴（NMR）</h3>
+
+            <h4>6.2.1 核スピンと磁気モーメント</h4>
+            <p>原子核は陽子と中性子から構成され、その組み合わせによって核スピン量子数 I が決まる。I ≠ 0 の核はNMR活性である。</p>
+
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>核種</th>
+                        <th>スピン I</th>
+                        <th>天然存在比 (%)</th>
+                        <th>\(\gamma/(2\pi)\) (MHz/T)</th>
+                        <th>感度（¹H = 1）</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>¹H</td>
+                        <td>1/2</td>
+                        <td>99.98</td>
+                        <td>42.58</td>
+                        <td>1.00</td>
+                    </tr>
+                    <tr>
+                        <td>²H (D)</td>
+                        <td>1</td>
+                        <td>0.015</td>
+                        <td>6.54</td>
+                        <td>0.0096</td>
+                    </tr>
+                    <tr>
+                        <td>¹³C</td>
+                        <td>1/2</td>
+                        <td>1.11</td>
+                        <td>10.71</td>
+                        <td>0.016</td>
+                    </tr>
+                    <tr>
+                        <td>¹⁵N</td>
+                        <td>1/2</td>
+                        <td>0.37</td>
+                        <td>4.32</td>
+                        <td>0.001</td>
+                    </tr>
+                    <tr>
+                        <td>¹⁹F</td>
+                        <td>1/2</td>
+                        <td>100</td>
+                        <td>40.08</td>
+                        <td>0.83</td>
+                    </tr>
+                    <tr>
+                        <td>³¹P</td>
+                        <td>1/2</td>
+                        <td>100</td>
+                        <td>17.25</td>
+                        <td>0.066</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <p>NMR感度は、(1) 天然存在比、(2) 磁気回転比の3乗、(3) スピン量子数に依存する。¹H NMRが最も広く使われる理由は、その高い感度と普遍的存在による。</p>
+
+            <h4>6.2.2 化学シフト</h4>
+            <p>同じ核種でも、分子内の化学的環境によって共鳴周波数がわずかに異なる。これを化学シフトという。</p>
+
+            <div class="equation-box important">
+                <div class="title">化学シフト</div>
+                \[ \delta = \frac{\nu_{sample} - \nu_{ref}}{\nu_{ref}} \times 10^6 \quad \text{[ppm]} \]
+                <p>または等価的に: \(\delta = \frac{\nu_{sample} - \nu_{ref}}{\nu_0} \times 10^6\)</p>
+                <p>¹H NMRでは TMS（テトラメチルシラン）を基準（δ = 0）とする</p>
+            </div>
+
+            <p>化学シフトの起源は、核の周りの電子による磁場の遮蔽（シールディング）効果である：</p>
+            <div class="equation">
+                \[ B_{eff} = B_0(1 - \sigma) \]
+            </div>
+            <p>遮蔽定数 \(\sigma\) は電子密度に依存し、電子求引性基の近くでは小さく（低磁場シフト）、電子供与性基の近くでは大きい（高磁場シフト）。</p>
+
+            <div class="derivation">
+                <h4>導出: 化学シフトと電子遮蔽</h4>
+                <div class="derivation-step">
+                    <span class="step-num">1</span>
+                    <strong>反磁性遮蔽</strong>
+                    <p>外部磁場により電子の軌道運動が誘起され、核の位置に逆向きの磁場を生じる（ランジュの反磁性）。</p>
+                </div>
+                <div class="derivation-step">
+                    <span class="step-num">2</span>
+                    <strong>遮蔽定数の式</strong>
+                    <p>球対称電子分布の場合（Lamb式）：</p>
+                    \[ \sigma = \frac{e^2}{3m_e c^2} \int_0^\infty \frac{\rho(r)}{r} 4\pi r^2 dr \]
+                </div>
+                <div class="derivation-step">
+                    <span class="step-num">3</span>
+                    <strong>化学環境の影響</strong>
+                    <p>電気陰性度の高い原子が近くにあると、電子が引き寄せられ遮蔽が減少 → 低磁場シフト（大きな δ）</p>
+                    <p>例：CH₄ (δ ≈ 0 ppm) vs CHCl₃ (δ ≈ 7.3 ppm)</p>
+                </div>
+            </div>
+
+            <div class="example-box">
+                <h4>例題6.2: ¹H NMRスペクトルの解析</h4>
+                <p><strong>問題:</strong> エタノール（CH₃CH₂OH）の¹H NMRスペクトルでは、3つの主要なピークが観測される。各ピークの帰属と、予想される化学シフト範囲を述べよ。</p>
+                <div class="solution">
+                    <p><strong>解答:</strong></p>
+                    <ul>
+                        <li><strong>CH₃（メチル基）</strong>: δ ≈ 1.2 ppm。3つのプロトンは等価で、隣接するCH₂の2プロトンとのスピン結合により三重線に分裂。</li>
+                        <li><strong>CH₂（メチレン基）</strong>: δ ≈ 3.7 ppm。酸素に近いため低磁場シフト。CH₃の3プロトンとの結合で四重線。</li>
+                        <li><strong>OH（ヒドロキシル基）</strong>: δ ≈ 2-5 ppm（溶液条件により変動）。水素結合や交換により幅広いピーク。高純度では隣接CH₂との結合でトリプレット。</li>
+                    </ul>
+                    <p>ピーク面積比は 3:2:1 で、プロトン数を反映する。</p>
+                </div>
+            </div>
+
+            <h4>6.2.3 スピン-スピン結合</h4>
+            <p>近接する核スピン間には、電子を介した間接的な相互作用（J結合、スカラー結合）がある。これによりNMRピークが分裂する。</p>
+
+            <div class="equation-box">
+                <div class="title">スピン-スピン結合ハミルトニアン</div>
+                \[ \hat{H}_J = 2\pi\hbar J \vec{I}_1 \cdot \vec{I}_2 \]
+                <p>J: 結合定数（Hz単位、典型的に数Hz〜数百Hz）</p>
+                <p>分裂パターン: n個の等価な隣接スピンがあると n+1 本に分裂（第一次近似）</p>
+            </div>
+
+            <h4>6.2.4 NMR緩和</h4>
+            <p>パルスRF照射後、核スピン系は熱平衡に戻る。この過程を緩和という。2種類の緩和時間が特徴的である。</p>
+
+            <div class="equation-box">
+                <div class="title">NMR緩和時間</div>
+                <p><strong>縦緩和（T₁緩和、スピン-格子緩和）</strong></p>
+                \[ \frac{dM_z}{dt} = \frac{M_0 - M_z}{T_1} \]
+                <p>エネルギーが格子（環境）に散逸し、磁化が熱平衡値 \(M_0\) に回復</p>
+                <p><strong>横緩和（T₂緩和、スピン-スピン緩和）</strong></p>
+                \[ \frac{dM_{xy}}{dt} = -\frac{M_{xy}}{T_2} \]
+                <p>スピン間の位相コヒーレンスが失われ、横磁化が減衰</p>
+                <p>常に \(T_2 \leq T_1\) が成立</p>
+            </div>
+
+            <p>緩和時間は分子運動と密接に関係している。</p>
+            <ul>
+                <li><strong>固体・高粘性液体</strong>: 遅い運動 → 長い T₁、短い T₂</li>
+                <li><strong>低粘性液体</strong>: 速い運動 → 短い T₁ ≈ T₂</li>
+                <li><strong>常磁性不純物</strong>: T₁、T₂ ともに短縮</li>
+            </ul>
+
+            <div class="column application">
+                <h4>コラム: NMRの発見とノーベル賞</h4>
+                <p>NMRの歴史には複数のノーベル賞が関わっている。</p>
+                <p><strong>主要なマイルストーン：</strong></p>
+                <ul>
+                    <li><strong>1946年</strong>: ブロッホ（スタンフォード）とパーセル（ハーバード）が独立にNMRを観測</li>
+                    <li><strong>1952年</strong>: 両者がノーベル物理学賞を受賞</li>
+                    <li><strong>1966年</strong>: エルンストがフーリエ変換NMRを開発 → 感度大幅向上</li>
+                    <li><strong>1991年</strong>: エルンストがノーベル化学賞受賞</li>
+                    <li><strong>2002年</strong>: ヴュートリッヒがタンパク質の溶液構造決定でノーベル化学賞</li>
+                    <li><strong>2003年</strong>: ローターバーとマンスフィールドがMRI開発でノーベル生理学・医学賞</li>
+                </ul>
+                <p>NMRは物理学から始まり、化学、生物学、医学へと応用を広げた稀有な技術である。</p>
+            </div>
+        </section>
+
+        <!-- セクション3: パルスNMR -->
+        <section class="content-section">
+            <h3>6.3 パルスNMR</h3>
+
+            <h4>6.3.1 回転座標系</h4>
+            <p>パルスNMRの理解には、ラーモア周波数で回転する座標系で考えると便利である。回転座標系では、静磁場による歳差運動は見かけ上消える。</p>
+
+            <div class="equation-box">
+                <div class="title">回転座標系での有効磁場</div>
+                \[ \vec{B}_{eff} = \left(B_0 - \frac{\omega}{\gamma}\right)\hat{z} + B_1\hat{x}' \]
+                <p>共鳴条件（\(\omega = \omega_L = \gamma B_0\)）では：</p>
+                \[ \vec{B}_{eff} = B_1\hat{x}' \]
+                <p>磁化は \(B_1\) 方向（x'軸）周りに回転（ナッテーション）</p>
+            </div>
+
+            <div class="derivation">
+                <h4>導出: 回転座標系への変換</h4>
+                <div class="derivation-step">
+                    <span class="step-num">1</span>
+                    <strong>回転座標系の定義</strong>
+                    <p>z軸周りに角速度 \(\omega\) で回転する座標系（x', y', z' = z）を考える。</p>
+                </div>
+                <div class="derivation-step">
+                    <span class="step-num">2</span>
+                    <strong>時間微分の変換</strong>
+                    <p>任意のベクトル \(\vec{A}\) の時間微分は：</p>
+                    \[ \left(\frac{d\vec{A}}{dt}\right)_{lab} = \left(\frac{d\vec{A}}{dt}\right)_{rot} + \vec{\omega} \times \vec{A} \]
+                </div>
+                <div class="derivation-step">
+                    <span class="step-num">3</span>
+                    <strong>運動方程式の変換</strong>
+                    <p>実験室系: \(\frac{d\vec{M}}{dt} = \gamma\vec{M} \times \vec{B}\)</p>
+                    <p>回転系: \(\frac{d\vec{M}}{dt} = \gamma\vec{M} \times \vec{B}_{eff}\)</p>
+                    <p>ここで \(\vec{B}_{eff} = \vec{B} + \frac{\vec{\omega}}{\gamma}\)</p>
+                </div>
+                <div class="derivation-step">
+                    <span class="step-num">4</span>
+                    <strong>有効磁場</strong>
+                    <p>\(\vec{B} = B_0\hat{z} + B_1\cos(\omega t)\hat{x} - B_1\sin(\omega t)\hat{y}\) で、\(\omega = \omega_L\) のとき：</p>
+                    \[ \vec{B}_{eff} = B_1\hat{x}' \]
+                </div>
+            </div>
+
+            <h4>6.3.2 パルスと回転角</h4>
+            <p>回転座標系で見ると、共鳴RFパルスは磁化を傾ける。パルス幅 \(\tau_p\) と \(B_1\) 強度で決まる回転角（フリップ角）：</p>
+
+            <div class="equation-box">
+                <div class="title">フリップ角</div>
+                \[ \theta = \gamma B_1 \tau_p = \omega_1 \tau_p \]
+                <p>π/2パルス（90°パルス）: 磁化をz軸からxy平面に倒す</p>
+                <p>πパルス（180°パルス）: 磁化を反転させる</p>
+            </div>
+
+            <h4>6.3.3 自由誘導減衰（FID）</h4>
+            <p>π/2パルス後、横磁化は検出コイルに誘導電流を生じる。この信号を自由誘導減衰（Free Induction Decay, FID）という。</p>
+
+            <div class="equation-box">
+                <div class="title">FID信号</div>
+                \[ s(t) \propto M_{xy}(t) = M_0 e^{-t/T_2^*} \cos(\omega_L t + \phi) \]
+                <p>\(T_2^*\): 見かけの横緩和時間（磁場不均一を含む）</p>
+                \[ \frac{1}{T_2^*} = \frac{1}{T_2} + \frac{1}{T_2'} \]
+                <p>\(T_2'\): 磁場不均一による位相分散の特性時間</p>
+            </div>
+
+            <p>FID信号をフーリエ変換すると周波数スペクトルが得られる。これがパルスフーリエ変換NMRの基本原理である。</p>
+
+            <div class="example-box">
+                <h4>例題6.3: FIDからスペクトルへ</h4>
+                <p><strong>問題:</strong> 単一の共鳴周波数 \(\nu_0\) を持ち、T₂* = 50 ms で減衰するFID信号をフーリエ変換したとき得られるスペクトルの線幅（半値全幅）を求めよ。</p>
+                <div class="solution">
+                    <p><strong>解答:</strong></p>
+                    <p>指数減衰 \(e^{-t/T_2^*}\) のフーリエ変換はローレンツ関数：</p>
+                    \[ S(\nu) \propto \frac{1}{1 + (2\pi(\nu - \nu_0)T_2^*)^2} \]
+                    <p>半値全幅（FWHM）：</p>
+                    \[ \Delta\nu = \frac{1}{\pi T_2^*} = \frac{1}{\pi \times 0.050} = 6.4 \text{ Hz} \]
+                    <p>より均一な磁場（長いT₂*）を使うほど、スペクトル分解能が向上する。</p>
+                </div>
+            </div>
+
+            <h4>6.3.4 スピンエコー</h4>
+            <p>スピンエコー法は磁場不均一による位相分散を補正し、真の T₂ を測定できる巧妙なパルス系列である。</p>
+
+            <div class="key-point">
+                <h4>スピンエコーの原理（ハーンエコー）</h4>
+                <ol>
+                    <li>π/2パルスで磁化をxy平面に倒す</li>
+                    <li>時間 τ の間、磁場不均一により位相が分散</li>
+                    <li>時刻 τ でπパルス（180°パルス）を印加</li>
+                    <li>位相の「巻き戻し」が起こり、時刻 2τ でスピンが再収束（エコー形成）</li>
+                </ol>
+                <p>πパルスは時間を「逆転」させる効果を持つ。不可逆な T₂ 緩和は補正できないが、静的な磁場不均一（T₂'）は補正される。</p>
+            </div>
+
+            <div class="derivation">
+                <h4>導出: スピンエコーの形成</h4>
+                <div class="derivation-step">
+                    <span class="step-num">1</span>
+                    <strong>初期状態（t = 0）</strong>
+                    <p>π/2パルス直後、全スピンはy'軸方向に揃っている。</p>
+                </div>
+                <div class="derivation-step">
+                    <span class="step-num">2</span>
+                    <strong>自由歳差（0 < t < τ）</strong>
+                    <p>磁場不均一により、局所磁場が \(B_0 + \Delta B_i\) の位置のスピンは、回転座標系で角速度 \(\gamma\Delta B_i\) で歳差。時刻 τ での位相：\(\phi_i = \gamma\Delta B_i \cdot \tau\)</p>
+                </div>
+                <div class="derivation-step">
+                    <span class="step-num">3</span>
+                    <strong>πパルス（t = τ）</strong>
+                    <p>x'軸周りの180°回転。位相 \(\phi_i\) のスピンは \(-\phi_i\) に変換される。</p>
+                </div>
+                <div class="derivation-step">
+                    <span class="step-num">4</span>
+                    <strong>再収束（τ < t < 2τ）</strong>
+                    <p>πパルス後も同じ速度で歳差。時刻 2τ での位相：</p>
+                    \[ -\phi_i + \gamma\Delta B_i \cdot \tau = 0 \]
+                    <p>全スピンが同位相となり、エコーが形成される。</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- セクション4: MRI（磁気共鳴画像法） -->
+        <section class="content-section">
+            <h3>6.4 MRI（磁気共鳴画像法）</h3>
+
+            <h4>6.4.1 MRIの基本原理</h4>
+            <p>MRI（Magnetic Resonance Imaging）は、NMR信号の空間分布を画像化する技術である。勾配磁場を利用して空間情報をNMR周波数に変換する。</p>
+
+            <div class="equation-box important">
+                <div class="title">勾配磁場による空間エンコード</div>
+                <p>位置 \(\vec{r}\) での局所的なラーモア周波数：</p>
+                \[ \omega(\vec{r}) = \gamma(B_0 + \vec{G} \cdot \vec{r}) \]
+                <p>\(\vec{G} = (G_x, G_y, G_z)\): 磁場勾配（T/m）</p>
+                <p>例：x方向勾配 \(G_x\) 印加時、\(\omega(x) = \gamma B_0 + \gamma G_x x\)</p>
+            </div>
+
+            <h4>6.4.2 画像再構成</h4>
+            <p>MRIでは3次元の空間情報を取得するために、スライス選択、周波数エンコード、位相エンコードの3つの勾配を組み合わせる。</p>
+
+            <ul>
+                <li><strong>スライス選択</strong>: RFパルスと同時にz勾配を印加。特定のz位置（スライス）のみが共鳴</li>
+                <li><strong>周波数エンコード</strong>: 信号取得中にx勾配を印加。x位置が周波数に変換</li>
+                <li><strong>位相エンコード</strong>: y勾配を一定時間印加後オフ。y位置が位相に変換</li>
+            </ul>
+
+            <div class="derivation">
+                <h4>導出: スライス選択の原理</h4>
+                <div class="derivation-step">
+                    <span class="step-num">1</span>
+                    <strong>スライス選択勾配</strong>
+                    <p>z方向に勾配 \(G_z\) を印加すると、位置 z での共鳴周波数：</p>
+                    \[ \omega(z) = \gamma(B_0 + G_z z) \]
+                </div>
+                <div class="derivation-step">
+                    <span class="step-num">2</span>
+                    <strong>周波数選択RFパルス</strong>
+                    <p>中心周波数 \(\omega_c\)、帯域幅 \(\Delta\omega\) のRFパルスは：</p>
+                    \[ z_c = \frac{\omega_c - \gamma B_0}{\gamma G_z} \]
+                    <p>の位置を中心とする幅</p>
+                    \[ \Delta z = \frac{\Delta\omega}{\gamma G_z} \]
+                    <p>のスライスを励起する。</p>
+                </div>
+                <div class="derivation-step">
+                    <span class="step-num">3</span>
+                    <strong>スライス厚の制御</strong>
+                    <p>スライス厚 \(\Delta z\) は：</p>
+                    <ul>
+                        <li>RFパルスの帯域幅を狭くする → 薄いスライス</li>
+                        <li>勾配を強くする → 薄いスライス</li>
+                    </ul>
+                    <p>典型的なスライス厚：1〜10 mm</p>
+                </div>
+            </div>
+
+            <h4>6.4.3 k空間とフーリエ変換</h4>
+            <p>MRI信号の取得とフーリエ変換による画像再構成は、k空間（空間周波数空間）の概念で統一的に理解できる。</p>
+
+            <div class="equation-box">
+                <div class="title">k空間と画像の関係</div>
+                \[ S(k_x, k_y) = \iint \rho(x, y) e^{-i(k_x x + k_y y)} dx dy \]
+                <p>ここで k空間座標は：</p>
+                \[ k_x = \gamma \int_0^t G_x(t') dt', \quad k_y = \gamma \int_0^t G_y(t') dt' \]
+                <p>k空間データの2次元フーリエ変換 → 画像 \(\rho(x, y)\)</p>
+            </div>
+
+            <h4>6.4.4 MRIのコントラスト</h4>
+            <p>MRI画像のコントラストは、組織間の T₁、T₂、プロトン密度の違いを利用する。パルス系列のパラメータ（TR: 繰り返し時間、TE: エコー時間）を変えることで、異なるコントラストを得る。</p>
+
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>撮像法</th>
+                        <th>TR</th>
+                        <th>TE</th>
+                        <th>強調されるもの</th>
+                        <th>脂肪/水の信号</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>T₁強調</td>
+                        <td>短い（300-600 ms）</td>
+                        <td>短い（< 30 ms）</td>
+                        <td>解剖学的構造</td>
+                        <td>脂肪 > 水</td>
+                    </tr>
+                    <tr>
+                        <td>T₂強調</td>
+                        <td>長い（> 2000 ms）</td>
+                        <td>長い（80-120 ms）</td>
+                        <td>病変（浮腫等）</td>
+                        <td>水 > 脂肪</td>
+                    </tr>
+                    <tr>
+                        <td>プロトン密度強調</td>
+                        <td>長い</td>
+                        <td>短い</td>
+                        <td>プロトン密度</td>
+                        <td>同程度</td>
+                    </tr>
+                    <tr>
+                        <td>FLAIR</td>
+                        <td>長い</td>
+                        <td>長い</td>
+                        <td>脳脊髄液抑制</td>
+                        <td>CSF暗い</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="example-box">
+                <h4>例題6.4: MRI信号強度の計算</h4>
+                <p><strong>問題:</strong> 組織AのT₁ = 800 ms, T₂ = 80 ms、組織BのT₁ = 2000 ms, T₂ = 200 msとする。TR = 500 ms, TE = 20 ms のとき、信号強度比 S_A/S_B を求めよ（プロトン密度は同じと仮定）。</p>
+                <div class="solution">
+                    <p><strong>解答:</strong></p>
+                    <p>スピンエコー法での信号強度：</p>
+                    \[ S \propto \rho(1 - e^{-TR/T_1}) e^{-TE/T_2} \]
+                    <p>組織A：</p>
+                    \[ S_A \propto (1 - e^{-500/800}) e^{-20/80} = (1 - e^{-0.625}) e^{-0.25} \]
+                    \[ = (1 - 0.535) \times 0.779 = 0.363 \]
+                    <p>組織B：</p>
+                    \[ S_B \propto (1 - e^{-500/2000}) e^{-20/200} = (1 - e^{-0.25}) e^{-0.1} \]
+                    \[ = (1 - 0.779) \times 0.905 = 0.200 \]
+                    <p>信号強度比：</p>
+                    \[ \frac{S_A}{S_B} = \frac{0.363}{0.200} = 1.82 \]
+                    <p>組織Aの方が約1.8倍明るく描出される。短いTRはT₁コントラストを強調し、短いT₁の組織が明るくなる。</p>
+                </div>
+            </div>
+
+            <div class="column application">
+                <h4>コラム: MRIの臨床応用</h4>
+                <p>MRIは放射線被曝がなく、軟部組織のコントラストに優れるため、臨床診断に広く使用されている。</p>
+                <p><strong>主な臨床応用：</strong></p>
+                <ul>
+                    <li><strong>脳神経</strong>: 脳腫瘍、脳梗塞、多発性硬化症、認知症の診断</li>
+                    <li><strong>脊椎</strong>: 椎間板ヘルニア、脊髄病変</li>
+                    <li><strong>関節</strong>: 靭帯・腱の損傷、軟骨障害</li>
+                    <li><strong>腹部</strong>: 肝臓、膵臓、腎臓の病変</li>
+                    <li><strong>心臓</strong>: 心筋症、冠動脈評価（MRA）</li>
+                    <li><strong>乳房</strong>: 乳がんの検出・ステージング</li>
+                </ul>
+                <p><strong>特殊な撮像法：</strong></p>
+                <ul>
+                    <li><strong>拡散強調画像（DWI）</strong>: 水分子の拡散を検出、急性期脳梗塞の診断</li>
+                    <li><strong>機能的MRI（fMRI）</strong>: 脳活動に伴う血流変化を検出</li>
+                    <li><strong>MRスペクトロスコピー（MRS）</strong>: 代謝物の定量</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- セクション5: 高度なNMR技術 -->
+        <section class="content-section">
+            <h3>6.5 高度なNMR技術</h3>
+
+            <h4>6.5.1 多次元NMR</h4>
+            <p>1次元NMRでは、複雑な分子のスペクトルは重なり合って解析が困難になる。多次元NMRは、この問題を解決し、分子内の結合関係を直接観測する強力な手法である。</p>
+
+            <div class="key-point">
+                <h4>2D NMRの基本構造</h4>
+                <ol>
+                    <li>準備期間（preparation）: 初期状態を作る</li>
+                    <li>展開期間（evolution, t₁）: スピン系が時間発展</li>
+                    <li>混合期間（mixing）: コヒーレンス移動</li>
+                    <li>検出期間（detection, t₂）: FID信号を取得</li>
+                </ol>
+                <p>t₁を変化させながら測定し、t₁とt₂の両方についてフーリエ変換 → 2D スペクトル</p>
+            </div>
+
+            <p>代表的な2D NMR実験：</p>
+            <ul>
+                <li><strong>COSY（相関分光法）</strong>: J結合で繋がった核を検出</li>
+                <li><strong>NOESY（核オーバーハウザー効果分光法）</strong>: 空間的に近い核を検出（距離情報）</li>
+                <li><strong>HSQC</strong>: ¹H-¹³C の相関を検出</li>
+                <li><strong>HMBC</strong>: 複数結合を介した ¹H-¹³C 相関</li>
+            </ul>
+
+            <h4>6.5.2 タンパク質のNMR構造解析</h4>
+            <p>多次元NMRと同位体標識（¹³C、¹⁵N）を組み合わせることで、溶液中のタンパク質の3次元構造を原子レベルで決定できる。</p>
+
+            <div class="derivation">
+                <h4>導出: NOEによる距離情報</h4>
+                <div class="derivation-step">
+                    <span class="step-num">1</span>
+                    <strong>核オーバーハウザー効果（NOE）</strong>
+                    <p>空間的に近い核スピン間には双極子-双極子相互作用があり、一方のスピンを飽和させると他方のシグナル強度が変化する。</p>
+                </div>
+                <div class="derivation-step">
+                    <span class="step-num">2</span>
+                    <strong>距離依存性</strong>
+                    <p>NOE強度は核間距離 r の6乗に反比例：</p>
+                    \[ \eta_{NOE} \propto \frac{1}{r^6} \]
+                </div>
+                <div class="derivation-step">
+                    <span class="step-num">3</span>
+                    <strong>検出可能距離</strong>
+                    <p>r⁶ 依存性のため、通常 r < 5 Å のプロトン対のみが検出される。</p>
+                </div>
+                <div class="derivation-step">
+                    <span class="step-num">4</span>
+                    <strong>構造決定</strong>
+                    <p>多数のNOE距離拘束から、構造計算（分子動力学、シミュレーテッドアニーリング）で3D構造を決定。</p>
+                </div>
+            </div>
+
+            <h4>6.5.3 固体NMR</h4>
+            <p>溶液NMRでは分子の高速回転により異方的相互作用が平均化されるが、固体では残存し線幅が広がる。マジック角回転（MAS）などの技術で高分解能スペクトルを得る。</p>
+
+            <div class="equation-box">
+                <div class="title">マジック角回転（MAS）</div>
+                <p>異方的相互作用の角度依存性: \((3\cos^2\theta - 1)\)</p>
+                <p>マジック角: \(\theta_m = \arccos(1/\sqrt{3}) = 54.74°\) で \(3\cos^2\theta_m - 1 = 0\)</p>
+                <p>この角度で高速回転させると異方的相互作用が平均化</p>
+            </div>
+
+            <h4>6.5.4 超偏極技術</h4>
+            <p>NMRの感度限界を超えるため、核スピン偏極を熱平衡値より大幅に高める超偏極技術が開発されている。</p>
+
+            <ul>
+                <li><strong>DNP（動的核偏極）</strong>: 電子スピンの高い偏極を核スピンに移す</li>
+                <li><strong>PHIP（パラ水素誘起偏極）</strong>: パラ水素との化学反応を利用</li>
+                <li><strong>SEOP（スピン交換光ポンピング）</strong>: 光励起したアルカリ金属と希ガスのスピン交換</li>
+            </ul>
+
+            <div class="column tip">
+                <h4>コラム: 超偏極MRIの医療応用</h4>
+                <p>超偏極技術、特にDNP（dissolution DNP）を用いた ¹³C 超偏極MRIは、がんの代謝イメージングという新しい診断法を可能にしている。</p>
+                <p><strong>原理：</strong></p>
+                <ul>
+                    <li>¹³C標識ピルビン酸をDNPで超偏極（偏極度 > 10000倍向上）</li>
+                    <li>患者に注射後、短時間で撮像</li>
+                    <li>ピルビン酸から乳酸への代謝変換をリアルタイムで観察</li>
+                    <li>がん細胞は正常細胞より多く乳酸を産生（ワールブルク効果）</li>
+                </ul>
+                <p>この技術は、解剖学的構造だけでなく、細胞の代謝活性を画像化できる革新的な診断法である。</p>
+            </div>
+        </section>
+
+        <!-- 演習問題 -->
+        <section class="content-section exercises">
+            <h3>演習問題</h3>
+
+            <div class="exercise">
+                <h4>問題6.1 基礎</h4>
+                <p>プロトン（¹H）と炭素-13（¹³C）のNMR実験を比較する。両者の磁気回転比はそれぞれ \(\gamma_H = 2.675 \times 10^8\) rad/(T·s)、\(\gamma_C = 6.73 \times 10^7\) rad/(T·s) である。(a) 7.0 T 磁場での各核種の共鳴周波数を求めよ。(b) 同じ磁場での ¹H と ¹³C のゼーマンエネルギー差を eV と K（温度単位）で表せ。</p>
+            </div>
+
+            <div class="exercise">
+                <h4>問題6.2 応用</h4>
+                <p>MRI装置（1.5 T）で、10 mT/m の読み出し勾配を印加してサンプリング周波数 32 kHz で信号を取得する。(a) 視野（FOV: Field of View）はいくらか。(b) 256点サンプリングしたときの空間分解能を求めよ。(c) より高い空間分解能を得るにはどうすればよいか。</p>
+            </div>
+
+            <div class="exercise">
+                <h4>問題6.3 発展</h4>
+                <p>スピンエコー実験で、π/2パルス後の時刻 τ = 50 ms でπパルスを印加した。組織の T₂ = 80 ms、T₂* = 20 ms とする。(a) エコー時刻（2τ = 100 ms）での信号強度を、π/2パルス直後の値に対する比で表せ。(b) もしπパルスを省略した場合（FIDのみ）、100 ms での信号強度はいくらか。(c) スピンエコーの利点を説明せよ。</p>
+            </div>
+
+            <div class="exercise">
+                <h4>問題6.4 考察</h4>
+                <p>化学シフト δ は ppm 単位で表され、共鳴周波数に比例して Hz 換算値が変わる。(a) δ = 7.0 ppm の信号が、300 MHz と 600 MHz の装置でそれぞれ何 Hz シフトしているか。(b) 高磁場装置を使う利点を、感度と分解能の両面から説明せよ。</p>
+            </div>
+
+            <div class="exercise">
+                <h4>問題6.5 総合</h4>
+                <p>MRI装置を用いて脳の T₁、T₂ マップを取得することを考える。(a) T₁ 測定に適したパルス系列（Inversion Recovery法）の原理を説明せよ。(b) 白質（T₁ = 800 ms）と灰白質（T₁ = 1200 ms）を最も良いコントラストで撮像するための反転時間 TI を推定せよ。(c) T₂ 測定に使う複数エコー法（CPMG）の原理と利点を述べよ。</p>
+            </div>
+        </section>
+
+        <!-- まとめ -->
+        <section class="content-section summary">
+            <h3>第6回のまとめ</h3>
+            <div class="summary-box">
+                <h4>学習した主要概念</h4>
+                <ul>
+                    <li>磁気共鳴は磁気モーメントが特定周波数の電磁波を共鳴的に吸収する現象</li>
+                    <li>ラーモア周波数 \(\omega_L = \gamma B_0\) は磁気回転比と静磁場で決まる</li>
+                    <li>化学シフトは電子遮蔽効果により生じ、分子構造の情報を与える</li>
+                    <li>緩和時間 T₁、T₂ は分子運動と環境を反映する</li>
+                    <li>パルスNMRとフーリエ変換で周波数スペクトルを得る</li>
+                    <li>MRIは勾配磁場で空間情報を周波数に変換し画像化する</li>
+                </ul>
+            </div>
+
+            <div class="summary-box">
+                <h4>重要公式</h4>
+                <div class="formula-list">
+                    <p>ラーモア周波数: \(\omega_L = \gamma B_0\)、\(f_L = \gamma B_0/(2\pi)\)</p>
+                    <p>化学シフト: \(\delta = (\nu_{sample} - \nu_{ref})/\nu_{ref} \times 10^6\) ppm</p>
+                    <p>縦緩和: \(M_z(t) = M_0(1 - e^{-t/T_1})\)（飽和後）</p>
+                    <p>横緩和: \(M_{xy}(t) = M_0 e^{-t/T_2}\)</p>
+                    <p>フリップ角: \(\theta = \gamma B_1 \tau_p\)</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ナビゲーション -->
+        <nav class="lecture-nav">
+            <a href="lecture05.html" class="nav-prev">← 第5回: 固体と電子スピン</a>
+            <a href="lecture07.html" class="nav-next">第7回: 電子スピン共鳴 →</a>
+        </nav>
+    </main>
+
+    <footer>
+        <p>福井大学 共通教育科目 B2032 電磁波と物質</p>
+        <p>担当: 福成 雅史 / 石川 裕也</p>
+    </footer>
+
+    <script src="../js/lecture.js"></script>
+</body>
+</html>

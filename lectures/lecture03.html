@@ -1,0 +1,804 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>第3回: 電磁波発生と応用 - 電磁波と物質</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/lecture.css">
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+    <header class="main-header">
+        <h1>電磁波と物質</h1>
+        <p class="subtitle">第3回: 電磁波発生と応用</p>
+    </header>
+
+    <nav class="main-nav">
+        <a href="../index.html">ダッシュボード</a>
+        <a href="../lecture.html">講義一覧</a>
+        <a href="../interactive.html">インタラクティブ学習</a>
+    </nav>
+
+    <main class="lecture-content">
+        <div class="lecture-header">
+            <div class="lecture-meta">
+                <span class="lecture-number">Lecture 03</span>
+                <span class="lecture-duration">学習時間目安: 90-120分</span>
+            </div>
+            <h2>電磁波発生と応用</h2>
+            <p class="lecture-objectives">
+                <strong>学習目標:</strong> 電磁波がどのように発生するかを物理的に理解し、様々な電磁波発生装置の原理を学ぶ。加速電荷による電磁波放射、アンテナの動作原理、レーザーの基本原理を習得し、現代社会における電磁波応用技術について理解を深める。
+            </p>
+        </div>
+
+        <!-- セクション1: 加速電荷と電磁波放射 -->
+        <section class="content-section">
+            <h3>3.1 加速電荷と電磁波放射</h3>
+
+            <h4>3.1.1 電磁波放射の基本原理</h4>
+            <p>電磁波は加速する電荷から放射される。これは電磁気学の基本的な結果であり、すべての電磁波発生の根源となる原理である。静止している電荷や等速直線運動をしている電荷は電磁波を放射しない。電荷が加速度を持つときにのみ、エネルギーが電磁波として空間に放射される。</p>
+
+            <div class="key-point">
+                <h4>電磁波放射の必要条件</h4>
+                <p>電磁波が放射されるための条件は、<strong>電荷が加速度を持つこと</strong>である。加速度の原因は問わない。直線的な加減速、円運動、振動など、あらゆる種類の加速運動が電磁波放射を引き起こす。</p>
+            </div>
+
+            <p>なぜ加速電荷が電磁波を放射するのか、直感的に理解してみよう。静止電荷の周りには静電場が存在する。電荷が動き始めると、電場の分布が変化する。しかし、この変化は瞬時には伝わらず、光速 \(c\) で伝播する。加速度がある場合、電場の「ねじれ」が生じ、これが電磁波として伝播していく。</p>
+
+            <h4>3.1.2 ラーモアの公式</h4>
+            <p>加速する点電荷が放射するパワー（単位時間あたりのエネルギー）は、ラーモアの公式で与えられる。</p>
+
+            <div class="equation-box important">
+                <div class="title">ラーモアの公式（非相対論的）</div>
+                \[ P = \frac{q^2 a^2}{6\pi\epsilon_0 c^3} = \frac{\mu_0 q^2 a^2}{6\pi c} \]
+                <p>\(q\): 電荷量、\(a\): 加速度の大きさ、\(c\): 光速</p>
+                <p>SI単位で: \(P = \frac{q^2 a^2}{6\pi\epsilon_0 c^3} \approx 6.12 \times 10^{-52} \times q^2 a^2\) [W]</p>
+            </div>
+
+            <p>この公式から重要な特徴が読み取れる：</p>
+            <ul>
+                <li>放射パワーは加速度の2乗に比例する：\(P \propto a^2\)</li>
+                <li>放射パワーは電荷の2乗に比例する：\(P \propto q^2\)</li>
+                <li>放射パワーは速度には直接依存しない（非相対論的な場合）</li>
+                <li>係数が非常に小さい（\(10^{-52}\)オーダー）ため、日常的な加速では放射は極めて弱い</li>
+            </ul>
+
+            <div class="derivation">
+                <h4>導出: ラーモアの公式の概略</h4>
+                <div class="derivation-step">
+                    <span class="step-num">1</span>
+                    <strong>遅延ポテンシャルから出発</strong>
+                    <p>時刻 \(t\) における点 \(\vec{r}\) での電磁ポテンシャルは、時刻 \(t' = t - |\vec{r} - \vec{r}_s(t')|/c\)（遅延時刻）における電荷の位置 \(\vec{r}_s(t')\) で決まる：</p>
+                    \[ \phi(\vec{r}, t) = \frac{q}{4\pi\epsilon_0} \frac{1}{|\vec{r} - \vec{r}_s|_{ret}} \]
+                </div>
+                <div class="derivation-step">
+                    <span class="step-num">2</span>
+                    <strong>遠方界の電場を計算</strong>
+                    <p>十分遠方（放射域）では、電場は次の形になる：</p>
+                    \[ \vec{E}_{rad} = \frac{q}{4\pi\epsilon_0 c^2} \frac{\hat{n} \times (\hat{n} \times \vec{a})}{r} \]
+                    <p>ここで \(\hat{n}\) は電荷から観測点への単位ベクトル、\(\vec{a}\) は遅延時刻での加速度。</p>
+                </div>
+                <div class="derivation-step">
+                    <span class="step-num">3</span>
+                    <strong>ポインティングベクトルを計算</strong>
+                    <p>放射域での磁場は \(\vec{B}_{rad} = \hat{n} \times \vec{E}_{rad}/c\) なので：</p>
+                    \[ \vec{S} = \frac{1}{\mu_0} \vec{E} \times \vec{B} = \frac{1}{\mu_0 c} |E_{rad}|^2 \hat{n} \]
+                </div>
+                <div class="derivation-step">
+                    <span class="step-num">4</span>
+                    <strong>全立体角で積分</strong>
+                    <p>\(|\hat{n} \times (\hat{n} \times \vec{a})|^2 = a^2 \sin^2\theta\) を用いて全放射パワーを計算：</p>
+                    \[ P = \oint S r^2 d\Omega = \frac{q^2 a^2}{16\pi^2 \epsilon_0 c^3} \int_0^\pi \sin^3\theta \, d\theta \int_0^{2\pi} d\phi \]
+                    \[ = \frac{q^2 a^2}{16\pi^2 \epsilon_0 c^3} \times \frac{4}{3} \times 2\pi = \frac{q^2 a^2}{6\pi\epsilon_0 c^3} \]
+                </div>
+            </div>
+
+            <div class="example-box">
+                <h4>例題3.1: 電子の加速による放射</h4>
+                <p><strong>問題:</strong> 電子（\(q = 1.6 \times 10^{-19}\) C）が \(a = 10^{15}\) m/s² の加速度で運動しているとき、放射パワーを求めよ。これはどの程度のエネルギーか評価せよ。</p>
+                <div class="solution">
+                    <p><strong>解答:</strong></p>
+                    <p>ラーモアの公式に代入：</p>
+                    \[ P = \frac{(1.6 \times 10^{-19})^2 \times (10^{15})^2}{6\pi \times 8.85 \times 10^{-12} \times (3 \times 10^8)^3} \]
+                    \[ = \frac{2.56 \times 10^{-8}}{4.53 \times 10^{15}} = 5.6 \times 10^{-24} \text{ W} \]
+                    <p>この放射パワーは極めて小さい。光子1個（可視光、エネルギー約2 eV = \(3 \times 10^{-19}\) J）を放出するのに要する時間は：</p>
+                    \[ t = \frac{3 \times 10^{-19}}{5.6 \times 10^{-24}} \approx 5 \times 10^4 \text{ s} \approx 14 \text{ 時間} \]
+                    <p>単一電子の加速による放射は検出困難なほど弱い。実用的な電磁波発生には多数の電子の協調的な運動が必要である。</p>
+                </div>
+            </div>
+
+            <h4>3.1.3 放射の角度分布</h4>
+            <p>加速電荷からの放射は等方的ではなく、特徴的な角度分布を持つ。加速度ベクトルに対する角度を \(\theta\) とすると、放射強度は：</p>
+
+            <div class="equation-box">
+                <div class="title">放射強度の角度分布</div>
+                \[ \frac{dP}{d\Omega} = \frac{q^2 a^2}{16\pi^2 \epsilon_0 c^3} \sin^2\theta \]
+                <p>放射は加速度方向（\(\theta = 0, \pi\)）で最小（ゼロ）、加速度に垂直な方向（\(\theta = \pi/2\)）で最大となる。</p>
+            </div>
+
+            <p>この \(\sin^2\theta\) の分布は「ドーナツ型」と呼ばれ、加速度ベクトルを軸とするトーラス状のパターンを形成する。この特性はアンテナ設計において重要な役割を果たす。</p>
+
+            <h4>3.1.4 相対論的補正</h4>
+            <p>電子が光速に近い速度で運動する場合、相対論的効果を考慮する必要がある。相対論的ラーモアの公式（リエナール-ヴィーヘルトの公式）は：</p>
+
+            <div class="equation-box">
+                <div class="title">相対論的放射パワー</div>
+                \[ P = \frac{q^2 \gamma^6}{6\pi\epsilon_0 c^3} \left[ a^2 - \left(\frac{\vec{v} \times \vec{a}}{c}\right)^2 \right] \]
+                <p>\(\gamma = 1/\sqrt{1 - v^2/c^2}\)：ローレンツ因子</p>
+            </div>
+
+            <p>重要な結果として：</p>
+            <ul>
+                <li><strong>縦加速</strong>（速度と平行な加速）の場合：\(P \propto \gamma^6 a^2\)</li>
+                <li><strong>横加速</strong>（速度と垂直な加速）の場合：\(P \propto \gamma^4 a^2\)</li>
+            </ul>
+
+            <p>高エネルギー粒子では \(\gamma\) が大きく（例：10 GeV電子で \(\gamma \approx 20000\)）、放射パワーが劇的に増大する。これがシンクロトロン放射の原理である。</p>
+        </section>
+
+        <!-- セクション2: アンテナと電波発生 -->
+        <section class="content-section">
+            <h3>3.2 アンテナと電波発生</h3>
+
+            <h4>3.2.1 アンテナの基本原理</h4>
+            <p>アンテナは、導線内の電子を集団的に加速させることで電磁波を発生させる装置である。交流電流をアンテナに流すと、電子は周期的に加速・減速され、電磁波が放射される。</p>
+
+            <p>アンテナが効率よく電磁波を放射するための条件は、アンテナの長さが波長と同程度であることである。これは、アンテナ全体で電流が同位相で振動し、各部分からの放射が建設的に干渉するためである。</p>
+
+            <h4>3.2.2 ダイポールアンテナ</h4>
+            <p>最も基本的なアンテナは半波長ダイポールアンテナである。長さ \(L = \lambda/2\) の導線の中央から給電する構造を持つ。</p>
+
+            <div class="equation-box">
+                <div class="title">半波長ダイポールアンテナの特性</div>
+                <p>電流分布: \(I(z) = I_0 \cos\left(\frac{\pi z}{L}\right)\)（両端でゼロ）</p>
+                <p>放射抵抗: \(R_r = 73.1 \, \Omega\)</p>
+                <p>指向性: \(D = 1.64\)（等方性アンテナの1.64倍）</p>
+                <p>実効長: \(h_e = \frac{\lambda}{\pi} \approx 0.32\lambda\)</p>
+            </div>
+
+            <div class="derivation">
+                <h4>導出: ダイポールアンテナの放射パワー</h4>
+                <div class="derivation-step">
+                    <span class="step-num">1</span>
+                    <strong>微小要素からの放射</strong>
+                    <p>位置 \(z\) にある微小長さ \(dz\) の電流要素 \(I(z)dz\) からの放射を考える。これは微小ダイポール（ヘルツダイポール）として扱える。</p>
+                </div>
+                <div class="derivation-step">
+                    <span class="step-num">2</span>
+                    <strong>遠方での電場</strong>
+                    <p>観測点が十分遠方にある場合、各要素からの寄与を重ね合わせる。位相差を考慮すると：</p>
+                    \[ E_\theta = \frac{j\eta_0 I_0 e^{-jkr}}{2\pi r} \left[ \frac{\cos\left(\frac{\pi}{2}\cos\theta\right)}{\sin\theta} \right] \]
+                </div>
+                <div class="derivation-step">
+                    <span class="step-num">3</span>
+                    <strong>放射パワーの計算</strong>
+                    <p>ポインティングベクトルを全立体角で積分：</p>
+                    \[ P = \frac{|I_0|^2 \eta_0}{4\pi} \int_0^\pi \frac{\cos^2\left(\frac{\pi}{2}\cos\theta\right)}{\sin\theta} d\theta \]
+                    <p>この積分を数値計算すると約1.219となり：</p>
+                    \[ P = \frac{1.219 \eta_0}{4\pi} |I_0|^2 \approx 36.5 |I_0|^2 \text{ [W]} \]
+                </div>
+                <div class="derivation-step">
+                    <span class="step-num">4</span>
+                    <strong>放射抵抗</strong>
+                    <p>\(P = \frac{1}{2}R_r |I_0|^2\) と比較して：</p>
+                    \[ R_r = 2 \times 36.5 = 73.1 \, \Omega \]
+                </div>
+            </div>
+
+            <h4>3.2.3 アンテナの指向性と利得</h4>
+            <p>アンテナの性能を表す重要なパラメータとして、指向性と利得がある。</p>
+
+            <ul>
+                <li><strong>指向性 \(D\)</strong>: 最大放射方向の強度と平均強度の比</li>
+                <li><strong>利得 \(G\)</strong>: 指向性にアンテナ効率を掛けたもの \(G = \eta D\)</li>
+                <li><strong>実効開口面積 \(A_e\)</strong>: \(A_e = \frac{\lambda^2 G}{4\pi}\)</li>
+            </ul>
+
+            <div class="example-box">
+                <h4>例題3.2: 携帯電話基地局のアンテナ</h4>
+                <p><strong>問題:</strong> 携帯電話基地局のアンテナ（周波数2 GHz、利得15 dBi）から10 Wで送信した場合、1 km離れた地点での電力密度を求めよ。</p>
+                <div class="solution">
+                    <p><strong>解答:</strong></p>
+                    <p>利得15 dBiを真数に変換：</p>
+                    \[ G = 10^{15/10} = 31.6 \]
+                    <p>最大放射方向での電力密度（フリスの伝達公式より）：</p>
+                    \[ S = \frac{P_t G}{4\pi r^2} = \frac{10 \times 31.6}{4\pi \times (1000)^2} \]
+                    \[ = \frac{316}{1.26 \times 10^7} = 2.5 \times 10^{-5} \text{ W/m}^2 = 25 \text{ μW/m}^2 \]
+                    <p>これは国際的な安全基準（1 mW/cm² = 10 W/m²）の約40万分の1であり、十分安全なレベルである。</p>
+                </div>
+            </div>
+
+            <h4>3.2.4 アレイアンテナとビームフォーミング</h4>
+            <p>複数のアンテナ素子を配列したアレイアンテナでは、各素子への給電位相を制御することで、放射パターンを電子的に制御できる（ビームフォーミング）。</p>
+
+            <div class="equation-box">
+                <div class="title">等間隔直線アレイの配列係数</div>
+                \[ AF(\theta) = \frac{\sin\left(\frac{N\psi}{2}\right)}{\sin\left(\frac{\psi}{2}\right)} \]
+                <p>\(\psi = kd\cos\theta + \beta\)：素子間の位相差</p>
+                <p>\(N\)：素子数、\(d\)：素子間隔、\(\beta\)：給電位相差</p>
+            </div>
+
+            <p>この技術は5G通信の大規模MIMO（Massive MIMO）やレーダーシステムで広く活用されている。</p>
+
+            <div class="column application">
+                <h4>コラム: 5GとMassive MIMO</h4>
+                <p>第5世代移動通信システム（5G）では、Massive MIMO技術が核心的な役割を果たしている。基地局に64〜256個のアンテナ素子を配置し、各ユーザーに向けて最適なビームを形成する。</p>
+                <p><strong>主な利点：</strong></p>
+                <ul>
+                    <li>空間多重化による容量増大（同時に複数ユーザーへ送信可能）</li>
+                    <li>ビームフォーミングによる干渉低減</li>
+                    <li>送信電力の効率的な利用（必要な方向にのみ送信）</li>
+                    <li>28 GHz等の高周波数帯での通信距離補償</li>
+                </ul>
+                <p>ミリ波帯（28 GHz、39 GHzなど）では波長が短いため、小型のアンテナ素子を高密度に配置できる。これにより、スマートフォンサイズの端末でも4〜8素子のアレイアンテナを搭載可能になった。</p>
+            </div>
+        </section>
+
+        <!-- セクション3: マイクロ波発生装置 -->
+        <section class="content-section">
+            <h3>3.3 マイクロ波発生装置</h3>
+
+            <h4>3.3.1 マグネトロン</h4>
+            <p>マグネトロンは、磁場中での電子の円運動を利用してマイクロ波を発生させる装置である。1940年代に英国で実用化され、レーダーの発展に大きく貢献した。現在では電子レンジの心臓部として広く使われている。</p>
+
+            <div class="key-point">
+                <h4>マグネトロンの動作原理</h4>
+                <ol>
+                    <li>中心の陰極（カソード）から熱電子が放出される</li>
+                    <li>陰極と陽極（アノード）間の電場で電子が加速される</li>
+                    <li>軸方向の磁場により電子は曲げられ、螺旋状の軌道を描く</li>
+                    <li>アノードの空洞共振器と電子群が相互作用し、マイクロ波が発生</li>
+                    <li>電子の回転周波数が空洞の共振周波数と一致するとき、効率的に発振</li>
+                </ol>
+            </div>
+
+            <div class="equation-box">
+                <div class="title">マグネトロンの基本関係式</div>
+                <p>電子のサイクロトロン周波数（磁場中での回転周波数）：</p>
+                \[ f_c = \frac{eB}{2\pi m_e} \]
+                <p>電子レンジ（2.45 GHz）の場合、必要な磁束密度：</p>
+                \[ B = \frac{2\pi m_e f_c}{e} = \frac{2\pi \times 9.11 \times 10^{-31} \times 2.45 \times 10^9}{1.6 \times 10^{-19}} \approx 0.088 \text{ T} \]
+            </div>
+
+            <p>電子レンジ用マグネトロンの典型的な仕様：</p>
+            <ul>
+                <li>周波数: 2.45 GHz（ISMバンド）</li>
+                <li>出力: 500〜1200 W</li>
+                <li>効率: 約70%</li>
+                <li>アノード電圧: 約4 kV</li>
+                <li>寿命: 約2000時間</li>
+            </ul>
+
+            <h4>3.3.2 クライストロン</h4>
+            <p>クライストロンは、電子ビームの速度変調を利用してマイクロ波を増幅・発生させる真空管である。粒子加速器、衛星通信、レーダーなど高出力用途に使用される。</p>
+
+            <div class="derivation">
+                <h4>導出: クライストロンの速度変調</h4>
+                <div class="derivation-step">
+                    <span class="step-num">1</span>
+                    <strong>入力空洞での変調</strong>
+                    <p>電子は加速電圧 \(V_0\) で入力空洞に入る。空洞内の高周波電圧 \(V_1 \sin(\omega t)\) により、電子の速度が変調される：</p>
+                    \[ v = v_0 \left(1 + \frac{V_1}{2V_0} \sin(\omega t)\right)^{1/2} \approx v_0 \left(1 + \frac{V_1}{4V_0} \sin(\omega t)\right) \]
+                </div>
+                <div class="derivation-step">
+                    <span class="step-num">2</span>
+                    <strong>ドリフト空間での群形成</strong>
+                    <p>速度変調を受けた電子がドリフト空間を通過する間に、速い電子が遅い電子に追いつき、電子のバンチ（群）が形成される。</p>
+                </div>
+                <div class="derivation-step">
+                    <span class="step-num">3</span>
+                    <strong>最適ドリフト長</strong>
+                    <p>バンチングが最大になるドリフト長 \(L\) は：</p>
+                    \[ L = \frac{v_0}{2\omega} \times \frac{4V_0}{V_1} = \frac{\pi v_0 V_0}{\omega V_1} \]
+                </div>
+                <div class="derivation-step">
+                    <span class="step-num">4</span>
+                    <strong>出力空洞でのエネルギー抽出</strong>
+                    <p>電子バンチが出力空洞を通過するとき、空洞内の高周波電場と位相が合っていれば、電子の運動エネルギーが電磁波エネルギーに変換される。</p>
+                </div>
+            </div>
+
+            <h4>3.3.3 進行波管（TWT）</h4>
+            <p>進行波管は、電子ビームと進行波との連続的な相互作用を利用する広帯域マイクロ波増幅器である。衛星通信の送信増幅器として広く使用されている。</p>
+
+            <div class="equation-box">
+                <div class="title">進行波管の動作条件</div>
+                <p>電子ビーム速度と波の位相速度が近いとき、効率的な相互作用が起こる：</p>
+                \[ v_{beam} \approx v_{phase} = \frac{\omega}{\beta} \]
+                <p>らせん型遅波回路では、波の位相速度は：</p>
+                \[ v_{phase} = c \sin\psi \]
+                <p>\(\psi\): らせんのピッチ角</p>
+            </div>
+
+            <h4>3.3.4 ジャイロトロン</h4>
+            <p>ジャイロトロンは、強磁場中での電子のサイクロトロン運動を利用してミリ波・サブミリ波を発生させる装置である。核融合プラズマの加熱に不可欠な技術である。</p>
+
+            <div class="column history">
+                <h4>コラム: マイクロ波技術の歴史</h4>
+                <p>マイクロ波技術の発展は第二次世界大戦と密接に関連している。</p>
+                <p><strong>1940年</strong>: 英国のランドールとブートがキャビティマグネトロンを発明。10 cmの波長で数kWの出力を達成し、高性能レーダーの開発が可能になった。</p>
+                <p><strong>1940年</strong>: 英国の科学者ティザードがマグネトロンの技術を米国に伝え、MIT放射線研究所（Rad Lab）が設立された。</p>
+                <p><strong>1945年</strong>: スペンサーがマグネトロンの近くでチョコレートバーが溶けることを発見し、電子レンジの原理を見出した。</p>
+                <p><strong>1947年</strong>: 最初の商用電子レンジ「Radarange」が発売。高さ1.8m、重量340kg、価格5000ドルという巨大で高価なものだった。</p>
+                <p>戦後、レーダー技術は平和利用へと転換し、現在のマイクロ波通信、電子レンジ、気象レーダーなどの基盤となった。</p>
+            </div>
+        </section>
+
+        <!-- セクション4: レーザーの原理 -->
+        <section class="content-section">
+            <h3>3.4 レーザーの原理</h3>
+
+            <h4>3.4.1 自然放出と誘導放出</h4>
+            <p>原子やモレキュールが光を放出する過程には、自然放出（spontaneous emission）と誘導放出（stimulated emission）の2種類がある。</p>
+
+            <div class="equation-box">
+                <div class="title">光と物質の相互作用の3過程</div>
+                <ul style="text-align: left; list-style: none; padding: 0;">
+                    <li><strong>1. 吸収（Absorption）</strong>: 入射光子を吸収し、原子が励起状態へ遷移</li>
+                    <li style="margin-left: 2rem;">\( \frac{dN_1}{dt} = -B_{12} \rho(\nu) N_1 \)</li>
+                    <li><strong>2. 自然放出（Spontaneous Emission）</strong>: 励起原子が自発的に光子を放出し基底状態へ</li>
+                    <li style="margin-left: 2rem;">\( \frac{dN_2}{dt} = -A_{21} N_2 \)</li>
+                    <li><strong>3. 誘導放出（Stimulated Emission）</strong>: 入射光により励起原子が光子を放出</li>
+                    <li style="margin-left: 2rem;">\( \frac{dN_2}{dt} = -B_{21} \rho(\nu) N_2 \)</li>
+                </ul>
+                <p>\(A_{21}\), \(B_{12}\), \(B_{21}\): アインシュタインのA係数・B係数</p>
+            </div>
+
+            <p>誘導放出が重要なのは、放出される光子が入射光子と完全に同じ性質（周波数、位相、偏光、進行方向）を持つことである。これがレーザー光のコヒーレンスの源泉となる。</p>
+
+            <div class="derivation">
+                <h4>導出: アインシュタインの係数の関係</h4>
+                <div class="derivation-step">
+                    <span class="step-num">1</span>
+                    <strong>熱平衡条件</strong>
+                    <p>熱平衡では、励起・脱励起のレートが等しい：</p>
+                    \[ B_{12} \rho(\nu) N_1 = A_{21} N_2 + B_{21} \rho(\nu) N_2 \]
+                </div>
+                <div class="derivation-step">
+                    <span class="step-num">2</span>
+                    <strong>ボルツマン分布</strong>
+                    <p>熱平衡でのポピュレーション比：</p>
+                    \[ \frac{N_2}{N_1} = \frac{g_2}{g_1} e^{-h\nu/k_B T} \]
+                </div>
+                <div class="derivation-step">
+                    <span class="step-num">3</span>
+                    <strong>プランク分布との整合</strong>
+                    <p>\(\rho(\nu)\) がプランク分布に一致する条件から：</p>
+                    \[ B_{12} = \frac{g_2}{g_1} B_{21} \]
+                    \[ A_{21} = \frac{8\pi h\nu^3}{c^3} B_{21} \]
+                </div>
+                <div class="derivation-step">
+                    <span class="step-num">4</span>
+                    <strong>物理的意味</strong>
+                    <p>\(A_{21}/B_{21} \propto \nu^3\) から、高周波（短波長）ほど自然放出が支配的になる。X線レーザーの実現が困難な理由の一つである。</p>
+                </div>
+            </div>
+
+            <h4>3.4.2 反転分布</h4>
+            <p>レーザー発振のためには、励起状態の原子数が基底状態より多い「反転分布」を実現する必要がある。熱平衡では常に \(N_2 < N_1\) なので、外部からエネルギーを注入（ポンピング）して非平衡状態を作り出す。</p>
+
+            <div class="key-point">
+                <h4>反転分布が必要な理由</h4>
+                <p>光が媒質を通過するときの増幅率は \(N_2 - (g_2/g_1)N_1\) に比例する。この値が正（反転分布）のとき光は増幅され、負（通常状態）のとき光は吸収される。</p>
+                \[ \frac{dI}{dz} = \sigma_{21} [N_2 - (g_2/g_1)N_1] I \]
+            </div>
+
+            <p>反転分布を実現する方法：</p>
+            <ul>
+                <li><strong>光ポンピング</strong>: 強力な光（フラッシュランプ、別のレーザー）で励起</li>
+                <li><strong>電気放電</strong>: ガス中での放電による電子衝突励起</li>
+                <li><strong>電流注入</strong>: 半導体pn接合への電流注入</li>
+                <li><strong>化学反応</strong>: 励起状態の生成物を作る化学反応</li>
+            </ul>
+
+            <h4>3.4.3 光共振器</h4>
+            <p>レーザーは光増幅器（誘導放出による増幅媒質）と光共振器（2枚の鏡）から構成される。共振器は以下の役割を果たす：</p>
+
+            <ul>
+                <li>光を媒質中で何度も往復させ、十分な増幅を得る</li>
+                <li>特定の周波数（共振器モード）のみを選択的に増幅</li>
+                <li>特定の方向のみの光を維持（高い指向性）</li>
+            </ul>
+
+            <div class="equation-box">
+                <div class="title">共振器の条件</div>
+                <p>共振条件（定在波条件）：</p>
+                \[ L = m \frac{\lambda}{2} \quad (m = 1, 2, 3, ...) \]
+                <p>縦モード間隔：</p>
+                \[ \Delta\nu = \frac{c}{2L} \]
+                <p>発振閾値条件（往復で損失を補う増幅）：</p>
+                \[ R_1 R_2 e^{2(g-\alpha)L} = 1 \]
+                <p>\(R_1, R_2\): 鏡の反射率、\(g\): 利得係数、\(\alpha\): 損失係数</p>
+            </div>
+
+            <h4>3.4.4 代表的なレーザーの種類</h4>
+
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>種類</th>
+                        <th>媒質</th>
+                        <th>波長</th>
+                        <th>出力</th>
+                        <th>主な用途</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>He-Neレーザー</td>
+                        <td>ヘリウム-ネオン混合ガス</td>
+                        <td>632.8 nm（赤）</td>
+                        <td>mW</td>
+                        <td>計測、ホログラフィ</td>
+                    </tr>
+                    <tr>
+                        <td>CO₂レーザー</td>
+                        <td>二酸化炭素ガス</td>
+                        <td>10.6 μm（赤外）</td>
+                        <td>W〜kW</td>
+                        <td>加工、医療</td>
+                    </tr>
+                    <tr>
+                        <td>Nd:YAGレーザー</td>
+                        <td>Nd³⁺ドープYAG結晶</td>
+                        <td>1064 nm（近赤外）</td>
+                        <td>W〜kW</td>
+                        <td>加工、医療、計測</td>
+                    </tr>
+                    <tr>
+                        <td>半導体レーザー</td>
+                        <td>GaAs, InGaAsP等</td>
+                        <td>650〜1550 nm</td>
+                        <td>mW〜W</td>
+                        <td>通信、光ディスク</td>
+                    </tr>
+                    <tr>
+                        <td>エキシマレーザー</td>
+                        <td>ArF, KrF等</td>
+                        <td>193, 248 nm（紫外）</td>
+                        <td>W〜数十W</td>
+                        <td>リソグラフィ、眼科</td>
+                    </tr>
+                    <tr>
+                        <td>ファイバーレーザー</td>
+                        <td>Yb, Erドープ光ファイバー</td>
+                        <td>1030〜1080 nm</td>
+                        <td>kW〜10kW</td>
+                        <td>金属加工</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="example-box">
+                <h4>例題3.3: レーザー共振器の設計</h4>
+                <p><strong>問題:</strong> He-Neレーザー（波長632.8 nm）で共振器長を30 cmとした場合、(a) 縦モード間隔、(b) 共振器内に存在する縦モード数を求めよ。ただしHe-Neレーザーの利得幅は約1.5 GHzとする。</p>
+                <div class="solution">
+                    <p><strong>解答:</strong></p>
+                    <p>(a) 縦モード間隔：</p>
+                    \[ \Delta\nu = \frac{c}{2L} = \frac{3 \times 10^8}{2 \times 0.3} = 5 \times 10^8 \text{ Hz} = 500 \text{ MHz} \]
+                    <p>(b) 利得幅内の縦モード数：</p>
+                    \[ N = \frac{\text{利得幅}}{\text{モード間隔}} = \frac{1.5 \times 10^9}{5 \times 10^8} = 3 \]
+                    <p>約3つの縦モードが発振可能である。単一縦モード動作が必要な場合は、エタロン等の追加的な周波数選択素子を挿入する。</p>
+                </div>
+            </div>
+
+            <div class="column application">
+                <h4>コラム: レーザー技術の産業応用</h4>
+                <p>レーザーは現代産業に不可欠な技術となっている。</p>
+                <p><strong>製造業での応用：</strong></p>
+                <ul>
+                    <li><strong>レーザー加工</strong>: 切断、溶接、穴あけ、マーキング。自動車のボディ溶接、スマートフォンの筐体加工など。ファイバーレーザーの登場で高出力・高効率化が進んだ。</li>
+                    <li><strong>積層造形（3Dプリンティング）</strong>: 金属粉末をレーザーで焼結・溶融し、複雑な形状を製造。航空機部品、医療用インプラントなど。</li>
+                    <li><strong>半導体製造</strong>: ArFエキシマレーザー（193 nm）によるリソグラフィで数nmの回路パターンを形成。最先端の7nm、5nmプロセスはEUV（13.5 nm）リソグラフィを使用。</li>
+                </ul>
+                <p><strong>通信での応用：</strong></p>
+                <ul>
+                    <li>光ファイバー通信の光源として半導体レーザーが使用され、1本の光ファイバーで数十Tbpsのデータ伝送が可能。</li>
+                    <li>波長分割多重（WDM）により、異なる波長のレーザーを1本のファイバーで同時に伝送。</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- セクション5: シンクロトロン放射 -->
+        <section class="content-section">
+            <h3>3.5 シンクロトロン放射</h3>
+
+            <h4>3.5.1 シンクロトロン放射の原理</h4>
+            <p>シンクロトロン放射は、相対論的な速度で運動する電子が磁場で曲げられる際に放射される電磁波である。円形加速器や放射光施設で利用され、極めて明るい光源として科学研究に不可欠な存在となっている。</p>
+
+            <div class="equation-box important">
+                <div class="title">シンクロトロン放射の特性</div>
+                <p>放射パワー：</p>
+                \[ P = \frac{C_\gamma c}{(m_e c^2)^4} \frac{E^4}{\rho^2} = C_\gamma c \frac{E^4}{\rho^2} \]
+                <p>\(C_\gamma = \frac{e^2 c}{6\pi\epsilon_0 (m_e c^2)^4} = 8.85 \times 10^{-5} \text{ m/(GeV)}^3\)</p>
+                <p>臨界光子エネルギー（スペクトルの特性エネルギー）：</p>
+                \[ \varepsilon_c = \frac{3\hbar c \gamma^3}{2\rho} = \frac{3}{2} \hbar \omega_c \gamma^3 \]
+            </div>
+
+            <p>シンクロトロン放射の特徴：</p>
+            <ul>
+                <li><strong>高輝度</strong>: 太陽の10億倍以上の輝度</li>
+                <li><strong>広帯域</strong>: 赤外線からX線までの連続スペクトル</li>
+                <li><strong>高指向性</strong>: ビーム広がり角 ∼ \(1/\gamma\)（ミリラジアン以下）</li>
+                <li><strong>偏光</strong>: 軌道面内で直線偏光</li>
+                <li><strong>パルス性</strong>: バンチ構造により数十ピコ秒のパルス</li>
+            </ul>
+
+            <div class="derivation">
+                <h4>導出: シンクロトロン放射の指向性</h4>
+                <div class="derivation-step">
+                    <span class="step-num">1</span>
+                    <strong>相対論的ビーミング効果</strong>
+                    <p>静止系での放射パターン（\(\sin^2\theta\)分布）は、ローレンツ変換により観測系では前方に集中する。</p>
+                </div>
+                <div class="derivation-step">
+                    <span class="step-num">2</span>
+                    <strong>角度の変換</strong>
+                    <p>静止系で角度 \(\theta'\) の光は、観測系では角度 \(\theta\) に見える：</p>
+                    \[ \cos\theta = \frac{\cos\theta' + \beta}{1 + \beta\cos\theta'} \]
+                </div>
+                <div class="derivation-step">
+                    <span class="step-num">3</span>
+                    <strong>特性角度</strong>
+                    <p>\(\theta' = 90°\)の光が観測系で見える角度：</p>
+                    \[ \cos\theta = \beta \approx 1 - \frac{1}{2\gamma^2} \]
+                    \[ \theta \approx \frac{1}{\gamma} \]
+                </div>
+                <div class="derivation-step">
+                    <span class="step-num">4</span>
+                    <strong>数値例</strong>
+                    <p>8 GeV電子（\(\gamma \approx 16000\)）の場合：</p>
+                    \[ \theta \approx \frac{1}{16000} \approx 0.06 \text{ mrad} = 0.004° \]
+                </div>
+            </div>
+
+            <h4>3.5.2 放射光施設</h4>
+            <p>放射光施設は、電子を蓄積リング内で周回させ、偏向電磁石や挿入光源からシンクロトロン放射を取り出す大型研究施設である。</p>
+
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>施設名</th>
+                        <th>所在地</th>
+                        <th>電子エネルギー</th>
+                        <th>周長</th>
+                        <th>開始年</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>SPring-8</td>
+                        <td>日本（兵庫県）</td>
+                        <td>8 GeV</td>
+                        <td>1436 m</td>
+                        <td>1997</td>
+                    </tr>
+                    <tr>
+                        <td>ESRF</td>
+                        <td>フランス</td>
+                        <td>6 GeV</td>
+                        <td>844 m</td>
+                        <td>1994</td>
+                    </tr>
+                    <tr>
+                        <td>APS</td>
+                        <td>アメリカ</td>
+                        <td>7 GeV</td>
+                        <td>1104 m</td>
+                        <td>1996</td>
+                    </tr>
+                    <tr>
+                        <td>PETRA III</td>
+                        <td>ドイツ</td>
+                        <td>6 GeV</td>
+                        <td>2304 m</td>
+                        <td>2009</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h4>3.5.3 挿入光源</h4>
+            <p>より高輝度の放射を得るために、蓄積リングの直線部にアンジュレータやウィグラーと呼ばれる挿入光源を設置する。</p>
+
+            <div class="equation-box">
+                <div class="title">アンジュレータの共鳴波長</div>
+                \[ \lambda_n = \frac{\lambda_u}{2n\gamma^2} \left(1 + \frac{K^2}{2}\right) \]
+                <p>\(\lambda_u\): 磁石周期、\(n\): 高調波次数、\(K = \frac{eB_0\lambda_u}{2\pi m_e c}\): 偏向パラメータ</p>
+            </div>
+
+            <div class="example-box">
+                <h4>例題3.4: アンジュレータからの放射</h4>
+                <p><strong>問題:</strong> SPring-8（電子エネルギー8 GeV）のアンジュレータ（周期32 mm、K = 2.3）から放射される基本波（n = 1）の波長を求めよ。</p>
+                <div class="solution">
+                    <p><strong>解答:</strong></p>
+                    <p>ローレンツ因子：</p>
+                    \[ \gamma = \frac{E}{m_e c^2} = \frac{8 \times 10^9}{0.511 \times 10^6} = 15700 \]
+                    <p>基本波の波長：</p>
+                    \[ \lambda_1 = \frac{32 \times 10^{-3}}{2 \times 1 \times (15700)^2} \left(1 + \frac{(2.3)^2}{2}\right) \]
+                    \[ = \frac{32 \times 10^{-3}}{4.93 \times 10^8} \times 3.65 = 2.4 \times 10^{-10} \text{ m} = 0.24 \text{ nm} \]
+                    <p>これは硬X線領域であり、結晶構造解析に最適な波長である。</p>
+                </div>
+            </div>
+
+            <h4>3.5.4 X線自由電子レーザー（XFEL）</h4>
+            <p>X線自由電子レーザーは、シンクロトロン放射の原理を発展させた究極の光源である。長いアンジュレータ中で電子ビームの自発的なバンチング（SASE: Self-Amplified Spontaneous Emission）が起こり、コヒーレントなX線パルスが発生する。</p>
+
+            <div class="column application">
+                <h4>コラム: SACLAとX線自由電子レーザー</h4>
+                <p>日本のSACLA（SPring-8 Angstrom Compact Free Electron Laser）は、2012年に完成した世界最高性能のX線自由電子レーザー施設の一つである。</p>
+                <p><strong>SACLAの特徴：</strong></p>
+                <ul>
+                    <li>波長: 0.06〜0.3 nm（硬X線領域）</li>
+                    <li>パルス幅: 数フェムト秒（10⁻¹⁵秒）</li>
+                    <li>ピーク輝度: 従来の放射光の10億倍</li>
+                    <li>コヒーレンス: レーザー並みの空間コヒーレンス</li>
+                </ul>
+                <p><strong>応用例：</strong></p>
+                <ul>
+                    <li>タンパク質の構造解析（結晶化不要のシリアルフェムト秒結晶学）</li>
+                    <li>化学反応の超高速観測（分子動画撮影）</li>
+                    <li>高温・高密度プラズマの研究</li>
+                    <li>新材料創成（光誘起相転移）</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- セクション6: 電磁波応用技術 -->
+        <section class="content-section">
+            <h3>3.6 電磁波応用技術</h3>
+
+            <h4>3.6.1 無線通信</h4>
+            <p>電磁波の最も広範な応用は無線通信である。周波数帯域ごとに異なる特性があり、用途に応じて使い分けられている。</p>
+
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>周波数帯</th>
+                        <th>周波数範囲</th>
+                        <th>伝搬特性</th>
+                        <th>主な用途</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>長波（LF）</td>
+                        <td>30-300 kHz</td>
+                        <td>地表波伝搬、回折大</td>
+                        <td>船舶通信、標準時報</td>
+                    </tr>
+                    <tr>
+                        <td>中波（MF）</td>
+                        <td>300 kHz-3 MHz</td>
+                        <td>昼：地表波、夜：電離層反射</td>
+                        <td>AMラジオ放送</td>
+                    </tr>
+                    <tr>
+                        <td>短波（HF）</td>
+                        <td>3-30 MHz</td>
+                        <td>電離層反射で遠距離到達</td>
+                        <td>国際放送、アマチュア無線</td>
+                    </tr>
+                    <tr>
+                        <td>VHF</td>
+                        <td>30-300 MHz</td>
+                        <td>見通し距離伝搬</td>
+                        <td>FMラジオ、航空通信</td>
+                    </tr>
+                    <tr>
+                        <td>UHF</td>
+                        <td>300 MHz-3 GHz</td>
+                        <td>見通し距離、ビル内浸透</td>
+                        <td>テレビ、携帯電話（4G/5G）</td>
+                    </tr>
+                    <tr>
+                        <td>SHF</td>
+                        <td>3-30 GHz</td>
+                        <td>高指向性、雨による減衰</td>
+                        <td>衛星通信、5Gミリ波</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h4>3.6.2 レーダー</h4>
+            <p>レーダー（Radio Detection and Ranging）は電磁波の反射を利用して物体の位置や速度を検出するシステムである。</p>
+
+            <div class="equation-box">
+                <div class="title">レーダー方程式</div>
+                \[ P_r = \frac{P_t G_t G_r \lambda^2 \sigma}{(4\pi)^3 R^4} \]
+                <p>\(P_r\): 受信電力、\(P_t\): 送信電力、\(G_t, G_r\): アンテナ利得</p>
+                <p>\(\lambda\): 波長、\(\sigma\): レーダー断面積、\(R\): 距離</p>
+            </div>
+
+            <h4>3.6.3 医療応用</h4>
+            <p>電磁波は医療分野でも広く活用されている。</p>
+            <ul>
+                <li><strong>MRI</strong>: 電波（ラジオ波）と磁場を使った画像診断</li>
+                <li><strong>X線CT</strong>: X線による断層撮影</li>
+                <li><strong>放射線治療</strong>: γ線、X線、電子線によるがん治療</li>
+                <li><strong>レーザー手術</strong>: CO₂レーザー等による切開、凝固</li>
+                <li><strong>光線力学療法</strong>: レーザー光と光感受性物質によるがん治療</li>
+            </ul>
+
+            <h4>3.6.4 材料加工</h4>
+            <p>高出力レーザーやマイクロ波は材料加工に不可欠な技術となっている。</p>
+            <ul>
+                <li><strong>レーザー切断</strong>: 数kWのCO₂、ファイバーレーザーで金属板を切断</li>
+                <li><strong>レーザー溶接</strong>: 自動車ボディの接合、精密機器の組立</li>
+                <li><strong>レーザーマーキング</strong>: 製品への刻印、バーコード印字</li>
+                <li><strong>マイクロ波焼成</strong>: セラミックス、粉末冶金</li>
+            </ul>
+        </section>
+
+        <!-- 演習問題 -->
+        <section class="content-section exercises">
+            <h3>演習問題</h3>
+
+            <div class="exercise">
+                <h4>問題3.1 基礎</h4>
+                <p>陽子（質量 \(m_p = 1.67 \times 10^{-27}\) kg、電荷 \(e = 1.6 \times 10^{-19}\) C）が \(a = 10^{15}\) m/s² の加速度で運動しているとき、放射パワーを電子の場合と比較せよ。なぜ加速器では電子からの放射が問題となりやすいのか説明せよ。</p>
+            </div>
+
+            <div class="exercise">
+                <h4>問題3.2 応用</h4>
+                <p>波長 \(\lambda = 3\) cm のマイクロ波を発生させるマグネトロンを設計する。(a) 必要な磁束密度を求めよ。(b) 8個の空洞を持つマグネトロンで、電子が1周する間に空洞を何回通過するか。(c) 空洞の共振周波数が発振周波数と一致する条件を説明せよ。</p>
+            </div>
+
+            <div class="exercise">
+                <h4>問題3.3 発展</h4>
+                <p>He-Neレーザー（波長632.8 nm）の共振器長を50 cmとする。(a) 隣接する縦モードの周波数差を求めよ。(b) 線幅1.5 GHzのドップラー広がりがある場合、何本の縦モードが発振可能か。(c) 単一モード動作を得るためのエタロンの設計条件を述べよ。</p>
+            </div>
+
+            <div class="exercise">
+                <h4>問題3.4 考察</h4>
+                <p>シンクロトロン放射は電子の運動エネルギーを奪うため、加速器にとっては「損失」である一方、放射光施設にとっては「有用な光源」である。この二面性について、具体的な数値を挙げながら議論せよ。特に、電子蓄積リングで1周あたりに失われるエネルギーを、SPring-8（8 GeV、曲率半径40 m）の場合について計算せよ。</p>
+            </div>
+
+            <div class="exercise">
+                <h4>問題3.5 総合</h4>
+                <p>5G通信で使用される28 GHz帯のミリ波について、(a) 波長を求めよ。(b) 半波長ダイポールアンテナの長さを求めよ。(c) 64素子のアレイアンテナで得られる最大指向性利得を推定せよ。(d) 雨による減衰が問題となる理由を、レイリー散乱とミー散乱の観点から説明せよ。</p>
+            </div>
+        </section>
+
+        <!-- まとめ -->
+        <section class="content-section summary">
+            <h3>第3回のまとめ</h3>
+            <div class="summary-box">
+                <h4>学習した主要概念</h4>
+                <ul>
+                    <li>電磁波は加速する電荷から放射される（ラーモアの公式）</li>
+                    <li>アンテナは電子の集団的な加速運動により電磁波を発生させる</li>
+                    <li>マグネトロン、クライストロンなどの真空管でマイクロ波を発生</li>
+                    <li>レーザーは誘導放出による光増幅と共振器フィードバックで発振</li>
+                    <li>シンクロトロン放射は相対論的電子の曲率運動から発生する高輝度光源</li>
+                    <li>電磁波は通信、レーダー、医療、材料加工など広範な応用を持つ</li>
+                </ul>
+            </div>
+
+            <div class="summary-box">
+                <h4>重要公式</h4>
+                <div class="formula-list">
+                    <p>ラーモアの公式: \(P = \frac{q^2 a^2}{6\pi\epsilon_0 c^3}\)</p>
+                    <p>半波長ダイポール放射抵抗: \(R_r = 73.1 \, \Omega\)</p>
+                    <p>レーザー共振器の縦モード間隔: \(\Delta\nu = \frac{c}{2L}\)</p>
+                    <p>シンクロトロン放射パワー: \(P = C_\gamma c \frac{E^4}{\rho^2}\)</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ナビゲーション -->
+        <nav class="lecture-nav">
+            <a href="lecture02.html" class="nav-prev">← 第2回: 可視光の色</a>
+            <a href="lecture04.html" class="nav-next">第4回: 電磁波と物質との相互作用 →</a>
+        </nav>
+    </main>
+
+    <footer>
+        <p>福井大学 共通教育科目 B2032 電磁波と物質</p>
+        <p>担当: 福成 雅史 / 石川 裕也</p>
+    </footer>
+
+    <script src="../js/lecture.js"></script>
+</body>
+</html>

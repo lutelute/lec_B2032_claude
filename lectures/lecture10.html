@@ -1,0 +1,1008 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>第10回: 電磁波の伝播・回折 - 電磁波と物質</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/lecture.css">
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+    <header class="main-header">
+        <h1>電磁波と物質</h1>
+        <p class="subtitle">第10回: 電磁波の伝播・回折</p>
+    </header>
+
+    <nav class="main-nav">
+        <a href="../index.html">ダッシュボード</a>
+        <a href="../lecture.html">講義一覧</a>
+        <a href="../interactive.html">インタラクティブ学習</a>
+    </nav>
+
+    <main class="lecture-content">
+        <div class="lecture-header">
+            <div class="lecture-meta">
+                <span class="lecture-number">Lecture 10</span>
+                <span class="lecture-duration">学習時間目安: 120-150分</span>
+            </div>
+            <h2>電磁波の伝播・回折</h2>
+            <p class="lecture-objectives">
+                <strong>学習目標:</strong> 電磁波の伝播における重要な現象（反射、屈折、干渉、回折）の原理を理解する。ホイヘンスの原理、フレネル回折、フラウンホーファー回折の概念を学び、回折格子や光学機器の分解能について理解を深める。
+            </p>
+        </div>
+
+        <!-- セクション1: ホイヘンスの原理 -->
+        <section class="content-section">
+            <h3>10.1 ホイヘンスの原理</h3>
+
+            <h4>10.1.1 ホイヘンスの原理の概要</h4>
+            <p>1678年、オランダの物理学者クリスティアーン・ホイヘンス（Christiaan Huygens）は、波動の伝播を説明する原理を提唱した。この<strong>ホイヘンスの原理</strong>は、回折や干渉などの波動現象を直感的に理解するための強力なツールである。</p>
+
+            <div class="equation-box important">
+                <div class="title">ホイヘンスの原理</div>
+                <p>波面上の各点は、新たな球面波（素元波）の波源となる。次の瞬間の波面は、これらの素元波の包絡面として構成される。</p>
+            </div>
+
+            <p>ホイヘンスの原理の重要なポイント：</p>
+            <ul>
+                <li>波面上の全ての点が新しい波の発生源として振る舞う</li>
+                <li>各素元波は元の波と同じ速度で伝播する</li>
+                <li>新しい波面は素元波の共通接面（包絡面）として形成される</li>
+                <li>この原理は反射、屈折、回折などを統一的に説明できる</li>
+            </ul>
+
+            <h4>10.1.2 ホイヘンス-フレネルの原理</h4>
+            <p>ホイヘンスの原理だけでは、後方に進む波が生じないことを説明できない。フレネルは素元波の干渉を考慮することでこの問題を解決し、<strong>ホイヘンス-フレネルの原理</strong>を確立した。</p>
+
+            <div class="equation-box">
+                <div class="title">ホイヘンス-フレネルの積分</div>
+                <p>波面 S 上の面積要素 dS から観測点 P への寄与は：</p>
+                \[ dU(P) = K(\theta) \frac{A}{r} e^{i(kr - \omega t)} dS \]
+                <p>全体の振幅は波面全体にわたる積分：</p>
+                \[ U(P) = \int_S K(\theta) \frac{A}{r} e^{i(kr - \omega t)} dS \]
+                <p>ここで：</p>
+                <ul style="text-align: left;">
+                    <li>\(K(\theta)\)：傾斜因子（素元波の方向依存性）</li>
+                    <li>\(A\)：波面上での振幅</li>
+                    <li>\(r\)：面積要素から観測点までの距離</li>
+                </ul>
+            </div>
+
+            <p>傾斜因子 \(K(\theta)\) は前方（θ = 0）で最大、後方（θ = π）でゼロとなり、後方波が生じない理由を説明する：</p>
+            <div class="equation">
+                \[ K(\theta) = \frac{1}{2}(1 + \cos\theta) \]
+            </div>
+
+            <div class="derivation">
+                <h4>導出: ホイヘンスの原理による屈折の法則</h4>
+                <div class="derivation-step">
+                    <span class="step-num">1</span>
+                    <strong>設定</strong>
+                    <p>媒質1（速度 \(v_1\)）から媒質2（速度 \(v_2\)）への平面波の入射を考える。入射角を \(\theta_1\)、屈折角を \(\theta_2\) とする。</p>
+                </div>
+                <div class="derivation-step">
+                    <span class="step-num">2</span>
+                    <strong>波面の構成</strong>
+                    <p>境界面上の点Aに波面が到達した時刻を t = 0 とする。点Bに波面が到達するまでの時間を \(\Delta t\) とすると：</p>
+                    \[ AB \sin\theta_1 = v_1 \Delta t \]
+                </div>
+                <div class="derivation-step">
+                    <span class="step-num">3</span>
+                    <strong>屈折波の波面</strong>
+                    <p>時刻 \(\Delta t\) における点Aからの素元波の半径は \(v_2 \Delta t\)。新しい波面と境界面のなす角が \(\theta_2\) である：</p>
+                    \[ AB \sin\theta_2 = v_2 \Delta t \]
+                </div>
+                <div class="derivation-step">
+                    <span class="step-num">4</span>
+                    <strong>スネルの法則</strong>
+                    <p>両式の比を取ると：</p>
+                    \[ \frac{\sin\theta_1}{\sin\theta_2} = \frac{v_1}{v_2} = \frac{c/n_1}{c/n_2} = \frac{n_2}{n_1} \]
+                    \[ n_1 \sin\theta_1 = n_2 \sin\theta_2 \]
+                </div>
+            </div>
+
+            <div class="example-box">
+                <h4>例題10.1: 反射の法則のホイヘンス的導出</h4>
+                <p><strong>問題:</strong> ホイヘンスの原理を用いて、反射角が入射角に等しいこと（反射の法則）を示せ。</p>
+                <div class="solution">
+                    <p><strong>解答:</strong></p>
+                    <p>平面波が入射角 \(\theta_i\) で境界面に入射する。境界面上の点Aに波面が到達した瞬間から、点Bに到達するまでの時間を \(\Delta t\) とする。</p>
+                    <p>入射波：\(AB \sin\theta_i = v \Delta t\)</p>
+                    <p>点Aからの反射素元波は同じ媒質中を進むので、速度は同じ v。時刻 \(\Delta t\) での半径は \(v \Delta t\)。</p>
+                    <p>反射波面と境界面のなす角を \(\theta_r\) とすると：</p>
+                    \[ AB \sin\theta_r = v \Delta t \]
+                    <p>両式を比較すると：</p>
+                    \[ \sin\theta_i = \sin\theta_r \]
+                    \[ \theta_i = \theta_r \]
+                    <p>よって、入射角と反射角は等しい。</p>
+                </div>
+            </div>
+
+            <div class="column history">
+                <h4>コラム: ホイヘンスと光の波動説</h4>
+                <p>17世紀、光の本性については2つの対立する見方があった。ニュートンは光を粒子（コルプスクル）として捉え、ホイヘンスは波動として捉えた。</p>
+                <p>ニュートンの粒子説は、光の直進性や反射を説明でき、当時の権威により支持された。しかし、屈折の説明には「光粒子は密な媒質中で加速される」という直感に反する仮定が必要だった。</p>
+                <p>ホイヘンスの波動説は、反射・屈折を自然に説明でき、屈折では「密な媒質中で光は減速する」と正しく予測した。しかし、回折の定量的説明と、光の直進性の説明には不十分だった。</p>
+                <p>19世紀初頭、ヤングの干渉実験（1801年）とフレネルの回折理論により、波動説が決定的に支持された。フレネルはホイヘンスの原理に干渉の概念を加えることで、光の直進性と回折を統一的に説明した。</p>
+                <p>皮肉なことに、20世紀の量子力学は、光が波動性と粒子性の両方を持つことを明らかにした。光子としての光はニュートンの直観を部分的に正当化するものである。</p>
+            </div>
+        </section>
+
+        <!-- セクション2: 干渉 -->
+        <section class="content-section">
+            <h3>10.2 光の干渉</h3>
+
+            <h4>10.2.1 干渉の基本原理</h4>
+            <p><strong>干渉</strong>（interference）とは、2つ以上のコヒーレントな波が重ね合わさり、強め合いや弱め合いのパターンを生じる現象である。</p>
+
+            <div class="equation-box">
+                <div class="title">2波の干渉</div>
+                <p>振幅 \(A_1, A_2\)、位相 \(\phi_1, \phi_2\) の2つの波の重ね合わせ：</p>
+                \[ E_1 = A_1 \cos(\omega t - \phi_1), \quad E_2 = A_2 \cos(\omega t - \phi_2) \]
+                <p>合成波の強度：</p>
+                \[ I = I_1 + I_2 + 2\sqrt{I_1 I_2}\cos(\phi_2 - \phi_1) \]
+                <p>同振幅（\(A_1 = A_2 = A\)）の場合：</p>
+                \[ I = 4I_0 \cos^2\left(\frac{\Delta\phi}{2}\right) \]
+                <p>ここで \(I_0 = \frac{1}{2}c\epsilon_0 A^2\)、\(\Delta\phi = \phi_2 - \phi_1\)</p>
+            </div>
+
+            <div class="key-point">
+                <h4>干渉の条件</h4>
+                <ul>
+                    <li><strong>強め合い（建設的干渉）</strong>：\(\Delta\phi = 2m\pi\)（m = 0, ±1, ±2, ...）→ 光路差 = mλ</li>
+                    <li><strong>弱め合い（相殺的干渉）</strong>：\(\Delta\phi = (2m+1)\pi\) → 光路差 = (m + 1/2)λ</li>
+                    <li><strong>コヒーレンス</strong>：安定した干渉パターンを得るには、2つの波源が一定の位相関係を保つ必要がある</li>
+                </ul>
+            </div>
+
+            <h4>10.2.2 ヤングの二重スリット干渉</h4>
+            <p>1801年、トーマス・ヤング（Thomas Young）は二重スリット実験により光の波動性を実証した。この実験は波動光学の基礎であり、量子力学においても重要な意味を持つ。</p>
+
+            <div class="derivation">
+                <h4>導出: 二重スリット干渉の条件</h4>
+                <div class="derivation-step">
+                    <span class="step-num">1</span>
+                    <strong>設定</strong>
+                    <p>間隔 d の2つのスリット S₁, S₂ から距離 L のスクリーン上の点 P を考える。P は中心軸から y の位置にある。</p>
+                </div>
+                <div class="derivation-step">
+                    <span class="step-num">2</span>
+                    <strong>光路差の計算</strong>
+                    <p>遠方近似（\(L \gg d, y\)）では、2つのスリットからPまでの光路差は：</p>
+                    \[ \Delta r = r_2 - r_1 \approx d \sin\theta \approx d \cdot \frac{y}{L} \]
+                </div>
+                <div class="derivation-step">
+                    <span class="step-num">3</span>
+                    <strong>明線の条件</strong>
+                    <p>光路差が波長の整数倍のとき強め合い：</p>
+                    \[ d \sin\theta = m\lambda \quad (m = 0, \pm 1, \pm 2, ...) \]
+                    <p>スクリーン上の位置：</p>
+                    \[ y_m = m\frac{\lambda L}{d} \]
+                </div>
+                <div class="derivation-step">
+                    <span class="step-num">4</span>
+                    <strong>暗線の条件</strong>
+                    <p>光路差が波長の半整数倍のとき弱め合い：</p>
+                    \[ d \sin\theta = \left(m + \frac{1}{2}\right)\lambda \]
+                    \[ y_m = \left(m + \frac{1}{2}\right)\frac{\lambda L}{d} \]
+                </div>
+                <div class="derivation-step">
+                    <span class="step-num">5</span>
+                    <strong>縞間隔</strong>
+                    <p>隣り合う明線（または暗線）の間隔：</p>
+                    \[ \Delta y = \frac{\lambda L}{d} \]
+                </div>
+            </div>
+
+            <div class="equation-box">
+                <div class="title">二重スリット干渉の強度分布</div>
+                \[ I = 4I_0 \cos^2\left(\frac{\pi d \sin\theta}{\lambda}\right) = 4I_0 \cos^2\left(\frac{\pi d y}{\lambda L}\right) \]
+            </div>
+
+            <div class="example-box">
+                <h4>例題10.2: 二重スリット干渉の計算</h4>
+                <p><strong>問題:</strong> 間隔 0.5 mm の二重スリットに波長 600 nm の光を照射し、2 m 離れたスクリーンで観察する。(a) 縞間隔、(b) 3次の明線の位置、(c) 中心から 5 mm の点での強度（最大強度を 1 として）を求めよ。</p>
+                <div class="solution">
+                    <p><strong>解答:</strong></p>
+                    <p>(a) 縞間隔：</p>
+                    \[ \Delta y = \frac{\lambda L}{d} = \frac{600 \times 10^{-9} \times 2}{0.5 \times 10^{-3}} = 2.4 \times 10^{-3} \text{ m} = 2.4 \text{ mm} \]
+                    <p>(b) 3次の明線の位置（m = 3）：</p>
+                    \[ y_3 = 3 \times \Delta y = 3 \times 2.4 = 7.2 \text{ mm} \]
+                    <p>(c) y = 5 mm での強度：</p>
+                    <p>位相差：</p>
+                    \[ \Delta\phi = \frac{2\pi d y}{\lambda L} = \frac{2\pi \times 0.5 \times 10^{-3} \times 5 \times 10^{-3}}{600 \times 10^{-9} \times 2} = 13.09 \text{ rad} \]
+                    \[ I/I_{max} = \cos^2\left(\frac{\Delta\phi}{2}\right) = \cos^2(6.545) = 0.94 \]
+                </div>
+            </div>
+
+            <h4>10.2.3 薄膜干渉</h4>
+            <p>シャボン玉や油膜が虹色に見えるのは、薄膜の表面と裏面で反射した光の干渉による。</p>
+
+            <div class="equation-box">
+                <div class="title">薄膜干渉</div>
+                <p>屈折率 n、厚さ t の薄膜に垂直入射した場合の光路差：</p>
+                \[ \Delta = 2nt + \frac{\lambda}{2} \text{（反射による位相変化を考慮）} \]
+                <p><strong>強め合い：</strong> \(2nt = \left(m + \frac{1}{2}\right)\lambda\)</p>
+                <p><strong>弱め合い：</strong> \(2nt = m\lambda\)</p>
+                <p>注：低屈折率→高屈折率境界での反射で位相が π（λ/2）ずれる</p>
+            </div>
+
+            <div class="derivation">
+                <h4>導出: 反射による位相変化</h4>
+                <div class="derivation-step">
+                    <span class="step-num">1</span>
+                    <strong>境界条件からの解析</strong>
+                    <p>電場の接線成分の連続性から、反射係数は：</p>
+                    \[ r = \frac{n_1 - n_2}{n_1 + n_2} \]
+                </div>
+                <div class="derivation-step">
+                    <span class="step-num">2</span>
+                    <strong>位相変化</strong>
+                    <ul>
+                        <li>\(n_1 < n_2\) のとき：r < 0 → 位相が π ずれる（固定端反射に相当）</li>
+                        <li>\(n_1 > n_2\) のとき：r > 0 → 位相変化なし（自由端反射に相当）</li>
+                    </ul>
+                </div>
+                <div class="derivation-step">
+                    <span class="step-num">3</span>
+                    <strong>薄膜への適用</strong>
+                    <p>空気(n=1)→薄膜(n>1)→空気の場合：</p>
+                    <ul>
+                        <li>表面反射：位相 π ずれる</li>
+                        <li>裏面反射：位相変化なし</li>
+                        <li>両者の位相差：光路差 2nt に加えて π（= λ/2に相当）</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="example-box">
+                <h4>例題10.3: 反射防止膜</h4>
+                <p><strong>問題:</strong> 屈折率 1.5 のガラス表面に、波長 550 nm の光に対する反射防止膜を設計したい。膜の屈折率を 1.38（フッ化マグネシウム）として、最小膜厚を求めよ。</p>
+                <div class="solution">
+                    <p><strong>解答:</strong></p>
+                    <p>反射防止のためには、膜表面と膜-ガラス界面からの反射光が相殺的に干渉すればよい。</p>
+                    <p>空気(n=1)→膜(n=1.38)：位相 π ずれる</p>
+                    <p>膜(n=1.38)→ガラス(n=1.5)：位相 π ずれる</p>
+                    <p>両方の反射で位相 π ずれるので、正味の位相差は光路差のみによる。</p>
+                    <p>相殺的干渉の条件：</p>
+                    \[ 2n_{film}t = \left(m + \frac{1}{2}\right)\lambda \]
+                    <p>最小膜厚（m = 0）：</p>
+                    \[ t = \frac{\lambda}{4n_{film}} = \frac{550}{4 \times 1.38} = 99.6 \text{ nm} \approx 100 \text{ nm} \]
+                    <p>これが「λ/4 膜」と呼ばれる反射防止コーティングである。</p>
+                </div>
+            </div>
+
+            <h4>10.2.4 コヒーレンスとインコヒーレンス</h4>
+            <p>安定した干渉パターンを得るためには、光源の<strong>コヒーレンス</strong>（可干渉性）が重要である。</p>
+
+            <div class="equation-box">
+                <div class="title">コヒーレンス</div>
+                <p><strong>時間的コヒーレンス</strong>：光源のスペクトル幅 \(\Delta\nu\) に関係</p>
+                \[ \tau_c \sim \frac{1}{\Delta\nu} \quad \text{（コヒーレンス時間）} \]
+                \[ L_c = c\tau_c \sim \frac{c}{\Delta\nu} = \frac{\lambda^2}{\Delta\lambda} \quad \text{（コヒーレンス長）} \]
+                <p><strong>空間的コヒーレンス</strong>：光源の大きさに関係</p>
+                \[ \theta_c \sim \frac{\lambda}{d_{source}} \quad \text{（コヒーレンス角）} \]
+            </div>
+
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>光源</th>
+                        <th>スペクトル幅</th>
+                        <th>コヒーレンス長</th>
+                        <th>コヒーレンス時間</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>白熱電球</td>
+                        <td>〜300 nm</td>
+                        <td>〜1 μm</td>
+                        <td>〜3 fs</td>
+                    </tr>
+                    <tr>
+                        <td>ナトリウムランプ</td>
+                        <td>〜0.02 nm</td>
+                        <td>〜15 mm</td>
+                        <td>〜50 ps</td>
+                    </tr>
+                    <tr>
+                        <td>He-Neレーザー（マルチモード）</td>
+                        <td>〜1.5 GHz</td>
+                        <td>〜20 cm</td>
+                        <td>〜0.7 ns</td>
+                    </tr>
+                    <tr>
+                        <td>安定化He-Neレーザー</td>
+                        <td>〜1 MHz</td>
+                        <td>〜300 m</td>
+                        <td>〜1 μs</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <!-- セクション3: 回折の基礎 -->
+        <section class="content-section">
+            <h3>10.3 回折の基礎</h3>
+
+            <h4>10.3.1 回折とは</h4>
+            <p><strong>回折</strong>（diffraction）とは、波が障害物の縁や開口を回り込んで伝播する現象である。幾何光学では光は直進するが、波動光学では波長程度の構造で著しい回折が生じる。</p>
+
+            <div class="key-point">
+                <h4>回折が顕著になる条件</h4>
+                <p>開口や障害物のサイズ a と波長 λ の関係：</p>
+                <ul>
+                    <li>\(a \gg \lambda\)：幾何光学近似が成立、回折は小さい</li>
+                    <li>\(a \sim \lambda\)：顕著な回折が生じる</li>
+                    <li>\(a \ll \lambda\)：開口は点波源のように振る舞う</li>
+                </ul>
+            </div>
+
+            <h4>10.3.2 フレネル回折とフラウンホーファー回折</h4>
+            <p>回折は、観測点と開口の距離によって2つの領域に分類される：</p>
+
+            <div class="equation-box">
+                <div class="title">フレネル数</div>
+                \[ F = \frac{a^2}{L\lambda} \]
+                <p>a：開口のサイズ、L：開口から観測点までの距離</p>
+                <ul style="text-align: left;">
+                    <li>\(F \gtrsim 1\)：<strong>フレネル回折</strong>（近接場回折）</li>
+                    <li>\(F \ll 1\)：<strong>フラウンホーファー回折</strong>（遠方場回折）</li>
+                </ul>
+            </div>
+
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>フレネル回折</th>
+                        <th>フラウンホーファー回折</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>条件</td>
+                        <td>\(L \lesssim a^2/\lambda\)</td>
+                        <td>\(L \gg a^2/\lambda\)</td>
+                    </tr>
+                    <tr>
+                        <td>波面</td>
+                        <td>球面波として扱う</td>
+                        <td>平面波近似</td>
+                    </tr>
+                    <tr>
+                        <td>数学的扱い</td>
+                        <td>複雑（フレネル積分）</td>
+                        <td>比較的単純（フーリエ変換）</td>
+                    </tr>
+                    <tr>
+                        <td>パターン</td>
+                        <td>距離によって変化</td>
+                        <td>角度のみで決定</td>
+                    </tr>
+                    <tr>
+                        <td>応用</td>
+                        <td>フレネルレンズ、近接リソグラフィ</td>
+                        <td>回折格子、分光器、X線結晶解析</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="example-box">
+                <h4>例題10.4: フレネル領域とフラウンホーファー領域</h4>
+                <p><strong>問題:</strong> 幅 1 mm のスリットに波長 500 nm の光を照射する。フラウンホーファー回折が成立するための最小距離を求めよ。</p>
+                <div class="solution">
+                    <p><strong>解答:</strong></p>
+                    <p>フラウンホーファー回折の条件は \(L \gg a^2/\lambda\)。実用的には \(L > a^2/\lambda\) 程度で近似が良くなる。</p>
+                    \[ L > \frac{a^2}{\lambda} = \frac{(1 \times 10^{-3})^2}{500 \times 10^{-9}} = \frac{10^{-6}}{5 \times 10^{-7}} = 2 \text{ m} \]
+                    <p>距離 2 m 以上でフラウンホーファー近似が妥当。それより近いとフレネル回折を考慮する必要がある。</p>
+                    <p>注：レンズを用いれば、その焦点面でフラウンホーファー回折パターンを観測でき、距離の制約がなくなる。</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- セクション4: 単スリット回折 -->
+        <section class="content-section">
+            <h3>10.4 単スリット回折</h3>
+
+            <h4>10.4.1 単スリットのフラウンホーファー回折</h4>
+            <p>幅 a の単スリットによるフラウンホーファー回折を考える。ホイヘンス-フレネルの原理を適用し、スリット上の各点からの寄与を積分する。</p>
+
+            <div class="derivation">
+                <h4>導出: 単スリット回折の強度分布</h4>
+                <div class="derivation-step">
+                    <span class="step-num">1</span>
+                    <strong>設定</strong>
+                    <p>幅 a のスリットの中心を原点とする。観測方向は角度 θ。スリット上の位置 x（-a/2 から a/2）からの寄与を積分する。</p>
+                </div>
+                <div class="derivation-step">
+                    <span class="step-num">2</span>
+                    <strong>位相差</strong>
+                    <p>スリット中心からの光と、位置 x からの光の光路差は x sinθ。位相差は：</p>
+                    \[ \delta = \frac{2\pi}{\lambda}x\sin\theta = kx\sin\theta \]
+                </div>
+                <div class="derivation-step">
+                    <span class="step-num">3</span>
+                    <strong>振幅の積分</strong>
+                    <p>スリット全体からの寄与を積分：</p>
+                    \[ E(\theta) = E_0 \int_{-a/2}^{a/2} e^{ikx\sin\theta} dx = E_0 \frac{e^{ika\sin\theta/2} - e^{-ika\sin\theta/2}}{ik\sin\theta} \]
+                </div>
+                <div class="derivation-step">
+                    <span class="step-num">4</span>
+                    <strong>sinc関数への変形</strong>
+                    <p>\(\beta = \frac{\pi a \sin\theta}{\lambda}\) と定義すると：</p>
+                    \[ E(\theta) = E_0 a \frac{\sin\beta}{\beta} = E_0 a \text{ sinc}(\beta) \]
+                </div>
+                <div class="derivation-step">
+                    <span class="step-num">5</span>
+                    <strong>強度分布</strong>
+                    \[ I(\theta) = I_0 \left(\frac{\sin\beta}{\beta}\right)^2 = I_0 \text{ sinc}^2(\beta) \]
+                    <p>ここで \(I_0 = I(0)\) は中央の最大強度</p>
+                </div>
+            </div>
+
+            <div class="equation-box important">
+                <div class="title">単スリット回折の強度分布</div>
+                \[ I(\theta) = I_0 \left(\frac{\sin\beta}{\beta}\right)^2 \]
+                <p>ここで \(\beta = \frac{\pi a \sin\theta}{\lambda}\)</p>
+                <p><strong>暗線の条件（極小）:</strong></p>
+                \[ a \sin\theta = m\lambda \quad (m = \pm 1, \pm 2, \pm 3, ...) \]
+                <p>注：m = 0 は中央の主極大であり、暗線ではない</p>
+            </div>
+
+            <h4>10.4.2 回折パターンの特徴</h4>
+            <p>単スリット回折パターンの重要な特徴：</p>
+            <ul>
+                <li><strong>中央極大</strong>：最も強く、角度幅は \(\Delta\theta \approx 2\lambda/a\)</li>
+                <li><strong>副極大</strong>：中央極大の両側に存在、強度は約 4.7%、1.7%、0.8%、...と急速に減少</li>
+                <li><strong>零点</strong>：sinβ = 0 となる点（β = mπ、m ≠ 0）</li>
+                <li><strong>スリット幅への依存</strong>：幅 a が大きいほど回折パターンは狭くなる</li>
+            </ul>
+
+            <div class="derivation">
+                <h4>導出: 副極大の位置と強度</h4>
+                <div class="derivation-step">
+                    <span class="step-num">1</span>
+                    <strong>極大条件</strong>
+                    <p>\(dI/d\beta = 0\) より：</p>
+                    \[ \frac{d}{d\beta}\left(\frac{\sin\beta}{\beta}\right)^2 = 2\frac{\sin\beta}{\beta} \cdot \frac{\beta\cos\beta - \sin\beta}{\beta^2} = 0 \]
+                </div>
+                <div class="derivation-step">
+                    <span class="step-num">2</span>
+                    <strong>解</strong>
+                    <p>sinβ = 0（暗線）または tanβ = β（副極大）</p>
+                    <p>tanβ = β の解は数値的に：β ≈ 1.43π, 2.46π, 3.47π, ...</p>
+                </div>
+                <div class="derivation-step">
+                    <span class="step-num">3</span>
+                    <strong>副極大の強度</strong>
+                    <p>第1副極大（β ≈ 1.43π）：</p>
+                    \[ \frac{I_1}{I_0} = \left(\frac{\sin(1.43\pi)}{1.43\pi}\right)^2 \approx 0.047 = 4.7\% \]
+                </div>
+            </div>
+
+            <div class="example-box">
+                <h4>例題10.5: 単スリット回折の計算</h4>
+                <p><strong>問題:</strong> 幅 0.1 mm のスリットに波長 600 nm の光を照射する。(a) 1次の暗線の角度、(b) 中央極大の角度幅、(c) 2次副極大の強度（中央を1として）を求めよ。</p>
+                <div class="solution">
+                    <p><strong>解答:</strong></p>
+                    <p>(a) 1次暗線（m = 1）の条件：\(a\sin\theta_1 = \lambda\)</p>
+                    \[ \sin\theta_1 = \frac{\lambda}{a} = \frac{600 \times 10^{-9}}{0.1 \times 10^{-3}} = 0.006 \]
+                    \[ \theta_1 = 0.34° \]
+                    <p>(b) 中央極大の角度幅（半値全幅ではなく、最初の暗線までの幅の2倍）：</p>
+                    \[ \Delta\theta = 2\theta_1 = 0.68° \]
+                    <p>または \(\Delta\theta \approx 2\lambda/a = 2 \times 6 \times 10^{-3} \text{ rad} = 0.69°\)</p>
+                    <p>(c) 2次副極大（β ≈ 2.46π）の強度：</p>
+                    \[ \frac{I_2}{I_0} = \left(\frac{\sin(2.46\pi)}{2.46\pi}\right)^2 = \left(\frac{0.997}{7.73}\right)^2 \approx 0.017 = 1.7\% \]
+                </div>
+            </div>
+
+            <h4>10.4.3 円形開口の回折（エアリーディスク）</h4>
+            <p>直径 D の円形開口による回折パターンは、単スリットの場合より複雑で、<strong>エアリーパターン</strong>（Airy pattern）と呼ばれる。</p>
+
+            <div class="equation-box">
+                <div class="title">円形開口の回折</div>
+                <p>強度分布：</p>
+                \[ I(\theta) = I_0 \left(\frac{2J_1(\beta)}{\beta}\right)^2 \]
+                <p>ここで \(\beta = \frac{\pi D \sin\theta}{\lambda}\)、\(J_1\) は1次のベッセル関数</p>
+                <p><strong>第1暗環（エアリーディスクの縁）:</strong></p>
+                \[ \sin\theta_1 = 1.22\frac{\lambda}{D} \]
+            </div>
+
+            <p>エアリーパターンの特徴：</p>
+            <ul>
+                <li>中央の明るい円盤（エアリーディスク）に約84%のエネルギーが集中</li>
+                <li>係数 1.22 は単スリットの 1.00 より大きい（円形開口は同じ直径のスリットより広がる）</li>
+                <li>望遠鏡、顕微鏡、カメラなどの光学機器の分解能を決定する</li>
+            </ul>
+
+            <div class="column application">
+                <h4>コラム: 光学機器の分解能限界</h4>
+                <p>光学機器の分解能は、回折によって基本的な限界を受ける。これを<strong>回折限界</strong>（diffraction limit）という。</p>
+                <p><strong>レイリーの基準</strong>：2つの点光源が分解できる（区別できる）のは、一方のエアリーディスクの中心が他方の第1暗環上にあるときである。</p>
+                \[ \theta_{min} = 1.22\frac{\lambda}{D} \]
+                <p>この基準による角度分解能 \(\theta_{min}\) は、開口径 D に反比例し、波長 λ に比例する。</p>
+                <p><strong>望遠鏡の例</strong>：</p>
+                <ul>
+                    <li>口径 10 cm の望遠鏡（λ = 550 nm）：\(\theta_{min} = 1.22 \times \frac{550 \times 10^{-9}}{0.1} = 6.7 \times 10^{-6}\) rad ≈ 1.4"（秒角）</li>
+                    <li>ハッブル宇宙望遠鏡（D = 2.4 m）：\(\theta_{min} ≈ 0.05"\)</li>
+                    <li>ジェイムズ・ウェッブ宇宙望遠鏡（D = 6.5 m、λ = 2 μm）：\(\theta_{min} ≈ 0.07"\)（赤外線）</li>
+                </ul>
+                <p>地上望遠鏡では大気のゆらぎ（シーイング）が分解能を制限するが、補償光学技術により回折限界に近づけることができる。</p>
+            </div>
+        </section>
+
+        <!-- セクション5: 回折格子 -->
+        <section class="content-section">
+            <h3>10.5 回折格子</h3>
+
+            <h4>10.5.1 回折格子の原理</h4>
+            <p><strong>回折格子</strong>（diffraction grating）は、多数の等間隔スリット（または溝）を持つ光学素子である。干渉と回折の組み合わせにより、高い分散能と分解能を実現する。</p>
+
+            <div class="equation-box">
+                <div class="title">回折格子の基本式</div>
+                <p><strong>回折格子方程式（主極大の条件）:</strong></p>
+                \[ d(\sin\theta_i + \sin\theta_m) = m\lambda \]
+                <p>垂直入射（\(\theta_i = 0\)）の場合：</p>
+                \[ d\sin\theta_m = m\lambda \quad (m = 0, \pm 1, \pm 2, ...) \]
+                <p>ここで d は格子定数（格子間隔）、m は回折次数</p>
+            </div>
+
+            <h4>10.5.2 N本スリットによる回折</h4>
+            <p>格子定数 d で配置された N 本のスリットによる回折パターンは、単スリット回折と多スリット干渉の積で表される。</p>
+
+            <div class="derivation">
+                <h4>導出: N本スリット回折の強度分布</h4>
+                <div class="derivation-step">
+                    <span class="step-num">1</span>
+                    <strong>位相差</strong>
+                    <p>隣り合うスリットからの光の位相差：</p>
+                    \[ \phi = \frac{2\pi d \sin\theta}{\lambda} \]
+                </div>
+                <div class="derivation-step">
+                    <span class="step-num">2</span>
+                    <strong>N波の重ね合わせ</strong>
+                    <p>等比級数の和として：</p>
+                    \[ E = E_1(1 + e^{i\phi} + e^{2i\phi} + ... + e^{(N-1)i\phi}) = E_1 \frac{1 - e^{iN\phi}}{1 - e^{i\phi}} \]
+                </div>
+                <div class="derivation-step">
+                    <span class="step-num">3</span>
+                    <strong>強度</strong>
+                    \[ I = |E|^2 = I_1 \frac{\sin^2(N\phi/2)}{\sin^2(\phi/2)} \]
+                </div>
+                <div class="derivation-step">
+                    <span class="step-num">4</span>
+                    <strong>単スリットの効果を含めると</strong>
+                    \[ I(\theta) = I_0 \underbrace{\left(\frac{\sin\beta}{\beta}\right)^2}_{\text{単スリット}} \times \underbrace{\frac{\sin^2(N\gamma)}{\sin^2\gamma}}_{\text{多スリット干渉}} \]
+                    <p>ここで \(\beta = \frac{\pi a \sin\theta}{\lambda}\)（a はスリット幅）、\(\gamma = \frac{\pi d \sin\theta}{\lambda}\)</p>
+                </div>
+            </div>
+
+            <div class="equation-box important">
+                <div class="title">回折格子の特性</div>
+                <p><strong>主極大の条件:</strong> \(d\sin\theta = m\lambda\) → \(\gamma = m\pi\)</p>
+                <p><strong>主極大の角度幅:</strong> \(\Delta\theta \approx \frac{\lambda}{Nd\cos\theta}\)</p>
+                <p><strong>主極大間の副極大:</strong> N - 2 個（N 本スリット）</p>
+                <p><strong>分解能:</strong> \(R = \frac{\lambda}{\Delta\lambda} = mN\)</p>
+            </div>
+
+            <h4>10.5.3 回折格子の分解能</h4>
+            <p>回折格子の重要な性能指標として<strong>分解能</strong>（resolving power）がある。</p>
+
+            <div class="derivation">
+                <h4>導出: 回折格子の分解能</h4>
+                <div class="derivation-step">
+                    <span class="step-num">1</span>
+                    <strong>レイリーの基準</strong>
+                    <p>2つの波長 λ と λ + Δλ が分解できるのは、一方の主極大が他方の最初の零点と一致するとき。</p>
+                </div>
+                <div class="derivation-step">
+                    <span class="step-num">2</span>
+                    <strong>主極大の条件</strong>
+                    <p>m次の回折：\(d\sin\theta_m = m\lambda\)</p>
+                    <p>波長 λ + Δλ では：\(d\sin(\theta_m + \delta\theta) = m(\lambda + \Delta\lambda)\)</p>
+                </div>
+                <div class="derivation-step">
+                    <span class="step-num">3</span>
+                    <strong>角度差</strong>
+                    <p>微分して：\(d\cos\theta \cdot \delta\theta = m\Delta\lambda\)</p>
+                    \[ \delta\theta = \frac{m\Delta\lambda}{d\cos\theta} \]
+                </div>
+                <div class="derivation-step">
+                    <span class="step-num">4</span>
+                    <strong>主極大の幅</strong>
+                    <p>N本スリットの場合、主極大の半値角幅は約：</p>
+                    \[ \Delta\theta = \frac{\lambda}{Nd\cos\theta} \]
+                </div>
+                <div class="derivation-step">
+                    <span class="step-num">5</span>
+                    <strong>分解能</strong>
+                    <p>レイリーの基準 \(\delta\theta = \Delta\theta\) より：</p>
+                    \[ \frac{m\Delta\lambda}{d\cos\theta} = \frac{\lambda}{Nd\cos\theta} \]
+                    \[ R = \frac{\lambda}{\Delta\lambda} = mN \]
+                </div>
+            </div>
+
+            <div class="example-box">
+                <h4>例題10.6: 回折格子の性能</h4>
+                <p><strong>問題:</strong> 1 mm あたり 600 本の溝を持つ回折格子（幅 5 cm）を考える。波長 589 nm の光を垂直入射させるとき、(a) 格子定数、(b) 1次回折の角度、(c) 分解能、(d) ナトリウムD線（589.0 nm と 589.6 nm）を1次で分解できるか判定せよ。</p>
+                <div class="solution">
+                    <p><strong>解答:</strong></p>
+                    <p>(a) 格子定数：</p>
+                    \[ d = \frac{1 \text{ mm}}{600} = 1.67 \text{ μm} = 1670 \text{ nm} \]
+                    <p>(b) 1次回折の角度：</p>
+                    \[ \sin\theta_1 = \frac{m\lambda}{d} = \frac{1 \times 589}{1670} = 0.353 \]
+                    \[ \theta_1 = 20.7° \]
+                    <p>(c) 分解能：</p>
+                    <p>総溝数：\(N = 600 \times 50 = 30000\)</p>
+                    \[ R = mN = 1 \times 30000 = 30000 \]
+                    <p>分解可能な波長差：\(\Delta\lambda_{min} = \lambda/R = 589/30000 = 0.020\) nm</p>
+                    <p>(d) ナトリウムD線の分離：</p>
+                    <p>D線の波長差：\(\Delta\lambda = 0.6\) nm</p>
+                    <p>\(\Delta\lambda = 0.6\) nm > \(\Delta\lambda_{min} = 0.020\) nm</p>
+                    <p>したがって、1次回折でも十分に分解できる。</p>
+                </div>
+            </div>
+
+            <h4>10.5.4 回折格子の種類と応用</h4>
+            <p>回折格子には様々な種類があり、それぞれ特定の応用に適している：</p>
+
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>種類</th>
+                        <th>特徴</th>
+                        <th>主な応用</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>透過型格子</td>
+                        <td>光が透過するスリット配列</td>
+                        <td>教育用、簡易分光器</td>
+                    </tr>
+                    <tr>
+                        <td>反射型格子</td>
+                        <td>反射面に溝を刻んだもの</td>
+                        <td>高性能分光器、波長選択</td>
+                    </tr>
+                    <tr>
+                        <td>ブレーズド格子</td>
+                        <td>溝に傾斜を付け特定次数に光を集中</td>
+                        <td>高効率分光、レーザー波長選択</td>
+                    </tr>
+                    <tr>
+                        <td>ホログラフィック格子</td>
+                        <td>レーザー干渉で作製</td>
+                        <td>低散乱光、VPH格子</td>
+                    </tr>
+                    <tr>
+                        <td>エシェル格子</td>
+                        <td>高次回折を利用</td>
+                        <td>超高分解能分光</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="column tip">
+                <h4>コラム: 日常の回折格子</h4>
+                <p>回折格子による分光現象は日常でも観察できる：</p>
+                <ul>
+                    <li><strong>CD/DVD/Blu-ray</strong>：トラックピッチ（1.6/0.74/0.32 μm）が回折格子として機能し、虹色に輝く</li>
+                    <li><strong>蝶の翅</strong>：微細構造が回折格子的な構造色を生む（モルフォ蝶など）</li>
+                    <li><strong>孔雀の羽</strong>：メラニン棒の周期配列による構造色</li>
+                    <li><strong>ホログラム</strong>：干渉縞が記録された回折格子</li>
+                </ul>
+                <p>これらの例では、格子定数が光の波長と同程度であるため、顕著な回折効果が生じる。</p>
+            </div>
+        </section>
+
+        <!-- セクション6: X線回折 -->
+        <section class="content-section">
+            <h3>10.6 X線回折と結晶構造解析</h3>
+
+            <h4>10.6.1 ブラッグの法則</h4>
+            <p>結晶は原子が周期的に配列した構造を持ち、天然の回折格子として機能する。X線の波長（約0.1 nm）は原子間距離と同程度であるため、結晶によるX線回折が生じる。</p>
+
+            <div class="equation-box important">
+                <div class="title">ブラッグの法則</div>
+                \[ 2d\sin\theta = n\lambda \]
+                <p>d：結晶格子面間隔、θ：入射角（格子面に対する）</p>
+                <p>n：回折次数（正の整数）、λ：X線の波長</p>
+            </div>
+
+            <div class="derivation">
+                <h4>導出: ブラッグの法則</h4>
+                <div class="derivation-step">
+                    <span class="step-num">1</span>
+                    <strong>結晶格子面でのX線反射</strong>
+                    <p>平行な格子面群に角度 θ でX線が入射する。各格子面で反射が起こる。</p>
+                </div>
+                <div class="derivation-step">
+                    <span class="step-num">2</span>
+                    <strong>光路差の計算</strong>
+                    <p>隣り合う格子面で反射したX線の光路差は、幾何学的に：</p>
+                    \[ \Delta = 2d\sin\theta \]
+                </div>
+                <div class="derivation-step">
+                    <span class="step-num">3</span>
+                    <strong>強め合いの条件</strong>
+                    <p>反射X線が強め合うのは、光路差が波長の整数倍のとき：</p>
+                    \[ 2d\sin\theta = n\lambda \]
+                </div>
+            </div>
+
+            <h4>10.6.2 X線回折の実験手法</h4>
+            <p>X線回折にはいくつかの実験手法がある：</p>
+
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>手法</th>
+                        <th>試料</th>
+                        <th>X線</th>
+                        <th>検出</th>
+                        <th>応用</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>ラウエ法</td>
+                        <td>単結晶（固定）</td>
+                        <td>連続X線（白色）</td>
+                        <td>スポットパターン</td>
+                        <td>結晶方位決定</td>
+                    </tr>
+                    <tr>
+                        <td>回転結晶法</td>
+                        <td>単結晶（回転）</td>
+                        <td>単色X線</td>
+                        <td>層線パターン</td>
+                        <td>格子定数決定</td>
+                    </tr>
+                    <tr>
+                        <td>粉末法（デバイ-シェラー法）</td>
+                        <td>粉末（多結晶）</td>
+                        <td>単色X線</td>
+                        <td>同心円パターン</td>
+                        <td>物質同定、格子定数</td>
+                    </tr>
+                    <tr>
+                        <td>4軸回折計</td>
+                        <td>単結晶</td>
+                        <td>単色X線</td>
+                        <td>点検出器で走査</td>
+                        <td>精密構造解析</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="example-box">
+                <h4>例題10.7: X線回折による格子定数の決定</h4>
+                <p><strong>問題:</strong> NaClの粉末X線回折パターンで、波長 0.154 nm（CuKα線）を用いたとき、最初のブラッグ反射（1次）が 2θ = 27.4° で観測された。(100)面の格子面間隔と NaCl の格子定数を求めよ。</p>
+                <div class="solution">
+                    <p><strong>解答:</strong></p>
+                    <p>ブラッグ角：θ = 27.4°/2 = 13.7°</p>
+                    <p>ブラッグの法則より：</p>
+                    \[ d = \frac{n\lambda}{2\sin\theta} = \frac{1 \times 0.154}{2 \times \sin(13.7°)} = \frac{0.154}{2 \times 0.237} = 0.325 \text{ nm} \]
+                    <p>NaCl は岩塩型構造（面心立方格子の変形）であり、(100) 面間隔は格子定数 a の半分：</p>
+                    \[ d_{100} = \frac{a}{2} \]
+                    <p>したがって：</p>
+                    \[ a = 2d = 2 \times 0.325 = 0.650 \text{ nm} = 6.50 \text{ Å} \]
+                    <p>これは NaCl の文献値（5.64 Å）と異なるので、最初の反射は (100) ではなく (200) かもしれない。(200) の場合 a = 0.650 nm で、実際の格子定数に近い値となる。</p>
+                </div>
+            </div>
+
+            <h4>10.6.3 構造因子とX線回折強度</h4>
+            <p>X線回折強度は、単位胞内の原子配置に依存する。これを記述するのが<strong>構造因子</strong>（structure factor）である。</p>
+
+            <div class="equation-box">
+                <div class="title">構造因子</div>
+                \[ F_{hkl} = \sum_j f_j \exp[2\pi i(hx_j + ky_j + lz_j)] \]
+                <p>(h,k,l)：ミラー指数、(x_j, y_j, z_j)：j番目原子の分率座標</p>
+                <p>f_j：j番目原子の原子散乱因子</p>
+                <p>回折強度：\(I_{hkl} \propto |F_{hkl}|^2\)</p>
+            </div>
+
+            <p>構造因子により、特定の反射が禁制（消滅則）となることがある：</p>
+            <ul>
+                <li><strong>体心立方格子</strong>：h + k + l = 奇数 のとき F = 0</li>
+                <li><strong>面心立方格子</strong>：h, k, l が混合（奇偶混在）のとき F = 0</li>
+            </ul>
+
+            <div class="column history">
+                <h4>コラム: DNA二重らせんとX線回折</h4>
+                <p>1953年、ワトソンとクリックによるDNA二重らせん構造の発見は、20世紀最大の科学的発見の一つである。この発見においてX線回折が決定的な役割を果たした。</p>
+                <p>ロザリンド・フランクリンは、DNA繊維の高品質なX線回折写真（Photo 51）を撮影した。この写真は以下の情報を与えた：</p>
+                <ul>
+                    <li>X字型のパターン → らせん構造の証拠</li>
+                    <li>X字の腕の角度 → らせんピッチ（3.4 nm）</li>
+                    <li>層線間隔 → 塩基間隔（0.34 nm）</li>
+                    <li>中心の欠落 → 二重らせん（一本鎖ではない）</li>
+                </ul>
+                <p>この情報と、シャルガフの規則（A=T、G=C）を組み合わせることで、ワトソンとクリックは相補的塩基対を持つ二重らせんモデルを構築した。</p>
+                <p>フランクリンは1958年に37歳で亡くなり、ワトソン、クリック、ウィルキンスが1962年にノーベル賞を受賞した際には故人のため受賞できなかった。彼女のX線回折研究の貢献は、科学史において重要なものとして認識されている。</p>
+            </div>
+        </section>
+
+        <!-- セクション7: 電子回折と中性子回折 -->
+        <section class="content-section">
+            <h3>10.7 電子回折と中性子回折</h3>
+
+            <h4>10.7.1 ド・ブロイ波長と物質波</h4>
+            <p>1924年、ルイ・ド・ブロイは、全ての物質が波動性を持つことを提唱した。物質波の波長（ド・ブロイ波長）は：</p>
+
+            <div class="equation-box">
+                <div class="title">ド・ブロイ波長</div>
+                \[ \lambda = \frac{h}{p} = \frac{h}{mv} \]
+                <p>h：プランク定数、p：運動量、m：質量、v：速度</p>
+                <p>電子の場合（非相対論的）：</p>
+                \[ \lambda = \frac{h}{\sqrt{2m_e eV}} = \frac{1.226}{\sqrt{V}} \text{ nm} \]
+                <p>V：加速電圧（ボルト）</p>
+            </div>
+
+            <div class="example-box">
+                <h4>例題10.8: 電子のド・ブロイ波長</h4>
+                <p><strong>問題:</strong> (a) 100 V、(b) 10 kV、(c) 100 kV で加速された電子のド・ブロイ波長を求めよ。</p>
+                <div class="solution">
+                    <p><strong>解答:</strong></p>
+                    <p>(a) V = 100 V：</p>
+                    \[ \lambda = \frac{1.226}{\sqrt{100}} = 0.123 \text{ nm} = 1.23 \text{ Å} \]
+                    <p>(b) V = 10 kV：</p>
+                    \[ \lambda = \frac{1.226}{\sqrt{10000}} = 0.0123 \text{ nm} = 0.123 \text{ Å} \]
+                    <p>(c) V = 100 kV（相対論的補正が必要）：</p>
+                    <p>非相対論的近似では λ ≈ 0.0039 nm。相対論的効果を含めると λ ≈ 0.0037 nm となる。</p>
+                </div>
+            </div>
+
+            <h4>10.7.2 電子回折</h4>
+            <p>電子線も回折を示し、結晶構造解析に利用される。電子回折はX線回折と比較して以下の特徴を持つ：</p>
+
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>特性</th>
+                        <th>電子回折</th>
+                        <th>X線回折</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>散乱の起源</td>
+                        <td>静電ポテンシャル（原子核+電子雲）</td>
+                        <td>電子雲</td>
+                    </tr>
+                    <tr>
+                        <td>散乱断面積</td>
+                        <td>X線の約10⁶倍</td>
+                        <td>基準</td>
+                    </tr>
+                    <tr>
+                        <td>侵入深さ</td>
+                        <td>数10 nm〜数100 nm</td>
+                        <td>数μm〜数mm</td>
+                    </tr>
+                    <tr>
+                        <td>試料</td>
+                        <td>薄膜（TEM）、表面（LEED、RHEED）</td>
+                        <td>バルク、粉末</td>
+                    </tr>
+                    <tr>
+                        <td>軽元素検出</td>
+                        <td>良好</td>
+                        <td>困難</td>
+                    </tr>
+                    <tr>
+                        <td>収束性</td>
+                        <td>電磁レンズで容易</td>
+                        <td>X線光学は複雑</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h4>10.7.3 中性子回折</h4>
+            <p>中性子も物質波として回折を示す。熱中性子（〜300 K）のド・ブロイ波長は約 0.18 nm で、結晶構造解析に適している。</p>
+
+            <div class="equation-box">
+                <div class="title">熱中性子のド・ブロイ波長</div>
+                \[ \lambda = \frac{h}{\sqrt{2m_n k_B T}} \approx \frac{2.52}{\sqrt{T}} \text{ nm} \]
+                <p>T = 300 K のとき：λ ≈ 0.145 nm</p>
+            </div>
+
+            <p>中性子回折の特徴：</p>
+            <ul>
+                <li><strong>核散乱</strong>：原子核と相互作用。原子番号によらず散乱断面積が変化（軽元素の検出に有利）</li>
+                <li><strong>磁気散乱</strong>：中性子は磁気モーメントを持ち、物質の磁気構造を直接観測できる</li>
+                <li><strong>同位体効果</strong>：同位体で散乱長が異なる（H と D の区別など）</li>
+                <li><strong>低吸収</strong>：ほとんどの物質で透過性が高い（バルク測定に適する）</li>
+            </ul>
+
+            <div class="key-point">
+                <h4>各回折法の比較</h4>
+                <ul>
+                    <li><strong>X線回折</strong>：汎用性が高く、標準的な構造解析法</li>
+                    <li><strong>電子回折</strong>：微小領域、薄膜、表面の解析に優れる</li>
+                    <li><strong>中性子回折</strong>：軽元素の位置決定、磁気構造解析に不可欠</li>
+                </ul>
+                <p>これらの手法は相補的であり、完全な構造理解には複数の手法の組み合わせが有効である。</p>
+            </div>
+        </section>
+
+        <!-- 演習問題 -->
+        <section class="content-section exercises">
+            <h3>演習問題</h3>
+
+            <div class="exercise">
+                <h4>問題10.1 基礎</h4>
+                <p>間隔 d = 0.3 mm の二重スリットに波長 λ = 650 nm の赤色光を照射し、L = 1.5 m 離れたスクリーンで観察する。(a) 隣り合う明線の間隔、(b) 5次の明線の位置（中心からの距離）、(c) 中心から 3 mm の位置での強度（最大値を1として）を求めよ。</p>
+            </div>
+
+            <div class="exercise">
+                <h4>問題10.2 応用</h4>
+                <p>幅 a = 0.08 mm の単スリットに波長 500 nm の光を照射する。(a) 中央極大の半角幅（第1暗線までの角度）、(b) 第1副極大と第2副極大の相対強度（中央極大を1として）、(c) この単スリットを使った二重スリット（間隔 d = 0.4 mm）のスクリーン上でのパターンを説明せよ。</p>
+            </div>
+
+            <div class="exercise">
+                <h4>問題10.3 発展</h4>
+                <p>波長 λ の光に対し、薄膜の反射防止と反射増大の両方を実現したい。(a) 基板の屈折率が \(n_s = 1.5\) のとき、反射防止膜の最適な屈折率と膜厚を求めよ。(b) 同じ基板で反射を増大させるには、どのような膜設計が必要か。(c) 多層膜による誘電体ミラーの原理を説明せよ。</p>
+            </div>
+
+            <div class="exercise">
+                <h4>問題10.4 考察</h4>
+                <p>回折格子の分解能 R = mN と望遠鏡の分解能 θ = 1.22λ/D を比較せよ。(a) それぞれ何を「分解」しているのか。(b) 格子の総幅 W = Nd を固定したとき、格子定数 d を小さくすると分解能はどう変化するか。(c) 望遠鏡で回折格子を用いて分光する場合、系全体の分解能を制限する要因は何か。</p>
+            </div>
+
+            <div class="exercise">
+                <h4>問題10.5 総合</h4>
+                <p>シリコン単結晶（格子定数 a = 0.543 nm、ダイヤモンド構造）の(111)面について、(a) 格子面間隔 d₁₁₁、(b) CuKα線（λ = 0.154 nm）によるブラッグ角、(c) 200 kV 電子線による回折角（1次）を計算せよ。(d) X線回折と電子回折で観測される回折スポットの違いを、消滅則の観点から説明せよ。</p>
+            </div>
+        </section>
+
+        <!-- まとめ -->
+        <section class="content-section summary">
+            <h3>第10回のまとめ</h3>
+            <div class="summary-box">
+                <h4>学習した主要概念</h4>
+                <ul>
+                    <li>ホイヘンスの原理：波面上の各点が新たな素元波の波源となり、次の波面はその包絡面として形成される</li>
+                    <li>干渉：コヒーレントな波の重ね合わせにより、強め合い・弱め合いのパターンが生じる</li>
+                    <li>二重スリット干渉の縞間隔：Δy = λL/d</li>
+                    <li>回折：波が障害物や開口を回り込んで伝播する現象</li>
+                    <li>単スリット回折：強度は sinc²関数で表され、暗線は a sinθ = mλ で生じる</li>
+                    <li>回折格子：d sinθ = mλ、分解能 R = mN</li>
+                    <li>X線回折とブラッグの法則：2d sinθ = nλ</li>
+                    <li>電子・中性子も物質波として回折を示し、構造解析に利用される</li>
+                </ul>
+            </div>
+
+            <div class="summary-box">
+                <h4>重要公式</h4>
+                <div class="formula-list">
+                    <p>二重スリット干渉（明線）：\(d\sin\theta = m\lambda\)、縞間隔：\(\Delta y = \frac{\lambda L}{d}\)</p>
+                    <p>単スリット回折強度：\(I = I_0 \left(\frac{\sin\beta}{\beta}\right)^2\)、\(\beta = \frac{\pi a \sin\theta}{\lambda}\)</p>
+                    <p>円形開口（エアリーディスク）：\(\sin\theta_1 = 1.22\frac{\lambda}{D}\)</p>
+                    <p>回折格子：\(d\sin\theta = m\lambda\)、分解能：\(R = mN\)</p>
+                    <p>ブラッグの法則：\(2d\sin\theta = n\lambda\)</p>
+                    <p>ド・ブロイ波長：\(\lambda = \frac{h}{p} = \frac{h}{mv}\)</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ナビゲーション -->
+        <nav class="lecture-nav">
+            <a href="lecture09.html" class="nav-prev">← 第9回: マクスウェル方程式と波動方程式</a>
+            <a href="lecture11.html" class="nav-next">第11回: 量子力学の始まり →</a>
+        </nav>
+    </main>
+
+    <footer>
+        <p>福井大学 共通教育科目 B2032 電磁波と物質</p>
+        <p>担当: 福成 雅史 / 石川 裕也</p>
+    </footer>
+
+    <script src="../js/lecture.js"></script>
+</body>
+</html>

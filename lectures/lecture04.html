@@ -1,0 +1,778 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>第4回: 電磁波と物質との相互作用 - 電磁波と物質</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/lecture.css">
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+    <header class="main-header">
+        <h1>電磁波と物質</h1>
+        <p class="subtitle">第4回: 電磁波と物質との相互作用</p>
+    </header>
+
+    <nav class="main-nav">
+        <a href="../index.html">ダッシュボード</a>
+        <a href="../lecture.html">講義一覧</a>
+        <a href="../interactive.html">インタラクティブ学習</a>
+    </nav>
+
+    <main class="lecture-content">
+        <div class="lecture-header">
+            <div class="lecture-meta">
+                <span class="lecture-number">Lecture 04</span>
+                <span class="lecture-duration">学習時間目安: 90-120分</span>
+            </div>
+            <h2>電磁波と物質との相互作用</h2>
+            <p class="lecture-objectives">
+                <strong>学習目標:</strong> 電磁波が物質中を伝播する際の様々な相互作用を理解する。反射、屈折、吸収、散乱の物理的メカニズムを学び、物質の誘電率と導電率が電磁波応答をどのように決定するかを理解する。光電効果、コンプトン散乱など量子効果についても学習する。
+            </p>
+        </div>
+
+        <!-- セクション1: 物質中の電磁波 -->
+        <section class="content-section">
+            <h3>4.1 物質中の電磁波</h3>
+
+            <h4>4.1.1 マクスウェル方程式と物質</h4>
+            <p>真空中のマクスウェル方程式は物質中では修正される。物質の電磁気的性質は、誘電率 \(\epsilon\)、透磁率 \(\mu\)、導電率 \(\sigma\) によって特徴づけられる。</p>
+
+            <div class="equation-box">
+                <div class="title">物質中のマクスウェル方程式</div>
+                \[ \nabla \cdot \vec{D} = \rho_f \]
+                \[ \nabla \cdot \vec{B} = 0 \]
+                \[ \nabla \times \vec{E} = -\frac{\partial \vec{B}}{\partial t} \]
+                \[ \nabla \times \vec{H} = \vec{J}_f + \frac{\partial \vec{D}}{\partial t} \]
+                <p>構成方程式: \(\vec{D} = \epsilon \vec{E}\)、\(\vec{B} = \mu \vec{H}\)、\(\vec{J} = \sigma \vec{E}\)</p>
+            </div>
+
+            <p>物質中での電磁波の伝播を考えるため、自由電荷・自由電流がない場合（\(\rho_f = 0\)、\(\vec{J}_f = \sigma \vec{E}\)）の波動方程式を導出する。</p>
+
+            <div class="derivation">
+                <h4>導出: 物質中の波動方程式</h4>
+                <div class="derivation-step">
+                    <span class="step-num">1</span>
+                    <strong>ファラデーの法則の回転を取る</strong>
+                    \[ \nabla \times (\nabla \times \vec{E}) = -\frac{\partial}{\partial t}(\nabla \times \vec{B}) = -\mu \frac{\partial}{\partial t}(\nabla \times \vec{H}) \]
+                </div>
+                <div class="derivation-step">
+                    <span class="step-num">2</span>
+                    <strong>アンペール-マクスウェルの法則を代入</strong>
+                    \[ \nabla \times (\nabla \times \vec{E}) = -\mu \frac{\partial}{\partial t}\left(\sigma \vec{E} + \epsilon \frac{\partial \vec{E}}{\partial t}\right) \]
+                </div>
+                <div class="derivation-step">
+                    <span class="step-num">3</span>
+                    <strong>ベクトル恒等式を使用</strong>
+                    <p>\(\nabla \times (\nabla \times \vec{E}) = \nabla(\nabla \cdot \vec{E}) - \nabla^2 \vec{E}\)</p>
+                    <p>\(\nabla \cdot \vec{E} = 0\)（電荷がない場合）より：</p>
+                    \[ -\nabla^2 \vec{E} = -\mu\sigma \frac{\partial \vec{E}}{\partial t} - \mu\epsilon \frac{\partial^2 \vec{E}}{\partial t^2} \]
+                </div>
+                <div class="derivation-step">
+                    <span class="step-num">4</span>
+                    <strong>波動方程式</strong>
+                    \[ \nabla^2 \vec{E} = \mu\sigma \frac{\partial \vec{E}}{\partial t} + \mu\epsilon \frac{\partial^2 \vec{E}}{\partial t^2} \]
+                    <p>第1項は損失項（導電率による減衰）、第2項は通常の波動項である。</p>
+                </div>
+            </div>
+
+            <h4>4.1.2 複素屈折率</h4>
+            <p>角周波数 \(\omega\) の平面波 \(\vec{E} = \vec{E}_0 e^{i(\tilde{k}z - \omega t)}\) を仮定すると、波数は複素数となる：</p>
+
+            <div class="equation-box important">
+                <div class="title">複素波数と複素屈折率</div>
+                \[ \tilde{k}^2 = \mu\epsilon\omega^2 + i\mu\sigma\omega = \frac{\omega^2}{c^2}\tilde{n}^2 \]
+                <p>複素屈折率: \(\tilde{n} = n + i\kappa\)</p>
+                <p>\(n\): 屈折率（実部）、\(\kappa\): 消衰係数</p>
+            </div>
+
+            <p>複素波数を \(\tilde{k} = k' + ik''\) とすると、電場は：</p>
+            <div class="equation">
+                \[ \vec{E} = \vec{E}_0 e^{-k''z} e^{i(k'z - \omega t)} \]
+            </div>
+            <p>第1の因子 \(e^{-k''z}\) は振幅の減衰を表し、第2の因子は位相速度 \(v_p = \omega/k'\) での伝播を表す。</p>
+
+            <h4>4.1.3 誘電関数</h4>
+            <p>物質の電磁波応答は複素誘電関数 \(\tilde{\epsilon}(\omega)\) で記述できる：</p>
+
+            <div class="equation-box">
+                <div class="title">複素誘電関数</div>
+                \[ \tilde{\epsilon}(\omega) = \epsilon'(\omega) + i\epsilon''(\omega) = \epsilon(\omega) + i\frac{\sigma(\omega)}{\omega} \]
+                <p>複素屈折率との関係: \(\tilde{n}^2 = \frac{\tilde{\epsilon}}{\epsilon_0}\)（非磁性体で \(\mu = \mu_0\) の場合）</p>
+            </div>
+
+            <p>実部 \(\epsilon'\) は電場に対する分極の同相成分（エネルギー蓄積）、虚部 \(\epsilon''\) は直交成分（エネルギー吸収）に関係する。</p>
+
+            <div class="example-box">
+                <h4>例題4.1: 複素屈折率から吸収係数へ</h4>
+                <p><strong>問題:</strong> ある材料の複素屈折率が \(\tilde{n} = 1.5 + 0.01i\) のとき、波長 500 nm の光に対する吸収係数 \(\alpha\)（強度が 1/e になる距離の逆数）を求めよ。</p>
+                <div class="solution">
+                    <p><strong>解答:</strong></p>
+                    <p>電場の減衰: \(E \propto e^{-k''z}\) より、強度の減衰は \(I \propto |E|^2 \propto e^{-2k''z}\)</p>
+                    <p>吸収係数は \(\alpha = 2k''\) で定義される。</p>
+                    <p>\(k'' = \frac{\omega \kappa}{c} = \frac{2\pi \kappa}{\lambda}\) より：</p>
+                    \[ \alpha = 2 \times \frac{2\pi \times 0.01}{500 \times 10^{-9}} = \frac{4\pi \times 0.01}{500 \times 10^{-9}} \]
+                    \[ = 2.51 \times 10^5 \text{ m}^{-1} = 2.51 \times 10^3 \text{ cm}^{-1} \]
+                    <p>光の強度は \(1/\alpha \approx 4 \times 10^{-6}\) m = 4 μm で 1/e に減衰する。</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- セクション2: 反射と屈折 -->
+        <section class="content-section">
+            <h3>4.2 反射と屈折</h3>
+
+            <h4>4.2.1 境界条件</h4>
+            <p>異なる媒質の界面で電磁波が満たすべき境界条件は、マクスウェル方程式から導かれる：</p>
+
+            <div class="equation-box">
+                <div class="title">電磁場の境界条件</div>
+                <ul style="text-align: left; list-style: none; padding: 0;">
+                    <li>\(E_{1t} = E_{2t}\)：電場の接線成分は連続</li>
+                    <li>\(D_{1n} - D_{2n} = \sigma_s\)：電束密度の法線成分の不連続 = 表面電荷密度</li>
+                    <li>\(B_{1n} = B_{2n}\)：磁束密度の法線成分は連続</li>
+                    <li>\(H_{1t} - H_{2t} = K_s\)：磁場の接線成分の不連続 = 表面電流密度</li>
+                </ul>
+            </div>
+
+            <h4>4.2.2 スネルの法則</h4>
+            <p>電磁波が屈折率 \(n_1\) の媒質から \(n_2\) の媒質に入射するとき、入射角 \(\theta_1\) と屈折角 \(\theta_2\) の関係は位相整合条件から導かれる。</p>
+
+            <div class="derivation">
+                <h4>導出: スネルの法則</h4>
+                <div class="derivation-step">
+                    <span class="step-num">1</span>
+                    <strong>位相整合条件</strong>
+                    <p>界面（z = 0）上のすべての点で、入射波・反射波・透過波の位相が一致する必要がある。</p>
+                </div>
+                <div class="derivation-step">
+                    <span class="step-num">2</span>
+                    <strong>波数ベクトルの界面平行成分</strong>
+                    <p>入射波: \(k_{1x} = k_1 \sin\theta_1 = \frac{n_1 \omega}{c} \sin\theta_1\)</p>
+                    <p>透過波: \(k_{2x} = k_2 \sin\theta_2 = \frac{n_2 \omega}{c} \sin\theta_2\)</p>
+                </div>
+                <div class="derivation-step">
+                    <span class="step-num">3</span>
+                    <strong>位相整合</strong>
+                    <p>\(k_{1x} = k_{2x}\) より：</p>
+                    \[ n_1 \sin\theta_1 = n_2 \sin\theta_2 \]
+                </div>
+            </div>
+
+            <h4>4.2.3 フレネルの公式</h4>
+            <p>界面での反射率と透過率は、入射波の偏光状態（s偏光：電場が入射面に垂直、p偏光：電場が入射面内）によって異なる。</p>
+
+            <div class="equation-box important">
+                <div class="title">フレネルの公式</div>
+                <p><strong>s偏光（TE波）：</strong></p>
+                \[ r_s = \frac{n_1\cos\theta_1 - n_2\cos\theta_2}{n_1\cos\theta_1 + n_2\cos\theta_2} \]
+                \[ t_s = \frac{2n_1\cos\theta_1}{n_1\cos\theta_1 + n_2\cos\theta_2} \]
+                <p><strong>p偏光（TM波）：</strong></p>
+                \[ r_p = \frac{n_2\cos\theta_1 - n_1\cos\theta_2}{n_2\cos\theta_1 + n_1\cos\theta_2} \]
+                \[ t_p = \frac{2n_1\cos\theta_1}{n_2\cos\theta_1 + n_1\cos\theta_2} \]
+            </div>
+
+            <p>垂直入射（\(\theta_1 = 0\)）の場合、両偏光で同じ反射率：</p>
+            <div class="equation">
+                \[ R = \left|\frac{n_1 - n_2}{n_1 + n_2}\right|^2 \]
+            </div>
+
+            <div class="example-box">
+                <h4>例題4.2: ガラスの反射率</h4>
+                <p><strong>問題:</strong> 屈折率 n = 1.5 のガラスに空気中から垂直に光を入射させたとき、1枚のガラス板（両面）での反射による光損失は何%か。</p>
+                <div class="solution">
+                    <p><strong>解答:</strong></p>
+                    <p>空気-ガラス界面での反射率：</p>
+                    \[ R_1 = \left(\frac{1 - 1.5}{1 + 1.5}\right)^2 = \left(\frac{-0.5}{2.5}\right)^2 = 0.04 = 4\% \]
+                    <p>ガラス-空気界面でも同様に 4%が反射される。</p>
+                    <p>第1面を透過した光は \(T_1 = 1 - R_1 = 0.96\)</p>
+                    <p>第2面を透過した光は \(T_2 = 0.96 \times (1 - 0.04) = 0.96^2 = 0.922\)</p>
+                    <p>全損失: \(1 - 0.922 = 0.078 \approx 7.8\%\)</p>
+                    <p>多重反射を無視した近似では約8%の光が反射で失われる。これがレンズに反射防止コートを施す理由である。</p>
+                </div>
+            </div>
+
+            <h4>4.2.4 ブリュースター角</h4>
+            <p>p偏光の反射率がゼロになる入射角をブリュースター角という。</p>
+
+            <div class="equation-box">
+                <div class="title">ブリュースター角</div>
+                \[ \tan\theta_B = \frac{n_2}{n_1} \]
+                <p>このとき、反射波と屈折波が直交する：\(\theta_1 + \theta_2 = 90°\)</p>
+            </div>
+
+            <p>ブリュースター角の物理的解釈：屈折波の電場（p偏光の場合、入射面内）の振動方向が、反射波の進行方向と一致する。振動する双極子はその軸方向には放射しないため、反射波が発生しない。</p>
+
+            <div class="column application">
+                <h4>コラム: 偏光サングラスとブリュースター角</h4>
+                <p>水面や道路からの反射光（ぎらつき）は、ブリュースター角付近で入射した光が多いため、主にs偏光成分（水平偏光）である。偏光サングラスはs偏光を遮断するフィルターを内蔵しており、反射光のまぶしさを効果的に低減する。</p>
+                <p>空気-水界面のブリュースター角：</p>
+                \[ \theta_B = \arctan(1.33) = 53° \]
+                <p>この角度は太陽高度約37°に対応し、日中の多くの時間帯で水面反射がほぼs偏光となる。</p>
+                <p>写真撮影でも偏光フィルターを使用して、ガラス越しの反射や水面の反射を除去することができる。</p>
+            </div>
+
+            <h4>4.2.5 全反射</h4>
+            <p>屈折率の大きい媒質から小さい媒質へ光が進むとき、入射角がある臨界角 \(\theta_c\) を超えると、光は完全に反射される。</p>
+
+            <div class="equation-box">
+                <div class="title">全反射の条件</div>
+                \[ \sin\theta_c = \frac{n_2}{n_1} \quad (n_1 > n_2) \]
+                <p>臨界角以上の入射角で、反射率は100%（透過率0%）となる。</p>
+            </div>
+
+            <p>全反射時でも電磁場は第2媒質側にわずかに浸入する。これをエバネッセント波という：</p>
+            <div class="equation">
+                \[ E_2 \propto e^{-z/\delta} \quad \text{ここで} \quad \delta = \frac{\lambda}{2\pi\sqrt{n_1^2\sin^2\theta_1 - n_2^2}} \]
+            </div>
+            <p>エバネッセント波の浸入深さ \(\delta\) は波長程度である。</p>
+
+            <div class="example-box">
+                <h4>例題4.3: 光ファイバーの開口数</h4>
+                <p><strong>問題:</strong> コア（屈折率 \(n_1 = 1.48\)）とクラッド（屈折率 \(n_2 = 1.46\)）からなる光ファイバーについて、(a) 臨界角、(b) 開口数 NA を求めよ。</p>
+                <div class="solution">
+                    <p><strong>解答:</strong></p>
+                    <p>(a) 臨界角：</p>
+                    \[ \sin\theta_c = \frac{n_2}{n_1} = \frac{1.46}{1.48} = 0.9865 \]
+                    \[ \theta_c = \arcsin(0.9865) = 80.6° \]
+                    <p>(b) 開口数（ファイバーに入射できる最大角度の正弦）：</p>
+                    \[ NA = \sqrt{n_1^2 - n_2^2} = \sqrt{1.48^2 - 1.46^2} = \sqrt{2.1904 - 2.1316} = \sqrt{0.0588} = 0.24 \]
+                    <p>これは入射角 \(\theta_{max} = \arcsin(0.24) = 14°\) に対応する。この角度より大きな入射角の光はファイバー内で全反射条件を満たさず、漏れ出してしまう。</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- セクション3: 吸収のメカニズム -->
+        <section class="content-section">
+            <h3>4.3 吸収のメカニズム</h3>
+
+            <h4>4.3.1 ローレンツ振動子モデル</h4>
+            <p>物質による光吸収の古典的モデルとして、電子を調和振動子として扱うローレンツモデルがある。電子は原子核に束縛され、固有振動数 \(\omega_0\) を持つと仮定する。</p>
+
+            <div class="equation-box">
+                <div class="title">調和振動子の運動方程式</div>
+                \[ m\ddot{x} + m\gamma\dot{x} + m\omega_0^2 x = -eE_0 e^{-i\omega t} \]
+                <p>\(\gamma\): 減衰定数（摩擦による損失）</p>
+                <p>\(\omega_0\): 固有振動数（復元力を特徴づける）</p>
+            </div>
+
+            <p>定常解 \(x = x_0 e^{-i\omega t}\) を仮定すると：</p>
+            <div class="equation">
+                \[ x_0 = \frac{-eE_0/m}{\omega_0^2 - \omega^2 - i\gamma\omega} \]
+            </div>
+
+            <div class="derivation">
+                <h4>導出: ローレンツモデルの誘電関数</h4>
+                <div class="derivation-step">
+                    <span class="step-num">1</span>
+                    <strong>分極の計算</strong>
+                    <p>N個の振動子による分極（単位体積あたり）：</p>
+                    \[ P = -Nex = \frac{Ne^2/m}{\omega_0^2 - \omega^2 - i\gamma\omega} E \]
+                </div>
+                <div class="derivation-step">
+                    <span class="step-num">2</span>
+                    <strong>電気感受率</strong>
+                    <p>\(P = \epsilon_0 \chi E\) より：</p>
+                    \[ \chi(\omega) = \frac{Ne^2/(\epsilon_0 m)}{\omega_0^2 - \omega^2 - i\gamma\omega} = \frac{\omega_p^2}{\omega_0^2 - \omega^2 - i\gamma\omega} \]
+                    <p>ここで \(\omega_p = \sqrt{Ne^2/(\epsilon_0 m)}\) はプラズマ周波数。</p>
+                </div>
+                <div class="derivation-step">
+                    <span class="step-num">3</span>
+                    <strong>複素誘電関数</strong>
+                    \[ \tilde{\epsilon}(\omega) = \epsilon_0(1 + \chi) = \epsilon_0\left(1 + \frac{\omega_p^2}{\omega_0^2 - \omega^2 - i\gamma\omega}\right) \]
+                </div>
+                <div class="derivation-step">
+                    <span class="step-num">4</span>
+                    <strong>実部と虚部</strong>
+                    \[ \epsilon'(\omega) = \epsilon_0\left(1 + \frac{\omega_p^2(\omega_0^2 - \omega^2)}{(\omega_0^2 - \omega^2)^2 + \gamma^2\omega^2}\right) \]
+                    \[ \epsilon''(\omega) = \epsilon_0 \frac{\omega_p^2 \gamma\omega}{(\omega_0^2 - \omega^2)^2 + \gamma^2\omega^2} \]
+                </div>
+            </div>
+
+            <p>この結果から重要な特徴が読み取れる：</p>
+            <ul>
+                <li>共鳴周波数 \(\omega \approx \omega_0\) 付近で吸収（\(\epsilon''\)）が最大</li>
+                <li>共鳴の幅は減衰定数 \(\gamma\) で決まる</li>
+                <li>\(\omega < \omega_0\) では \(\epsilon' > \epsilon_0\)（正常分散）</li>
+                <li>\(\omega > \omega_0\) では \(\epsilon' < \epsilon_0\) となりうる（異常分散）</li>
+            </ul>
+
+            <h4>4.3.2 様々な吸収過程</h4>
+            <p>電磁波の周波数に応じて、異なる吸収メカニズムが支配的となる。</p>
+
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>周波数領域</th>
+                        <th>吸収メカニズム</th>
+                        <th>典型的な物質</th>
+                        <th>特性周波数</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>電波〜マイクロ波</td>
+                        <td>配向分極（双極子回転）</td>
+                        <td>水、極性分子</td>
+                        <td>GHz帯</td>
+                    </tr>
+                    <tr>
+                        <td>赤外線</td>
+                        <td>分子振動（格子振動）</td>
+                        <td>CO₂、H₂O、結晶</td>
+                        <td>10¹³〜10¹⁴ Hz</td>
+                    </tr>
+                    <tr>
+                        <td>可視〜紫外</td>
+                        <td>電子遷移</td>
+                        <td>色素、半導体</td>
+                        <td>10¹⁴〜10¹⁵ Hz</td>
+                    </tr>
+                    <tr>
+                        <td>X線</td>
+                        <td>内殻電子励起</td>
+                        <td>重元素</td>
+                        <td>10¹⁶〜10¹⁸ Hz</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h4>4.3.3 ランベルト-ベールの法則</h4>
+            <p>吸収媒質を通過する光の強度減衰は、指数関数的に減少する。</p>
+
+            <div class="equation-box important">
+                <div class="title">ランベルト-ベールの法則</div>
+                \[ I(z) = I_0 e^{-\alpha z} = I_0 \times 10^{-\varepsilon c z} \]
+                <p>\(\alpha\): 吸収係数 [m⁻¹]</p>
+                <p>\(\varepsilon\): モル吸光係数 [L/(mol·cm)]</p>
+                <p>\(c\): 濃度 [mol/L]</p>
+                <p>吸光度: \(A = \log_{10}(I_0/I) = \varepsilon c z\)</p>
+            </div>
+
+            <div class="example-box">
+                <h4>例題4.4: 色素溶液の吸収</h4>
+                <p><strong>問題:</strong> ある色素のモル吸光係数が波長500 nmで \(\varepsilon = 5 \times 10^4\) L/(mol·cm) である。濃度 \(10^{-5}\) mol/L の溶液を1 cmのセルに入れたとき、透過率は何%か。</p>
+                <div class="solution">
+                    <p><strong>解答:</strong></p>
+                    <p>吸光度：</p>
+                    \[ A = \varepsilon c z = 5 \times 10^4 \times 10^{-5} \times 1 = 0.5 \]
+                    <p>透過率：</p>
+                    \[ T = 10^{-A} = 10^{-0.5} = 0.316 = 31.6\% \]
+                    <p>約70%の光が吸収される。この程度の吸光度が分光分析に適している。</p>
+                </div>
+            </div>
+
+            <div class="column application">
+                <h4>コラム: 電子レンジと水分子</h4>
+                <p>電子レンジ（2.45 GHz）は水分子の配向分極を利用して加熱を行う。水分子は永久双極子モーメントを持ち、電場方向に配向しようとする。交番電場の下では双極子が回転運動を繰り返し、周囲の分子との摩擦でエネルギーが熱に変換される。</p>
+                <p><strong>なぜ2.45 GHzなのか？</strong></p>
+                <ul>
+                    <li>水の誘電緩和周波数（約20 GHz）より低い周波数を使用</li>
+                    <li>共鳴周波数そのものを使うと、表面でのみ吸収され内部まで加熱できない</li>
+                    <li>2.45 GHzでは浸透深さが数cmとなり、食品内部まで加熱可能</li>
+                    <li>ISMバンド（産業・科学・医療用）の割り当て周波数</li>
+                </ul>
+                <p>浸透深さ: \(\delta = c/(2\pi f \cdot 2\kappa) \approx 1.4\) cm（室温の水の場合）</p>
+            </div>
+        </section>
+
+        <!-- セクション4: 金属の光学的性質 -->
+        <section class="content-section">
+            <h3>4.4 金属の光学的性質</h3>
+
+            <h4>4.4.1 ドルーデモデル</h4>
+            <p>金属中の自由電子の応答は、ドルーデモデルで記述される。これはローレンツモデルで復元力をゼロ（\(\omega_0 = 0\)）としたものに相当する。</p>
+
+            <div class="equation-box">
+                <div class="title">ドルーデモデルの誘電関数</div>
+                \[ \tilde{\epsilon}(\omega) = \epsilon_0\left(1 - \frac{\omega_p^2}{\omega^2 + i\gamma\omega}\right) \]
+                <p>プラズマ周波数: \(\omega_p = \sqrt{\frac{Ne^2}{\epsilon_0 m^*}}\)（典型的な金属で紫外領域）</p>
+                <p>減衰定数: \(\gamma = 1/\tau\)（\(\tau\): 電子の緩和時間）</p>
+            </div>
+
+            <p>低周波極限（\(\omega \ll \gamma\)）では、DC導電率が回復される：</p>
+            <div class="equation">
+                \[ \sigma_0 = \frac{\omega_p^2 \epsilon_0}{\gamma} = \frac{Ne^2\tau}{m^*} \]
+            </div>
+
+            <h4>4.4.2 金属の反射率</h4>
+            <p>金属表面での高い反射率は、負の誘電率（\(\omega < \omega_p\) で \(\epsilon' < 0\)）に起因する。</p>
+
+            <div class="derivation">
+                <h4>導出: 金属の高反射率</h4>
+                <div class="derivation-step">
+                    <span class="step-num">1</span>
+                    <strong>損失を無視した場合</strong>
+                    <p>\(\gamma \rightarrow 0\) の極限で、\(\omega < \omega_p\) では：</p>
+                    \[ \epsilon = \epsilon_0\left(1 - \frac{\omega_p^2}{\omega^2}\right) < 0 \]
+                </div>
+                <div class="derivation-step">
+                    <span class="step-num">2</span>
+                    <strong>複素屈折率</strong>
+                    <p>\(n^2 = \epsilon/\epsilon_0 < 0\) より、屈折率は純虚数：</p>
+                    \[ n = i\kappa \quad \text{ここで} \quad \kappa = \sqrt{\frac{\omega_p^2}{\omega^2} - 1} \]
+                </div>
+                <div class="derivation-step">
+                    <span class="step-num">3</span>
+                    <strong>垂直入射の反射率</strong>
+                    \[ R = \left|\frac{1 - n}{1 + n}\right|^2 = \left|\frac{1 - i\kappa}{1 + i\kappa}\right|^2 = \frac{1 + \kappa^2}{1 + \kappa^2} = 1 \]
+                </div>
+                <div class="derivation-step">
+                    <span class="step-num">4</span>
+                    <strong>損失がある場合</strong>
+                    <p>有限の \(\gamma\) では反射率は100%より若干低くなる。可視光での典型的な金属の反射率は90-99%。</p>
+                </div>
+            </div>
+
+            <h4>4.4.3 スキンデプス</h4>
+            <p>電磁波が金属内部に浸透できる深さ（スキンデプス）は周波数に依存する。</p>
+
+            <div class="equation-box">
+                <div class="title">スキンデプス</div>
+                <p>低周波（\(\omega \ll \gamma\)）では：</p>
+                \[ \delta = \sqrt{\frac{2}{\mu\sigma\omega}} \]
+                <p>高周波（\(\omega \gg \gamma\)）では：</p>
+                \[ \delta = \frac{c}{\omega_p} \]
+            </div>
+
+            <div class="example-box">
+                <h4>例題4.5: 銅のスキンデプス</h4>
+                <p><strong>問題:</strong> 銅（導電率 \(\sigma = 5.96 \times 10^7\) S/m）のスキンデプスを、(a) 60 Hz、(b) 1 MHz、(c) 1 GHz で求めよ。</p>
+                <div class="solution">
+                    <p><strong>解答:</strong></p>
+                    <p>\(\delta = \sqrt{2/(\mu_0 \sigma \omega)} = \sqrt{2/(\mu_0 \sigma \cdot 2\pi f)}\)</p>
+                    <p>(a) 60 Hz：</p>
+                    \[ \delta = \sqrt{\frac{2}{4\pi \times 10^{-7} \times 5.96 \times 10^7 \times 2\pi \times 60}} = 8.5 \text{ mm} \]
+                    <p>(b) 1 MHz：</p>
+                    \[ \delta = \sqrt{\frac{2}{4\pi \times 10^{-7} \times 5.96 \times 10^7 \times 2\pi \times 10^6}} = 66 \text{ μm} \]
+                    <p>(c) 1 GHz：</p>
+                    \[ \delta = \sqrt{\frac{2}{4\pi \times 10^{-7} \times 5.96 \times 10^7 \times 2\pi \times 10^9}} = 2.1 \text{ μm} \]
+                    <p>高周波になるほど電流は導体表面に集中する（表皮効果）。このため、高周波回路では導体表面の状態が重要になる。</p>
+                </div>
+            </div>
+
+            <h4>4.4.4 プラズモン</h4>
+            <p>金属中の自由電子の集団振動をプラズモンという。表面プラズモンは金属-誘電体界面に局在する電磁モードで、ナノフォトニクスで重要な役割を果たす。</p>
+
+            <div class="column application">
+                <h4>コラム: 表面プラズモンとバイオセンサー</h4>
+                <p>表面プラズモン共鳴（SPR）は、生体分子の検出に広く利用されている高感度センサー技術である。</p>
+                <p><strong>原理：</strong></p>
+                <ul>
+                    <li>金薄膜表面で全反射条件付近の光を入射</li>
+                    <li>特定の角度（共鳴角）で表面プラズモンが励起され、反射率が低下</li>
+                    <li>表面近傍の屈折率変化（分子の吸着）で共鳴角がシフト</li>
+                    <li>10⁻⁶ RIU（屈折率単位）の変化を検出可能</li>
+                </ul>
+                <p><strong>応用：</strong></p>
+                <ul>
+                    <li>抗体-抗原反応のリアルタイムモニタリング</li>
+                    <li>薬物候補分子のスクリーニング</li>
+                    <li>タンパク質間相互作用の解析</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- セクション5: 量子効果 -->
+        <section class="content-section">
+            <h3>4.5 量子効果</h3>
+
+            <h4>4.5.1 光電効果</h4>
+            <p>光電効果は、光が金属表面に当たると電子が放出される現象である。この現象は古典電磁気学では説明できず、光の粒子性（光量子仮説）の証拠となった。</p>
+
+            <div class="equation-box important">
+                <div class="title">光電効果の方程式（アインシュタイン、1905年）</div>
+                \[ K_{max} = h\nu - W = h\nu - h\nu_0 \]
+                <p>\(K_{max}\): 放出電子の最大運動エネルギー</p>
+                <p>\(W = h\nu_0\): 仕事関数（電子を放出するのに必要な最小エネルギー）</p>
+                <p>\(\nu_0\): 閾周波数（これ以下の周波数では電子放出なし）</p>
+            </div>
+
+            <p>光電効果の特徴と古典論との矛盾：</p>
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>観測事実</th>
+                        <th>古典論の予測</th>
+                        <th>量子論の説明</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>閾周波数の存在</td>
+                        <td>どんな周波数でも十分な強度なら電子放出</td>
+                        <td>\(h\nu < W\) では光子1個のエネルギーが不足</td>
+                    </tr>
+                    <tr>
+                        <td>即時的な電子放出</td>
+                        <td>弱い光では電子がエネルギーを蓄積するのに時間がかかる</td>
+                        <td>光子1個が瞬時にエネルギーを与える</td>
+                    </tr>
+                    <tr>
+                        <td>電子エネルギーは光強度に依存しない</td>
+                        <td>強い光ほど高エネルギーの電子</td>
+                        <td>光子のエネルギーは周波数のみで決まる</td>
+                    </tr>
+                    <tr>
+                        <td>電子数は光強度に比例</td>
+                        <td>説明可能</td>
+                        <td>光子数が強度に比例</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="example-box">
+                <h4>例題4.6: 光電効果の実験</h4>
+                <p><strong>問題:</strong> セシウム（仕事関数 W = 2.1 eV）に波長400 nmの光を照射した。(a) 放出電子の最大運動エネルギー、(b) 阻止電圧を求めよ。</p>
+                <div class="solution">
+                    <p><strong>解答:</strong></p>
+                    <p>(a) 光子エネルギー：</p>
+                    \[ E = \frac{hc}{\lambda} = \frac{1240 \text{ eV·nm}}{400 \text{ nm}} = 3.1 \text{ eV} \]
+                    <p>最大運動エネルギー：</p>
+                    \[ K_{max} = E - W = 3.1 - 2.1 = 1.0 \text{ eV} \]
+                    <p>(b) 阻止電圧（電子を止めるのに必要な電圧）：</p>
+                    \[ eV_s = K_{max} \]
+                    \[ V_s = \frac{K_{max}}{e} = \frac{1.0 \text{ eV}}{e} = 1.0 \text{ V} \]
+                </div>
+            </div>
+
+            <h4>4.5.2 コンプトン散乱</h4>
+            <p>X線が電子に散乱されるとき、波長が長くなる（エネルギーが減少する）現象。光子の粒子性の直接的な証拠である。</p>
+
+            <div class="equation-box important">
+                <div class="title">コンプトン散乱の波長変化</div>
+                \[ \Delta\lambda = \lambda' - \lambda = \frac{h}{m_e c}(1 - \cos\theta) = \lambda_C(1 - \cos\theta) \]
+                <p>\(\lambda_C = h/(m_e c) = 2.43 \times 10^{-12}\) m：コンプトン波長</p>
+                <p>\(\theta\): 散乱角</p>
+            </div>
+
+            <div class="derivation">
+                <h4>導出: コンプトン散乱の公式</h4>
+                <div class="derivation-step">
+                    <span class="step-num">1</span>
+                    <strong>光子と電子の衝突を考える</strong>
+                    <p>入射光子（エネルギー \(E = h\nu\)、運動量 \(p = h/\lambda\)）が静止電子に衝突。</p>
+                </div>
+                <div class="derivation-step">
+                    <span class="step-num">2</span>
+                    <strong>エネルギー保存</strong>
+                    \[ h\nu + m_e c^2 = h\nu' + \sqrt{(m_e c^2)^2 + (p_e c)^2} \]
+                </div>
+                <div class="derivation-step">
+                    <span class="step-num">3</span>
+                    <strong>運動量保存（x成分、y成分）</strong>
+                    \[ \frac{h}{\lambda} = \frac{h}{\lambda'}\cos\theta + p_e\cos\phi \]
+                    \[ 0 = \frac{h}{\lambda'}\sin\theta - p_e\sin\phi \]
+                </div>
+                <div class="derivation-step">
+                    <span class="step-num">4</span>
+                    <strong>\(\phi\) を消去して整理</strong>
+                    <p>3つの方程式から電子の運動量 \(p_e\) と反跳角 \(\phi\) を消去すると：</p>
+                    \[ \lambda' - \lambda = \frac{h}{m_e c}(1 - \cos\theta) \]
+                </div>
+            </div>
+
+            <h4>4.5.3 光子吸収と遷移確率</h4>
+            <p>量子力学によると、光子の吸収確率はフェルミの黄金律で与えられる：</p>
+
+            <div class="equation-box">
+                <div class="title">遷移確率（フェルミの黄金律）</div>
+                \[ W_{fi} = \frac{2\pi}{\hbar} |\langle f | \hat{H}' | i \rangle|^2 \rho(E_f) \]
+                <p>\(\hat{H}' = -e\vec{r} \cdot \vec{E}\): 摂動ハミルトニアン（双極子近似）</p>
+                <p>\(\rho(E_f)\): 終状態の状態密度</p>
+            </div>
+
+            <p>選択則：行列要素 \(\langle f | \vec{r} | i \rangle\) が非ゼロとなる条件から、許容遷移と禁制遷移が決まる。</p>
+
+            <div class="column history">
+                <h4>コラム: 光電効果とノーベル賞</h4>
+                <p>アインシュタインは1905年の論文「光の発生と変換に関する発見的な観点について」で光量子仮説を提唱した。これは同年の特殊相対性理論やブラウン運動の論文とともに「奇跡の年」の業績として知られる。</p>
+                <p>興味深いことに、アインシュタインが1921年のノーベル物理学賞を受賞したのは相対性理論ではなく、光電効果の法則の発見に対してであった。当時、相対性理論は革命的すぎて、まだ十分に検証・受容されていないと考えられていたためである。</p>
+                <p>光電効果に関連するノーベル賞：</p>
+                <ul>
+                    <li>1905年: レーナルト（光電効果に関する研究）</li>
+                    <li>1921年: アインシュタイン（光電効果の法則の発見）</li>
+                    <li>1923年: ミリカン（電気素量と光電効果の研究）</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- セクション6: 散乱現象の詳細 -->
+        <section class="content-section">
+            <h3>4.6 散乱現象の詳細</h3>
+
+            <h4>4.6.1 散乱の分類</h4>
+            <p>電磁波の散乱は、粒子サイズと波長の関係、およびエネルギーの変化の有無によって分類される。</p>
+
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>散乱の種類</th>
+                        <th>条件</th>
+                        <th>特徴</th>
+                        <th>例</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>レイリー散乱</td>
+                        <td>\(d \ll \lambda\)</td>
+                        <td>\(I \propto 1/\lambda^4\)、弾性散乱</td>
+                        <td>青空、チンダル現象</td>
+                    </tr>
+                    <tr>
+                        <td>ミー散乱</td>
+                        <td>\(d \sim \lambda\)</td>
+                        <td>波長依存性弱い、前方散乱優勢</td>
+                        <td>雲、霧、コロイド</td>
+                    </tr>
+                    <tr>
+                        <td>幾何光学散乱</td>
+                        <td>\(d \gg \lambda\)</td>
+                        <td>反射・屈折で記述可能</td>
+                        <td>虹、レンズ効果</td>
+                    </tr>
+                    <tr>
+                        <td>ラマン散乱</td>
+                        <td>非弾性散乱</td>
+                        <td>周波数シフト、分子振動の情報</td>
+                        <td>分子分光</td>
+                    </tr>
+                    <tr>
+                        <td>ブリルアン散乱</td>
+                        <td>非弾性散乱</td>
+                        <td>音響フォノンとの相互作用</td>
+                        <td>弾性率測定</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h4>4.6.2 ラマン散乱</h4>
+            <p>ラマン散乱は、光子が分子と相互作用する際に分子の振動・回転状態が変化し、散乱光の周波数がシフトする現象である。</p>
+
+            <div class="equation-box">
+                <div class="title">ラマン散乱</div>
+                <p><strong>ストークス散乱</strong>: \(\nu_s = \nu_0 - \nu_v\)（エネルギーを分子に与える）</p>
+                <p><strong>アンチストークス散乱</strong>: \(\nu_{as} = \nu_0 + \nu_v\)（エネルギーを分子から受け取る）</p>
+                <p>\(\nu_0\): 入射光周波数、\(\nu_v\): 分子振動周波数</p>
+            </div>
+
+            <p>ラマンシフト \(\Delta\nu = \nu_v\) は分子に固有の値であり、分子の「指紋」として同定に利用される。</p>
+
+            <div class="example-box">
+                <h4>例題4.7: ラマン分光による分子同定</h4>
+                <p><strong>問題:</strong> 波長532 nmのレーザーでCO₂分子のラマンスペクトルを測定したところ、ストークス線が波長553 nmに観測された。CO₂の対称伸縮振動の周波数を求めよ。</p>
+                <div class="solution">
+                    <p><strong>解答:</strong></p>
+                    <p>入射光の波数：</p>
+                    \[ \bar{\nu}_0 = \frac{1}{\lambda_0} = \frac{1}{532 \times 10^{-7} \text{ cm}} = 18797 \text{ cm}^{-1} \]
+                    <p>ストークス線の波数：</p>
+                    \[ \bar{\nu}_s = \frac{1}{553 \times 10^{-7}} = 18083 \text{ cm}^{-1} \]
+                    <p>ラマンシフト：</p>
+                    \[ \Delta\bar{\nu} = \bar{\nu}_0 - \bar{\nu}_s = 18797 - 18083 = 714 \text{ cm}^{-1} \]
+                    <p>振動周波数：</p>
+                    \[ \nu_v = c \times \Delta\bar{\nu} = 3 \times 10^{10} \times 714 = 2.14 \times 10^{13} \text{ Hz} \]
+                    <p>これはCO₂の対称伸縮振動（フェルミ共鳴のため2つのピークに分裂するうちの一方）に対応する。</p>
+                </div>
+            </div>
+
+            <h4>4.6.3 散乱断面積</h4>
+            <p>散乱の強さは散乱断面積で定量化される。</p>
+
+            <div class="equation-box">
+                <div class="title">散乱断面積</div>
+                \[ \sigma = \frac{\text{散乱パワー}}{\text{入射強度}} \quad [\text{m}^2] \]
+                <p>レイリー散乱断面積（小粒子）：</p>
+                \[ \sigma_R = \frac{8\pi}{3}\left(\frac{2\pi}{\lambda}\right)^4 \left|\frac{n^2-1}{n^2+2}\right|^2 a^6 \]
+                <p>\(a\): 粒子半径、\(n\): 粒子の相対屈折率</p>
+            </div>
+
+            <div class="column tip">
+                <h4>コラム: ラマン分光の応用</h4>
+                <p>ラマン分光は非破壊・非接触で分子構造の情報が得られる強力な分析手法である。</p>
+                <p><strong>主な応用分野：</strong></p>
+                <ul>
+                    <li><strong>製薬</strong>: 原薬・製剤の同定、結晶多形の判別</li>
+                    <li><strong>半導体</strong>: 応力測定、結晶性評価</li>
+                    <li><strong>考古学</strong>: 顔料・材料の非破壊分析</li>
+                    <li><strong>医療</strong>: がん組織の識別（術中診断）</li>
+                    <li><strong>セキュリティ</strong>: 爆発物・薬物の検出</li>
+                    <li><strong>宇宙探査</strong>: 火星探査車での鉱物分析</li>
+                </ul>
+                <p>近年は表面増強ラマン散乱（SERS）により、単分子レベルの検出も可能になっている。</p>
+            </div>
+        </section>
+
+        <!-- 演習問題 -->
+        <section class="content-section exercises">
+            <h3>演習問題</h3>
+
+            <div class="exercise">
+                <h4>問題4.1 基礎</h4>
+                <p>屈折率 n = 1.52 のガラスについて、(a) 空気中からの垂直入射反射率、(b) ブリュースター角、(c) 臨界角（ガラスから空気への場合）を求めよ。</p>
+            </div>
+
+            <div class="exercise">
+                <h4>問題4.2 応用</h4>
+                <p>複素屈折率が \(\tilde{n} = 0.05 + 3.5i\) の金属に可視光（波長550 nm）を垂直入射させた。(a) 反射率、(b) スキンデプス、(c) 1μm進んだときの電場振幅の減衰率を求めよ。</p>
+            </div>
+
+            <div class="exercise">
+                <h4>問題4.3 発展</h4>
+                <p>ローレンツ振動子モデルにおいて、共鳴周波数 \(\omega_0 = 5 \times 10^{15}\) rad/s、プラズマ周波数 \(\omega_p = 10^{16}\) rad/s、減衰定数 \(\gamma = 5 \times 10^{13}\) rad/s の物質について：(a) \(\omega = 0.9\omega_0\) での複素屈折率、(b) \(\omega = \omega_0\) での吸収係数、(c) 異常分散が起こる周波数範囲を求めよ。</p>
+            </div>
+
+            <div class="exercise">
+                <h4>問題4.4 考察</h4>
+                <p>光電効果では、光の強度を上げても放出電子の最大エネルギーは変化しない。一方、波長を短くすると最大エネルギーは増加する。これらの事実を、(a) 古典電磁気学、(b) 光量子仮説のそれぞれの立場から説明を試み、古典論が失敗する理由を論じよ。</p>
+            </div>
+
+            <div class="exercise">
+                <h4>問題4.5 総合</h4>
+                <p>真空中から屈折率 n = 1.33 の水中に、s偏光とp偏光の光を入射角60°で入射させた。(a) 各偏光の反射率と透過率を計算せよ。(b) 反射光の偏光状態（s偏光とp偏光の振幅比）を求めよ。(c) この結果から、水面からの反射光を偏光サングラスで低減できる理由を説明せよ。</p>
+            </div>
+        </section>
+
+        <!-- まとめ -->
+        <section class="content-section summary">
+            <h3>第4回のまとめ</h3>
+            <div class="summary-box">
+                <h4>学習した主要概念</h4>
+                <ul>
+                    <li>物質中の電磁波は複素屈折率で記述され、実部が伝播速度、虚部が吸収を決める</li>
+                    <li>フレネルの公式により界面での反射・透過が計算でき、偏光依存性がある</li>
+                    <li>ローレンツ/ドルーデモデルで誘電体/金属の光学的性質を理解できる</li>
+                    <li>光電効果、コンプトン散乱は光の粒子性を示す量子効果である</li>
+                    <li>散乱は粒子サイズと波長の関係で分類され、レイリー、ミー、ラマンなどがある</li>
+                </ul>
+            </div>
+
+            <div class="summary-box">
+                <h4>重要公式</h4>
+                <div class="formula-list">
+                    <p>スネルの法則: \(n_1 \sin\theta_1 = n_2 \sin\theta_2\)</p>
+                    <p>垂直入射反射率: \(R = \left|\frac{n_1 - n_2}{n_1 + n_2}\right|^2\)</p>
+                    <p>ブリュースター角: \(\tan\theta_B = n_2/n_1\)</p>
+                    <p>光電効果: \(K_{max} = h\nu - W\)</p>
+                    <p>コンプトン散乱: \(\Delta\lambda = \lambda_C(1 - \cos\theta)\)</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ナビゲーション -->
+        <nav class="lecture-nav">
+            <a href="lecture03.html" class="nav-prev">← 第3回: 電磁波発生と応用</a>
+            <a href="lecture05.html" class="nav-next">第5回: 固体と電子スピン →</a>
+        </nav>
+    </main>
+
+    <footer>
+        <p>福井大学 共通教育科目 B2032 電磁波と物質</p>
+        <p>担当: 福成 雅史 / 石川 裕也</p>
+    </footer>
+
+    <script src="../js/lecture.js"></script>
+</body>
+</html>

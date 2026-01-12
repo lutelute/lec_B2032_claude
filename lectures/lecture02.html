@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>第2回: 可視光の色 - 電磁波と物質</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/lecture.css">
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+    <header class="main-header">
+        <h1>電磁波と物質</h1>
+        <p class="subtitle">第2回: 可視光の色</p>
+    </header>
+
+    <nav class="main-nav">
+        <a href="../index.html">ダッシュボード</a>
+        <a href="../lecture.html">講義一覧</a>
+        <a href="../interactive.html">インタラクティブ学習</a>
+    </nav>
+
+    <main class="lecture-content">
+        <div class="lecture-header">
+            <div class="lecture-meta">
+                <span class="lecture-number">Lecture 02</span>
+                <span class="lecture-duration">学習時間目安: 90-120分</span>
+            </div>
+            <h2>可視光の色</h2>
+            <p class="lecture-objectives">
+                <strong>学習目標:</strong> 光と色の物理的関係を理解し、物体の色が見える仕組みを説明できるようになる。人間の色覚の仕組み、加法混色と減法混色の違い、散乱現象と色の関係を学ぶ。
+            </p>
+        </div>
+
+        <!-- セクション1: 色の物理学 -->
+        <section class="content-section">
+            <h3>2.1 色の物理学</h3>
+
+            <h4>2.1.1 可視光とは</h4>
+            <p>人間の目は電磁スペクトルの極めて狭い領域のみを感知できる。この領域を可視光線（visible light）と呼び、波長約380 nm〜780 nmの範囲に相当する。</p>
+
+            <div class="key-point">
+                <h4>なぜこの波長範囲が「見える」のか</h4>
+                <p>太陽の放射スペクトルは約5800 Kの黒体放射に近く、そのピークは可視光領域にある。地球上の生物は、最も豊富に存在する電磁波を利用するよう進化してきた。また、大気の窓（可視光が大気をよく透過する領域）とも一致している。</p>
+            </div>
+
+            <h4>2.1.2 波長と色の対応</h4>
+            <p>可視光の各波長は特定の色として知覚される：</p>
+
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>色</th>
+                        <th>波長範囲 (nm)</th>
+                        <th>周波数範囲 (THz)</th>
+                        <th>光子エネルギー (eV)</th>
+                        <th>代表的波長</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr style="background: linear-gradient(90deg, #8B00FF20, transparent);">
+                        <td><strong style="color: #8B00FF;">紫</strong></td>
+                        <td>380 - 450</td>
+                        <td>670 - 790</td>
+                        <td>2.76 - 3.26</td>
+                        <td>405 nm</td>
+                    </tr>
+                    <tr style="background: linear-gradient(90deg, #0000FF20, transparent);">
+                        <td><strong style="color: #0000FF;">青</strong></td>
+                        <td>450 - 495</td>
+                        <td>605 - 670</td>
+                        <td>2.50 - 2.76</td>
+                        <td>470 nm</td>
+                    </tr>
+                    <tr style="background: linear-gradient(90deg, #00FFFF20, transparent);">
+                        <td><strong style="color: #00CED1;">シアン</strong></td>
+                        <td>495 - 520</td>
+                        <td>575 - 605</td>
+                        <td>2.38 - 2.50</td>
+                        <td>500 nm</td>
+                    </tr>
+                    <tr style="background: linear-gradient(90deg, #00FF0020, transparent);">
+                        <td><strong style="color: #228B22;">緑</strong></td>
+                        <td>520 - 565</td>
+                        <td>530 - 575</td>
+                        <td>2.19 - 2.38</td>
+                        <td>530 nm</td>
+                    </tr>
+                    <tr style="background: linear-gradient(90deg, #FFFF0020, transparent);">
+                        <td><strong style="color: #B8860B;">黄</strong></td>
+                        <td>565 - 590</td>
+                        <td>510 - 530</td>
+                        <td>2.10 - 2.19</td>
+                        <td>580 nm</td>
+                    </tr>
+                    <tr style="background: linear-gradient(90deg, #FFA50020, transparent);">
+                        <td><strong style="color: #FF8C00;">橙</strong></td>
+                        <td>590 - 625</td>
+                        <td>480 - 510</td>
+                        <td>1.98 - 2.10</td>
+                        <td>600 nm</td>
+                    </tr>
+                    <tr style="background: linear-gradient(90deg, #FF000020, transparent);">
+                        <td><strong style="color: #DC143C;">赤</strong></td>
+                        <td>625 - 780</td>
+                        <td>385 - 480</td>
+                        <td>1.59 - 1.98</td>
+                        <td>650 nm</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="example-box">
+                <h4>例題2.1: 各色の光子エネルギー</h4>
+                <p><strong>問題:</strong> 赤色光（波長650 nm）と紫色光（波長405 nm）の光子エネルギーの比を求めよ。</p>
+                <div class="solution">
+                    <p><strong>解答:</strong></p>
+                    <p>光子エネルギーは \(E = hc/\lambda\) より、波長に反比例する。</p>
+                    \[ \frac{E_{violet}}{E_{red}} = \frac{\lambda_{red}}{\lambda_{violet}} = \frac{650}{405} = 1.60 \]
+                    <p>紫色光の光子エネルギーは赤色光の約1.6倍である。これが紫外線の方が生体に有害な理由の一つである。</p>
+                </div>
+            </div>
+
+            <h4>2.1.3 スペクトル色と非スペクトル色</h4>
+            <p><strong>スペクトル色</strong>：単一波長の光で表現できる色（虹の色）</p>
+            <p><strong>非スペクトル色</strong>：複数の波長の組み合わせでのみ実現できる色</p>
+            <ul>
+                <li><strong>白</strong>：すべての可視光波長を含む（または適切な補色の組み合わせ）</li>
+                <li><strong>マゼンタ</strong>：赤と青の組み合わせ。スペクトル上に対応する単一波長がない</li>
+                <li><strong>ピンク</strong>：赤と白の混合</li>
+                <li><strong>茶色</strong>：低輝度の橙色</li>
+            </ul>
+        </section>
+
+        <!-- セクション2: 人間の色覚 -->
+        <section class="content-section">
+            <h3>2.2 人間の色覚の仕組み</h3>
+
+            <h4>2.2.1 網膜の構造</h4>
+            <p>人間の網膜には2種類の光受容細胞がある：</p>
+
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>細胞</th>
+                        <th>数（片目あたり）</th>
+                        <th>機能</th>
+                        <th>感度</th>
+                        <th>分布</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>桿体細胞（Rod）</strong></td>
+                        <td>約1.2億個</td>
+                        <td>明暗の検出</td>
+                        <td>極めて高感度（数光子で応答）</td>
+                        <td>周辺視野に多い</td>
+                    </tr>
+                    <tr>
+                        <td><strong>錐体細胞（Cone）</strong></td>
+                        <td>約600万個</td>
+                        <td>色の検出</td>
+                        <td>比較的低感度（明所で機能）</td>
+                        <td>中心窩に集中</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h4>2.2.2 三色説と錐体細胞</h4>
+            <p>人間の色覚は3種類の錐体細胞（三原色受容体）に基づく：</p>
+
+            <div class="equation-box">
+                <div class="title">三種類の錐体細胞</div>
+                <ul style="text-align: left; list-style: none; padding: 0;">
+                    <li><strong>S錐体（Short）</strong>：ピーク感度 約420 nm（青）</li>
+                    <li><strong>M錐体（Medium）</strong>：ピーク感度 約530 nm（緑）</li>
+                    <li><strong>L錐体（Long）</strong>：ピーク感度 約560 nm（赤-黄）</li>
+                </ul>
+            </div>
+
+            <p>各錐体細胞の吸収スペクトルは広く重なり合っており、単一波長の光でも通常は複数の錐体を刺激する。脳は3種類の錐体からの信号の比を解釈して「色」を知覚する。</p>
+
+            <div class="derivation">
+                <h4>導出: 錐体の応答と色知覚</h4>
+                <div class="derivation-step">
+                    <span class="step-num">1</span>
+                    <strong>錐体の応答関数</strong>
+                    <p>各錐体の応答 \(R_i\) は入射光のスペクトル \(I(\lambda)\) と錐体の感度関数 \(S_i(\lambda)\) の積分で表される：</p>
+                    \[ R_i = \int_0^\infty I(\lambda) S_i(\lambda) d\lambda \quad (i = L, M, S) \]
+                </div>
+                <div class="derivation-step">
+                    <span class="step-num">2</span>
+                    <strong>メタメリズム（等色現象）</strong>
+                    <p>異なるスペクトル分布を持つ2つの光でも、3つの錐体応答 \((R_L, R_M, R_S)\) が同じなら、同じ色として知覚される。これをメタメリズムという。</p>
+                </div>
+                <div class="derivation-step">
+                    <span class="step-num">3</span>
+                    <strong>色空間の次元</strong>
+                    <p>人間の色知覚は3次元空間で表現できる（3つの独立な錐体応答）。これが「三原色」で全ての色を表現できる理由である。</p>
+                </div>
+            </div>
+
+            <div class="column history">
+                <h4>コラム: 色覚の個人差と色覚異常</h4>
+                <p>色覚には個人差があり、特にL錐体とM錐体の遺伝子はX染色体上にあるため、男性に色覚異常が多い（約8%、女性は約0.5%）。</p>
+                <p><strong>主な色覚異常の種類：</strong></p>
+                <ul>
+                    <li><strong>1型色覚（Protanopia）</strong>：L錐体の機能低下。赤系の識別困難</li>
+                    <li><strong>2型色覚（Deuteranopia）</strong>：M錐体の機能低下。緑系の識別困難</li>
+                    <li><strong>3型色覚（Tritanopia）</strong>：S錐体の機能低下。青系の識別困難（稀）</li>
+                </ul>
+                <p>興味深いことに、一部の女性は4種類の錐体を持ち（テトラクロマシー）、通常より多くの色を識別できる可能性がある。</p>
+            </div>
+
+            <h4>2.2.3 色の恒常性</h4>
+            <p>人間の視覚系は、照明条件が変化しても物体の色を一定に知覚する能力（色の恒常性）を持つ。例えば、白い紙は太陽光下でも蛍光灯下でも「白」に見える。</p>
+
+            <p>これは脳が：</p>
+            <ul>
+                <li>周囲の物体との相対的な色の関係を考慮</li>
+                <li>照明光のスペクトル特性を推定して補正</li>
+            </ul>
+            <p>を行っているためである。この処理は「ホワイトバランス」と呼ばれ、カメラにも実装されている。</p>
+        </section>
+
+        <!-- セクション3: 物体の色 -->
+        <section class="content-section">
+            <h3>2.3 物体の色が見える仕組み</h3>
+
+            <h4>2.3.1 光と物質の相互作用</h4>
+            <p>光が物体に当たると、以下の現象が起こる：</p>
+            <ul>
+                <li><strong>反射（Reflection）</strong>：光が物体表面で跳ね返る</li>
+                <li><strong>吸収（Absorption）</strong>：光のエネルギーが物質に移る</li>
+                <li><strong>透過（Transmission）</strong>：光が物質を通過する</li>
+                <li><strong>散乱（Scattering）</strong>：光が様々な方向に分散する</li>
+            </ul>
+
+            <div class="equation-box">
+                <div class="title">エネルギー保存則</div>
+                \[ I_0 = I_r + I_a + I_t \]
+                <p>入射光強度 = 反射光 + 吸収 + 透過光</p>
+                <p>比率で表すと: \(R + A + T = 1\)（反射率 + 吸収率 + 透過率 = 1）</p>
+            </div>
+
+            <h4>2.3.2 物体の色を決める要因</h4>
+            <p>不透明な物体の色は、主に<strong>吸収</strong>と<strong>反射</strong>によって決まる。物体は特定の波長を吸収し、残りを反射する。反射された光が目に入り、色として知覚される。</p>
+
+            <div class="example-box">
+                <h4>例題2.2: 物体の色と吸収スペクトル</h4>
+                <p><strong>問題:</strong> 赤いリンゴが赤く見えるのはなぜか。白色光を照射した場合の反射スペクトルを定性的に説明せよ。</p>
+                <div class="solution">
+                    <p><strong>解答:</strong></p>
+                    <p>赤いリンゴの表皮には、青と緑の波長（約400-600 nm）を強く吸収する色素（アントシアニン等）が含まれている。</p>
+                    <ul>
+                        <li>青色光（450 nm付近）：主に吸収</li>
+                        <li>緑色光（530 nm付近）：主に吸収</li>
+                        <li>赤色光（650 nm付近）：反射</li>
+                    </ul>
+                    <p>その結果、赤色成分のみが反射されて目に届き、リンゴは「赤く」見える。</p>
+                    <p>同じリンゴを青色光のみで照射すると、青色は吸収されてしまうため、リンゴは黒っぽく見える。</p>
+                </div>
+            </div>
+
+            <h4>2.3.3 色素と分子構造</h4>
+            <p>物質が特定の波長を吸収する能力は、その分子構造、特に電子の配置に依存する。</p>
+
+            <div class="derivation">
+                <h4>導出: 共役系と光吸収</h4>
+                <div class="derivation-step">
+                    <span class="step-num">1</span>
+                    <strong>電子遷移のエネルギー</strong>
+                    <p>分子が光を吸収するとき、電子は基底状態から励起状態へ遷移する。吸収される光のエネルギーは：</p>
+                    \[ E_{photon} = h\nu = E_{excited} - E_{ground} \]
+                </div>
+                <div class="derivation-step">
+                    <span class="step-num">2</span>
+                    <strong>共役系と吸収波長</strong>
+                    <p>共役二重結合（交互に単結合と二重結合が並ぶ構造）が長いほど、電子の非局在化が進み、HOMO-LUMOギャップが小さくなる。</p>
+                </div>
+                <div class="derivation-step">
+                    <span class="step-num">3</span>
+                    <strong>井戸型ポテンシャルモデル</strong>
+                    <p>長さ \(L\) の1次元井戸中の電子のエネルギー準位間隔：</p>
+                    \[ \Delta E \propto \frac{1}{L^2} \]
+                    <p>共役系が長い（L が大きい）ほど、\(\Delta E\) は小さくなり、より長波長（低エネルギー）の光を吸収する。</p>
+                </div>
+                <div class="derivation-step">
+                    <span class="step-num">4</span>
+                    <strong>応用</strong>
+                    <p>β-カロテン（ニンジンの橙色色素）は11個の共役二重結合を持ち、青〜緑色光を吸収して橙色に見える。</p>
+                </div>
+            </div>
+
+            <h4>2.3.4 構造色</h4>
+            <p>色素に依らない色の発現機構として<strong>構造色</strong>がある。これは微細構造による光の干渉・回折によって生じる色である。</p>
+
+            <div class="column application">
+                <h4>コラム: 自然界の構造色</h4>
+                <p>多くの生物が構造色を利用している：</p>
+                <ul>
+                    <li><strong>モルフォ蝶</strong>：翅の微細な溝構造による干渉で鮮やかな青色を発現。角度によって色が変化する。</li>
+                    <li><strong>玉虫</strong>：多層膜干渉による虹色の輝き</li>
+                    <li><strong>孔雀の羽</strong>：2次元フォトニック結晶構造</li>
+                    <li><strong>CD/DVD</strong>：人工的な構造色（回折格子）</li>
+                </ul>
+                <p>構造色の特徴：</p>
+                <ul>
+                    <li>見る角度によって色が変化（イリデッセンス）</li>
+                    <li>色素と違い退色しない</li>
+                    <li>偏光依存性を持つことがある</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- セクション4: 光の混色 -->
+        <section class="content-section">
+            <h3>2.4 光の混色</h3>
+
+            <h4>2.4.1 加法混色（光の三原色）</h4>
+            <p>複数の光を重ね合わせると、それぞれの色が加算されて新しい色が生じる。これを<strong>加法混色</strong>という。</p>
+
+            <div class="equation-box">
+                <div class="title">光の三原色（加法混色）</div>
+                <p><strong style="color: red;">赤 (Red)</strong> + <strong style="color: green;">緑 (Green)</strong> + <strong style="color: blue;">青 (Blue)</strong> = <strong>白</strong></p>
+                <ul style="text-align: left; list-style: none; padding: 1rem;">
+                    <li><strong style="color: red;">R</strong> + <strong style="color: green;">G</strong> = <strong style="color: yellow;">黄 (Yellow)</strong></li>
+                    <li><strong style="color: green;">G</strong> + <strong style="color: blue;">B</strong> = <strong style="color: cyan;">シアン (Cyan)</strong></li>
+                    <li><strong style="color: blue;">B</strong> + <strong style="color: red;">R</strong> = <strong style="color: magenta;">マゼンタ (Magenta)</strong></li>
+                </ul>
+            </div>
+
+            <p>加法混色の例：</p>
+            <ul>
+                <li>テレビ・ディスプレイ（RGB液晶、有機EL）</li>
+                <li>舞台照明</li>
+                <li>プロジェクター</li>
+            </ul>
+
+            <h4>2.4.2 減法混色（色料の三原色）</h4>
+            <p>色素や絵の具を混ぜると、それぞれが吸収する波長が増え、反射光が減少する。これを<strong>減法混色</strong>という。</p>
+
+            <div class="equation-box">
+                <div class="title">色料の三原色（減法混色）</div>
+                <p><strong style="color: cyan;">シアン (C)</strong> + <strong style="color: magenta;">マゼンタ (M)</strong> + <strong style="color: yellow;">黄 (Y)</strong> = <strong>黒</strong>（理論上）</p>
+                <ul style="text-align: left; list-style: none; padding: 1rem;">
+                    <li><strong style="color: cyan;">C</strong> + <strong style="color: magenta;">M</strong> = <strong style="color: blue;">青</strong></li>
+                    <li><strong style="color: magenta;">M</strong> + <strong style="color: yellow;">Y</strong> = <strong style="color: red;">赤</strong></li>
+                    <li><strong style="color: yellow;">Y</strong> + <strong style="color: cyan;">C</strong> = <strong style="color: green;">緑</strong></li>
+                </ul>
+            </div>
+
+            <p>減法混色の例：</p>
+            <ul>
+                <li>カラー印刷（CMYK：CMY + 黒(K)）</li>
+                <li>絵の具の混合</li>
+                <li>カラーフィルター</li>
+            </ul>
+
+            <div class="derivation">
+                <h4>導出: 加法混色と減法混色の関係</h4>
+                <div class="derivation-step">
+                    <span class="step-num">1</span>
+                    <strong>補色の関係</strong>
+                    <p>加法混色の原色と減法混色の原色は補色関係にある：</p>
+                    <ul>
+                        <li>赤 ↔ シアン（赤を吸収）</li>
+                        <li>緑 ↔ マゼンタ（緑を吸収）</li>
+                        <li>青 ↔ 黄（青を吸収）</li>
+                    </ul>
+                </div>
+                <div class="derivation-step">
+                    <span class="step-num">2</span>
+                    <strong>フィルターの効果</strong>
+                    <p>シアンフィルターは赤を吸収し、緑と青を透過する。白色光をシアンフィルターに通すと：</p>
+                    \[ I_{out}(\lambda) = I_{white}(\lambda) \times T_{cyan}(\lambda) \]
+                    <p>ここで \(T_{cyan}\) は赤色領域で0に近く、青・緑領域で1に近い。</p>
+                </div>
+                <div class="derivation-step">
+                    <span class="step-num">3</span>
+                    <strong>複数フィルターの重ね合わせ</strong>
+                    <p>シアンとマゼンタのフィルターを重ねると：</p>
+                    \[ I_{out} = I_{white} \times T_{cyan} \times T_{magenta} \]
+                    <p>シアンは赤を、マゼンタは緑を吸収するため、青のみが透過する。</p>
+                </div>
+            </div>
+
+            <div class="example-box">
+                <h4>例題2.3: プリンターのインク混合</h4>
+                <p><strong>問題:</strong> カラープリンターでオレンジ色を印刷するとき、CMYKのどのインクをどのような比率で使用するか説明せよ。</p>
+                <div class="solution">
+                    <p><strong>解答:</strong></p>
+                    <p>オレンジ色 ≈ 赤 + 黄（加法混色的に考えると）</p>
+                    <p>減法混色では：</p>
+                    <ul>
+                        <li>黄(Y)インク：青を吸収、赤・緑を反射</li>
+                        <li>マゼンタ(M)インク：緑を吸収、赤・青を反射</li>
+                    </ul>
+                    <p>Y + 少量のM を混合すると：</p>
+                    <ul>
+                        <li>Yが青を吸収</li>
+                        <li>Mが緑の一部を吸収</li>
+                        <li>結果：赤が強く、緑が弱い → オレンジ</li>
+                    </ul>
+                    <p>実際の印刷では Y: 50-100%、M: 30-60%、C: 0%、K: 0% 程度の組み合わせが使われる。</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- セクション5: 光の散乱と色 -->
+        <section class="content-section">
+            <h3>2.5 光の散乱と色</h3>
+
+            <h4>2.5.1 レイリー散乱</h4>
+            <p>光の波長より十分小さい粒子（気体分子など）による散乱を<strong>レイリー散乱</strong>という。散乱強度は波長の4乗に反比例する。</p>
+
+            <div class="equation-box important">
+                <div class="title">レイリー散乱の強度</div>
+                \[ I \propto \frac{1}{\lambda^4} \]
+                <p>短波長（青）の光は長波長（赤）の光より強く散乱される</p>
+            </div>
+
+            <div class="derivation">
+                <h4>導出: レイリー散乱の波長依存性</h4>
+                <div class="derivation-step">
+                    <span class="step-num">1</span>
+                    <strong>誘起双極子モーメント</strong>
+                    <p>入射電磁波の電場 \(\vec{E}\) により、分子に誘起双極子モーメント \(\vec{p}\) が生じる：</p>
+                    \[ \vec{p} = \alpha \vec{E} \]
+                    <p>ここで \(\alpha\) は分極率である。</p>
+                </div>
+                <div class="derivation-step">
+                    <span class="step-num">2</span>
+                    <strong>振動双極子からの放射</strong>
+                    <p>振動する双極子は電磁波を放射する。放射パワーはラーモアの公式より：</p>
+                    \[ P \propto |\ddot{p}|^2 \propto \omega^4 |\vec{p}|^2 \]
+                </div>
+                <div class="derivation-step">
+                    <span class="step-num">3</span>
+                    <strong>波長依存性</strong>
+                    <p>\(\omega = 2\pi c/\lambda\) より：</p>
+                    \[ P \propto \omega^4 \propto \frac{1}{\lambda^4} \]
+                </div>
+                <div class="derivation-step">
+                    <span class="step-num">4</span>
+                    <strong>数値例</strong>
+                    <p>青色光(λ=450nm)と赤色光(λ=700nm)の散乱強度比：</p>
+                    \[ \frac{I_{blue}}{I_{red}} = \left(\frac{700}{450}\right)^4 = 5.8 \]
+                    <p>青色光は赤色光の約5.8倍強く散乱される。</p>
+                </div>
+            </div>
+
+            <h4>2.5.2 空が青い理由</h4>
+            <p>太陽光が大気中を通過する際、窒素・酸素分子によるレイリー散乱が起こる。青色光は赤色光より強く散乱されるため、空のあらゆる方向から青色光が目に届く。</p>
+
+            <div class="key-point">
+                <h4>空が青く見える条件</h4>
+                <ul>
+                    <li>散乱粒子（分子）のサイズが光の波長より十分小さい</li>
+                    <li>散乱回数が適度である（1回散乱が主）</li>
+                    <li>観測者が散乱光を見ている（太陽を直接見ていない）</li>
+                </ul>
+            </div>
+
+            <h4>2.5.3 夕焼けが赤い理由</h4>
+            <p>太陽が地平線近くにあるとき、太陽光は大気中を長距離通過する。この過程で青色光は散乱により大部分が取り除かれ、赤色光が残って目に届く。</p>
+
+            <div class="example-box">
+                <h4>例題2.4: 大気散乱による減衰</h4>
+                <p><strong>問題:</strong> 太陽が天頂にあるとき、大気を通過する距離を1とする。太陽高度が10°のとき、大気通過距離は何倍になるか。また、青色光と赤色光の強度比はどう変化するか。</p>
+                <div class="solution">
+                    <p><strong>解答:</strong></p>
+                    <p>大気通過距離（エアマス）は近似的に：</p>
+                    \[ AM = \frac{1}{\sin(h)} \]
+                    <p>h = 10°のとき：</p>
+                    \[ AM = \frac{1}{\sin(10°)} = \frac{1}{0.174} = 5.76 \]
+                    <p>大気通過距離は約5.8倍になる。</p>
+                    <p>散乱による減衰は \(I = I_0 e^{-\tau}\) で表され、光学的厚さ \(\tau\) は距離に比例する。</p>
+                    <p>もし天頂での青/赤の強度比が5.8（レイリー散乱の効果で青が多く散乱）だとすると、5.8倍の距離を通過後は：</p>
+                    \[ \frac{I_{blue}}{I_{red}} \propto e^{-5.8 \times 5.8 \times \tau_{blue}/\tau_{red}} \]
+                    <p>青色光は大幅に減衰し、相対的に赤色光が優勢になる。</p>
+                </div>
+            </div>
+
+            <h4>2.5.4 ミー散乱</h4>
+            <p>粒子サイズが光の波長と同程度の場合（水滴、塵埃など）、<strong>ミー散乱</strong>が起こる。ミー散乱は波長依存性が弱く、全ての波長がほぼ同様に散乱される。</p>
+
+            <ul>
+                <li><strong>雲が白い理由</strong>：水滴（直径〜10μm）によるミー散乱は全波長を同様に散乱するため、白く見える</li>
+                <li><strong>霧</strong>：同様の理由で白〜灰色に見える</li>
+                <li><strong>牛乳の白さ</strong>：脂肪球（〜1μm）によるミー散乱</li>
+            </ul>
+
+            <h4>2.5.5 チンダル現象</h4>
+            <p>コロイド溶液に光を当てると、散乱により光の筋が見える現象。粒子サイズがレイリー散乱とミー散乱の中間領域にある場合に顕著。</p>
+
+            <div class="column application">
+                <h4>コラム: 月食時の赤い月</h4>
+                <p>皆既月食のとき、月が赤銅色に見える「ブラッドムーン」現象は、地球大気のレイリー散乱で説明できる。</p>
+                <p>地球の影に入った月には、地球大気を通過して屈折した太陽光のみが届く。この光は長距離の大気を通過するため、夕焼けと同様に青色成分が散乱で失われ、赤色成分が月面を照らす。</p>
+                <p>月食時の月の色は、地球大気の状態（火山噴火による粒子、雲の量など）によって変化する。</p>
+            </div>
+        </section>
+
+        <!-- セクション6: 屈折と分散 -->
+        <section class="content-section">
+            <h3>2.6 光の屈折と分散</h3>
+
+            <h4>2.6.1 屈折率の波長依存性</h4>
+            <p>物質の屈折率は光の波長によって異なる（分散）。通常の透明物質では、短波長ほど屈折率が大きい（正常分散）。</p>
+
+            <div class="equation-box">
+                <div class="title">コーシーの分散式</div>
+                \[ n(\lambda) = A + \frac{B}{\lambda^2} + \frac{C}{\lambda^4} + \cdots \]
+                <p>A, B, C は物質固有の定数。通常 B > 0 なので、短波長ほど n が大きい。</p>
+            </div>
+
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>物質</th>
+                        <th>n (青, 486nm)</th>
+                        <th>n (黄, 589nm)</th>
+                        <th>n (赤, 656nm)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>クラウンガラス</td>
+                        <td>1.523</td>
+                        <td>1.517</td>
+                        <td>1.514</td>
+                    </tr>
+                    <tr>
+                        <td>フリントガラス</td>
+                        <td>1.664</td>
+                        <td>1.650</td>
+                        <td>1.644</td>
+                    </tr>
+                    <tr>
+                        <td>水</td>
+                        <td>1.337</td>
+                        <td>1.333</td>
+                        <td>1.331</td>
+                    </tr>
+                    <tr>
+                        <td>ダイヤモンド</td>
+                        <td>2.435</td>
+                        <td>2.417</td>
+                        <td>2.407</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h4>2.6.2 プリズムによる分光</h4>
+            <p>プリズムを通過する白色光は、波長ごとに異なる角度で屈折するため、スペクトルに分離される。</p>
+
+            <div class="derivation">
+                <h4>導出: プリズムの角度分散</h4>
+                <div class="derivation-step">
+                    <span class="step-num">1</span>
+                    <strong>最小偏角での条件</strong>
+                    <p>頂角 \(A\) のプリズムを最小偏角 \(\delta_m\) で光が通過するとき：</p>
+                    \[ n = \frac{\sin\left(\frac{A + \delta_m}{2}\right)}{\sin\left(\frac{A}{2}\right)} \]
+                </div>
+                <div class="derivation-step">
+                    <span class="step-num">2</span>
+                    <strong>角度分散</strong>
+                    <p>波長による偏角の変化率（角度分散）：</p>
+                    \[ \frac{d\delta}{d\lambda} = \frac{d\delta}{dn} \cdot \frac{dn}{d\lambda} \]
+                </div>
+                <div class="derivation-step">
+                    <span class="step-num">3</span>
+                    <strong>小さな頂角の場合</strong>
+                    <p>\(A\) が小さいとき、\(\delta \approx (n-1)A\) より：</p>
+                    \[ \frac{d\delta}{d\lambda} \approx A \frac{dn}{d\lambda} \]
+                </div>
+            </div>
+
+            <h4>2.6.3 虹の形成</h4>
+            <p>虹は太陽光が水滴によって屈折・反射・分散されて生じる。</p>
+
+            <ul>
+                <li><strong>主虹（一次の虹）</strong>：水滴内で1回反射。外側が赤、内側が紫。視半径約42°</li>
+                <li><strong>副虹（二次の虹）</strong>：水滴内で2回反射。色の順序が逆。視半径約51°</li>
+                <li><strong>アレキサンダーの暗帯</strong>：主虹と副虹の間の暗い領域</li>
+            </ul>
+
+            <div class="example-box">
+                <h4>例題2.5: 虹の視半径</h4>
+                <p><strong>問題:</strong> 水の屈折率を n = 1.33 として、主虹の赤色光（n = 1.331）と紫色光（n = 1.344）の視半径の差を計算せよ。</p>
+                <div class="solution">
+                    <p><strong>解答:</strong></p>
+                    <p>主虹の視半径 θ は以下の式で与えられる：</p>
+                    \[ \cos\theta = \frac{n^2 - 1}{3} \cdot \sqrt{\frac{3}{4 - n^2}} \]
+                    <p>この式を数値計算すると：</p>
+                    <ul>
+                        <li>赤色光 (n = 1.331): θ ≈ 42.5°</li>
+                        <li>紫色光 (n = 1.344): θ ≈ 40.5°</li>
+                    </ul>
+                    <p>視半径の差: 約2°</p>
+                    <p>これが虹の幅（約2°）に対応する。</p>
+                </div>
+            </div>
+
+            <div class="column tip">
+                <h4>コラム: 色収差と光学設計</h4>
+                <p>分散は光学機器において「色収差」という問題を引き起こす。単レンズでは波長ごとに焦点位置が異なるため、像がぼやける。</p>
+                <p>対策として：</p>
+                <ul>
+                    <li><strong>アクロマートレンズ</strong>：屈折率と分散が異なる2種類のガラス（クラウンガラスとフリントガラス）を組み合わせ、2波長で色収差を補正</li>
+                    <li><strong>アポクロマートレンズ</strong>：3波長で補正。より高性能</li>
+                    <li><strong>反射望遠鏡</strong>：反射では分散が起こらないため、色収差がない</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- 演習問題 -->
+        <section class="content-section exercises">
+            <h3>演習問題</h3>
+
+            <div class="exercise">
+                <h4>問題2.1 基礎</h4>
+                <p>黄色い紙に青色光を照射すると何色に見えるか。理由とともに説明せよ。</p>
+            </div>
+
+            <div class="exercise">
+                <h4>問題2.2 応用</h4>
+                <p>太陽の高度が30°のとき、天頂方向に比べて大気を通過する距離は何倍か。また、このときレイリー散乱により青色光(λ=450nm)は赤色光(λ=650nm)に比べて何倍減衰しやすいか（減衰係数が λ⁻⁴ に比例すると仮定）。</p>
+            </div>
+
+            <div class="exercise">
+                <h4>問題2.3 発展</h4>
+                <p>三色型色覚では、分光器で見ると全く異なるスペクトルを持つ2つの光が同じ色に見えることがある（メタメリズム）。具体例を挙げ、なぜこのような現象が起こるか説明せよ。また、印刷物とディスプレイで同じ色を再現することが難しい理由を色域の観点から説明せよ。</p>
+            </div>
+
+            <div class="exercise">
+                <h4>問題2.4 考察</h4>
+                <p>月面から見た「地球の出」では、地球の縁がオレンジ色に見える。この現象を説明せよ。また、火星から見た夕焼けは何色に見えるか予想し、その理由を述べよ（火星大気は薄く、塵が多い）。</p>
+            </div>
+        </section>
+
+        <!-- まとめ -->
+        <section class="content-section summary">
+            <h3>第2回のまとめ</h3>
+            <div class="summary-box">
+                <h4>学習した主要概念</h4>
+                <ul>
+                    <li>可視光線は波長約380-780nmの電磁波で、各波長は特定の色として知覚される</li>
+                    <li>人間の色覚は3種類の錐体細胞（L, M, S）に基づく三色説で説明される</li>
+                    <li>物体の色は、吸収されなかった波長の光が反射・透過することで決まる</li>
+                    <li>加法混色（RGB）は光の重ね合わせ、減法混色（CMY）は色素の重ね合わせ</li>
+                    <li>レイリー散乱（I ∝ 1/λ⁴）により空は青く、夕焼けは赤く見える</li>
+                    <li>屈折率の波長依存性（分散）によりプリズムで光が分光され、虹が生じる</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- ナビゲーション -->
+        <nav class="lecture-nav">
+            <a href="lecture01.html" class="nav-prev">← 第1回: 電磁波とは</a>
+            <a href="lecture03.html" class="nav-next">第3回: 電磁波発生と応用 →</a>
+        </nav>
+    </main>
+
+    <footer>
+        <p>福井大学 共通教育科目 B2032 電磁波と物質</p>
+        <p>担当: 福成 雅史 / 石川 裕也</p>
+    </footer>
+
+    <script src="../js/lecture.js"></script>
+</body>
+</html>

@@ -1,0 +1,737 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>第7回: 電子スピン共鳴 - 電磁波と物質</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/lecture.css">
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+    <header class="main-header">
+        <h1>電磁波と物質</h1>
+        <p class="subtitle">第7回: 電子スピン共鳴</p>
+    </header>
+
+    <nav class="main-nav">
+        <a href="../index.html">ダッシュボード</a>
+        <a href="../lecture.html">講義一覧</a>
+        <a href="../interactive.html">インタラクティブ学習</a>
+    </nav>
+
+    <main class="lecture-content">
+        <div class="lecture-header">
+            <div class="lecture-meta">
+                <span class="lecture-number">Lecture 07</span>
+                <span class="lecture-duration">学習時間目安: 90-120分</span>
+            </div>
+            <h2>電子スピン共鳴</h2>
+            <p class="lecture-objectives">
+                <strong>学習目標:</strong> 電子スピン共鳴（ESR/EPR）の原理と応用を理解する。電子スピンと核スピンの磁気共鳴の違い、g因子と超微細構造の物理的意味、ESRスペクトルの解析方法を学ぶ。材料科学、生物学、化学における応用例についても理解を深める。
+            </p>
+        </div>
+
+        <!-- セクション1: ESRの基本原理 -->
+        <section class="content-section">
+            <h3>7.1 ESRの基本原理</h3>
+
+            <h4>7.1.1 電子スピン共鳴とは</h4>
+            <p>電子スピン共鳴（Electron Spin Resonance, ESR）または電子常磁性共鳴（Electron Paramagnetic Resonance, EPR）は、不対電子を持つ物質が静磁場中でマイクロ波を共鳴的に吸収する現象である。NMRと同じ磁気共鳴現象だが、電子の磁気モーメントは核の約1000倍大きいため、共鳴周波数は約1000倍高い（マイクロ波領域）。</p>
+
+            <div class="key-point">
+                <h4>ESRとNMRの比較</h4>
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>特性</th>
+                            <th>ESR</th>
+                            <th>NMR</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>対象</td>
+                            <td>不対電子</td>
+                            <td>核スピン</td>
+                        </tr>
+                        <tr>
+                            <td>磁気回転比</td>
+                            <td>\(\gamma_e = 1.76 \times 10^{11}\) rad/(T·s)</td>
+                            <td>\(\gamma_H = 2.68 \times 10^8\) rad/(T·s)</td>
+                        </tr>
+                        <tr>
+                            <td>1 T での共鳴周波数</td>
+                            <td>28 GHz</td>
+                            <td>42 MHz</td>
+                        </tr>
+                        <tr>
+                            <td>使用電磁波</td>
+                            <td>マイクロ波</td>
+                            <td>ラジオ波</td>
+                        </tr>
+                        <tr>
+                            <td>典型的な磁場</td>
+                            <td>0.3-1.5 T</td>
+                            <td>1-20 T</td>
+                        </tr>
+                        <tr>
+                            <td>感度（スピン数）</td>
+                            <td>〜10¹⁰</td>
+                            <td>〜10¹⁵</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h4>7.1.2 共鳴条件</h4>
+            <p>自由電子（スピン S = 1/2）が磁場 B 中に置かれると、ゼーマン分裂により2つのエネルギー準位が生じる。</p>
+
+            <div class="equation-box important">
+                <div class="title">ESR共鳴条件</div>
+                \[ \Delta E = g\mu_B B = h\nu \]
+                <p>共鳴周波数: \(\nu = \frac{g\mu_B B}{h} = \frac{g_e \beta B}{h}\)</p>
+                <p>\(g_e = 2.0023\): 自由電子のg因子</p>
+                <p>\(\mu_B = 9.274 \times 10^{-24}\) J/T: ボーア磁子</p>
+                <p>または: \(\nu \text{ [GHz]} = 28.025 \times g \times B \text{ [T]}\)</p>
+            </div>
+
+            <div class="derivation">
+                <h4>導出: 電子スピンのゼーマンエネルギー</h4>
+                <div class="derivation-step">
+                    <span class="step-num">1</span>
+                    <strong>磁気モーメント</strong>
+                    <p>電子スピンの磁気モーメント：</p>
+                    \[ \vec{\mu}_s = -g_e \mu_B \frac{\vec{S}}{\hbar} = -g_e \frac{e}{2m_e} \vec{S} \]
+                </div>
+                <div class="derivation-step">
+                    <span class="step-num">2</span>
+                    <strong>磁場中のハミルトニアン</strong>
+                    \[ \hat{H} = -\vec{\mu} \cdot \vec{B} = g_e \mu_B \frac{\hat{S}_z}{\hbar} B_z \]
+                    <p>（磁場をz方向にとった）</p>
+                </div>
+                <div class="derivation-step">
+                    <span class="step-num">3</span>
+                    <strong>エネルギー準位</strong>
+                    <p>\(\hat{S}_z\) の固有値は \(m_s \hbar\)（\(m_s = +1/2, -1/2\)）なので：</p>
+                    \[ E_{m_s} = g_e \mu_B m_s B \]
+                    <p>\(E_{+1/2} = +\frac{1}{2}g_e\mu_B B\)（上向きスピン、高エネルギー）</p>
+                    <p>\(E_{-1/2} = -\frac{1}{2}g_e\mu_B B\)（下向きスピン、低エネルギー）</p>
+                </div>
+                <div class="derivation-step">
+                    <span class="step-num">4</span>
+                    <strong>遷移エネルギー</strong>
+                    \[ \Delta E = E_{+1/2} - E_{-1/2} = g_e \mu_B B \]
+                </div>
+            </div>
+
+            <div class="example-box">
+                <h4>例題7.1: ESR共鳴条件の計算</h4>
+                <p><strong>問題:</strong> X-band（周波数 9.5 GHz）のESR装置で自由ラジカル（g ≈ 2.00）を測定する。共鳴磁場を求めよ。</p>
+                <div class="solution">
+                    <p><strong>解答:</strong></p>
+                    <p>共鳴条件 \(h\nu = g\mu_B B\) より：</p>
+                    \[ B = \frac{h\nu}{g\mu_B} = \frac{6.626 \times 10^{-34} \times 9.5 \times 10^9}{2.00 \times 9.274 \times 10^{-24}} \]
+                    \[ = \frac{6.295 \times 10^{-24}}{1.855 \times 10^{-23}} = 0.339 \text{ T} = 339 \text{ mT} \]
+                    <p>または簡便な公式を使うと：</p>
+                    \[ B \text{ [mT]} = \frac{\nu \text{ [GHz]}}{0.02803 \times g} = \frac{9.5}{0.02803 \times 2.00} = 339 \text{ mT} \]
+                </div>
+            </div>
+
+            <h4>7.1.3 ESRの感度</h4>
+            <p>ESRはNMRより高感度である。これは電子の磁気モーメントが大きく、かつ高周波を使用するためである。</p>
+
+            <div class="equation-box">
+                <div class="title">ESR信号強度</div>
+                \[ \chi'' \propto N \cdot \frac{g^2\mu_B^2}{k_BT} \cdot \frac{\omega T_2}{1 + (\omega - \omega_0)^2 T_2^2} \]
+                <p>N: スピン数、T: 温度</p>
+                <p>ボルツマン偏極: \(\frac{\Delta N}{N} = \tanh\left(\frac{g\mu_B B}{2k_BT}\right) \approx \frac{g\mu_B B}{2k_BT}\)（高温極限）</p>
+            </div>
+
+            <p>室温、0.34 T での電子スピン偏極：</p>
+            <div class="equation">
+                \[ \frac{\Delta N}{N} \approx \frac{2.00 \times 9.27 \times 10^{-24} \times 0.34}{2 \times 1.38 \times 10^{-23} \times 300} = 7.6 \times 10^{-4} \]
+            </div>
+            <p>これはプロトンNMR（1.5 T）の約600倍の偏極度である。</p>
+        </section>
+
+        <!-- セクション2: g因子 -->
+        <section class="content-section">
+            <h3>7.2 g因子</h3>
+
+            <h4>7.2.1 g因子の物理的意味</h4>
+            <p>g因子（ランデのg因子、スペクトル分裂因子）は、電子の磁気モーメントと角運動量の比を特徴づける無次元量である。自由電子では \(g_e = 2.0023\) だが、分子や固体中の電子では軌道角運動量の寄与により値が変化する。</p>
+
+            <div class="equation-box">
+                <div class="title">有効g因子</div>
+                <p>スピンと軌道の両方が寄与する場合：</p>
+                \[ g_{eff} = g_S \frac{\langle S_z \rangle}{\langle J_z \rangle} + g_L \frac{\langle L_z \rangle}{\langle J_z \rangle} \]
+                <p>\(g_S \approx 2\)（スピンg因子）、\(g_L = 1\)（軌道g因子）</p>
+                <p>LS結合の場合（ランデのg因子）：</p>
+                \[ g_J = 1 + \frac{J(J+1) + S(S+1) - L(L+1)}{2J(J+1)} \]
+            </div>
+
+            <h4>7.2.2 g因子のずれ（Δg）</h4>
+            <p>有機ラジカルや遷移金属錯体では、スピン-軌道相互作用により g 値が自由電子値からずれる。このずれは電子の軌道状態に関する情報を与える。</p>
+
+            <div class="derivation">
+                <h4>導出: 2次摂動によるg因子のずれ</h4>
+                <div class="derivation-step">
+                    <span class="step-num">1</span>
+                    <strong>摂動ハミルトニアン</strong>
+                    <p>スピン-軌道相互作用: \(\hat{H}_{SO} = \lambda \vec{L} \cdot \vec{S}\)</p>
+                    <p>ゼーマン相互作用: \(\hat{H}_Z = \mu_B(g_L \vec{L} + g_S \vec{S}) \cdot \vec{B}\)</p>
+                </div>
+                <div class="derivation-step">
+                    <span class="step-num">2</span>
+                    <strong>軌道角運動量が凍結している場合</strong>
+                    <p>基底状態で \(\langle L \rangle = 0\) だが、励起状態との混合により有効的な軌道寄与が生じる。</p>
+                </div>
+                <div class="derivation-step">
+                    <span class="step-num">3</span>
+                    <strong>2次摂動の結果</strong>
+                    \[ g = g_e - 2\lambda \sum_{n \neq 0} \frac{|\langle 0 | L_z | n \rangle|^2}{E_n - E_0} \]
+                    <p>励起状態が低エネルギーにあるほど、g因子のずれは大きい。</p>
+                </div>
+                <div class="derivation-step">
+                    <span class="step-num">4</span>
+                    <strong>近似式</strong>
+                    \[ \Delta g = g - g_e \approx -\frac{2\lambda}{\Delta E} \]
+                    <p>\(\Delta E\): 基底状態と励起状態のエネルギー差</p>
+                </div>
+            </div>
+
+            <h4>7.2.3 g因子の異方性</h4>
+            <p>結晶場や分子構造の対称性が低い場合、g因子は方向依存性（異方性）を持つ。一般にg因子はテンソルとして記述される。</p>
+
+            <div class="equation-box">
+                <div class="title">g因子テンソル</div>
+                \[ \hat{H} = \mu_B \vec{B} \cdot \mathbf{g} \cdot \vec{S} = \mu_B \sum_{ij} B_i g_{ij} S_j \]
+                <p>主軸系では対角化されて：</p>
+                \[ \mathbf{g} = \begin{pmatrix} g_x & 0 & 0 \\ 0 & g_y & 0 \\ 0 & 0 & g_z \end{pmatrix} \]
+            </div>
+
+            <p>対称性による分類：</p>
+            <ul>
+                <li><strong>等方的</strong>（立方対称）: \(g_x = g_y = g_z = g_{iso}\)</li>
+                <li><strong>軸対称</strong>: \(g_x = g_y = g_\perp \neq g_z = g_\parallel\)</li>
+                <li><strong>斜方対称</strong>: \(g_x \neq g_y \neq g_z\)</li>
+            </ul>
+
+            <div class="example-box">
+                <h4>例題7.2: 軸対称g因子</h4>
+                <p><strong>問題:</strong> 軸対称のg因子テンソル（\(g_\parallel = 2.35\), \(g_\perp = 2.05\)）を持つ常磁性種について、磁場が対称軸となす角度 θ での有効g値を求めよ。θ = 0°, 45°, 90° の場合を計算せよ。</p>
+                <div class="solution">
+                    <p><strong>解答:</strong></p>
+                    <p>軸対称系での有効g値：</p>
+                    \[ g_{eff}(\theta) = \sqrt{g_\parallel^2 \cos^2\theta + g_\perp^2 \sin^2\theta} \]
+                    <p>θ = 0°（磁場が軸に平行）：</p>
+                    \[ g_{eff}(0°) = g_\parallel = 2.35 \]
+                    <p>θ = 45°：</p>
+                    \[ g_{eff}(45°) = \sqrt{2.35^2 \times 0.5 + 2.05^2 \times 0.5} = \sqrt{2.76 + 2.10} = 2.20 \]
+                    <p>θ = 90°（磁場が軸に垂直）：</p>
+                    \[ g_{eff}(90°) = g_\perp = 2.05 \]
+                    <p>粉末試料や凍結溶液では、全ての配向が含まれるため、スペクトルは g_\perp から g_\parallel まで広がった「粉末パターン」を示す。</p>
+                </div>
+            </div>
+
+            <div class="column application">
+                <h4>コラム: 遷移金属のg因子</h4>
+                <p>遷移金属イオンのESRでは、d軌道と結晶場の相互作用により特徴的なg因子が観測される。</p>
+                <p><strong>代表的な例：</strong></p>
+                <ul>
+                    <li><strong>Cu²⁺ (3d⁹)</strong>: 軸対称場で \(g_\parallel \approx 2.2-2.4\), \(g_\perp \approx 2.0-2.1\)。正孔を持つ \(d_{x^2-y^2}\) 軌道の特徴。</li>
+                    <li><strong>Fe³⁺ (3d⁵, 高スピン)</strong>: S = 5/2。ゼロ磁場分裂により複雑なスペクトル。\(g \approx 2.0\)。</li>
+                    <li><strong>Mn²⁺ (3d⁵)</strong>: S = 5/2、軌道角運動量凍結で \(g \approx 2.0\)。6本の超微細構造線が特徴。</li>
+                    <li><strong>V⁴⁺ (3d¹)</strong>: S = 1/2。\(g_\parallel < g_\perp < g_e\)（負のΔg）。</li>
+                </ul>
+                <p>g因子の値と異方性から、金属イオンの電子状態、配位構造、結晶場の対称性に関する情報が得られる。</p>
+            </div>
+        </section>
+
+        <!-- セクション3: 超微細構造 -->
+        <section class="content-section">
+            <h3>7.3 超微細構造</h3>
+
+            <h4>7.3.1 超微細相互作用</h4>
+            <p>電子スピンと核スピンの相互作用を超微細相互作用（hyperfine interaction）という。これによりESRスペクトルが分裂し、電子の存在する分子環境の詳細な情報が得られる。</p>
+
+            <div class="equation-box important">
+                <div class="title">超微細相互作用ハミルトニアン</div>
+                \[ \hat{H}_{hf} = \vec{S} \cdot \mathbf{A} \cdot \vec{I} = A_{iso} \vec{S} \cdot \vec{I} + \vec{S} \cdot \mathbf{A}_{aniso} \cdot \vec{I} \]
+                <p>\(\mathbf{A}\): 超微細結合テンソル</p>
+                <p>\(A_{iso}\): 等方性超微細結合定数（フェルミ接触相互作用）</p>
+                <p>\(\mathbf{A}_{aniso}\): 異方性超微細結合（双極子-双極子相互作用）</p>
+            </div>
+
+            <h4>7.3.2 等方性超微細結合（フェルミ接触相互作用）</h4>
+            <p>s軌道電子は核の位置に有限の存在確率を持つ。このとき電子と核の磁気モーメントが直接相互作用する。</p>
+
+            <div class="equation-box">
+                <div class="title">フェルミ接触項</div>
+                \[ A_{iso} = \frac{8\pi}{3} g_e \mu_B g_N \mu_N |\psi(0)|^2 \]
+                <p>\(|\psi(0)|^2\): 核の位置での電子密度</p>
+                <p>水素原子1s電子の場合: \(A_{iso} = 1420\) MHz（50.7 mT）</p>
+            </div>
+
+            <p>有機ラジカルでは、不対電子は主にπ軌道に存在するが、スピン分極機構により隣接原子の核と相互作用する。</p>
+
+            <h4>7.3.3 超微細分裂のパターン</h4>
+            <p>核スピン I の核と相互作用すると、ESR線は 2I + 1 本に分裂する。</p>
+
+            <div class="derivation">
+                <h4>導出: 超微細分裂のエネルギー準位</h4>
+                <div class="derivation-step">
+                    <span class="step-num">1</span>
+                    <strong>ハミルトニアン</strong>
+                    <p>等方性超微細相互作用を含む全ハミルトニアン：</p>
+                    \[ \hat{H} = g\mu_B B \hat{S}_z - g_N\mu_N B \hat{I}_z + A_{iso} \vec{S} \cdot \vec{I} \]
+                </div>
+                <div class="derivation-step">
+                    <span class="step-num">2</span>
+                    <strong>1次摂動（高磁場極限）</strong>
+                    <p>核ゼーマン項と超微細項の非対角成分を無視すると：</p>
+                    \[ E(m_S, m_I) = g\mu_B B m_S - g_N\mu_N B m_I + A_{iso} m_S m_I \]
+                </div>
+                <div class="derivation-step">
+                    <span class="step-num">3</span>
+                    <strong>ESR遷移（\(\Delta m_S = \pm 1, \Delta m_I = 0\)）</strong>
+                    \[ h\nu = g\mu_B B + A_{iso} m_I \]
+                    <p>または共鳴磁場で表すと：</p>
+                    \[ B_{res} = \frac{h\nu}{g\mu_B} - \frac{A_{iso}}{g\mu_B} m_I \]
+                </div>
+                <div class="derivation-step">
+                    <span class="step-num">4</span>
+                    <strong>分裂パターン</strong>
+                    <p>\(m_I = I, I-1, ..., -I\) の 2I+1 通りの値に対応して、ESR線は等間隔 \(A_{iso}\) で 2I+1 本に分裂。</p>
+                </div>
+            </div>
+
+            <div class="example-box">
+                <h4>例題7.3: 水素原子のESR</h4>
+                <p><strong>問題:</strong> 水素原子（¹H、I = 1/2）の超微細結合定数は A = 50.7 mT（1420 MHz）である。X-band（9.5 GHz）でのESRスペクトルを描け。</p>
+                <div class="solution">
+                    <p><strong>解答:</strong></p>
+                    <p>中心共鳴磁場（超微細相互作用がない場合）：</p>
+                    \[ B_0 = \frac{h\nu}{g_e\mu_B} = \frac{6.626 \times 10^{-34} \times 9.5 \times 10^9}{2.0023 \times 9.274 \times 10^{-24}} = 339 \text{ mT} \]
+                    <p>I = 1/2 なので、\(m_I = +1/2, -1/2\) の2本に分裂。</p>
+                    <p>各線の位置：</p>
+                    \[ B_{m_I = +1/2} = B_0 - \frac{A}{2} = 339 - 25.35 = 313.65 \text{ mT} \]
+                    \[ B_{m_I = -1/2} = B_0 + \frac{A}{2} = 339 + 25.35 = 364.35 \text{ mT} \]
+                    <p>2本の線が約50.7 mT離れて観測される。これは電磁波スペクトルの21 cm線（水素線）と同じ遷移である。</p>
+                </div>
+            </div>
+
+            <h4>7.3.4 複数の等価核との相互作用</h4>
+            <p>n個の等価な核（スピン I）と相互作用する場合、分裂パターンは統計的重みを反映する。</p>
+
+            <div class="key-point">
+                <h4>等価核による超微細分裂</h4>
+                <p>n個の等価な I = 1/2 核の場合：</p>
+                <ul>
+                    <li>線の本数: n + 1 本</li>
+                    <li>強度比: パスカルの三角形（二項係数）</li>
+                </ul>
+                <table class="data-table" style="max-width: 400px;">
+                    <thead>
+                        <tr><th>等価核数 n</th><th>線数</th><th>強度比</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>1</td><td>2</td><td>1:1</td></tr>
+                        <tr><td>2</td><td>3</td><td>1:2:1</td></tr>
+                        <tr><td>3</td><td>4</td><td>1:3:3:1</td></tr>
+                        <tr><td>4</td><td>5</td><td>1:4:6:4:1</td></tr>
+                        <tr><td>6</td><td>7</td><td>1:6:15:20:15:6:1</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="example-box">
+                <h4>例題7.4: ベンゼンアニオンラジカル</h4>
+                <p><strong>問題:</strong> ベンゼンアニオンラジカル（C₆H₆⁻）は6個の等価なプロトンを持つ。超微細結合定数を A = 0.375 mT として、ESRスペクトルの分裂パターンを予測せよ。</p>
+                <div class="solution">
+                    <p><strong>解答:</strong></p>
+                    <p>6個の等価な I = 1/2 核との相互作用により：</p>
+                    <ul>
+                        <li>線の本数: 6 + 1 = 7 本</li>
+                        <li>強度比: 1:6:15:20:15:6:1</li>
+                        <li>線間隔: A = 0.375 mT</li>
+                        <li>全スペクトル幅: 6 × A = 2.25 mT</li>
+                    </ul>
+                    <p>中心の線が最も強く（強度比20）、両端に行くほど弱くなる対称的なパターン。このパターンはベンゼンのπ電子系の対称性（D₆h）を反映している。</p>
+                </div>
+            </div>
+
+            <div class="column tip">
+                <h4>コラム: マクコネルの関係式</h4>
+                <p>有機ラジカルにおいて、芳香族プロトンの超微細結合定数はスピン密度と線形関係にある（マクコネルの関係式）：</p>
+                \[ A_H = Q \rho^\pi \]
+                <p>Q ≈ -2.3 mT: 比例定数、\(\rho^\pi\): 隣接炭素のπスピン密度</p>
+                <p>この関係を用いると、ESRスペクトルから分子内のスピン分布を決定できる。例えば、ナフタレンアニオンラジカルでは、1位と2位のプロトンで異なる超微細結合定数が観測され、スピン密度の不均一な分布が確認される。</p>
+            </div>
+        </section>
+
+        <!-- セクション4: ESR装置と実験技術 -->
+        <section class="content-section">
+            <h3>7.4 ESR装置と実験技術</h3>
+
+            <h4>7.4.1 連続波ESR（CW-ESR）</h4>
+            <p>最も一般的なESR測定は、連続マイクロ波を照射しながら磁場を掃引する連続波（CW）法である。</p>
+
+            <div class="key-point">
+                <h4>CW-ESR装置の構成</h4>
+                <ol>
+                    <li><strong>マイクロ波源</strong>: クライストロン、ガンダイオード（X-band: 9-10 GHz）</li>
+                    <li><strong>マイクロ波ブリッジ</strong>: マイクロ波の分岐・検出</li>
+                    <li><strong>共振器（キャビティ）</strong>: 試料を置く。マイクロ波強度を増強</li>
+                    <li><strong>電磁石</strong>: 静磁場を発生・掃引（0-1.5 T程度）</li>
+                    <li><strong>変調コイル</strong>: 磁場変調（通常100 kHz）をかける</li>
+                    <li><strong>検出器</strong>: マイクロ波検出とロックイン検波</li>
+                </ol>
+            </div>
+
+            <p>磁場変調を使用するため、観測されるスペクトルは吸収曲線の1次微分形となる。これにより高いS/N比と分解能が得られる。</p>
+
+            <h4>7.4.2 測定周波数帯</h4>
+
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>バンド名</th>
+                        <th>周波数範囲</th>
+                        <th>共鳴磁場（g=2）</th>
+                        <th>特徴・用途</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>L-band</td>
+                        <td>1-2 GHz</td>
+                        <td>36-71 mT</td>
+                        <td>in vivo ESR、大試料</td>
+                    </tr>
+                    <tr>
+                        <td>S-band</td>
+                        <td>2-4 GHz</td>
+                        <td>71-143 mT</td>
+                        <td>生体試料</td>
+                    </tr>
+                    <tr>
+                        <td>X-band</td>
+                        <td>9-10 GHz</td>
+                        <td>320-360 mT</td>
+                        <td>最も一般的</td>
+                    </tr>
+                    <tr>
+                        <td>Q-band</td>
+                        <td>33-35 GHz</td>
+                        <td>1.2 T</td>
+                        <td>高分解能</td>
+                    </tr>
+                    <tr>
+                        <td>W-band</td>
+                        <td>94 GHz</td>
+                        <td>3.4 T</td>
+                        <td>高磁場ESR</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h4>7.4.3 パルスESR</h4>
+            <p>NMRと同様に、パルス技術を用いた高度なESR測定が可能である。</p>
+
+            <ul>
+                <li><strong>電子スピンエコー（ESE）</strong>: T₂ 測定、ESEEM（電子スピンエコー包絡変調）</li>
+                <li><strong>DEER/PELDOR</strong>: スピン間距離測定（1-8 nm）</li>
+                <li><strong>ENDOR</strong>: 電子-核二重共鳴。核磁気共鳴を間接検出</li>
+                <li><strong>HYSCORE</strong>: 2次元ESEEM。核の周囲の詳細な情報</li>
+            </ul>
+
+            <div class="equation-box">
+                <div class="title">電子スピンエコー検出ENDOR</div>
+                <p>ENDORでは、ESRと NMR遷移を組み合わせて核周波数を高感度に検出：</p>
+                \[ \nu_\pm = |A/2 \pm \nu_N| \]
+                <p>\(\nu_N = g_N\mu_N B/h\): 核ラーモア周波数</p>
+                <p>\(A\): 超微細結合定数</p>
+                <p>強結合（A/2 > νN）か弱結合（A/2 < νN）かで線の位置関係が変わる</p>
+            </div>
+
+            <div class="column history">
+                <h4>コラム: ESRの発見</h4>
+                <p>ESRは1944年、ソ連のザヴォイスキーによって発見された。彼はカザン大学で、MnCl₂とCuCl₂の塩を用いた実験で初めてESR信号を観測した。</p>
+                <p>第二次世界大戦中の発見であったため、西側への情報伝達は遅れた。戦後、ブレーンベルヘン、パーセル、パウンドらが独立にESRを報告し、急速に発展した。</p>
+                <p>ESRの発見は、その後の固体物理学、化学、生物学に大きな影響を与えた。特に：</p>
+                <ul>
+                    <li>半導体中の欠陥・不純物の研究</li>
+                    <li>自由ラジカル化学の発展</li>
+                    <li>酵素の活性中心の解明</li>
+                    <li>光合成反応中心の研究</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- セクション5: ESRの応用 -->
+        <section class="content-section">
+            <h3>7.5 ESRの応用</h3>
+
+            <h4>7.5.1 化学への応用</h4>
+            <p>ESRは不対電子を直接検出できる唯一の分光法として、ラジカル化学で不可欠なツールである。</p>
+
+            <ul>
+                <li><strong>ラジカル反応機構の解明</strong>: 反応中間体の同定と定量</li>
+                <li><strong>重合反応</strong>: ラジカル重合の開始剤濃度モニタリング</li>
+                <li><strong>抗酸化剤の評価</strong>: ラジカル消去活性の測定</li>
+                <li><strong>光化学</strong>: 光励起で生成するラジカルの研究</li>
+            </ul>
+
+            <div class="example-box">
+                <h4>例題7.5: スピントラップ法</h4>
+                <p><strong>問題:</strong> 短寿命ラジカルR·をスピントラップ剤DMPO（5,5-ジメチル-1-ピロリン-N-オキシド）で捕捉すると、より安定なニトロキシドラジカルが生成する。このアダクトが4本線のESRスペクトルを示す場合、どのような核との相互作用が関与しているか説明せよ。</p>
+                <div class="solution">
+                    <p><strong>解答:</strong></p>
+                    <p>DMPOアダクトの4本線パターンは以下の2つの核との相互作用による：</p>
+                    <ul>
+                        <li>¹⁴N（I = 1）との相互作用: 3本に分裂</li>
+                        <li>β位の ¹H（I = 1/2）との相互作用: 各線がさらに2本に分裂</li>
+                    </ul>
+                    <p>結果として 3 × 2 = 6 本となるが、¹⁴N と ¹H の超微細結合定数が近い場合（A_N ≈ A_H）、中央の線が重なって見かけ上4本（強度比 1:2:2:1 または 1:1:1:1）になることがある。</p>
+                    <p>スペクトル解析から、捕捉されたラジカルRの種類（酸素中心ラジカル、炭素中心ラジカル等）を推定できる。</p>
+                </div>
+            </div>
+
+            <h4>7.5.2 生物学・医学への応用</h4>
+            <p>生体系にはESR活性な種が多く存在し、ESRは生命科学で重要なツールとなっている。</p>
+
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>応用分野</th>
+                        <th>対象</th>
+                        <th>得られる情報</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>金属酵素</td>
+                        <td>Fe, Cu, Mn, Mo中心</td>
+                        <td>酸化状態、配位構造、基質結合</td>
+                    </tr>
+                    <tr>
+                        <td>光合成</td>
+                        <td>反応中心、電子伝達</td>
+                        <td>電荷分離、ラジカル対</td>
+                    </tr>
+                    <tr>
+                        <td>酸化ストレス</td>
+                        <td>活性酸素種（ROS）</td>
+                        <td>ラジカル種の同定・定量</td>
+                    </tr>
+                    <tr>
+                        <td>スピンラベル</td>
+                        <td>タンパク質、膜</td>
+                        <td>運動性、距離、構造変化</td>
+                    </tr>
+                    <tr>
+                        <td>ESRイメージング</td>
+                        <td>生体組織</td>
+                        <td>酸素濃度、ラジカル分布</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h4>7.5.3 材料科学への応用</h4>
+            <p>固体材料中の欠陥や不純物の研究にESRは不可欠である。</p>
+
+            <ul>
+                <li><strong>半導体</strong>: ドナー・アクセプター準位、深い欠陥準位</li>
+                <li><strong>ダイヤモンド</strong>: NV中心、P1中心（置換窒素）</li>
+                <li><strong>酸化物</strong>: 酸素空孔、F中心</li>
+                <li><strong>触媒</strong>: 活性サイト、反応中間体</li>
+                <li><strong>電池材料</strong>: 充放電に伴う電子状態変化</li>
+            </ul>
+
+            <div class="column application">
+                <h4>コラム: ESRによる年代測定</h4>
+                <p>ESR年代測定は、自然放射線による欠陥（パラメトリックセンター）の蓄積を利用した考古学的年代測定法である。</p>
+                <p><strong>原理：</strong></p>
+                <ul>
+                    <li>サンゴ、貝殻、歯のエナメル質（主成分：炭酸カルシウム、ハイドロキシアパタイト）</li>
+                    <li>自然放射線（ウラン系列、トリウム系列、カリウム40）による電子励起</li>
+                    <li>励起電子が格子欠陥にトラップされ、常磁性中心を形成</li>
+                    <li>ESR信号強度が被曝線量（＝経過時間）に比例</li>
+                </ul>
+                <p><strong>測定可能範囲：</strong> 数千年〜数百万年（放射性炭素法の限界を超える）</p>
+                <p>この手法は、化石人類の年代決定、海水準変動の研究、断層活動の履歴解明などに活用されている。</p>
+            </div>
+
+            <h4>7.5.4 スピンラベル法</h4>
+            <p>安定ニトロキシドラジカルを分子に共有結合で導入し、その運動性や環境をESRで観測する手法。</p>
+
+            <div class="equation-box">
+                <div class="title">ニトロキシドラジカルのESR</div>
+                <p>典型的なニトロキシド（TEMPO等）のESR：</p>
+                <ul style="text-align: left;">
+                    <li>¹⁴N（I = 1）との相互作用で3本線</li>
+                    <li>\(A_N \approx 1.5\) mT（等方性）</li>
+                    <li>g値: \(g_{iso} \approx 2.006\)</li>
+                </ul>
+                <p>線幅と線形から分子運動を解析：</p>
+                <ul style="text-align: left;">
+                    <li>速い運動（\(\tau_c < 10^{-10}\) s）: 3本の鋭い等強度線</li>
+                    <li>遅い運動（\(\tau_c > 10^{-7}\) s）: 粉末パターン</li>
+                    <li>中間（\(10^{-10} < \tau_c < 10^{-7}\) s）: 線幅の異方性</li>
+                </ul>
+            </div>
+
+            <div class="example-box">
+                <h4>例題7.6: 膜流動性の測定</h4>
+                <p><strong>問題:</strong> 脂質二重膜にスピンラベル脂質を導入してESR測定を行った。37℃では3本の比較的鋭い線が観測されたが、4℃に冷却すると外側の2本が広がり、中央の線だけが鋭く残るパターンに変化した。この変化を分子運動の観点から説明せよ。</p>
+                <div class="solution">
+                    <p><strong>解答:</strong></p>
+                    <p>37℃（生理的温度）：</p>
+                    <ul>
+                        <li>膜は液晶相（流動的）</li>
+                        <li>スピンラベルは高速で回転運動</li>
+                        <li>g値とA値の異方性が平均化</li>
+                        <li>3本の等幅・等強度線（運動による狭窄化）</li>
+                    </ul>
+                    <p>4℃（低温）：</p>
+                    <ul>
+                        <li>膜はゲル相（秩序的）に近づく</li>
+                        <li>スピンラベルの運動が制限</li>
+                        <li>異方性が部分的に残存</li>
+                        <li>外側の線（\(m_I = \pm 1\)）が広がる</li>
+                        <li>中央の線（\(m_I = 0\)）は \(g_{iso}\) と \(A_{iso}\) で決まり、異方性の影響が小さい</li>
+                    </ul>
+                    <p>このようなスペクトル変化から、膜の相転移温度や流動性を評価できる。</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- セクション6: 先端ESR技術 -->
+        <section class="content-section">
+            <h3>7.6 先端ESR技術</h3>
+
+            <h4>7.6.1 高磁場・高周波ESR</h4>
+            <p>高い磁場と周波数を使用することで、ESRの分解能と感度が向上する。</p>
+
+            <ul>
+                <li><strong>g値分解能の向上</strong>: ゼーマン分裂が大きくなり、わずかなg値の違いが分離できる</li>
+                <li><strong>感度向上</strong>: ボルツマン偏極が増大</li>
+                <li><strong>配向選択性</strong>: 粉末試料でも特定配向の情報抽出が可能</li>
+            </ul>
+
+            <h4>7.6.2 DEER/PELDOR法</h4>
+            <p>Double Electron-Electron Resonance（DEER）またはPulsed Electron-Electron Double Resonance（PELDOR）は、2つの電子スピン間の距離を測定する強力な手法である。</p>
+
+            <div class="equation-box">
+                <div class="title">電子-電子双極子相互作用</div>
+                \[ \omega_{dd} = \frac{\mu_0}{4\pi\hbar} \frac{g_1 g_2 \mu_B^2}{r^3}(1 - 3\cos^2\theta) \]
+                <p>r: スピン間距離、θ: 磁場方向とスピン間ベクトルのなす角</p>
+                <p>粉末平均: \(\langle\omega_{dd}\rangle \propto 1/r^3\)</p>
+                <p>測定可能距離範囲: 1.5〜8 nm</p>
+            </div>
+
+            <p>DEER法は、タンパク質の構造変化、膜タンパク質のコンフォメーション、分子間相互作用の研究に広く使用されている。</p>
+
+            <h4>7.6.3 ESRイメージング</h4>
+            <p>MRIと同様の原理で、ESR信号の空間分布を画像化する技術。</p>
+
+            <ul>
+                <li><strong>in vivo ESRイメージング</strong>: 生体内の酸素濃度、ラジカル分布を非侵襲的に測定</li>
+                <li><strong>空間分解能</strong>: 〜1 mm（MRIより低いが、ESR特有の情報が得られる）</li>
+                <li><strong>プローブ</strong>: ニトロキシドラジカル、トリアリールメチルラジカル</li>
+            </ul>
+
+            <div class="column tip">
+                <h4>コラム: 量子センシングとESR</h4>
+                <p>ダイヤモンド中のNV中心を用いた量子センシングは、ESR技術の最新の発展である。</p>
+                <p><strong>NV中心量子センサーの特徴：</strong></p>
+                <ul>
+                    <li>室温で動作し、長いコヒーレンス時間</li>
+                    <li>光学的な初期化・読み出しが可能</li>
+                    <li>単一NV中心を用いたナノスケール分解能</li>
+                    <li>磁場感度: 〜nT/√Hz</li>
+                </ul>
+                <p><strong>応用例：</strong></p>
+                <ul>
+                    <li>単分子レベルのESR検出</li>
+                    <li>細胞内の磁場イメージング</li>
+                    <li>材料中のスピン分布のナノスケールマッピング</li>
+                    <li>量子コンピューティングの読み出し</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- 演習問題 -->
+        <section class="content-section exercises">
+            <h3>演習問題</h3>
+
+            <div class="exercise">
+                <h4>問題7.1 基礎</h4>
+                <p>X-band ESR（9.5 GHz）で、g = 2.10 の常磁性種の共鳴磁場を求めよ。自由電子（g = 2.0023）と比較して、磁場はどちらにシフトしているか。</p>
+            </div>
+
+            <div class="exercise">
+                <h4>問題7.2 応用</h4>
+                <p>メチルラジカル（CH₃·）のESRスペクトルは4本線を示す。(a) この分裂パターンを説明せよ。(b) 超微細結合定数 A = 2.3 mT として、X-band（9.5 GHz）でのスペクトルにおける各線の位置を計算せよ。(c) 強度比を求めよ。</p>
+            </div>
+
+            <div class="exercise">
+                <h4>問題7.3 発展</h4>
+                <p>Cu²⁺イオン（3d⁹, S = 1/2）が軸対称の配位環境にある。g_∥ = 2.25, g_⊥ = 2.05, A_∥(⁶³Cu) = 18 mT, A_⊥(⁶³Cu) = 2 mT とする。⁶³Cuの核スピンは I = 3/2 である。(a) 磁場が軸に平行なときのESRスペクトルの線数と間隔を予測せよ。(b) 粉末試料ではどのようなスペクトルパターンが予想されるか概説せよ。</p>
+            </div>
+
+            <div class="exercise">
+                <h4>問題7.4 考察</h4>
+                <p>有機ラジカルのg因子は通常 g ≈ 2.00 だが、ニトロキシドラジカルでは g ≈ 2.006 とやや大きい。一方、酸素分子（O₂, 三重項基底状態）のg因子は g ≈ 2.0 である。(a) ニトロキシドでgがシフトする理由を、スピン-軌道相互作用の観点から説明せよ。(b) O₂の場合、スピン-軌道結合が大きいにもかかわらずgが2に近い理由を考察せよ。</p>
+            </div>
+
+            <div class="exercise">
+                <h4>問題7.5 総合</h4>
+                <p>タンパク質の2か所にニトロキシドスピンラベルを導入し、DEER法でスピン間距離を測定する実験を計画する。(a) DEER法で距離情報が得られる原理を説明せよ。(b) 測定可能な距離範囲（1.5-8 nm）の制限要因を議論せよ。(c) タンパク質が2つのコンフォメーション（距離 3.0 nm と 5.0 nm）の間で平衡にある場合、DEERデータからどのような情報が得られるか。</p>
+            </div>
+        </section>
+
+        <!-- まとめ -->
+        <section class="content-section summary">
+            <h3>第7回のまとめ</h3>
+            <div class="summary-box">
+                <h4>学習した主要概念</h4>
+                <ul>
+                    <li>ESRは不対電子のマイクロ波共鳴であり、NMRより約1000倍高い周波数を使用</li>
+                    <li>g因子は電子の軌道状態を反映し、自由電子値（2.0023）からのずれで電子構造がわかる</li>
+                    <li>超微細構造は電子-核スピン相互作用による分裂で、分子構造の情報を与える</li>
+                    <li>等価核n個（I = 1/2）との相互作用で n+1 本に分裂（パスカル三角形の強度比）</li>
+                    <li>スピンラベル法、DEER法などの先端技術で構造・動態の研究が可能</li>
+                </ul>
+            </div>
+
+            <div class="summary-box">
+                <h4>重要公式</h4>
+                <div class="formula-list">
+                    <p>ESR共鳴条件: \(h\nu = g\mu_B B\)</p>
+                    <p>簡便式: \(B \text{ [mT]} = 71.45 \times \nu \text{ [GHz]} / g\)</p>
+                    <p>超微細分裂: \(B_{res} = B_0 - A \cdot m_I / (g\mu_B)\)</p>
+                    <p>フェルミ接触項: \(A_{iso} = (8\pi/3) g_e \mu_B g_N \mu_N |\psi(0)|^2\)</p>
+                    <p>マクコネルの式: \(A_H = Q\rho^\pi\)（Q ≈ -2.3 mT）</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ナビゲーション -->
+        <nav class="lecture-nav">
+            <a href="lecture06.html" class="nav-prev">← 第6回: 磁気共鳴</a>
+            <a href="lecture08.html" class="nav-next">第8回: 次回講義 →</a>
+        </nav>
+    </main>
+
+    <footer>
+        <p>福井大学 共通教育科目 B2032 電磁波と物質</p>
+        <p>担当: 福成 雅史 / 石川 裕也</p>
+    </footer>
+
+    <script src="../js/lecture.js"></script>
+</body>
+</html>

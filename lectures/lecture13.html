@@ -1,0 +1,951 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>第13回: 荷電粒子・プラズマ - 電磁波と物質</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/lecture.css">
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+    <header class="main-header">
+        <h1>電磁波と物質</h1>
+        <p class="subtitle">第13回: 荷電粒子・プラズマ</p>
+    </header>
+
+    <nav class="main-nav">
+        <a href="../index.html">ダッシュボード</a>
+        <a href="../lecture.html">講義一覧</a>
+        <a href="../interactive.html">インタラクティブ学習</a>
+    </nav>
+
+    <main class="lecture-content">
+        <div class="lecture-header">
+            <div class="lecture-meta">
+                <span class="lecture-number">Lecture 13</span>
+                <span class="lecture-duration">学習時間目安: 120-150分</span>
+            </div>
+            <h2>荷電粒子・プラズマ</h2>
+            <p class="lecture-objectives">
+                <strong>学習目標:</strong> 荷電粒子の運動と電磁場との相互作用を理解し、プラズマの基本的性質を説明できるようになる。ローレンツ力による粒子の運動、サイクロトロン運動、プラズマ周波数、デバイ遮蔽などの概念を学び、核融合プラズマや電離層など実際の応用例を理解する。荷電粒子からの電磁波放射（制動放射、シンクロトロン放射）のメカニズムも習得する。
+            </p>
+        </div>
+
+        <!-- セクション1: 荷電粒子と電磁場 -->
+        <section class="content-section">
+            <h3>13.1 荷電粒子と電磁場の相互作用</h3>
+
+            <h4>13.1.1 ローレンツ力</h4>
+            <p>電磁場中の荷電粒子に働く力はローレンツ力と呼ばれ、電気力と磁気力の和として表される。</p>
+
+            <div class="equation-box important">
+                <div class="title">ローレンツ力</div>
+                \[ \vec{F} = q(\vec{E} + \vec{v} \times \vec{B}) \]
+                <p>第1項 \(q\vec{E}\)：電気力（電場による力）</p>
+                <p>第2項 \(q\vec{v} \times \vec{B}\)：磁気力（磁場による力）</p>
+            </div>
+
+            <p>電気力と磁気力の重要な違いは以下の通りである：</p>
+
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>特性</th>
+                        <th>電気力 \(q\vec{E}\)</th>
+                        <th>磁気力 \(q\vec{v} \times \vec{B}\)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>方向</td>
+                        <td>電場と平行（または反平行）</td>
+                        <td>速度と磁場の両方に垂直</td>
+                    </tr>
+                    <tr>
+                        <td>仕事</td>
+                        <td>粒子にエネルギーを与えうる</td>
+                        <td>常にゼロ（エネルギーを変化させない）</td>
+                    </tr>
+                    <tr>
+                        <td>静止粒子への作用</td>
+                        <td>力を及ぼす</td>
+                        <td>力を及ぼさない</td>
+                    </tr>
+                    <tr>
+                        <td>速度依存性</td>
+                        <td>なし</td>
+                        <td>速度に比例</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="derivation">
+                <h4>導出: 磁気力が仕事をしないことの証明</h4>
+                <div class="derivation-step">
+                    <span class="step-num">1</span>
+                    <strong>仕事の定義</strong>
+                    <p>力が微小変位 \(d\vec{r}\) の間にする仕事は：</p>
+                    \[ dW = \vec{F} \cdot d\vec{r} = \vec{F} \cdot \vec{v} \, dt \]
+                </div>
+                <div class="derivation-step">
+                    <span class="step-num">2</span>
+                    <strong>磁気力の仕事</strong>
+                    <p>磁気力による仕事率は：</p>
+                    \[ P_{mag} = \vec{F}_{mag} \cdot \vec{v} = q(\vec{v} \times \vec{B}) \cdot \vec{v} \]
+                </div>
+                <div class="derivation-step">
+                    <span class="step-num">3</span>
+                    <strong>ベクトル三重積の性質</strong>
+                    <p>\(\vec{v} \times \vec{B}\) は \(\vec{v}\) に垂直なので：</p>
+                    \[ (\vec{v} \times \vec{B}) \cdot \vec{v} = 0 \]
+                </div>
+                <div class="derivation-step">
+                    <span class="step-num">4</span>
+                    <strong>結論</strong>
+                    <p>磁気力は常に運動方向に垂直なため、粒子に仕事をすることができない。磁場は粒子の運動方向を変えることはできるが、運動エネルギー（速さ）を変えることはできない。</p>
+                </div>
+            </div>
+
+            <h4>13.1.2 電場中の荷電粒子の運動</h4>
+            <p>一様な電場 \(\vec{E}\) 中での荷電粒子の運動方程式は：</p>
+            \[ m\frac{d\vec{v}}{dt} = q\vec{E} \]
+
+            <p>これは等加速度運動を与える。加速度は：</p>
+            \[ \vec{a} = \frac{q\vec{E}}{m} \]
+
+            <div class="example-box">
+                <h4>例題13.1: 電子の加速</h4>
+                <p><strong>問題:</strong> 静止していた電子が電位差 1000 V で加速された。最終的な速度を求めよ。また、光速との比を計算し、相対論的補正の必要性を検討せよ。</p>
+                <div class="solution">
+                    <p><strong>解答:</strong></p>
+                    <p>エネルギー保存則より：</p>
+                    \[ eV = \frac{1}{2}m_e v^2 \]
+                    \[ v = \sqrt{\frac{2eV}{m_e}} = \sqrt{\frac{2 \times 1.6 \times 10^{-19} \times 1000}{9.11 \times 10^{-31}}} \]
+                    \[ v = \sqrt{3.51 \times 10^{14}} = 1.87 \times 10^7 \text{ m/s} \]
+
+                    <p>光速との比：</p>
+                    \[ \frac{v}{c} = \frac{1.87 \times 10^7}{3.0 \times 10^8} = 0.062 = 6.2\% \]
+
+                    <p><strong>相対論的補正の検討：</strong></p>
+                    <p>ローレンツ因子：\(\gamma = 1/\sqrt{1-0.062^2} = 1.0019\)</p>
+                    <p>相対論的補正は約0.2%であり、多くの応用では無視できる。ただし、10 kV以上の加速では補正が重要になる。</p>
+                </div>
+            </div>
+
+            <h4>13.1.3 荷電粒子の電磁波放射</h4>
+            <p>加速する荷電粒子は電磁波を放射する。これは古典電磁気学の基本的な結果である。</p>
+
+            <div class="equation-box">
+                <div class="title">ラーモアの公式（非相対論的）</div>
+                <p>加速度 \(a\) を持つ電荷 \(q\) が放射するパワー：</p>
+                \[ P = \frac{q^2 a^2}{6\pi\epsilon_0 c^3} = \frac{\mu_0 q^2 a^2 c}{6\pi} \]
+                <p>SI単位系では：\(P = \frac{q^2 a^2}{6\pi\epsilon_0 c^3}\)</p>
+                <p>CGS単位系では：\(P = \frac{2q^2 a^2}{3c^3}\)</p>
+            </div>
+
+            <div class="derivation">
+                <h4>導出: ラーモアの公式の物理的理解</h4>
+                <div class="derivation-step">
+                    <span class="step-num">1</span>
+                    <strong>放射の源</strong>
+                    <p>加速する電荷は、電場の「ねじれ」を生み出す。このねじれが電磁波として外側へ伝播する。</p>
+                </div>
+                <div class="derivation-step">
+                    <span class="step-num">2</span>
+                    <strong>次元解析</strong>
+                    <p>放射パワーは以下の量に依存すると考えられる：電荷 \(q\)、加速度 \(a\)、光速 \(c\)、誘電率 \(\epsilon_0\)</p>
+                    <p>次元解析より：\([P] = [q^2 a^2 / \epsilon_0 c^3]\)</p>
+                </div>
+                <div class="derivation-step">
+                    <span class="step-num">3</span>
+                    <strong>重要な帰結</strong>
+                    <ul>
+                        <li>放射パワーは加速度の2乗に比例する</li>
+                        <li>電荷の2乗に比例する</li>
+                        <li>質量に直接は依存しないが、同じ力では軽い粒子ほど加速度が大きくなる</li>
+                    </ul>
+                </div>
+                <div class="derivation-step">
+                    <span class="step-num">4</span>
+                    <strong>放射パワーの比較</strong>
+                    <p>同じ力を受ける電子と陽子の放射パワー比：</p>
+                    \[ \frac{P_e}{P_p} = \left(\frac{a_e}{a_p}\right)^2 = \left(\frac{m_p}{m_e}\right)^2 \approx (1836)^2 \approx 3.4 \times 10^6 \]
+                    <p>電子は陽子の約340万倍の放射をする。</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- セクション2: 磁場中の荷電粒子 -->
+        <section class="content-section">
+            <h3>13.2 磁場中の荷電粒子の運動</h3>
+
+            <h4>13.2.1 サイクロトロン運動</h4>
+            <p>一様な磁場 \(\vec{B}\) 中で、磁場に垂直な成分を持つ速度で運動する荷電粒子は、円運動（サイクロトロン運動）を行う。</p>
+
+            <div class="derivation">
+                <h4>導出: サイクロトロン運動の基本量</h4>
+                <div class="derivation-step">
+                    <span class="step-num">1</span>
+                    <strong>運動方程式</strong>
+                    <p>磁場 \(\vec{B} = B\hat{z}\) 中を速度 \(\vec{v} = v_\perp(\cos\omega t, \sin\omega t, 0)\) で運動する電荷 \(q\) に対して：</p>
+                    \[ m\frac{d\vec{v}}{dt} = q\vec{v} \times \vec{B} \]
+                </div>
+                <div class="derivation-step">
+                    <span class="step-num">2</span>
+                    <strong>円運動の条件</strong>
+                    <p>磁気力が向心力を提供する：</p>
+                    \[ \frac{mv_\perp^2}{r} = qv_\perp B \]
+                </div>
+                <div class="derivation-step">
+                    <span class="step-num">3</span>
+                    <strong>サイクロトロン半径（ラーモア半径）</strong>
+                    \[ r_c = \frac{mv_\perp}{qB} \]
+                </div>
+                <div class="derivation-step">
+                    <span class="step-num">4</span>
+                    <strong>サイクロトロン周波数</strong>
+                    <p>角速度 \(\omega_c = v_\perp/r_c\) より：</p>
+                    \[ \omega_c = \frac{qB}{m} \]
+                    <p>周波数：</p>
+                    \[ f_c = \frac{\omega_c}{2\pi} = \frac{qB}{2\pi m} \]
+                </div>
+                <div class="derivation-step">
+                    <span class="step-num">5</span>
+                    <strong>重要な性質</strong>
+                    <p>サイクロトロン周波数は速度に依存しない（非相対論的な場合）。これがサイクロトロン加速器の動作原理の基礎となる。</p>
+                </div>
+            </div>
+
+            <div class="equation-box important">
+                <div class="title">サイクロトロン運動の基本公式</div>
+                <p><strong>サイクロトロン角周波数:</strong></p>
+                \[ \omega_c = \frac{|q|B}{m} \quad \text{(非相対論的)} \]
+                \[ \omega_c = \frac{|q|B}{\gamma m} \quad \text{(相対論的)} \]
+                <p><strong>サイクロトロン半径（ラーモア半径）:</strong></p>
+                \[ r_c = \frac{mv_\perp}{|q|B} = \frac{p_\perp}{|q|B} \]
+                <p><strong>サイクロトロン周期:</strong></p>
+                \[ T_c = \frac{2\pi}{\omega_c} = \frac{2\pi m}{|q|B} \]
+            </div>
+
+            <div class="example-box">
+                <h4>例題13.2: 電子のサイクロトロン運動</h4>
+                <p><strong>問題:</strong> 磁場強度 0.5 T の中で運動する電子について、(1) サイクロトロン周波数、(2) 運動エネルギー 10 keV の電子のラーモア半径を求めよ。</p>
+                <div class="solution">
+                    <p><strong>解答:</strong></p>
+                    <p>(1) サイクロトロン周波数：</p>
+                    \[ f_c = \frac{eB}{2\pi m_e} = \frac{1.6 \times 10^{-19} \times 0.5}{2\pi \times 9.11 \times 10^{-31}} \]
+                    \[ f_c = \frac{8 \times 10^{-20}}{5.72 \times 10^{-30}} = 1.40 \times 10^{10} \text{ Hz} = 14 \text{ GHz} \]
+
+                    <p>(2) まず電子の速度を求める：</p>
+                    \[ K = \frac{1}{2}m_e v^2 = 10 \text{ keV} = 1.6 \times 10^{-15} \text{ J} \]
+                    \[ v = \sqrt{\frac{2K}{m_e}} = \sqrt{\frac{2 \times 1.6 \times 10^{-15}}{9.11 \times 10^{-31}}} = 5.93 \times 10^7 \text{ m/s} \]
+
+                    <p>ラーモア半径：</p>
+                    \[ r_c = \frac{m_e v}{eB} = \frac{9.11 \times 10^{-31} \times 5.93 \times 10^7}{1.6 \times 10^{-19} \times 0.5} \]
+                    \[ r_c = \frac{5.40 \times 10^{-23}}{8 \times 10^{-20}} = 6.75 \times 10^{-4} \text{ m} = 0.675 \text{ mm} \]
+                </div>
+            </div>
+
+            <h4>13.2.2 らせん運動</h4>
+            <p>初速度が磁場に対して斜めの場合、粒子は磁場方向に等速直線運動しながら垂直面内で円運動を行う。結果として、らせん（ヘリカル）軌道を描く。</p>
+
+            <div class="equation-box">
+                <div class="title">らせん運動の特性</div>
+                <p>速度ベクトル \(\vec{v}\) と磁場 \(\vec{B}\) のなす角を \(\alpha\)（ピッチ角）とすると：</p>
+                <p><strong>垂直成分:</strong> \(v_\perp = v\sin\alpha\) → 円運動</p>
+                <p><strong>平行成分:</strong> \(v_\parallel = v\cos\alpha\) → 等速直線運動</p>
+                <p><strong>らせんのピッチ:</strong></p>
+                \[ p = v_\parallel T_c = \frac{2\pi m v_\parallel}{qB} = \frac{2\pi m v \cos\alpha}{qB} \]
+            </div>
+
+            <h4>13.2.3 磁気ミラー効果</h4>
+            <p>不均一な磁場中では、荷電粒子は磁場の強い領域から反射される現象が起こる。これを磁気ミラー効果という。</p>
+
+            <div class="derivation">
+                <h4>導出: 磁気ミラーの原理</h4>
+                <div class="derivation-step">
+                    <span class="step-num">1</span>
+                    <strong>磁気モーメントの定義</strong>
+                    <p>サイクロトロン運動する荷電粒子は磁気モーメントを持つ：</p>
+                    \[ \mu = \frac{mv_\perp^2}{2B} = \frac{K_\perp}{B} \]
+                    <p>ここで \(K_\perp\) は垂直方向の運動エネルギー。</p>
+                </div>
+                <div class="derivation-step">
+                    <span class="step-num">2</span>
+                    <strong>断熱不変量</strong>
+                    <p>磁場がゆっくり変化する場合、磁気モーメント \(\mu\) は近似的に保存される（断熱不変量）：</p>
+                    \[ \mu = \frac{mv_\perp^2}{2B} = \text{const.} \]
+                </div>
+                <div class="derivation-step">
+                    <span class="step-num">3</span>
+                    <strong>エネルギー保存</strong>
+                    <p>全運動エネルギーは保存される：</p>
+                    \[ K = \frac{1}{2}m(v_\perp^2 + v_\parallel^2) = \text{const.} \]
+                </div>
+                <div class="derivation-step">
+                    <span class="step-num">4</span>
+                    <strong>反射条件</strong>
+                    <p>磁場が強くなると \(\mu = \text{const.}\) より \(v_\perp^2 \propto B\) が増加する。</p>
+                    <p>エネルギー保存より \(v_\parallel^2 = v^2 - v_\perp^2\) は減少する。</p>
+                    <p>\(v_\parallel = 0\) になる点で粒子は反射される。</p>
+                </div>
+                <div class="derivation-step">
+                    <span class="step-num">5</span>
+                    <strong>反射条件の数式</strong>
+                    <p>初期位置での磁場を \(B_0\)、ピッチ角を \(\alpha_0\) とすると、反射が起こる条件は：</p>
+                    \[ \frac{B_{max}}{B_0} \geq \frac{1}{\sin^2\alpha_0} \]
+                    <p>ミラー比 \(R = B_{max}/B_0\) に対して、\(\sin\alpha_0 < 1/\sqrt{R}\) の粒子は逃げる（ロスコーン）。</p>
+                </div>
+            </div>
+
+            <div class="column application">
+                <h4>コラム: ヴァン・アレン帯と磁気ミラー</h4>
+                <p>地球の磁場は両極で強く、赤道付近で弱い。この構造は自然の磁気ミラーを形成し、荷電粒子（主に太陽風由来の電子と陽子）を捕捉している。これがヴァン・アレン帯（放射線帯）である。</p>
+                <p><strong>内帯（高度1,000-5,000 km）:</strong> 高エネルギー陽子が主成分。宇宙線と大気分子の衝突で生成された中性子が崩壊して生じる。</p>
+                <p><strong>外帯（高度15,000-25,000 km）:</strong> 高エネルギー電子が主成分。太陽風由来。</p>
+                <p>粒子は磁力線に沿ってらせん運動しながら、両極間を数秒で往復する。同時に、磁場の不均一性により東西方向にもゆっくりドリフトする。</p>
+                <p>人工衛星や宇宙飛行士にとって、ヴァン・アレン帯の高放射線環境は重要な設計上の制約となる。国際宇宙ステーション（ISS）は内帯の下（高度約400 km）を周回しているが、南大西洋異常帯（磁場が弱い領域）では放射線量が増加する。</p>
+            </div>
+        </section>
+
+        <!-- セクション3: プラズマの基礎 -->
+        <section class="content-section">
+            <h3>13.3 プラズマの基礎</h3>
+
+            <h4>13.3.1 プラズマとは</h4>
+            <p>プラズマは、気体が高温などにより電離し、自由電子とイオンが共存する状態である。「物質の第4の状態」とも呼ばれる。宇宙の可視物質の99%以上はプラズマ状態にあると推定されている。</p>
+
+            <div class="key-point">
+                <h4>プラズマの定義と条件</h4>
+                <p>プラズマは以下の条件を満たす電離気体である：</p>
+                <ul>
+                    <li><strong>準中性</strong>：マクロスコピックには電気的に中性（電子密度≒イオン密度）</li>
+                    <li><strong>集団的振る舞い</strong>：個々の粒子衝突よりも、電磁場を介した集団的相互作用が支配的</li>
+                    <li><strong>遮蔽効果</strong>：外部電場はデバイ長以上の距離で遮蔽される</li>
+                </ul>
+            </div>
+
+            <h4>13.3.2 デバイ遮蔽</h4>
+            <p>プラズマ中に電荷を置くと、周囲の荷電粒子が再配置し、その電場を遮蔽する。この遮蔽が有効な距離がデバイ長である。</p>
+
+            <div class="derivation">
+                <h4>導出: デバイ長</h4>
+                <div class="derivation-step">
+                    <span class="step-num">1</span>
+                    <strong>問題設定</strong>
+                    <p>プラズマ中に点電荷 \(Q\) を置く。電子は熱運動により分布し、イオンは質量が大きいため動かないとする。</p>
+                </div>
+                <div class="derivation-step">
+                    <span class="step-num">2</span>
+                    <strong>ボルツマン分布</strong>
+                    <p>電位 \(\phi(r)\) のもとでの電子密度は：</p>
+                    \[ n_e(r) = n_0 \exp\left(\frac{e\phi}{k_B T_e}\right) \]
+                    <p>\(|e\phi| \ll k_B T_e\) の場合、線形化すると：</p>
+                    \[ n_e \approx n_0\left(1 + \frac{e\phi}{k_B T_e}\right) \]
+                </div>
+                <div class="derivation-step">
+                    <span class="step-num">3</span>
+                    <strong>ポアソン方程式</strong>
+                    <p>電荷密度 \(\rho = e(n_i - n_e) = -\frac{n_0 e^2 \phi}{k_B T_e}\) を代入：</p>
+                    \[ \nabla^2 \phi = -\frac{\rho}{\epsilon_0} = \frac{n_0 e^2}{\epsilon_0 k_B T_e} \phi = \frac{\phi}{\lambda_D^2} \]
+                </div>
+                <div class="derivation-step">
+                    <span class="step-num">4</span>
+                    <strong>デバイ長</strong>
+                    \[ \lambda_D = \sqrt{\frac{\epsilon_0 k_B T_e}{n_0 e^2}} \]
+                </div>
+                <div class="derivation-step">
+                    <span class="step-num">5</span>
+                    <strong>遮蔽された電位</strong>
+                    <p>解は：</p>
+                    \[ \phi(r) = \frac{Q}{4\pi\epsilon_0 r}\exp\left(-\frac{r}{\lambda_D}\right) \]
+                    <p>デバイ長 \(\lambda_D\) より遠方では電位は指数関数的に減衰する。</p>
+                </div>
+            </div>
+
+            <div class="equation-box important">
+                <div class="title">デバイ長</div>
+                \[ \lambda_D = \sqrt{\frac{\epsilon_0 k_B T_e}{n_e e^2}} = 69\sqrt{\frac{T_e[\text{K}]}{n_e[\text{m}^{-3}]}} \text{ m} \]
+                <p>または電子温度を eV で表すと：</p>
+                \[ \lambda_D = 7.43 \times 10^3 \sqrt{\frac{T_e[\text{eV}]}{n_e[\text{m}^{-3}]}} \text{ m} \]
+            </div>
+
+            <div class="example-box">
+                <h4>例題13.3: 様々なプラズマのデバイ長</h4>
+                <p><strong>問題:</strong> 以下のプラズマのデバイ長を計算せよ。</p>
+                <ol>
+                    <li>核融合プラズマ：\(T_e = 10^8\) K、\(n_e = 10^{20}\) m⁻³</li>
+                    <li>電離層（F層）：\(T_e = 2000\) K、\(n_e = 10^{12}\) m⁻³</li>
+                    <li>太陽コロナ：\(T_e = 10^6\) K、\(n_e = 10^{12}\) m⁻³</li>
+                </ol>
+                <div class="solution">
+                    <p><strong>解答:</strong></p>
+                    <p>公式 \(\lambda_D = 69\sqrt{T_e/n_e}\) [m] を使用する。</p>
+
+                    <p>(1) 核融合プラズマ：</p>
+                    \[ \lambda_D = 69\sqrt{\frac{10^8}{10^{20}}} = 69\sqrt{10^{-12}} = 69 \times 10^{-6} = 69 \text{ μm} \]
+
+                    <p>(2) 電離層：</p>
+                    \[ \lambda_D = 69\sqrt{\frac{2000}{10^{12}}} = 69\sqrt{2 \times 10^{-9}} = 69 \times 4.5 \times 10^{-5} = 3.1 \text{ mm} \]
+
+                    <p>(3) 太陽コロナ：</p>
+                    \[ \lambda_D = 69\sqrt{\frac{10^6}{10^{12}}} = 69\sqrt{10^{-6}} = 69 \times 10^{-3} = 69 \text{ mm} = 6.9 \text{ cm} \]
+                </div>
+            </div>
+
+            <h4>13.3.3 プラズマパラメータ</h4>
+            <p>デバイ球内の粒子数 \(N_D\) はプラズマの集団的振る舞いの指標となる：</p>
+
+            <div class="equation-box">
+                <div class="title">デバイ球内の粒子数</div>
+                \[ N_D = \frac{4}{3}\pi \lambda_D^3 n_e = 1.38 \times 10^6 \frac{T_e^{3/2}[\text{K}]}{n_e^{1/2}[\text{m}^{-3}]} \]
+                <p>プラズマ条件：\(N_D \gg 1\)（多数の粒子が集団的に振る舞う）</p>
+            </div>
+        </section>
+
+        <!-- セクション4: プラズマ周波数 -->
+        <section class="content-section">
+            <h3>13.4 プラズマ周波数と電磁波の伝播</h3>
+
+            <h4>13.4.1 プラズマ振動</h4>
+            <p>プラズマ中の電子が平衡位置からずれると、電場の復元力により振動する。この振動がプラズマ振動（ラングミュア振動）である。</p>
+
+            <div class="derivation">
+                <h4>導出: プラズマ周波数</h4>
+                <div class="derivation-step">
+                    <span class="step-num">1</span>
+                    <strong>モデル設定</strong>
+                    <p>一様なプラズマで、電子がすべて \(x\) 方向に変位 \(\xi\) だけずれたとする。イオンは質量が大きく動かない。</p>
+                </div>
+                <div class="derivation-step">
+                    <span class="step-num">2</span>
+                    <strong>電荷の分離と電場</strong>
+                    <p>変位により面電荷密度 \(\sigma = n_e e \xi\) が生じ、電場が発生する：</p>
+                    \[ E = \frac{\sigma}{\epsilon_0} = \frac{n_e e \xi}{\epsilon_0} \]
+                </div>
+                <div class="derivation-step">
+                    <span class="step-num">3</span>
+                    <strong>運動方程式</strong>
+                    <p>電子に働く復元力：</p>
+                    \[ m_e \frac{d^2\xi}{dt^2} = -eE = -\frac{n_e e^2}{\epsilon_0}\xi \]
+                </div>
+                <div class="derivation-step">
+                    <span class="step-num">4</span>
+                    <strong>調和振動子</strong>
+                    <p>これは単振動の方程式である。角周波数は：</p>
+                    \[ \omega_{pe} = \sqrt{\frac{n_e e^2}{\epsilon_0 m_e}} \]
+                </div>
+            </div>
+
+            <div class="equation-box important">
+                <div class="title">プラズマ周波数</div>
+                <p><strong>電子プラズマ周波数:</strong></p>
+                \[ \omega_{pe} = \sqrt{\frac{n_e e^2}{\epsilon_0 m_e}} \]
+                \[ f_{pe} = \frac{\omega_{pe}}{2\pi} \approx 9\sqrt{n_e[\text{m}^{-3}]} \text{ Hz} \]
+                <p><strong>イオンプラズマ周波数:</strong></p>
+                \[ \omega_{pi} = \sqrt{\frac{n_i Z^2 e^2}{\epsilon_0 m_i}} = \omega_{pe}\sqrt{\frac{Zm_e}{m_i}} \]
+                <p>イオンプラズマ周波数は電子プラズマ周波数より \(\sqrt{m_i/m_e} \approx 43\) 倍（水素の場合）小さい。</p>
+            </div>
+
+            <h4>13.4.2 プラズマ中の電磁波伝播</h4>
+            <p>電磁波がプラズマ中を伝播するとき、電子の応答により誘電率が変化する。</p>
+
+            <div class="derivation">
+                <h4>導出: プラズマの誘電率と分散関係</h4>
+                <div class="derivation-step">
+                    <span class="step-num">1</span>
+                    <strong>電子の運動方程式</strong>
+                    <p>振動電場 \(E = E_0 e^{-i\omega t}\) 中の電子の運動：</p>
+                    \[ m_e \frac{d^2 x}{dt^2} = -eE \]
+                    <p>定常解：\(x = x_0 e^{-i\omega t}\) として</p>
+                    \[ -m_e \omega^2 x_0 = -eE_0 \]
+                    \[ x_0 = \frac{eE_0}{m_e \omega^2} \]
+                </div>
+                <div class="derivation-step">
+                    <span class="step-num">2</span>
+                    <strong>分極と誘電率</strong>
+                    <p>分極：\(P = -n_e e x_0 = -\frac{n_e e^2}{m_e \omega^2}E_0\)</p>
+                    <p>電気感受率：\(\chi = -\frac{n_e e^2}{\epsilon_0 m_e \omega^2} = -\frac{\omega_{pe}^2}{\omega^2}\)</p>
+                    <p>比誘電率：</p>
+                    \[ \epsilon_r = 1 + \chi = 1 - \frac{\omega_{pe}^2}{\omega^2} \]
+                </div>
+                <div class="derivation-step">
+                    <span class="step-num">3</span>
+                    <strong>分散関係</strong>
+                    <p>電磁波の分散関係：\(k^2 c^2 = \omega^2 \epsilon_r\)</p>
+                    \[ k^2 c^2 = \omega^2 - \omega_{pe}^2 \]
+                    \[ \omega^2 = \omega_{pe}^2 + k^2 c^2 \]
+                </div>
+                <div class="derivation-step">
+                    <span class="step-num">4</span>
+                    <strong>位相速度と群速度</strong>
+                    <p>位相速度：</p>
+                    \[ v_p = \frac{\omega}{k} = \frac{c}{\sqrt{1 - \omega_{pe}^2/\omega^2}} > c \]
+                    <p>群速度（エネルギー伝播速度）：</p>
+                    \[ v_g = \frac{d\omega}{dk} = c\sqrt{1 - \frac{\omega_{pe}^2}{\omega^2}} < c \]
+                </div>
+            </div>
+
+            <div class="equation-box important">
+                <div class="title">プラズマ中の電磁波</div>
+                <p><strong>分散関係:</strong></p>
+                \[ \omega^2 = \omega_{pe}^2 + k^2 c^2 \]
+                <p><strong>屈折率:</strong></p>
+                \[ n = \sqrt{1 - \frac{\omega_{pe}^2}{\omega^2}} = \sqrt{1 - \frac{f_{pe}^2}{f^2}} \]
+                <p><strong>伝播条件:</strong> \(\omega > \omega_{pe}\)（\(f > f_{pe}\)）のとき伝播可能</p>
+                <p><strong>カットオフ:</strong> \(\omega = \omega_{pe}\) のとき \(k = 0\)、\(n = 0\)</p>
+                <p>\(\omega < \omega_{pe}\) の電磁波はプラズマ中を伝播できず、反射または指数関数的に減衰する。</p>
+            </div>
+
+            <div class="example-box">
+                <h4>例題13.4: 電離層による電波反射</h4>
+                <p><strong>問題:</strong> 電離層F層の電子密度が \(n_e = 10^{12}\) m⁻³ のとき、(1) プラズマ周波数を求めよ。(2) この電離層を透過できる電波の最低周波数はいくらか。(3) AMラジオ（1 MHz）とFMラジオ（80 MHz）のどちらが電離層で反射されるか。</p>
+                <div class="solution">
+                    <p><strong>解答:</strong></p>
+                    <p>(1) プラズマ周波数：</p>
+                    \[ f_{pe} = 9\sqrt{n_e} = 9\sqrt{10^{12}} = 9 \times 10^6 \text{ Hz} = 9 \text{ MHz} \]
+
+                    <p>(2) プラズマ周波数より高い周波数の電波のみ透過できるので、最低周波数は約9 MHz。</p>
+
+                    <p>(3) AMラジオ（1 MHz）：\(f < f_{pe}\) なので反射される</p>
+                    <p>FMラジオ（80 MHz）：\(f > f_{pe}\) なので透過する</p>
+
+                    <p><strong>応用:</strong> この性質を利用して、AM放送は電離層で反射され遠距離まで届く（夜間は特に）。FM放送は直接波のみで、見通し距離内でしか受信できない。</p>
+                </div>
+            </div>
+
+            <div class="column history">
+                <h4>コラム: 短波放送と電離層</h4>
+                <p>短波（HF: 3-30 MHz）放送は、地上の送信所から電離層に向けて電波を発射し、電離層で反射させて遠距離に届ける。電離層の状態は太陽活動、時刻、季節によって変化するため、使用する周波数を適宜調整する必要がある。</p>
+                <p><strong>昼夜による変化：</strong></p>
+                <ul>
+                    <li>昼間：D層（低高度）の電子密度が高く、低い周波数は吸収される</li>
+                    <li>夜間：D層が消失し、F層での反射が支配的になる。低い周波数でも遠距離伝播が可能</li>
+                </ul>
+                <p><strong>太陽活動の影響：</strong></p>
+                <p>太陽フレアにより短波通信が突然途絶える「デリンジャー現象」が発生することがある。強いX線が電離層のD層を異常に電離させ、電波を吸収するためである。</p>
+            </div>
+        </section>
+
+        <!-- セクション5: 荷電粒子からの電磁波放射 -->
+        <section class="content-section">
+            <h3>13.5 荷電粒子からの電磁波放射</h3>
+
+            <h4>13.5.1 制動放射（Bremsstrahlung）</h4>
+            <p>荷電粒子が他の荷電粒子（主にイオン）の電場中で減速・偏向されるときに電磁波を放射する。これを制動放射という。</p>
+
+            <div class="equation-box">
+                <div class="title">制動放射の特性</div>
+                <p><strong>放射パワー（非相対論的）:</strong></p>
+                \[ P \propto Z^2 n_i n_e T_e^{1/2} \]
+                <p><strong>スペクトル:</strong> 連続スペクトル。光子エネルギーは0から電子の運動エネルギーまで分布。</p>
+                <p><strong>最大光子エネルギー:</strong></p>
+                \[ h\nu_{max} = K_e = eV \quad \text{（加速電圧 } V \text{ の場合）} \]
+            </div>
+
+            <p>制動放射は以下の現象で重要な役割を果たす：</p>
+            <ul>
+                <li><strong>X線管</strong>：高速電子が金属ターゲットに衝突して制動放射を発生</li>
+                <li><strong>プラズマの冷却</strong>：高温プラズマからの放射損失</li>
+                <li><strong>宇宙X線源</strong>：銀河団の高温ガスからの熱的制動放射</li>
+            </ul>
+
+            <div class="example-box">
+                <h4>例題13.5: X線管の最短波長</h4>
+                <p><strong>問題:</strong> 加速電圧 50 kV のX線管から放射されるX線の最短波長を求めよ。</p>
+                <div class="solution">
+                    <p><strong>解答:</strong></p>
+                    <p>最短波長は、電子の全運動エネルギーが1個の光子に変換されるときに生じる。</p>
+                    \[ eV = h\nu_{max} = \frac{hc}{\lambda_{min}} \]
+                    \[ \lambda_{min} = \frac{hc}{eV} = \frac{6.63 \times 10^{-34} \times 3 \times 10^8}{1.6 \times 10^{-19} \times 50000} \]
+                    \[ \lambda_{min} = \frac{1.99 \times 10^{-25}}{8 \times 10^{-15}} = 2.49 \times 10^{-11} \text{ m} = 0.0249 \text{ nm} \]
+
+                    <p>これはDuane-Huntの法則とも呼ばれる：</p>
+                    \[ \lambda_{min}[\text{nm}] = \frac{1.24}{V[\text{kV}]} = \frac{1.24}{50} = 0.0248 \text{ nm} \]
+                </div>
+            </div>
+
+            <h4>13.5.2 サイクロトロン放射とシンクロトロン放射</h4>
+            <p>磁場中を円運動する荷電粒子は、サイクロトロン周波数で電磁波を放射する。</p>
+
+            <div class="equation-box">
+                <div class="title">サイクロトロン放射</div>
+                <p><strong>基本周波数（非相対論的）:</strong></p>
+                \[ f_c = \frac{eB}{2\pi m_e} = 28 B[\text{T}] \text{ GHz} \quad \text{（電子の場合）} \]
+                <p><strong>放射パワー:</strong></p>
+                \[ P = \frac{e^2 \omega_c^2 v_\perp^2}{6\pi\epsilon_0 c^3} \]
+            </div>
+
+            <p>電子が相対論的速度に達すると、放射特性が大きく変化する。これをシンクロトロン放射という。</p>
+
+            <div class="derivation">
+                <h4>導出: シンクロトロン放射の特性</h4>
+                <div class="derivation-step">
+                    <span class="step-num">1</span>
+                    <strong>相対論的効果</strong>
+                    <p>相対論的電子（\(\gamma \gg 1\)）の場合、3つの重要な効果が現れる：</p>
+                    <ul>
+                        <li>サイクロトロン周波数の低下：\(\omega_c = eB/\gamma m_e\)</li>
+                        <li>放射の強いビーミング（角度 \(\sim 1/\gamma\) に集中）</li>
+                        <li>ドップラー効果による観測周波数の上昇</li>
+                    </ul>
+                </div>
+                <div class="derivation-step">
+                    <span class="step-num">2</span>
+                    <strong>放射の特性周波数</strong>
+                    <p>シンクロトロン放射のスペクトルのピークは：</p>
+                    \[ \omega_c \approx \frac{3}{2}\gamma^3 \omega_{cyc} \sin\alpha \]
+                    <p>ここで \(\omega_{cyc} = eB/m_e\) は非相対論的サイクロトロン周波数、\(\alpha\) はピッチ角。</p>
+                </div>
+                <div class="derivation-step">
+                    <span class="step-num">3</span>
+                    <strong>放射パワー（相対論的）</strong>
+                    <p>ラーモアの公式の相対論的拡張：</p>
+                    \[ P = \frac{e^2 c}{6\pi\epsilon_0}\frac{\gamma^4}{(m_e c^2)^2}\left(\frac{dp_\perp}{dt}\right)^2 \]
+                    <p>磁場中の電子の場合：</p>
+                    \[ P = \frac{e^4 B^2 \gamma^2 v_\perp^2}{6\pi\epsilon_0 m_e^2 c^3} \]
+                </div>
+            </div>
+
+            <div class="column application">
+                <h4>コラム: シンクロトロン放射光施設</h4>
+                <p>シンクロトロン放射は、高エネルギー物理学では「エネルギー損失」として問題視されたが、その特性（高輝度、広帯域、偏光）を利用した放射光科学が発展した。</p>
+                <p><strong>日本の主な放射光施設：</strong></p>
+                <ul>
+                    <li><strong>SPring-8</strong>（兵庫県）：8 GeV、世界最高輝度の硬X線</li>
+                    <li><strong>Photon Factory</strong>（茨城県）：2.5 GeV</li>
+                    <li><strong>UVSOR</strong>（愛知県）：750 MeV、真空紫外・軟X線</li>
+                </ul>
+                <p><strong>応用例：</strong></p>
+                <ul>
+                    <li>タンパク質の構造解析（創薬研究）</li>
+                    <li>材料科学（電池材料、触媒の研究）</li>
+                    <li>考古学（非破壊分析）</li>
+                    <li>半導体リソグラフィ</li>
+                </ul>
+            </div>
+
+            <h4>13.5.3 チェレンコフ放射</h4>
+            <p>荷電粒子が媒質中を光速（その媒質中での光速 \(c/n\)）より速く運動するとき、電磁波を放射する。これをチェレンコフ放射という。</p>
+
+            <div class="equation-box">
+                <div class="title">チェレンコフ放射</div>
+                <p><strong>放射条件:</strong></p>
+                \[ v > \frac{c}{n} \quad \text{すなわち} \quad \beta n > 1 \]
+                <p><strong>放射角（チェレンコフ角）:</strong></p>
+                \[ \cos\theta_c = \frac{1}{\beta n} = \frac{c}{nv} \]
+                <p><strong>放射スペクトル:</strong></p>
+                \[ \frac{dN}{dx\,d\lambda} = \frac{2\pi\alpha}{\lambda^2}\sin^2\theta_c \]
+                <p>短波長（青色）ほど強く放射されるため、チェレンコフ光は青白く見える。</p>
+            </div>
+
+            <div class="example-box">
+                <h4>例題13.6: 水中のチェレンコフ放射</h4>
+                <p><strong>問題:</strong> 水（屈折率 \(n = 1.33\)）中でチェレンコフ放射を発生させるために必要な電子の最小運動エネルギーを求めよ。また、\(\beta = 0.9\) の電子が発するチェレンコフ光の放射角を求めよ。</p>
+                <div class="solution">
+                    <p><strong>解答:</strong></p>
+                    <p>(1) 最小速度の条件：\(\beta_{min} = 1/n = 1/1.33 = 0.752\)</p>
+
+                    <p>対応するローレンツ因子：</p>
+                    \[ \gamma_{min} = \frac{1}{\sqrt{1-\beta_{min}^2}} = \frac{1}{\sqrt{1-0.752^2}} = \frac{1}{\sqrt{0.434}} = 1.52 \]
+
+                    <p>最小運動エネルギー：</p>
+                    \[ K_{min} = (\gamma_{min} - 1)m_e c^2 = (1.52 - 1) \times 0.511 \text{ MeV} = 0.26 \text{ MeV} \]
+
+                    <p>(2) \(\beta = 0.9\) のときのチェレンコフ角：</p>
+                    \[ \cos\theta_c = \frac{1}{\beta n} = \frac{1}{0.9 \times 1.33} = \frac{1}{1.197} = 0.835 \]
+                    \[ \theta_c = \cos^{-1}(0.835) = 33.4° \]
+                </div>
+            </div>
+        </section>
+
+        <!-- セクション6: プラズマの応用 -->
+        <section class="content-section">
+            <h3>13.6 プラズマの応用</h3>
+
+            <h4>13.6.1 核融合プラズマ</h4>
+            <p>核融合反応を起こすには、燃料（重水素、三重水素）を極めて高温のプラズマ状態にする必要がある。</p>
+
+            <div class="equation-box">
+                <div class="title">核融合反応（D-T反応）</div>
+                \[ \text{D} + \text{T} \rightarrow \text{He}^4 (3.5 \text{ MeV}) + \text{n} (14.1 \text{ MeV}) \]
+                <p><strong>点火条件（ローソン条件）:</strong></p>
+                \[ n\tau_E T > 3 \times 10^{21} \text{ m}^{-3} \cdot \text{s} \cdot \text{keV} \]
+                <p>\(n\): プラズマ密度、\(\tau_E\): エネルギー閉じ込め時間、\(T\): 温度</p>
+            </div>
+
+            <div class="key-point">
+                <h4>磁場閉じ込め方式</h4>
+                <p>高温プラズマは容器壁に触れると冷却されてしまう。磁場を用いてプラズマを閉じ込める方式が研究されている：</p>
+                <ul>
+                    <li><strong>トカマク</strong>：トロイダル（ドーナツ状）磁場とポロイダル磁場を組み合わせる。ITER（国際熱核融合実験炉）で採用。</li>
+                    <li><strong>ステラレータ</strong>：外部コイルのみで複雑な磁場配位を生成。定常運転に有利。</li>
+                    <li><strong>ミラー型</strong>：磁気ミラー効果を利用。端部からの粒子損失が課題。</li>
+                </ul>
+            </div>
+
+            <h4>13.6.2 低温プラズマの産業応用</h4>
+            <p>核融合用の高温プラズマとは対照的に、低温プラズマ（電子温度は高いがイオン・ガス温度は低い）は様々な産業応用がある。</p>
+
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>応用分野</th>
+                        <th>使用されるプラズマ</th>
+                        <th>具体例</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>半導体製造</td>
+                        <td>反応性イオンエッチング(RIE)</td>
+                        <td>LSI、MEMSの微細加工</td>
+                    </tr>
+                    <tr>
+                        <td>薄膜形成</td>
+                        <td>スパッタリング、CVD</td>
+                        <td>太陽電池、ハードコーティング</td>
+                    </tr>
+                    <tr>
+                        <td>表面改質</td>
+                        <td>大気圧プラズマ</td>
+                        <td>接着性向上、親水化処理</td>
+                    </tr>
+                    <tr>
+                        <td>照明</td>
+                        <td>放電プラズマ</td>
+                        <td>蛍光灯、HIDランプ</td>
+                    </tr>
+                    <tr>
+                        <td>医療</td>
+                        <td>低温大気圧プラズマ</td>
+                        <td>殺菌、創傷治療</td>
+                    </tr>
+                    <tr>
+                        <td>環境</td>
+                        <td>非熱プラズマ</td>
+                        <td>排ガス処理、水処理</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h4>13.6.3 福井大学遠赤外領域開発研究センターとプラズマ加熱</h4>
+            <p>福井大学遠赤外領域開発研究センター（FIR-UF）で開発されているジャイロトロンは、核融合プラズマの加熱に重要な役割を果たしている。</p>
+
+            <div class="column application">
+                <h4>コラム: ジャイロトロンによるプラズマ加熱</h4>
+                <p>ジャイロトロンは、高出力のミリ波・サブミリ波を発生させる真空電子管である。核融合プラズマの加熱において、電子サイクロトロン共鳴加熱（ECRH）の電磁波源として使用される。</p>
+                <p><strong>電子サイクロトロン共鳴加熱（ECRH）の原理：</strong></p>
+                <p>プラズマ中の電子のサイクロトロン周波数と同じ周波数のマイクロ波を入射すると、共鳴的にエネルギーが電子に吸収される。</p>
+                \[ f_{ECRH} = f_c = \frac{eB}{2\pi m_e} \]
+                <p>例えば、磁場強度 5 T のトカマクでは \(f_c \approx 140\) GHz（波長約2 mm）のミリ波が必要となる。</p>
+                <p><strong>福井大学の貢献：</strong></p>
+                <ul>
+                    <li>高周波数（300 GHz以上）、高出力ジャイロトロンの開発</li>
+                    <li>ITERプロジェクトへの技術貢献</li>
+                    <li>ジャイロトロンの長パルス化、連続発振技術</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- セクション7: 宇宙プラズマと電離層 -->
+        <section class="content-section">
+            <h3>13.7 宇宙プラズマと電離層</h3>
+
+            <h4>13.7.1 太陽風</h4>
+            <p>太陽から常に放出されているプラズマの流れを太陽風という。</p>
+
+            <div class="equation-box">
+                <div class="title">太陽風の典型的パラメータ（地球軌道付近）</div>
+                <ul style="text-align: left;">
+                    <li>速度：300-800 km/s（平均約400 km/s）</li>
+                    <li>密度：\(n \approx 5 \times 10^6\) m⁻³</li>
+                    <li>温度：\(T_e \approx 10^5\) K、\(T_i \approx 5 \times 10^4\) K</li>
+                    <li>磁場：\(B \approx 5\) nT</li>
+                </ul>
+            </div>
+
+            <h4>13.7.2 地球磁気圏</h4>
+            <p>地球の磁場は太陽風と相互作用し、磁気圏を形成する。</p>
+
+            <div class="key-point">
+                <h4>磁気圏の構造</h4>
+                <ul>
+                    <li><strong>バウショック</strong>：太陽風が超音速から亜音速に減速する衝撃波面</li>
+                    <li><strong>磁気圏界面</strong>：地球磁場と太陽風の圧力が釣り合う境界</li>
+                    <li><strong>磁気圏尾</strong>：夜側に長く伸びた磁場構造</li>
+                    <li><strong>プラズマシート</strong>：磁気圏尾の中央部にある高温プラズマ領域</li>
+                </ul>
+            </div>
+
+            <h4>13.7.3 電離層</h4>
+            <p>地球大気の上層（高度約60-1000 km）は、太陽からの紫外線やX線により電離されたプラズマ状態にある。これを電離層という。</p>
+
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>層</th>
+                        <th>高度</th>
+                        <th>電子密度（昼間）</th>
+                        <th>特徴</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>D層</td>
+                        <td>60-90 km</td>
+                        <td>\(10^8 - 10^{10}\) m⁻³</td>
+                        <td>昼間のみ存在、長波を吸収</td>
+                    </tr>
+                    <tr>
+                        <td>E層</td>
+                        <td>90-130 km</td>
+                        <td>\(10^{11}\) m⁻³</td>
+                        <td>中波を反射</td>
+                    </tr>
+                    <tr>
+                        <td>F1層</td>
+                        <td>130-200 km</td>
+                        <td>\(10^{11} - 10^{12}\) m⁻³</td>
+                        <td>昼間に出現</td>
+                    </tr>
+                    <tr>
+                        <td>F2層</td>
+                        <td>200-500 km</td>
+                        <td>\(10^{12}\) m⁻³</td>
+                        <td>最も電子密度が高い、短波を反射</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="example-box">
+                <h4>例題13.7: GPS信号の電離層効果</h4>
+                <p><strong>問題:</strong> GPS衛星からの電波（周波数 1.575 GHz）が電離層を通過する際の時間遅延を見積もれ。電離層の垂直全電子数（TEC）を \(10^{17}\) m⁻² と仮定する。</p>
+                <div class="solution">
+                    <p><strong>解答:</strong></p>
+                    <p>プラズマ中の群速度は：</p>
+                    \[ v_g = c\sqrt{1 - \frac{f_{pe}^2}{f^2}} \approx c\left(1 - \frac{f_{pe}^2}{2f^2}\right) \]
+
+                    <p>経路に沿った位相遅延は：</p>
+                    \[ \Delta t = \int \left(\frac{1}{v_g} - \frac{1}{c}\right) ds \approx \frac{1}{2c}\int \frac{f_{pe}^2}{f^2} ds \]
+
+                    <p>プラズマ周波数と電子密度の関係 \(f_{pe}^2 = n_e e^2/(4\pi^2 \epsilon_0 m_e)\) を用いると：</p>
+                    \[ \Delta t = \frac{e^2}{8\pi^2 \epsilon_0 m_e c f^2} \int n_e \, ds = \frac{40.3}{c f^2} \cdot \text{TEC} \]
+
+                    <p>数値計算：</p>
+                    \[ \Delta t = \frac{40.3}{3 \times 10^8 \times (1.575 \times 10^9)^2} \times 10^{17} \]
+                    \[ \Delta t = \frac{40.3 \times 10^{17}}{7.44 \times 10^{26}} = 5.4 \times 10^{-9} \text{ s} = 5.4 \text{ ns} \]
+
+                    <p>対応する距離誤差：\(\Delta d = c \Delta t = 1.6\) m</p>
+
+                    <p><strong>注意:</strong> GPS では2周波（L1: 1.575 GHz、L2: 1.227 GHz）を使用し、周波数依存性から電離層遅延を補正している。</p>
+                </div>
+            </div>
+
+            <h4>13.7.4 オーロラ</h4>
+            <p>オーロラは、太陽風由来の荷電粒子が地球磁場に沿って極域の大気上層に侵入し、大気分子を励起・電離することで発光する現象である。</p>
+
+            <div class="column tip">
+                <h4>コラム: オーロラの色と高度</h4>
+                <p>オーロラの色は、励起される大気分子の種類と高度に依存する：</p>
+                <ul>
+                    <li><strong>緑色（557.7 nm）</strong>：酸素原子の禁制遷移。高度100-200 km で最も明るい。</li>
+                    <li><strong>赤色（630.0 nm）</strong>：酸素原子の別の禁制遷移。高度200 km以上の希薄な領域で発光。</li>
+                    <li><strong>青〜紫色（391.4 nm、427.8 nm）</strong>：窒素分子イオンの発光。高度100 km以下。</li>
+                </ul>
+                <p>緑色の発光は、励起された酸素原子が基底状態に戻る際の放射であるが、この遷移は「禁制遷移」であり、寿命が約0.7秒と長い。高度が低いと衝突により消光されるため、適度に希薄な高度でのみ発光できる。</p>
+            </div>
+        </section>
+
+        <!-- 演習問題 -->
+        <section class="content-section exercises">
+            <h3>演習問題</h3>
+
+            <div class="exercise">
+                <h4>問題13.1 基礎</h4>
+                <p>磁場強度 1 T の中で運動する陽子（質量 \(1.67 \times 10^{-27}\) kg）について、サイクロトロン周波数を求めよ。電子のサイクロトロン周波数と比較せよ。</p>
+            </div>
+
+            <div class="exercise">
+                <h4>問題13.2 基礎</h4>
+                <p>電子密度 \(n_e = 10^{18}\) m⁻³、電子温度 \(T_e = 10^6\) K のプラズマについて、(1) デバイ長、(2) プラズマ周波数、(3) デバイ球内の電子数を求めよ。</p>
+            </div>
+
+            <div class="exercise">
+                <h4>問題13.3 応用</h4>
+                <p>運動エネルギー 100 keV の電子が磁場強度 0.1 T の中をピッチ角 60° で運動している。(1) ラーモア半径、(2) らせんのピッチを求めよ。</p>
+            </div>
+
+            <div class="exercise">
+                <h4>問題13.4 応用</h4>
+                <p>加速電圧 100 kV のX線管から放射されるX線の(1) 最短波長、(2) 最大光子エネルギーを求めよ。</p>
+            </div>
+
+            <div class="exercise">
+                <h4>問題13.5 発展</h4>
+                <p>電離層F層の臨界周波数（垂直入射で反射される最高周波数）が 10 MHz のとき、(1) F層の最大電子密度、(2) 入射角 30° で反射される最高周波数（MUF: Maximum Usable Frequency）を求めよ。</p>
+            </div>
+
+            <div class="exercise">
+                <h4>問題13.6 発展</h4>
+                <p>磁場強度 5 T の核融合プラズマにおいて、電子サイクロトロン共鳴加熱（ECRH）に必要なマイクロ波の周波数を求めよ。また、2倍高調波加熱の場合の周波数も求めよ。</p>
+            </div>
+
+            <div class="exercise">
+                <h4>問題13.7 考察</h4>
+                <p>磁気ミラーにおいて、ミラー比（最大磁場/最小磁場）が 4 のとき、初期ピッチ角が何度以上の粒子が閉じ込められるか計算せよ。また、磁気ミラーによる閉じ込めの限界について考察せよ。</p>
+            </div>
+
+            <div class="exercise">
+                <h4>問題13.8 発展</h4>
+                <p>シンクロトロン放射光施設で、エネルギー 8 GeV の電子が磁場強度 0.5 T の偏向電磁石を通過する。(1) ローレンツ因子 \(\gamma\)、(2) 放射の特性波長を見積もれ。</p>
+            </div>
+        </section>
+
+        <!-- まとめ -->
+        <section class="content-section summary">
+            <h3>第13回のまとめ</h3>
+            <div class="summary-box">
+                <h4>学習した主要概念</h4>
+                <ul>
+                    <li>ローレンツ力 \(\vec{F} = q(\vec{E} + \vec{v} \times \vec{B})\) は荷電粒子と電磁場の相互作用を記述する</li>
+                    <li>磁場中の荷電粒子はサイクロトロン運動（円運動）を行い、その周波数は \(\omega_c = qB/m\)</li>
+                    <li>不均一磁場では磁気ミラー効果により粒子が反射される</li>
+                    <li>プラズマはデバイ遮蔽により準中性を保つ。デバイ長は \(\lambda_D = \sqrt{\epsilon_0 k_B T_e / n_e e^2}\)</li>
+                    <li>プラズマ周波数 \(\omega_{pe} = \sqrt{n_e e^2/\epsilon_0 m_e}\) より低い周波数の電磁波はプラズマ中を伝播できない</li>
+                    <li>加速する荷電粒子は電磁波を放射する（制動放射、サイクロトロン/シンクロトロン放射、チェレンコフ放射）</li>
+                    <li>ジャイロトロンは核融合プラズマの加熱に使用される</li>
+                </ul>
+            </div>
+
+            <div class="summary-box">
+                <h4>重要公式</h4>
+                <div class="formula-list">
+                    <p><strong>ローレンツ力:</strong> \(\vec{F} = q(\vec{E} + \vec{v} \times \vec{B})\)</p>
+                    <p><strong>サイクロトロン周波数:</strong> \(\omega_c = |q|B/m\)、\(f_c = |q|B/2\pi m\)</p>
+                    <p><strong>ラーモア半径:</strong> \(r_c = mv_\perp/|q|B\)</p>
+                    <p><strong>デバイ長:</strong> \(\lambda_D = \sqrt{\epsilon_0 k_B T_e / n_e e^2}\)</p>
+                    <p><strong>プラズマ周波数:</strong> \(\omega_{pe} = \sqrt{n_e e^2/\epsilon_0 m_e}\)、\(f_{pe} \approx 9\sqrt{n_e}\) Hz</p>
+                    <p><strong>プラズマ分散関係:</strong> \(\omega^2 = \omega_{pe}^2 + k^2 c^2\)</p>
+                    <p><strong>チェレンコフ角:</strong> \(\cos\theta_c = 1/\beta n\)</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ナビゲーション -->
+        <nav class="lecture-nav">
+            <a href="lecture12.html" class="nav-prev">← 第12回: 電磁波と特殊相対性理論</a>
+            <a href="lecture14.html" class="nav-next">第14回: ビーミング推進 →</a>
+        </nav>
+    </main>
+
+    <footer>
+        <p>福井大学 共通教育科目 B2032 電磁波と物質</p>
+        <p>担当: 福成 雅史 / 石川 裕也</p>
+    </footer>
+
+    <script src="../js/lecture.js"></script>
+</body>
+</html>

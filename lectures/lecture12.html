@@ -1,0 +1,982 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>第12回: 電磁波と特殊相対性理論 - 電磁波と物質</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/lecture.css">
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+    <header class="main-header">
+        <h1>電磁波と物質</h1>
+        <p class="subtitle">第12回: 電磁波と特殊相対性理論</p>
+    </header>
+
+    <nav class="main-nav">
+        <a href="../index.html">ダッシュボード</a>
+        <a href="../lecture.html">講義一覧</a>
+        <a href="../interactive.html">インタラクティブ学習</a>
+    </nav>
+
+    <main class="lecture-content">
+        <div class="lecture-header">
+            <div class="lecture-meta">
+                <span class="lecture-number">Lecture 12</span>
+                <span class="lecture-duration">学習時間目安: 120-150分</span>
+            </div>
+            <h2>電磁波と特殊相対性理論</h2>
+            <p class="lecture-objectives">
+                <strong>学習目標:</strong> 特殊相対性理論の基本原理を理解し、電磁波との深い関係を説明できるようになる。ローレンツ変換、時間の遅れ、長さの収縮、相対論的ドップラー効果を数学的に導出し、実験的検証と応用例を学ぶ。光速不変の原理がマクスウェル方程式から自然に導かれることを理解する。
+            </p>
+        </div>
+
+        <!-- セクション1: 特殊相対性理論の誕生 -->
+        <section class="content-section">
+            <h3>12.1 特殊相対性理論の誕生 - エーテルの探求から光速不変へ</h3>
+
+            <h4>12.1.1 19世紀の物理学とエーテル仮説</h4>
+            <p>19世紀末、物理学者たちは電磁波の伝播媒体として「エーテル」という仮想的な物質の存在を信じていた。音波が空気を、水面波が水を媒体として伝播するように、光や電磁波もエーテルという媒体中を伝播すると考えられていた。</p>
+
+            <p>エーテル仮説は以下の特性を持つと考えられていた：</p>
+            <ul>
+                <li><strong>宇宙全体に充満</strong>：真空中でも光が伝播することの説明</li>
+                <li><strong>完全に透明</strong>：光を吸収しない</li>
+                <li><strong>極めて剛性が高い</strong>：横波（光）の高速伝播を可能にするため</li>
+                <li><strong>物質と相互作用しない</strong>：惑星の運動に影響を与えない</li>
+                <li><strong>静止している</strong>：絶対静止系を定義する基準</li>
+            </ul>
+
+            <p>このエーテル仮説は多くの矛盾を孕んでいた。剛性が高いにもかかわらず物質と相互作用しないという性質は物理的に不自然であった。</p>
+
+            <h4>12.1.2 マイケルソン-モーリーの実験（1887年）</h4>
+            <p>地球はエーテルの海の中を約30 km/sの速度で公転している。もしエーテルが存在するなら、地球の運動方向に対して平行・垂直に進む光の速度に差が生じるはずである。アルバート・マイケルソンとエドワード・モーリーは、精密な干渉計を用いてこの速度差の検出を試みた。</p>
+
+            <div class="equation-box">
+                <div class="title">マイケルソン干渉計の原理</div>
+                <p>地球の速度を \(v\)、光速を \(c\)、干渉計の腕の長さを \(L\) とする。</p>
+                <p><strong>エーテルの風に平行な光路の往復時間：</strong></p>
+                \[ t_{\parallel} = \frac{L}{c-v} + \frac{L}{c+v} = \frac{2Lc}{c^2 - v^2} = \frac{2L/c}{1 - v^2/c^2} \]
+                <p><strong>エーテルの風に垂直な光路の往復時間：</strong></p>
+                \[ t_{\perp} = \frac{2L}{\sqrt{c^2 - v^2}} = \frac{2L/c}{\sqrt{1 - v^2/c^2}} \]
+            </div>
+
+            <div class="derivation">
+                <h4>導出: 予想される干渉縞のずれ</h4>
+                <div class="derivation-step">
+                    <span class="step-num">1</span>
+                    <strong>時間差の計算</strong>
+                    <p>\(\beta = v/c \ll 1\) として、テイラー展開を用いる：</p>
+                    \[ t_{\parallel} \approx \frac{2L}{c}\left(1 + \beta^2 + \cdots\right) \]
+                    \[ t_{\perp} \approx \frac{2L}{c}\left(1 + \frac{\beta^2}{2} + \cdots\right) \]
+                </div>
+                <div class="derivation-step">
+                    <span class="step-num">2</span>
+                    <strong>時間差</strong>
+                    \[ \Delta t = t_{\parallel} - t_{\perp} \approx \frac{2L}{c} \cdot \frac{\beta^2}{2} = \frac{Lv^2}{c^3} \]
+                </div>
+                <div class="derivation-step">
+                    <span class="step-num">3</span>
+                    <strong>光路差と干渉縞のずれ</strong>
+                    <p>光路差: \(\Delta \ell = c \Delta t = Lv^2/c^2\)</p>
+                    <p>干渉縞のずれ: \(\Delta N = \Delta \ell / \lambda\)</p>
+                </div>
+                <div class="derivation-step">
+                    <span class="step-num">4</span>
+                    <strong>数値計算</strong>
+                    <p>\(L = 11\) m、\(v = 30\) km/s、\(\lambda = 500\) nm として：</p>
+                    \[ \Delta N = \frac{11 \times (3 \times 10^4)^2}{(3 \times 10^8)^2 \times 5 \times 10^{-7}} \approx 0.22 \]
+                    <p>約0.2縞のずれが予想されたが、検出限界（0.01縞程度）をはるかに上回る精度で、ずれは観測されなかった。</p>
+                </div>
+            </div>
+
+            <div class="column history">
+                <h4>コラム: マイケルソン-モーリー実験の衝撃</h4>
+                <p>この「否定的な結果」は物理学界に大きな衝撃を与えた。エーテルを救うために様々な仮説が提唱された：</p>
+                <ul>
+                    <li><strong>エーテル引きずり仮説</strong>：地球がエーテルを一緒に引きずっている（しかし、光行差の観測と矛盾）</li>
+                    <li><strong>フィッツジェラルド-ローレンツ収縮</strong>：運動方向に物体が収縮する（アドホックな仮説）</li>
+                    <li><strong>発射説</strong>：光源の速度が光速に加算される（連星の観測と矛盾）</li>
+                </ul>
+                <p>これらの仮説はすべて何らかの問題を抱えていた。エーテルの存在を前提とする限り、矛盾のない理論を構築することは不可能であった。この状況を根本的に解決したのが、1905年のアインシュタインによる特殊相対性理論である。</p>
+            </div>
+
+            <h4>12.1.3 アインシュタインの着眼点</h4>
+            <p>アインシュタインは、エーテルの存在を否定するのではなく、より根本的な問いを立てた。「なぜ光の速度は常に一定なのか？」という問いではなく、「光速が一定であることを原理として受け入れたとき、物理法則はどのような形になるべきか？」という問いである。</p>
+
+            <p>マクスウェル方程式を詳細に検討すると、電磁波の速度は：</p>
+            <div class="equation">
+                \[ c = \frac{1}{\sqrt{\mu_0 \epsilon_0}} \]
+            </div>
+            <p>と表される。ここで \(\mu_0\) と \(\epsilon_0\) は真空の透磁率と誘電率であり、観測者の運動状態に依存しない物理定数である。したがって、マクスウェル方程式がすべての慣性系で同じ形を持つなら、光速も同じ値 \(c\) でなければならない。</p>
+
+            <div class="key-point">
+                <h4>マクスウェル方程式と光速不変</h4>
+                <p>電磁気学の法則（マクスウェル方程式）は、すべての慣性系で同じ形を持つべきである。この要請から、光速 \(c = 1/\sqrt{\mu_0\epsilon_0}\) がすべての慣性系で同じ値を持つことが自然に導かれる。アインシュタインは、この事実を物理学の基本原理として採用した。</p>
+            </div>
+        </section>
+
+        <!-- セクション2: 特殊相対性理論の二つの公準 -->
+        <section class="content-section">
+            <h3>12.2 特殊相対性理論の二つの公準</h3>
+
+            <h4>12.2.1 相対性原理（第一公準）</h4>
+            <div class="equation-box important">
+                <div class="title">第一公準：相対性原理</div>
+                <p>物理法則は、すべての慣性系において同じ形をとる。</p>
+                <p>数学的表現：物理法則を記述する方程式は、慣性系間の座標変換に対して不変である。</p>
+            </div>
+
+            <p>この原理は古典力学のガリレイの相対性原理を拡張したものである。ガリレイの相対性原理は力学の法則についてのみ成立したが、アインシュタインはこれを電磁気学を含むすべての物理法則に拡張した。</p>
+
+            <p>相対性原理の物理的意味は以下の通りである：</p>
+            <ul>
+                <li>閉じた実験室内の実験によって、その実験室の一様な直線運動を検出することは不可能である</li>
+                <li>絶対静止系（エーテル静止系）は存在しない、または物理的に検出不可能である</li>
+                <li>運動は相対的なものであり、「絶対速度」に物理的意味はない</li>
+            </ul>
+
+            <h4>12.2.2 光速不変の原理（第二公準）</h4>
+            <div class="equation-box important">
+                <div class="title">第二公準：光速不変の原理</div>
+                <p>真空中の光速度 \(c\) は、光源や観測者の運動状態によらず、すべての慣性系で同じ値を持つ。</p>
+                \[ c = 299,792,458 \text{ m/s}（定義値） \]
+            </div>
+
+            <p>この公準は我々の日常的直観に反する。例えば、光速の90%で移動する宇宙船から前方に光を発射しても、静止した観測者が測定する光の速度は \(c + 0.9c = 1.9c\) ではなく、依然として \(c\) である。</p>
+
+            <div class="example-box">
+                <h4>例題12.1: 光速不変の直観に反する性質</h4>
+                <p><strong>問題:</strong> 宇宙船Aが地球に対して速度 \(0.6c\) で飛行している。宇宙船Aから前方に光を発射した。この光の速度を(1)宇宙船から見た場合、(2)地球から見た場合、それぞれ求めよ。</p>
+                <div class="solution">
+                    <p><strong>解答:</strong></p>
+                    <p>(1) 宇宙船から見た光の速度：\(c = 3.0 \times 10^8\) m/s</p>
+                    <p>(2) 地球から見た光の速度：\(c = 3.0 \times 10^8\) m/s</p>
+                    <p><strong>解説:</strong> 光速不変の原理により、光の速度はどの慣性系から観測しても常に \(c\) である。日常的な速度の足し算（ガリレイ変換）は光には適用されない。これは特殊相対性理論の根本的な帰結である。</p>
+                </div>
+            </div>
+
+            <h4>12.2.3 二つの公準から導かれる帰結</h4>
+            <p>この二つの公準を同時に満たすためには、我々の時空間に関する常識を根本的に改める必要がある。主な帰結として：</p>
+
+            <ul>
+                <li><strong>同時性の相対性</strong>：ある慣性系で同時に起こる2つの事象が、別の慣性系では同時でない可能性がある</li>
+                <li><strong>時間の遅れ</strong>：運動する時計は静止した時計よりゆっくり進む</li>
+                <li><strong>長さの収縮</strong>：運動する物体は進行方向に収縮して見える</li>
+                <li><strong>質量とエネルギーの等価性</strong>：\(E = mc^2\)</li>
+                <li><strong>速度の合成則の修正</strong>：光速を超える相対速度は存在しない</li>
+            </ul>
+        </section>
+
+        <!-- セクション3: ローレンツ変換 -->
+        <section class="content-section">
+            <h3>12.3 ローレンツ変換</h3>
+
+            <h4>12.3.1 ガリレイ変換の限界</h4>
+            <p>古典力学では、静止系Sと速度 \(v\) で移動する系S'の間の座標変換はガリレイ変換で記述される：</p>
+
+            <div class="equation-box">
+                <div class="title">ガリレイ変換</div>
+                \[ x' = x - vt \]
+                \[ y' = y \]
+                \[ z' = z \]
+                \[ t' = t \]
+                <p>時間は絶対的であり、すべての慣性系で同じように流れる。</p>
+            </div>
+
+            <p>しかし、ガリレイ変換の下ではマクスウェル方程式が不変でない。また、光速不変の原理とも矛盾する。光速不変を満たす座標変換がローレンツ変換である。</p>
+
+            <h4>12.3.2 ローレンツ変換の導出</h4>
+            <div class="derivation">
+                <h4>導出: ローレンツ変換</h4>
+                <div class="derivation-step">
+                    <span class="step-num">1</span>
+                    <strong>仮定と設定</strong>
+                    <p>静止系Sと、S系に対して \(x\) 軸正方向に速度 \(v\) で運動する系S'を考える。時刻 \(t = t' = 0\) で両系の原点が一致するとする。</p>
+                    <p>変換は線形であると仮定する：</p>
+                    \[ x' = \gamma(x - vt) \]
+                    \[ t' = \gamma(t - \alpha x) \]
+                    <p>ここで \(\gamma\) と \(\alpha\) は未知の定数。</p>
+                </div>
+                <div class="derivation-step">
+                    <span class="step-num">2</span>
+                    <strong>逆変換の要請</strong>
+                    <p>相対性原理より、S'から見たSの速度は \(-v\) である。したがって逆変換は：</p>
+                    \[ x = \gamma(x' + vt') \]
+                    \[ t = \gamma(t' + \alpha x') \]
+                </div>
+                <div class="derivation-step">
+                    <span class="step-num">3</span>
+                    <strong>光速不変の条件</strong>
+                    <p>S系の原点 \((x=0, t=0)\) から発した光が、S系で \((x, t)\) に到達したとする。光速不変より：</p>
+                    \[ x = ct \quad \text{(S系)} \]
+                    \[ x' = ct' \quad \text{(S'系)} \]
+                </div>
+                <div class="derivation-step">
+                    <span class="step-num">4</span>
+                    <strong>\(\alpha\) の決定</strong>
+                    <p>変換式に \(x = ct\) を代入：</p>
+                    \[ x' = \gamma(ct - vt) = \gamma t(c - v) \]
+                    \[ t' = \gamma(t - \alpha ct) = \gamma t(1 - \alpha c) \]
+                    <p>\(x' = ct'\) より：</p>
+                    \[ \gamma t(c - v) = c \cdot \gamma t(1 - \alpha c) \]
+                    \[ c - v = c - \alpha c^2 \]
+                    \[ \alpha = \frac{v}{c^2} \]
+                </div>
+                <div class="derivation-step">
+                    <span class="step-num">5</span>
+                    <strong>\(\gamma\) の決定</strong>
+                    <p>変換と逆変換を組み合わせる。\(x' = \gamma(x - vt)\) を \(x = \gamma(x' + vt')\) に代入：</p>
+                    \[ x = \gamma\left[\gamma(x - vt) + v\gamma\left(t - \frac{vx}{c^2}\right)\right] \]
+                    \[ x = \gamma^2 x - \gamma^2 vt + \gamma^2 vt - \gamma^2\frac{v^2 x}{c^2} \]
+                    \[ x = \gamma^2 x\left(1 - \frac{v^2}{c^2}\right) \]
+                    <p>恒等的に成り立つためには：</p>
+                    \[ \gamma^2 = \frac{1}{1 - v^2/c^2} \]
+                    \[ \gamma = \frac{1}{\sqrt{1 - v^2/c^2}} = \frac{1}{\sqrt{1 - \beta^2}} \]
+                    <p>ここで \(\beta = v/c\) である。</p>
+                </div>
+            </div>
+
+            <div class="equation-box important">
+                <div class="title">ローレンツ変換</div>
+                \[ x' = \gamma(x - vt) \]
+                \[ y' = y \]
+                \[ z' = z \]
+                \[ t' = \gamma\left(t - \frac{vx}{c^2}\right) \]
+                <p>ここで、ローレンツ因子 \(\gamma\)（ガンマ因子）は：</p>
+                \[ \gamma = \frac{1}{\sqrt{1 - v^2/c^2}} = \frac{1}{\sqrt{1 - \beta^2}} \]
+            </div>
+
+            <h4>12.3.3 ローレンツ因子の性質</h4>
+            <p>ローレンツ因子 \(\gamma\) は特殊相対性理論の中心的な量である：</p>
+
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>速度 \(v\)</th>
+                        <th>\(\beta = v/c\)</th>
+                        <th>\(\gamma\)</th>
+                        <th>備考</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>1.000</td>
+                        <td>静止状態、古典力学の極限</td>
+                    </tr>
+                    <tr>
+                        <td>30 km/s（地球公転）</td>
+                        <td>0.0001</td>
+                        <td>1.000000005</td>
+                        <td>相対論的効果は極めて小さい</td>
+                    </tr>
+                    <tr>
+                        <td>\(0.1c\)</td>
+                        <td>0.1</td>
+                        <td>1.005</td>
+                        <td>0.5%の補正</td>
+                    </tr>
+                    <tr>
+                        <td>\(0.5c\)</td>
+                        <td>0.5</td>
+                        <td>1.155</td>
+                        <td>15%の効果</td>
+                    </tr>
+                    <tr>
+                        <td>\(0.8c\)</td>
+                        <td>0.8</td>
+                        <td>1.667</td>
+                        <td>67%の効果</td>
+                    </tr>
+                    <tr>
+                        <td>\(0.9c\)</td>
+                        <td>0.9</td>
+                        <td>2.294</td>
+                        <td>時間が2倍以上遅れる</td>
+                    </tr>
+                    <tr>
+                        <td>\(0.99c\)</td>
+                        <td>0.99</td>
+                        <td>7.089</td>
+                        <td>高エネルギー粒子の領域</td>
+                    </tr>
+                    <tr>
+                        <td>\(0.999c\)</td>
+                        <td>0.999</td>
+                        <td>22.37</td>
+                        <td>加速器の粒子</td>
+                    </tr>
+                    <tr>
+                        <td>\(c\)</td>
+                        <td>1</td>
+                        <td>\(\infty\)</td>
+                        <td>光速に到達不可能</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="example-box">
+                <h4>例題12.2: ローレンツ変換の適用</h4>
+                <p><strong>問題:</strong> 静止系Sで、座標 \((x, t) = (10 \text{ m}, 5 \times 10^{-8} \text{ s})\) で起こった事象がある。S系に対して速度 \(0.6c\) で \(x\) 軸正方向に運動する系S'では、この事象はどの座標で観測されるか。</p>
+                <div class="solution">
+                    <p><strong>解答:</strong></p>
+                    <p>\(v = 0.6c = 1.8 \times 10^8\) m/s として、まずローレンツ因子を計算する：</p>
+                    \[ \gamma = \frac{1}{\sqrt{1 - 0.6^2}} = \frac{1}{\sqrt{0.64}} = \frac{1}{0.8} = 1.25 \]
+                    <p>座標変換：</p>
+                    \[ x' = \gamma(x - vt) = 1.25\left(10 - 1.8 \times 10^8 \times 5 \times 10^{-8}\right) \]
+                    \[ x' = 1.25(10 - 9) = 1.25 \text{ m} \]
+                    \[ t' = \gamma\left(t - \frac{vx}{c^2}\right) = 1.25\left(5 \times 10^{-8} - \frac{1.8 \times 10^8 \times 10}{(3 \times 10^8)^2}\right) \]
+                    \[ t' = 1.25\left(5 \times 10^{-8} - 2 \times 10^{-8}\right) = 3.75 \times 10^{-8} \text{ s} \]
+                    <p>S'系での座標は \((x', t') = (1.25 \text{ m}, 37.5 \text{ ns})\) となる。</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- セクション4: 時間の遅れと長さの収縮 -->
+        <section class="content-section">
+            <h3>12.4 時間の遅れと長さの収縮</h3>
+
+            <h4>12.4.1 時間の遅れ（時間膨張）</h4>
+            <p>運動する時計は、静止した時計と比べてゆっくり進む。この効果を「時間の遅れ」または「時間膨張」（time dilation）という。</p>
+
+            <div class="derivation">
+                <h4>導出: 時間の遅れ</h4>
+                <div class="derivation-step">
+                    <span class="step-num">1</span>
+                    <strong>設定</strong>
+                    <p>S'系で静止している時計を考える。この時計は S'系の原点 \(x' = 0\) に置かれているとする。</p>
+                </div>
+                <div class="derivation-step">
+                    <span class="step-num">2</span>
+                    <strong>固有時間</strong>
+                    <p>S'系でこの時計が時間間隔 \(\Delta t'\)（固有時間、proper time）を刻んだとする。</p>
+                </div>
+                <div class="derivation-step">
+                    <span class="step-num">3</span>
+                    <strong>S系での時間間隔</strong>
+                    <p>ローレンツ変換の逆変換 \(t = \gamma(t' + vx'/c^2)\) を用いる。</p>
+                    <p>\(x' = 0\) より：</p>
+                    \[ t = \gamma t' \]
+                    <p>したがって、S系での時間間隔は：</p>
+                    \[ \Delta t = \gamma \Delta t' \]
+                </div>
+                <div class="derivation-step">
+                    <span class="step-num">4</span>
+                    <strong>結論</strong>
+                    <p>\(\gamma > 1\) より \(\Delta t > \Delta t'\)。S系から見ると、運動する時計はゆっくり進む。</p>
+                </div>
+            </div>
+
+            <div class="equation-box important">
+                <div class="title">時間の遅れ</div>
+                \[ \Delta t = \gamma \Delta \tau = \frac{\Delta \tau}{\sqrt{1 - v^2/c^2}} \]
+                <p>\(\Delta \tau\)：固有時間（時計と一緒に運動する系で測った時間）</p>
+                <p>\(\Delta t\)：静止系で測った時間</p>
+            </div>
+
+            <div class="column application">
+                <h4>コラム: ミューオンの寿命と時間の遅れ</h4>
+                <p>宇宙線が大気上層で空気分子と衝突すると、ミューオン（μ粒子）が生成される。ミューオンの静止時の寿命は約2.2 μsで、光速で移動しても \(c \times 2.2 \text{ μs} \approx 660\) m しか進めない。</p>
+                <p>しかし、実際には地表でも多数のミューオンが観測される。大気上層（高度約15 km）で生成されたミューオンが地表に到達するのは、時間の遅れの効果による。</p>
+                <p>ミューオンが速度 \(0.998c\) で運動する場合：</p>
+                \[ \gamma = \frac{1}{\sqrt{1 - 0.998^2}} \approx 15.8 \]
+                <p>地上の観測者から見たミューオンの寿命は：</p>
+                \[ \Delta t = 15.8 \times 2.2 \text{ μs} \approx 35 \text{ μs} \]
+                <p>この間にミューオンが進む距離：</p>
+                \[ d = 0.998c \times 35 \text{ μs} \approx 10.5 \text{ km} \]
+                <p>これで大気を通過して地表に到達できることが説明される。</p>
+            </div>
+
+            <h4>12.4.2 長さの収縮（ローレンツ収縮）</h4>
+            <p>運動する物体は、進行方向に収縮して観測される。この効果を「長さの収縮」または「ローレンツ収縮」という。</p>
+
+            <div class="derivation">
+                <h4>導出: 長さの収縮</h4>
+                <div class="derivation-step">
+                    <span class="step-num">1</span>
+                    <strong>設定</strong>
+                    <p>S'系で静止している棒を考える。S'系で測った棒の長さを \(L_0\)（固有長）とする。棒の両端の座標は \(x'_1 = 0\)、\(x'_2 = L_0\) である。</p>
+                </div>
+                <div class="derivation-step">
+                    <span class="step-num">2</span>
+                    <strong>S系での測定</strong>
+                    <p>S系で棒の長さを測定するには、ある同時刻（\(t\) 一定）に両端の位置を測定する必要がある。</p>
+                </div>
+                <div class="derivation-step">
+                    <span class="step-num">3</span>
+                    <strong>座標変換</strong>
+                    <p>ローレンツ変換 \(x' = \gamma(x - vt)\) より、時刻 \(t\) における両端の位置は：</p>
+                    \[ x'_1 = \gamma(x_1 - vt), \quad x'_2 = \gamma(x_2 - vt) \]
+                    \[ L_0 = x'_2 - x'_1 = \gamma(x_2 - x_1) = \gamma L \]
+                </div>
+                <div class="derivation-step">
+                    <span class="step-num">4</span>
+                    <strong>結論</strong>
+                    \[ L = \frac{L_0}{\gamma} = L_0\sqrt{1 - v^2/c^2} \]
+                    <p>\(\gamma > 1\) より \(L < L_0\)。運動する棒は静止時より短く見える。</p>
+                </div>
+            </div>
+
+            <div class="equation-box important">
+                <div class="title">長さの収縮</div>
+                \[ L = \frac{L_0}{\gamma} = L_0\sqrt{1 - v^2/c^2} \]
+                <p>\(L_0\)：固有長（物体と一緒に運動する系で測った長さ）</p>
+                <p>\(L\)：静止系で測った長さ</p>
+                <p>注意：収縮は運動方向のみで起こり、垂直方向の長さは変化しない。</p>
+            </div>
+
+            <div class="example-box">
+                <h4>例題12.3: 双子のパラドックス</h4>
+                <p><strong>問題:</strong> 地球に残る双子Aと、速度 \(0.8c\) で10光年先の星まで往復する双子Bがいる。往復に要する時間は、Aの時計とBの時計でそれぞれ何年か。</p>
+                <div class="solution">
+                    <p><strong>解答:</strong></p>
+                    <p>まず、Aから見た往復時間を計算する。</p>
+                    <p>片道距離 \(d = 10\) 光年、速度 \(v = 0.8c\) より：</p>
+                    \[ t_A = \frac{2d}{v} = \frac{2 \times 10}{0.8} = 25 \text{ 年} \]
+                    <p>次に、ローレンツ因子を計算する：</p>
+                    \[ \gamma = \frac{1}{\sqrt{1 - 0.8^2}} = \frac{1}{\sqrt{0.36}} = \frac{1}{0.6} \approx 1.667 \]
+                    <p>Bの時計（固有時間）は：</p>
+                    \[ t_B = \frac{t_A}{\gamma} = \frac{25}{1.667} = 15 \text{ 年} \]
+                    <p><strong>結論:</strong> Aは25歳、Bは15歳だけ年を取る。帰還時、Bは Aより10歳若い。</p>
+                    <p><strong>補足（パラドックスの解消）:</strong> これは「パラドックス」と呼ばれるが、実際には矛盾はない。Bは折り返し点で加速（減速・反転）を経験するため、AとBは対称ではない。Bは非慣性系を経験し、この非対称性がBの方が若くなる物理的理由である。</p>
+                </div>
+            </div>
+
+            <h4>12.4.3 ミューオンから見た長さの収縮</h4>
+            <p>ミューオンの寿命の問題は、長さの収縮の観点からも説明できる。</p>
+
+            <div class="example-box">
+                <h4>例題12.4: ミューオンの視点</h4>
+                <p><strong>問題:</strong> 速度 \(0.998c\) で移動するミューオンの視点から、大気の厚さ（15 km）はどのように見えるか。</p>
+                <div class="solution">
+                    <p><strong>解答:</strong></p>
+                    <p>ローレンツ因子：\(\gamma = 15.8\)</p>
+                    <p>ミューオンから見た大気の厚さ：</p>
+                    \[ L = \frac{L_0}{\gamma} = \frac{15 \text{ km}}{15.8} \approx 0.95 \text{ km} = 950 \text{ m} \]
+                    <p>ミューオンから見ると、大気はわずか950 mに収縮している。</p>
+                    <p>ミューオンの静止時寿命 2.2 μs の間に光速で進める距離：</p>
+                    \[ d = c \times 2.2 \text{ μs} = 660 \text{ m} \]
+                    <p>0.998c での移動距離：</p>
+                    \[ d = 0.998c \times 2.2 \text{ μs} \approx 660 \text{ m} \]
+                    <p>これでもまだ950 mより短いが、確率的に一部のミューオンは地表に到達できる（寿命の統計的分布を考慮）。</p>
+                    <p><strong>注意:</strong> 地上から見た「時間の遅れ」と、ミューオンから見た「長さの収縮」は、同じ物理現象を異なる視点から見たものであり、両者は整合している。</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- セクション5: 相対論的速度の合成 -->
+        <section class="content-section">
+            <h3>12.5 相対論的速度の合成</h3>
+
+            <h4>12.5.1 ガリレイ変換での速度合成</h4>
+            <p>古典力学では、速度の合成は単純な足し算である。地面に対して速度 \(v\) で走る電車の中で、進行方向に速度 \(u'\) でボールを投げると、地面から見たボールの速度は \(u = u' + v\) となる。</p>
+
+            <p>しかし、この単純な合成則は光速不変の原理と矛盾する。もし \(u' = c\) なら、\(u = c + v > c\) となってしまう。</p>
+
+            <h4>12.5.2 相対論的速度合成則の導出</h4>
+
+            <div class="derivation">
+                <h4>導出: 相対論的速度合成則</h4>
+                <div class="derivation-step">
+                    <span class="step-num">1</span>
+                    <strong>設定</strong>
+                    <p>S系に対して速度 \(v\) で運動するS'系を考える。S'系で物体が速度 \(u'_x\) で運動しているとする。</p>
+                </div>
+                <div class="derivation-step">
+                    <span class="step-num">2</span>
+                    <strong>速度の定義</strong>
+                    <p>S系での速度：\(u_x = dx/dt\)</p>
+                    <p>S'系での速度：\(u'_x = dx'/dt'\)</p>
+                </div>
+                <div class="derivation-step">
+                    <span class="step-num">3</span>
+                    <strong>ローレンツ変換の微分</strong>
+                    <p>\(x = \gamma(x' + vt')\) を微分：</p>
+                    \[ dx = \gamma(dx' + v\,dt') \]
+                    <p>\(t = \gamma(t' + vx'/c^2)\) を微分：</p>
+                    \[ dt = \gamma\left(dt' + \frac{v}{c^2}dx'\right) \]
+                </div>
+                <div class="derivation-step">
+                    <span class="step-num">4</span>
+                    <strong>速度の計算</strong>
+                    \[ u_x = \frac{dx}{dt} = \frac{\gamma(dx' + v\,dt')}{\gamma(dt' + \frac{v}{c^2}dx')} = \frac{dx'/dt' + v}{1 + \frac{v}{c^2}dx'/dt'} \]
+                    \[ u_x = \frac{u'_x + v}{1 + \frac{u'_x v}{c^2}} \]
+                </div>
+            </div>
+
+            <div class="equation-box important">
+                <div class="title">相対論的速度合成則</div>
+                \[ u_x = \frac{u'_x + v}{1 + \frac{u'_x v}{c^2}} \]
+                <p>3次元の場合（運動方向に垂直な成分）：</p>
+                \[ u_y = \frac{u'_y}{\gamma\left(1 + \frac{u'_x v}{c^2}\right)}, \quad u_z = \frac{u'_z}{\gamma\left(1 + \frac{u'_x v}{c^2}\right)} \]
+            </div>
+
+            <h4>12.5.3 速度合成則の性質</h4>
+            <p>相対論的速度合成則には重要な性質がある：</p>
+
+            <ul>
+                <li><strong>低速極限</strong>：\(u', v \ll c\) のとき、分母 \(\approx 1\) となり、\(u \approx u' + v\)（ガリレイ変換に帰着）</li>
+                <li><strong>光速の不変性</strong>：\(u' = c\) のとき、\(v\) がいくらでも \(u = c\) となる</li>
+                <li><strong>光速未満の保存</strong>：\(u' < c\) かつ \(v < c\) なら、常に \(u < c\) となる</li>
+            </ul>
+
+            <div class="example-box">
+                <h4>例題12.5: 相対論的速度合成</h4>
+                <p><strong>問題:</strong> 地球に対して速度 \(0.9c\) で飛行する宇宙船から、進行方向に速度 \(0.9c\) でロケットを発射した。地球から見たロケットの速度はいくらか。</p>
+                <div class="solution">
+                    <p><strong>解答:</strong></p>
+                    <p>古典力学なら：\(u = 0.9c + 0.9c = 1.8c\)（光速を超えてしまう！）</p>
+                    <p>相対論的速度合成則を用いる：</p>
+                    \[ u = \frac{u' + v}{1 + \frac{u' v}{c^2}} = \frac{0.9c + 0.9c}{1 + \frac{0.9c \times 0.9c}{c^2}} \]
+                    \[ u = \frac{1.8c}{1 + 0.81} = \frac{1.8c}{1.81} \approx 0.994c \]
+                    <p>ロケットの速度は約 \(0.994c\) であり、光速を超えない。</p>
+                </div>
+            </div>
+
+            <div class="example-box">
+                <h4>例題12.6: 光の速度合成</h4>
+                <p><strong>問題:</strong> 速度 \(0.9c\) で飛行する宇宙船から、進行方向に光（速度 \(c\)）を発射した。地球から見た光の速度はいくらか。</p>
+                <div class="solution">
+                    <p><strong>解答:</strong></p>
+                    \[ u = \frac{c + 0.9c}{1 + \frac{c \times 0.9c}{c^2}} = \frac{1.9c}{1 + 0.9} = \frac{1.9c}{1.9} = c \]
+                    <p>光の速度は光源の運動によらず常に \(c\) である。これは光速不変の原理そのものである。</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- セクション6: 相対論的ドップラー効果 -->
+        <section class="content-section">
+            <h3>12.6 相対論的ドップラー効果</h3>
+
+            <h4>12.6.1 古典的ドップラー効果</h4>
+            <p>音波などの古典的な波では、ドップラー効果は光源と観測者の媒質に対する運動によって決まる。光源が速度 \(v_s\) で観測者に近づき、観測者が速度 \(v_o\) で光源に近づく場合：</p>
+
+            <div class="equation">
+                \[ f' = f \cdot \frac{c + v_o}{c - v_s} \]
+            </div>
+
+            <p>しかし、光には媒質がないため、光源と観測者の相対速度のみが意味を持つ。</p>
+
+            <h4>12.6.2 相対論的ドップラー効果の導出</h4>
+
+            <div class="derivation">
+                <h4>導出: 縦ドップラー効果（光源が視線方向に運動）</h4>
+                <div class="derivation-step">
+                    <span class="step-num">1</span>
+                    <strong>光源の固有周期</strong>
+                    <p>光源が静止系で周期 \(T_0\) で発光するとする。</p>
+                </div>
+                <div class="derivation-step">
+                    <span class="step-num">2</span>
+                    <strong>時間の遅れの効果</strong>
+                    <p>観測者から見ると、運動する光源の時計はゆっくり進む：</p>
+                    \[ T_{source} = \gamma T_0 \]
+                </div>
+                <div class="derivation-step">
+                    <span class="step-num">3</span>
+                    <strong>古典的なドップラー効果</strong>
+                    <p>光源が観測者から遠ざかる場合、連続する波面の間隔（波長）が長くなる：</p>
+                    \[ \lambda' = \lambda + v T_{source} = c T_{source} + v T_{source} = (c + v) T_{source} \]
+                </div>
+                <div class="derivation-step">
+                    <span class="step-num">4</span>
+                    <strong>観測される周波数</strong>
+                    \[ f' = \frac{c}{\lambda'} = \frac{c}{(c + v) T_{source}} = \frac{c}{(c + v) \gamma T_0} \]
+                    \[ f' = \frac{f_0}{\gamma(1 + v/c)} = \frac{f_0 \sqrt{1 - v^2/c^2}}{1 + v/c} \]
+                    \[ f' = f_0 \sqrt{\frac{1 - v/c}{1 + v/c}} \]
+                </div>
+            </div>
+
+            <div class="equation-box important">
+                <div class="title">相対論的ドップラー効果</div>
+                <p><strong>光源が遠ざかる場合（赤方偏移）:</strong></p>
+                \[ f_{obs} = f_0 \sqrt{\frac{1 - \beta}{1 + \beta}} = f_0 \sqrt{\frac{c - v}{c + v}} \]
+                <p><strong>光源が近づく場合（青方偏移）:</strong></p>
+                \[ f_{obs} = f_0 \sqrt{\frac{1 + \beta}{1 - \beta}} = f_0 \sqrt{\frac{c + v}{c - v}} \]
+                <p>ここで \(\beta = v/c\)、\(v\) は遠ざかる速度を正とする。</p>
+            </div>
+
+            <h4>12.6.3 横ドップラー効果</h4>
+            <p>特殊相対性理論では、光源が観測者に対して垂直方向に運動する場合でもドップラー効果が生じる。これは古典力学にはない純粋に相対論的な効果であり、時間の遅れに起因する。</p>
+
+            <div class="equation-box">
+                <div class="title">横ドップラー効果</div>
+                \[ f_{obs} = \frac{f_0}{\gamma} = f_0 \sqrt{1 - v^2/c^2} \]
+                <p>運動する光源から垂直方向に放射された光は、常に赤方偏移する。</p>
+            </div>
+
+            <div class="example-box">
+                <h4>例題12.7: 宇宙論的赤方偏移</h4>
+                <p><strong>問題:</strong> 遠方の銀河から放射された水素のHα線（静止波長656.3 nm）が、波長759 nmで観測された。この銀河の後退速度を求めよ。</p>
+                <div class="solution">
+                    <p><strong>解答:</strong></p>
+                    <p>赤方偏移パラメータ \(z\) を定義する：</p>
+                    \[ z = \frac{\lambda_{obs} - \lambda_0}{\lambda_0} = \frac{759 - 656.3}{656.3} = 0.156 \]
+                    <p>相対論的ドップラー公式より：</p>
+                    \[ 1 + z = \frac{\lambda_{obs}}{\lambda_0} = \sqrt{\frac{1 + \beta}{1 - \beta}} \]
+                    \[ (1 + z)^2 = \frac{1 + \beta}{1 - \beta} \]
+                    \[ \beta = \frac{(1 + z)^2 - 1}{(1 + z)^2 + 1} = \frac{1.156^2 - 1}{1.156^2 + 1} = \frac{0.337}{2.337} = 0.144 \]
+                    <p>後退速度：\(v = 0.144c \approx 4.3 \times 10^7\) m/s \(\approx 43,000\) km/s</p>
+                </div>
+            </div>
+
+            <div class="column application">
+                <h4>コラム: GPSと相対論的効果</h4>
+                <p>全地球測位システム（GPS）は、特殊相対性理論と一般相対性理論の両方の効果を補正しなければ正確に機能しない。</p>
+                <p><strong>特殊相対論的効果（時間の遅れ）:</strong></p>
+                <p>GPS衛星は約4 km/sで地球を周回している。この速度での時間の遅れは：</p>
+                \[ \Delta t_{SR} = t_0 \left(1 - \sqrt{1 - v^2/c^2}\right) \approx t_0 \cdot \frac{v^2}{2c^2} \]
+                <p>1日あたり約7 μsの遅れが生じる。</p>
+                <p><strong>一般相対論的効果（重力による時間の遅れ）:</strong></p>
+                <p>衛星は地表より弱い重力場にあるため、衛星の時計は地上より速く進む。この効果は1日あたり約45 μsの進みをもたらす。</p>
+                <p><strong>正味の効果:</strong></p>
+                <p>合計で1日あたり約38 μsの補正が必要。これを補正しないと、1日で約11 kmの位置誤差が累積する。</p>
+            </div>
+        </section>
+
+        <!-- セクション7: 質量とエネルギーの等価性 -->
+        <section class="content-section">
+            <h3>12.7 質量とエネルギーの等価性</h3>
+
+            <h4>12.7.1 相対論的運動量</h4>
+            <p>古典力学での運動量 \(p = mv\) は、相対論では修正が必要である。運動量保存則がすべての慣性系で成立するためには：</p>
+
+            <div class="equation-box">
+                <div class="title">相対論的運動量</div>
+                \[ \vec{p} = \gamma m \vec{v} = \frac{m\vec{v}}{\sqrt{1 - v^2/c^2}} \]
+                <p>\(m\) は静止質量（不変質量）</p>
+            </div>
+
+            <h4>12.7.2 相対論的エネルギー</h4>
+
+            <div class="derivation">
+                <h4>導出: 相対論的運動エネルギー</h4>
+                <div class="derivation-step">
+                    <span class="step-num">1</span>
+                    <strong>仕事と運動エネルギーの関係</strong>
+                    <p>力 \(F\) が物体に行う仕事は運動エネルギーの変化に等しい：</p>
+                    \[ dE = F \, dx = \frac{dp}{dt} \cdot v \, dt = v \, dp \]
+                </div>
+                <div class="derivation-step">
+                    <span class="step-num">2</span>
+                    <strong>\(dp\) の計算</strong>
+                    <p>\(p = \gamma mv\) より：</p>
+                    \[ dp = m \, d(\gamma v) = m\left(\gamma \, dv + v \, d\gamma\right) \]
+                    <p>\(\gamma = (1 - v^2/c^2)^{-1/2}\) を \(v\) で微分：</p>
+                    \[ d\gamma = \frac{v/c^2}{(1 - v^2/c^2)^{3/2}} dv = \frac{\gamma^3 v}{c^2} dv \]
+                </div>
+                <div class="derivation-step">
+                    <span class="step-num">3</span>
+                    <strong>エネルギーの積分</strong>
+                    \[ dE = v \cdot m\left(\gamma + \frac{\gamma^3 v^2}{c^2}\right) dv = m\gamma v \left(1 + \frac{\gamma^2 v^2}{c^2}\right) dv \]
+                    <p>\(1 + \gamma^2 v^2/c^2 = \gamma^2\) を用いると：</p>
+                    \[ dE = m\gamma^3 v \, dv = mc^2 \, d\gamma \]
+                </div>
+                <div class="derivation-step">
+                    <span class="step-num">4</span>
+                    <strong>積分</strong>
+                    <p>\(v = 0\)（\(\gamma = 1\)）から \(v\)（\(\gamma\)）まで積分：</p>
+                    \[ E - E_0 = mc^2(\gamma - 1) \]
+                    <p>全エネルギー：\(E = \gamma mc^2 = E_0 + K\)</p>
+                    <p>ここで \(E_0 = mc^2\) は静止エネルギー、\(K = (\gamma - 1)mc^2\) は運動エネルギー。</p>
+                </div>
+            </div>
+
+            <div class="equation-box important">
+                <div class="title">質量とエネルギーの等価性</div>
+                <p><strong>静止エネルギー:</strong></p>
+                \[ E_0 = mc^2 \]
+                <p><strong>全エネルギー:</strong></p>
+                \[ E = \gamma mc^2 = \frac{mc^2}{\sqrt{1 - v^2/c^2}} \]
+                <p><strong>運動エネルギー:</strong></p>
+                \[ K = E - E_0 = (\gamma - 1)mc^2 \]
+                <p><strong>エネルギー・運動量関係:</strong></p>
+                \[ E^2 = (pc)^2 + (mc^2)^2 \]
+            </div>
+
+            <h4>12.7.3 光子のエネルギーと運動量</h4>
+            <p>質量ゼロの粒子（光子）の場合、\(m = 0\) なので：</p>
+            \[ E = pc \]
+            <p>これはプランクの関係式 \(E = hf\) とド・ブロイの関係式 \(p = h/\lambda\) と整合する。</p>
+
+            <div class="example-box">
+                <h4>例題12.8: 電子の相対論的エネルギー</h4>
+                <p><strong>問題:</strong> 電子（静止質量 \(m_e = 9.11 \times 10^{-31}\) kg）が速度 \(0.99c\) で運動しているとき、(1) 静止エネルギー、(2) 全エネルギー、(3) 運動エネルギー、(4) 運動量を求めよ。</p>
+                <div class="solution">
+                    <p><strong>解答:</strong></p>
+                    <p>(1) 静止エネルギー：</p>
+                    \[ E_0 = m_e c^2 = 9.11 \times 10^{-31} \times (3 \times 10^8)^2 \]
+                    \[ E_0 = 8.2 \times 10^{-14} \text{ J} = 0.511 \text{ MeV} \]
+
+                    <p>(2) ローレンツ因子：</p>
+                    \[ \gamma = \frac{1}{\sqrt{1 - 0.99^2}} = \frac{1}{\sqrt{0.0199}} = 7.09 \]
+
+                    <p>全エネルギー：</p>
+                    \[ E = \gamma m_e c^2 = 7.09 \times 0.511 = 3.62 \text{ MeV} \]
+
+                    <p>(3) 運動エネルギー：</p>
+                    \[ K = E - E_0 = 3.62 - 0.511 = 3.11 \text{ MeV} \]
+
+                    <p>(4) 運動量：</p>
+                    \[ p = \gamma m_e v = 7.09 \times 9.11 \times 10^{-31} \times 0.99 \times 3 \times 10^8 \]
+                    \[ p = 1.92 \times 10^{-21} \text{ kg·m/s} = 3.58 \text{ MeV}/c \]
+
+                    <p><strong>古典力学との比較:</strong></p>
+                    <p>古典的運動エネルギー \(K_{classical} = \frac{1}{2}mv^2 = \frac{1}{2} \times 0.511 \times 0.99^2 = 0.25\) MeV</p>
+                    <p>相対論的効果により、運動エネルギーは古典値の約12倍になる。</p>
+                </div>
+            </div>
+
+            <div class="example-box">
+                <h4>例題12.9: 核融合のエネルギー</h4>
+                <p><strong>問題:</strong> 太陽の中心で起こる陽子-陽子連鎖反応では、4つの水素原子核（陽子）から1つのヘリウム4原子核が生成される。質量欠損からこの反応で放出されるエネルギーを計算せよ。</p>
+                <p>データ: 陽子の質量 \(m_p = 1.00728\) u、ヘリウム4の質量 \(m_{He} = 4.00260\) u、1 u = 931.5 MeV/c²</p>
+                <div class="solution">
+                    <p><strong>解答:</strong></p>
+                    <p>反応前の質量（陽子4個）：</p>
+                    \[ M_{before} = 4 \times 1.00728 = 4.02912 \text{ u} \]
+
+                    <p>反応後の質量（ヘリウム4）：</p>
+                    \[ M_{after} = 4.00260 \text{ u} \]
+
+                    <p>質量欠損：</p>
+                    \[ \Delta m = M_{before} - M_{after} = 4.02912 - 4.00260 = 0.02652 \text{ u} \]
+
+                    <p>放出エネルギー：</p>
+                    \[ E = \Delta m \cdot c^2 = 0.02652 \times 931.5 = 24.7 \text{ MeV} \]
+
+                    <p>（実際には2個の陽電子と2個のニュートリノも放出され、正味のエネルギーは約26.7 MeV）</p>
+
+                    <p><strong>効率:</strong></p>
+                    \[ \eta = \frac{\Delta m}{M_{before}} = \frac{0.02652}{4.02912} = 0.66\% \]
+                    <p>質量の約0.66%がエネルギーに変換される。化学反応（約10⁻⁸%）と比べて桁違いに効率が高い。</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- セクション8: 電磁場のローレンツ変換 -->
+        <section class="content-section">
+            <h3>12.8 電磁場のローレンツ変換</h3>
+
+            <h4>12.8.1 電場と磁場の相対性</h4>
+            <p>特殊相対性理論の重要な帰結の一つは、電場と磁場が観測者の運動状態によって混合されることである。ある慣性系で純粋な電場として観測される場が、別の慣性系では電場と磁場の両方として観測される。</p>
+
+            <div class="equation-box">
+                <div class="title">電磁場のローレンツ変換</div>
+                <p>S系からS'系（\(x\)方向に速度 \(v\) で運動）への変換：</p>
+                <p><strong>運動方向に平行な成分:</strong></p>
+                \[ E'_x = E_x, \quad B'_x = B_x \]
+                <p><strong>運動方向に垂直な成分:</strong></p>
+                \[ E'_y = \gamma(E_y - vB_z), \quad E'_z = \gamma(E_z + vB_y) \]
+                \[ B'_y = \gamma\left(B_y + \frac{v}{c^2}E_z\right), \quad B'_z = \gamma\left(B_z - \frac{v}{c^2}E_y\right) \]
+            </div>
+
+            <h4>12.8.2 電磁場の不変量</h4>
+            <p>電磁場には、ローレンツ変換で不変に保たれる量がある：</p>
+
+            <div class="equation-box">
+                <div class="title">電磁場のローレンツ不変量</div>
+                \[ \vec{E} \cdot \vec{B} = \text{不変} \]
+                \[ E^2 - c^2 B^2 = \text{不変} \]
+            </div>
+
+            <p>これらの不変量から、以下のことが言える：</p>
+            <ul>
+                <li>もしある慣性系で \(\vec{E} \perp \vec{B}\) なら、すべての慣性系で \(\vec{E} \perp \vec{B}\)</li>
+                <li>もしある慣性系で \(E > cB\) なら、\(\vec{B} = 0\) となる慣性系が存在する</li>
+                <li>もしある慣性系で \(E < cB\) なら、\(\vec{E} = 0\) となる慣性系が存在する</li>
+            </ul>
+
+            <div class="example-box">
+                <h4>例題12.10: 運動する点電荷の磁場</h4>
+                <p><strong>問題:</strong> 静止した点電荷は周囲に電場のみを作り、磁場は作らない。この点電荷が速度 \(v\) で運動するとき、磁場が生じることを電磁場のローレンツ変換から説明せよ。</p>
+                <div class="solution">
+                    <p><strong>解答:</strong></p>
+                    <p>点電荷が静止しているS'系では、\(\vec{B}' = 0\) であり、電場のみが存在する：</p>
+                    \[ \vec{E}' = \frac{q}{4\pi\epsilon_0 r'^2} \hat{r}' \]
+
+                    <p>点電荷が速度 \(v\) で \(x\) 方向に運動するS系での電磁場を求める。</p>
+                    <p>逆変換より（\(B'_y = B'_z = 0\) を用いて）：</p>
+                    \[ B_y = \gamma\left(B'_y - \frac{v}{c^2}E'_z\right) = -\frac{\gamma v}{c^2}E'_z \]
+                    \[ B_z = \gamma\left(B'_z + \frac{v}{c^2}E'_y\right) = \frac{\gamma v}{c^2}E'_y \]
+
+                    <p>ベクトル形式で書くと：</p>
+                    \[ \vec{B} = \frac{\gamma v}{c^2}(\hat{x} \times \vec{E}'_\perp) = \frac{1}{c^2}\vec{v} \times \vec{E}_\perp \]
+
+                    <p>これはビオ・サバールの法則から導かれる運動する点電荷の磁場：</p>
+                    \[ \vec{B} = \frac{\mu_0 q}{4\pi} \frac{\vec{v} \times \hat{r}}{r^2} \]
+                    <p>と整合する（\(\mu_0 \epsilon_0 = 1/c^2\) を用いる）。</p>
+
+                    <p><strong>結論:</strong> 磁場は電場の相対論的効果として理解できる。静止した電荷の電場を運動する観測者から見ると、磁場成分が現れる。</p>
+                </div>
+            </div>
+
+            <div class="column history">
+                <h4>コラム: アインシュタインと電磁気学</h4>
+                <p>アインシュタインが特殊相対性理論を構築するきっかけの一つは、電磁気学における非対称性への疑問であった。</p>
+                <p>磁石とコイルの相対運動を考える：</p>
+                <ul>
+                    <li>磁石が静止し、コイルが動く場合：コイル内の電子に働くローレンツ力により電流が流れる</li>
+                    <li>コイルが静止し、磁石が動く場合：変化する磁場がファラデーの法則により起電力を生じ、電流が流れる</li>
+                </ul>
+                <p>物理的には同じ現象（相対運動による電流の発生）なのに、説明のメカニズムが異なるのは不自然である。アインシュタインは、この非対称性は見かけのものであり、電場と磁場は観測者によって混合される同じ実体の異なる側面であると考えた。</p>
+                <p>1905年の論文「運動物体の電気力学について」は、まさにこの問題意識から出発している。</p>
+            </div>
+        </section>
+
+        <!-- セクション9: 福井大学遠赤外領域開発研究センターの研究 -->
+        <section class="content-section">
+            <h3>12.9 福井大学遠赤外領域開発研究センターと相対論的電子ビーム</h3>
+
+            <h4>12.9.1 相対論的電子ビームと電磁波発生</h4>
+            <p>福井大学遠赤外領域開発研究センター（FIR-UF）では、ジャイロトロンや自由電子レーザーなど、相対論的電子ビームを用いた電磁波発生装置の研究開発を行っている。これらの装置では、特殊相対性理論が本質的な役割を果たす。</p>
+
+            <div class="key-point">
+                <h4>相対論的効果の重要性</h4>
+                <p>ジャイロトロンでは、電子が磁場中で円運動（サイクロトロン運動）しながら電磁波を放射する。電子の速度が光速に近づくと、以下の相対論的効果が重要になる：</p>
+                <ul>
+                    <li><strong>相対論的質量増加</strong>: 電子のサイクロトロン周波数が低下する</li>
+                    <li><strong>相対論的ドップラー効果</strong>: 放射周波数が変調される</li>
+                    <li><strong>相対論的収束</strong>: 放射の指向性が高まる</li>
+                </ul>
+            </div>
+
+            <h4>12.9.2 サイクロトロン放射と相対論</h4>
+            <p>磁場中を運動する電子のサイクロトロン周波数は：</p>
+
+            <div class="equation-box">
+                <div class="title">相対論的サイクロトロン周波数</div>
+                <p><strong>非相対論的:</strong></p>
+                \[ f_c = \frac{eB}{2\pi m_e} \]
+                <p><strong>相対論的:</strong></p>
+                \[ f_c = \frac{eB}{2\pi \gamma m_e} \]
+                <p>相対論的効果により、高速電子のサイクロトロン周波数は低下する。</p>
+            </div>
+
+            <p>ジャイロトロンでは、この相対論的効果を利用して、特定の周波数で強い電磁波放射を実現している。電子と電磁波の相互作用において、エネルギーを失った電子はサイクロトロン周波数が増加し、逆にエネルギーを得た電子は周波数が低下する。この「位相集群効果」により、効率的なエネルギー変換が可能となる。</p>
+
+            <div class="example-box">
+                <h4>例題12.11: ジャイロトロンの動作周波数</h4>
+                <p><strong>問題:</strong> 磁場強度 \(B = 14\) T のジャイロトロンにおいて、電子の加速電圧が 80 kV のとき、基本波の放射周波数を求めよ。</p>
+                <div class="solution">
+                    <p><strong>解答:</strong></p>
+                    <p>まず、電子のローレンツ因子を計算する。電子の運動エネルギーは：</p>
+                    \[ K = eV = 80 \text{ keV} \]
+                    <p>電子の静止エネルギーは 511 keV なので：</p>
+                    \[ \gamma = 1 + \frac{K}{m_e c^2} = 1 + \frac{80}{511} = 1.157 \]
+
+                    <p>相対論的サイクロトロン周波数：</p>
+                    \[ f_c = \frac{eB}{2\pi \gamma m_e} = \frac{1.6 \times 10^{-19} \times 14}{2\pi \times 1.157 \times 9.11 \times 10^{-31}} \]
+                    \[ f_c = \frac{2.24 \times 10^{-18}}{6.62 \times 10^{-30}} = 338 \text{ GHz} \]
+
+                    <p>非相対論的な値 \(f_c = eB/(2\pi m_e) = 392\) GHz と比較すると、相対論的効果により約14%低下している。</p>
+                </div>
+            </div>
+
+            <h4>12.9.3 自由電子レーザーと相対論</h4>
+            <p>自由電子レーザー（FEL）では、相対論的電子ビームが周期的磁場（アンジュレータ）中を通過する際に電磁波を放射する。放射波長は：</p>
+
+            <div class="equation-box">
+                <div class="title">自由電子レーザーの波長</div>
+                \[ \lambda = \frac{\lambda_u}{2\gamma^2}\left(1 + \frac{K^2}{2}\right) \]
+                <p>\(\lambda_u\): アンジュレータ周期、\(K\): アンジュレータパラメータ</p>
+                <p>\(\gamma^{-2}\) の因子は二重の相対論的効果（長さ収縮とドップラー効果）に由来する。</p>
+            </div>
+
+            <p>福井大学では、テラヘルツ領域の自由電子レーザー開発も進められており、相対論的電子ビーム技術が重要な役割を果たしている。</p>
+        </section>
+
+        <!-- 演習問題 -->
+        <section class="content-section exercises">
+            <h3>演習問題</h3>
+
+            <div class="exercise">
+                <h4>問題12.1 基礎</h4>
+                <p>宇宙船が地球に対して速度 \(0.8c\) で飛行している。宇宙船内の時計で1時間が経過したとき、地球の時計では何時間経過しているか。</p>
+            </div>
+
+            <div class="exercise">
+                <h4>問題12.2 基礎</h4>
+                <p>静止時の長さが100 mの宇宙船が、速度 \(0.6c\) で地球の近くを通過した。地球の観測者から見た宇宙船の長さはいくらか。</p>
+            </div>
+
+            <div class="exercise">
+                <h4>問題12.3 応用</h4>
+                <p>地球に対して速度 \(0.5c\) で飛行する宇宙船Aから、進行方向に速度 \(0.5c\) で宇宙船Bが発進した。地球から見た宇宙船Bの速度を求めよ。また、宇宙船Aから見て後方に速度 \(0.5c\) でミサイルを発射した場合、地球から見たミサイルの速度を求めよ。</p>
+            </div>
+
+            <div class="exercise">
+                <h4>問題12.4 応用</h4>
+                <p>遠方の銀河から放射されたスペクトル線が、静止波長の2倍の波長で観測された（\(z = 1\)）。この銀河の後退速度を光速の何倍か求めよ。</p>
+            </div>
+
+            <div class="exercise">
+                <h4>問題12.5 発展</h4>
+                <p>陽子（静止質量 938.3 MeV/c²）が光速の 99.9% で運動している。(1) ローレンツ因子、(2) 全エネルギー、(3) 運動エネルギー、(4) 運動量を求めよ。</p>
+            </div>
+
+            <div class="exercise">
+                <h4>問題12.6 発展</h4>
+                <p>2つの宇宙船が地球からそれぞれ反対方向に速度 \(0.9c\) で飛び去った。一方の宇宙船から見た他方の宇宙船の速度を求めよ。</p>
+            </div>
+
+            <div class="exercise">
+                <h4>問題12.7 考察</h4>
+                <p>マイケルソン-モーリー実験の「null結果」を、以下の2つの立場から説明せよ：(1) エーテル引きずり仮説、(2) 特殊相対性理論。それぞれの説明の問題点または利点を述べよ。</p>
+            </div>
+
+            <div class="exercise">
+                <h4>問題12.8 発展</h4>
+                <p>一様な電場 \(\vec{E} = E\hat{y}\) のみが存在する系（磁場 \(\vec{B} = 0\)）を、\(x\) 方向に速度 \(v\) で運動する観測者から見ると、どのような電磁場が観測されるか。電磁場のローレンツ変換を用いて計算せよ。</p>
+            </div>
+        </section>
+
+        <!-- まとめ -->
+        <section class="content-section summary">
+            <h3>第12回のまとめ</h3>
+            <div class="summary-box">
+                <h4>学習した主要概念</h4>
+                <ul>
+                    <li>マイケルソン-モーリー実験はエーテルの存在を否定し、特殊相対性理論誕生のきっかけとなった</li>
+                    <li>特殊相対性理論は相対性原理と光速不変の原理という2つの公準に基づく</li>
+                    <li>ローレンツ変換は光速不変を満たす座標変換であり、ローレンツ因子 \(\gamma = 1/\sqrt{1-v^2/c^2}\) が重要な役割を果たす</li>
+                    <li>時間の遅れ（運動する時計はゆっくり進む）と長さの収縮（運動する物体は進行方向に縮む）は相対論の直接的帰結</li>
+                    <li>相対論的速度合成則により、光速を超える相対速度は存在しない</li>
+                    <li>相対論的ドップラー効果は天文学や GPS など多くの応用がある</li>
+                    <li>質量とエネルギーは等価であり、\(E = mc^2\) で結ばれる</li>
+                    <li>電場と磁場は観測者の運動状態によって混合され、本質的に同じ実体の異なる側面である</li>
+                </ul>
+            </div>
+
+            <div class="summary-box">
+                <h4>重要公式</h4>
+                <div class="formula-list">
+                    <p><strong>ローレンツ因子:</strong> \(\gamma = \frac{1}{\sqrt{1 - v^2/c^2}}\)</p>
+                    <p><strong>時間の遅れ:</strong> \(\Delta t = \gamma \Delta \tau\)</p>
+                    <p><strong>長さの収縮:</strong> \(L = L_0/\gamma\)</p>
+                    <p><strong>速度合成:</strong> \(u = \frac{u' + v}{1 + u'v/c^2}\)</p>
+                    <p><strong>ドップラー効果:</strong> \(f_{obs} = f_0\sqrt{\frac{1 \mp \beta}{1 \pm \beta}}\)</p>
+                    <p><strong>質量エネルギー:</strong> \(E = \gamma mc^2\)、\(E^2 = (pc)^2 + (mc^2)^2\)</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ナビゲーション -->
+        <nav class="lecture-nav">
+            <a href="lecture11.html" class="nav-prev">← 第11回へ</a>
+            <a href="lecture13.html" class="nav-next">第13回: 荷電粒子・プラズマ →</a>
+        </nav>
+    </main>
+
+    <footer>
+        <p>福井大学 共通教育科目 B2032 電磁波と物質</p>
+        <p>担当: 福成 雅史 / 石川 裕也</p>
+    </footer>
+
+    <script src="../js/lecture.js"></script>
+</body>
+</html>

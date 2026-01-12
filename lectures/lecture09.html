@@ -1,0 +1,925 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>第9回: マクスウェル方程式と波動方程式 - 電磁波と物質</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/lecture.css">
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+    <header class="main-header">
+        <h1>電磁波と物質</h1>
+        <p class="subtitle">第9回: マクスウェル方程式と波動方程式</p>
+    </header>
+
+    <nav class="main-nav">
+        <a href="../index.html">ダッシュボード</a>
+        <a href="../lecture.html">講義一覧</a>
+        <a href="../interactive.html">インタラクティブ学習</a>
+    </nav>
+
+    <main class="lecture-content">
+        <div class="lecture-header">
+            <div class="lecture-meta">
+                <span class="lecture-number">Lecture 09</span>
+                <span class="lecture-duration">学習時間目安: 120-150分</span>
+            </div>
+            <h2>マクスウェル方程式と波動方程式</h2>
+            <p class="lecture-objectives">
+                <strong>学習目標:</strong> マクスウェル方程式の各式の物理的意味を深く理解し、電磁波の波動方程式を導出できるようになる。電磁波の基本的性質（横波性、伝播速度、エネルギー輸送）を数学的に説明できるようになる。
+            </p>
+        </div>
+
+        <!-- セクション1: マクスウェル方程式の概観 -->
+        <section class="content-section">
+            <h3>9.1 マクスウェル方程式の概観</h3>
+
+            <h4>9.1.1 マクスウェル方程式とは</h4>
+            <p>マクスウェル方程式は、電場と磁場の振る舞いを記述する4つの基本方程式から構成される。これらの方程式は、電磁気学のすべての古典的現象を統一的に説明する。ジェームズ・クラーク・マクスウェルが1865年に発表したこの理論は、物理学史上最も美しい理論の一つとされている。</p>
+
+            <div class="equation-box important">
+                <div class="title">真空中のマクスウェル方程式（微分形）</div>
+                <table style="width: 100%; text-align: left; border-collapse: collapse;">
+                    <tr>
+                        <td style="padding: 10px;"><strong>(1) ガウスの法則（電場）:</strong></td>
+                        <td>\(\nabla \cdot \vec{E} = \frac{\rho}{\epsilon_0}\)</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 10px;"><strong>(2) ガウスの法則（磁場）:</strong></td>
+                        <td>\(\nabla \cdot \vec{B} = 0\)</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 10px;"><strong>(3) ファラデーの電磁誘導の法則:</strong></td>
+                        <td>\(\nabla \times \vec{E} = -\frac{\partial \vec{B}}{\partial t}\)</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 10px;"><strong>(4) アンペール-マクスウェルの法則:</strong></td>
+                        <td>\(\nabla \times \vec{B} = \mu_0 \vec{J} + \mu_0 \epsilon_0 \frac{\partial \vec{E}}{\partial t}\)</td>
+                    </tr>
+                </table>
+            </div>
+
+            <p>ここで各記号の意味は以下の通りである：</p>
+            <ul>
+                <li>\(\vec{E}\)：電場ベクトル [V/m]</li>
+                <li>\(\vec{B}\)：磁束密度ベクトル [T]</li>
+                <li>\(\rho\)：電荷密度 [C/m³]</li>
+                <li>\(\vec{J}\)：電流密度ベクトル [A/m²]</li>
+                <li>\(\epsilon_0 = 8.854 \times 10^{-12}\) F/m：真空の誘電率</li>
+                <li>\(\mu_0 = 4\pi \times 10^{-7}\) H/m：真空の透磁率</li>
+            </ul>
+
+            <h4>9.1.2 積分形式のマクスウェル方程式</h4>
+            <p>マクスウェル方程式は積分形式でも表現でき、この形式は物理的解釈がより直感的である：</p>
+
+            <div class="equation-box">
+                <div class="title">マクスウェル方程式（積分形）</div>
+                <p><strong>(1) ガウスの法則（電場）:</strong></p>
+                \[ \oint_S \vec{E} \cdot d\vec{A} = \frac{Q_{enc}}{\epsilon_0} \]
+                <p><strong>(2) ガウスの法則（磁場）:</strong></p>
+                \[ \oint_S \vec{B} \cdot d\vec{A} = 0 \]
+                <p><strong>(3) ファラデーの法則:</strong></p>
+                \[ \oint_C \vec{E} \cdot d\vec{l} = -\frac{d\Phi_B}{dt} \]
+                <p><strong>(4) アンペール-マクスウェルの法則:</strong></p>
+                \[ \oint_C \vec{B} \cdot d\vec{l} = \mu_0 I_{enc} + \mu_0 \epsilon_0 \frac{d\Phi_E}{dt} \]
+            </div>
+
+            <div class="derivation">
+                <h4>導出: 微分形と積分形の関係</h4>
+                <div class="derivation-step">
+                    <span class="step-num">1</span>
+                    <strong>発散定理（ガウスの定理）</strong>
+                    <p>任意のベクトル場 \(\vec{F}\) について、閉曲面 S で囲まれた体積 V に対して：</p>
+                    \[ \oint_S \vec{F} \cdot d\vec{A} = \int_V (\nabla \cdot \vec{F}) dV \]
+                </div>
+                <div class="derivation-step">
+                    <span class="step-num">2</span>
+                    <strong>ストークスの定理</strong>
+                    <p>任意のベクトル場 \(\vec{F}\) について、曲面 S とその境界曲線 C に対して：</p>
+                    \[ \oint_C \vec{F} \cdot d\vec{l} = \int_S (\nabla \times \vec{F}) \cdot d\vec{A} \]
+                </div>
+                <div class="derivation-step">
+                    <span class="step-num">3</span>
+                    <strong>ガウスの法則の変換</strong>
+                    <p>発散定理を適用：</p>
+                    \[ \oint_S \vec{E} \cdot d\vec{A} = \int_V (\nabla \cdot \vec{E}) dV = \int_V \frac{\rho}{\epsilon_0} dV = \frac{Q_{enc}}{\epsilon_0} \]
+                </div>
+                <div class="derivation-step">
+                    <span class="step-num">4</span>
+                    <strong>ファラデーの法則の変換</strong>
+                    <p>ストークスの定理を適用：</p>
+                    \[ \oint_C \vec{E} \cdot d\vec{l} = \int_S (\nabla \times \vec{E}) \cdot d\vec{A} = -\int_S \frac{\partial \vec{B}}{\partial t} \cdot d\vec{A} = -\frac{d\Phi_B}{dt} \]
+                </div>
+            </div>
+
+            <div class="column history">
+                <h4>コラム: マクスウェルの統一</h4>
+                <p>1865年以前、電気と磁気は別々の現象として扱われていた。クーロンの法則、アンペールの法則、ファラデーの誘導法則などが個別に知られていたが、これらを統一的に理解する枠組みはなかった。</p>
+                <p>マクスウェルは、ファラデーの力線という直感的概念を数学的に定式化し、さらに重要な貢献として<strong>変位電流</strong>の概念を導入した。元のアンペールの法則：</p>
+                \[ \nabla \times \vec{B} = \mu_0 \vec{J} \]
+                <p>は、電荷保存則と矛盾する場合があった。マクスウェルは \(\mu_0 \epsilon_0 \frac{\partial \vec{E}}{\partial t}\) という項（変位電流項）を追加することで、この問題を解決した。</p>
+                <p>さらに驚くべきことに、この修正されたマクスウェル方程式から、電磁波の存在が予言された。計算された電磁波の速度は：</p>
+                \[ c = \frac{1}{\sqrt{\mu_0 \epsilon_0}} = 2.998 \times 10^8 \text{ m/s} \]
+                <p>これは当時知られていた光の速度と一致した。マクスウェルは「光は電磁波である」と結論付け、光学と電磁気学を統一した。</p>
+            </div>
+        </section>
+
+        <!-- セクション2: 各方程式の物理的意味 -->
+        <section class="content-section">
+            <h3>9.2 各方程式の物理的意味</h3>
+
+            <h4>9.2.1 ガウスの法則（電場）</h4>
+            <p>ガウスの法則は、電場の発散が電荷密度に比例することを述べている。物理的には、電荷が電場の「湧き出し」または「吸い込み」の源であることを意味する。</p>
+
+            <div class="equation-box">
+                <div class="title">ガウスの法則の物理的解釈</div>
+                \[ \nabla \cdot \vec{E} = \frac{\rho}{\epsilon_0} \]
+                <ul style="text-align: left;">
+                    <li>\(\rho > 0\)（正電荷）：電場が湧き出す（発散が正）</li>
+                    <li>\(\rho < 0\)（負電荷）：電場が吸い込む（発散が負）</li>
+                    <li>\(\rho = 0\)：電場線は始点も終点も持たない</li>
+                </ul>
+            </div>
+
+            <div class="example-box">
+                <h4>例題9.1: 点電荷周りの電場</h4>
+                <p><strong>問題:</strong> 原点に置かれた点電荷 Q によって作られる電場をガウスの法則から導出せよ。</p>
+                <div class="solution">
+                    <p><strong>解答:</strong></p>
+                    <p>対称性から、電場は動径方向を向き、その大きさは r のみに依存する：\(\vec{E} = E(r)\hat{r}\)</p>
+                    <p>半径 r の球面 S をガウス面として選ぶ。積分形のガウスの法則より：</p>
+                    \[ \oint_S \vec{E} \cdot d\vec{A} = \frac{Q}{\epsilon_0} \]
+                    <p>球面上で \(\vec{E}\) と \(d\vec{A}\) は平行なので：</p>
+                    \[ E(r) \cdot 4\pi r^2 = \frac{Q}{\epsilon_0} \]
+                    \[ E(r) = \frac{Q}{4\pi\epsilon_0 r^2} \]
+                    <p>これはクーロンの法則そのものである。</p>
+                </div>
+            </div>
+
+            <h4>9.2.2 ガウスの法則（磁場）</h4>
+            <p>磁場に関するガウスの法則は、磁場の発散がゼロであることを述べている。これは<strong>磁気単極子（磁気モノポール）が存在しない</strong>ことを意味する。</p>
+
+            <div class="equation-box">
+                <div class="title">磁場のガウスの法則の意味</div>
+                \[ \nabla \cdot \vec{B} = 0 \]
+                <ul style="text-align: left;">
+                    <li>磁力線は閉曲線を描く（始点も終点もない）</li>
+                    <li>磁気の「N極」と「S極」は常にペアで存在</li>
+                    <li>任意の閉曲面を通る磁束の総和はゼロ</li>
+                </ul>
+            </div>
+
+            <p>電荷を分割すると正電荷と負電荷に分けられるが、棒磁石を半分に切っても、N極だけまたはS極だけの磁石は得られない。各断片は再びN極とS極の両方を持つ。これは磁気単極子が存在しないことの現れである。</p>
+
+            <div class="key-point">
+                <h4>磁気単極子の探索</h4>
+                <p>1931年、ディラックは量子力学と電磁気学の整合性から、磁気単極子が存在するならば電荷が量子化されるべきことを示した（ディラックの量子化条件）：</p>
+                \[ eg = \frac{n\hbar c}{2} \quad (n = 0, \pm 1, \pm 2, ...) \]
+                <p>電荷の量子化は実験的に確認されているため、磁気単極子の存在は理論的に魅力的である。しかし、現在まで単独の磁気単極子は発見されていない。大統一理論では、宇宙の極初期に磁気単極子が生成されたと予測されるが、インフレーション理論によりその密度は極めて希薄化したと考えられている。</p>
+            </div>
+
+            <h4>9.2.3 ファラデーの電磁誘導の法則</h4>
+            <p>ファラデーの法則は、<strong>時間変化する磁場が電場を誘起する</strong>ことを述べている。これは発電機の原理であり、電磁誘導の数学的表現である。</p>
+
+            <div class="equation-box">
+                <div class="title">ファラデーの法則の物理的解釈</div>
+                \[ \nabla \times \vec{E} = -\frac{\partial \vec{B}}{\partial t} \]
+                <ul style="text-align: left;">
+                    <li>磁場が時間変化すると、その周りに渦状の電場が生じる</li>
+                    <li>負号は、誘導電場が磁束変化を妨げる方向に生じることを示す（レンツの法則）</li>
+                    <li>静電場では \(\nabla \times \vec{E} = 0\) だが、誘導電場は回転を持つ</li>
+                </ul>
+            </div>
+
+            <div class="derivation">
+                <h4>導出: 変圧器の起電力</h4>
+                <div class="derivation-step">
+                    <span class="step-num">1</span>
+                    <strong>設定</strong>
+                    <p>断面積 A のコアに N 回巻きのコイルが巻かれている。コア内の磁束密度が \(B(t) = B_0 \sin(\omega t)\) で変化するとする。</p>
+                </div>
+                <div class="derivation-step">
+                    <span class="step-num">2</span>
+                    <strong>磁束の時間変化</strong>
+                    <p>コイル1巻きを貫く磁束：</p>
+                    \[ \Phi = BA = B_0 A \sin(\omega t) \]
+                </div>
+                <div class="derivation-step">
+                    <span class="step-num">3</span>
+                    <strong>誘導起電力</strong>
+                    <p>ファラデーの法則より、N巻きコイルの誘導起電力は：</p>
+                    \[ \mathcal{E} = -N\frac{d\Phi}{dt} = -N B_0 A \omega \cos(\omega t) \]
+                </div>
+                <div class="derivation-step">
+                    <span class="step-num">4</span>
+                    <strong>起電力の最大値</strong>
+                    \[ \mathcal{E}_{max} = N B_0 A \omega = 2\pi f N B_0 A \]
+                    <p>起電力は周波数に比例する。これが変圧器や発電機の設計原理である。</p>
+                </div>
+            </div>
+
+            <h4>9.2.4 アンペール-マクスウェルの法則</h4>
+            <p>アンペール-マクスウェルの法則は、磁場が<strong>電流</strong>と<strong>時間変化する電場</strong>の両方によって生成されることを述べている。</p>
+
+            <div class="equation-box">
+                <div class="title">アンペール-マクスウェルの法則の解釈</div>
+                \[ \nabla \times \vec{B} = \mu_0 \vec{J} + \mu_0 \epsilon_0 \frac{\partial \vec{E}}{\partial t} \]
+                <ul style="text-align: left;">
+                    <li>第1項（\(\mu_0 \vec{J}\)）：電流が磁場を生成（アンペールの法則）</li>
+                    <li>第2項（\(\mu_0 \epsilon_0 \frac{\partial \vec{E}}{\partial t}\)）：変位電流が磁場を生成（マクスウェルの追加項）</li>
+                </ul>
+            </div>
+
+            <div class="derivation">
+                <h4>導出: 変位電流の必要性</h4>
+                <div class="derivation-step">
+                    <span class="step-num">1</span>
+                    <strong>電流の連続性の問題</strong>
+                    <p>コンデンサの充電回路を考える。導線には電流 I が流れるが、コンデンサ極板間には物理的な電流は流れない。</p>
+                </div>
+                <div class="derivation-step">
+                    <span class="step-num">2</span>
+                    <strong>元のアンペールの法則の矛盾</strong>
+                    <p>アンペールの法則 \(\oint \vec{B} \cdot d\vec{l} = \mu_0 I_{enc}\) を適用する。</p>
+                    <p>導線を通る面を選ぶと \(I_{enc} = I\)、極板間を通る面を選ぶと \(I_{enc} = 0\)。同じ閉曲線に対して異なる結果となり矛盾。</p>
+                </div>
+                <div class="derivation-step">
+                    <span class="step-num">3</span>
+                    <strong>変位電流の導入</strong>
+                    <p>極板間の電場 E は電荷 Q に比例：\(E = \frac{Q}{\epsilon_0 A}\)</p>
+                    <p>電場の時間変化率：\(\frac{\partial E}{\partial t} = \frac{1}{\epsilon_0 A}\frac{dQ}{dt} = \frac{I}{\epsilon_0 A}\)</p>
+                </div>
+                <div class="derivation-step">
+                    <span class="step-num">4</span>
+                    <strong>変位電流</strong>
+                    <p>変位電流密度を定義：\(\vec{J}_D = \epsilon_0 \frac{\partial \vec{E}}{\partial t}\)</p>
+                    <p>極板間を通る変位電流：\(I_D = \epsilon_0 A \frac{\partial E}{\partial t} = I\)</p>
+                    <p>これにより、どの面を選んでも \(I_{enc} = I\) となり、矛盾が解消される。</p>
+                </div>
+            </div>
+
+            <div class="example-box">
+                <h4>例題9.2: 充電中のコンデンサ周りの磁場</h4>
+                <p><strong>問題:</strong> 円板状の平行板コンデンサ（半径 R）が電流 I で充電されている。極板間（極板から距離 r < R の点）における磁場の大きさを求めよ。</p>
+                <div class="solution">
+                    <p><strong>解答:</strong></p>
+                    <p>対称性から、磁場は極板と平行な面内で円周方向を向く。</p>
+                    <p>半径 r の円をアンペールループとして選ぶ。変位電流密度は一様と仮定：</p>
+                    \[ J_D = \epsilon_0 \frac{\partial E}{\partial t} = \frac{I}{\pi R^2} \]
+                    <p>アンペール-マクスウェルの法則より：</p>
+                    \[ \oint \vec{B} \cdot d\vec{l} = \mu_0 \epsilon_0 \frac{d\Phi_E}{dt} = \mu_0 I_D \pi r^2 \]
+                    \[ B \cdot 2\pi r = \mu_0 \frac{I}{\pi R^2} \pi r^2 \]
+                    \[ B = \frac{\mu_0 I r}{2\pi R^2} \]
+                    <p>磁場は r に比例して増加する。これは無限長ソレノイド内部の磁場分布に類似している。</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- セクション3: 波動方程式の導出 -->
+        <section class="content-section">
+            <h3>9.3 電磁波の波動方程式の導出</h3>
+
+            <h4>9.3.1 真空中の波動方程式</h4>
+            <p>電荷も電流も存在しない真空中（\(\rho = 0\)、\(\vec{J} = 0\)）でのマクスウェル方程式から、電場と磁場の波動方程式を導出する。</p>
+
+            <div class="derivation">
+                <h4>導出: 電場の波動方程式</h4>
+                <div class="derivation-step">
+                    <span class="step-num">1</span>
+                    <strong>真空中のマクスウェル方程式</strong>
+                    \[ \nabla \cdot \vec{E} = 0 \tag{i} \]
+                    \[ \nabla \cdot \vec{B} = 0 \tag{ii} \]
+                    \[ \nabla \times \vec{E} = -\frac{\partial \vec{B}}{\partial t} \tag{iii} \]
+                    \[ \nabla \times \vec{B} = \mu_0 \epsilon_0 \frac{\partial \vec{E}}{\partial t} \tag{iv} \]
+                </div>
+                <div class="derivation-step">
+                    <span class="step-num">2</span>
+                    <strong>(iii)式の両辺に回転を適用</strong>
+                    \[ \nabla \times (\nabla \times \vec{E}) = -\frac{\partial}{\partial t}(\nabla \times \vec{B}) \]
+                </div>
+                <div class="derivation-step">
+                    <span class="step-num">3</span>
+                    <strong>ベクトル恒等式を適用</strong>
+                    <p>任意のベクトル場に対して：</p>
+                    \[ \nabla \times (\nabla \times \vec{A}) = \nabla(\nabla \cdot \vec{A}) - \nabla^2 \vec{A} \]
+                    <p>左辺に適用：</p>
+                    \[ \nabla(\nabla \cdot \vec{E}) - \nabla^2 \vec{E} = -\frac{\partial}{\partial t}(\nabla \times \vec{B}) \]
+                </div>
+                <div class="derivation-step">
+                    <span class="step-num">4</span>
+                    <strong>(i)式と(iv)式を代入</strong>
+                    <p>\(\nabla \cdot \vec{E} = 0\) より第1項は消える。(iv)式を右辺に代入：</p>
+                    \[ -\nabla^2 \vec{E} = -\frac{\partial}{\partial t}\left(\mu_0 \epsilon_0 \frac{\partial \vec{E}}{\partial t}\right) \]
+                </div>
+                <div class="derivation-step">
+                    <span class="step-num">5</span>
+                    <strong>波動方程式</strong>
+                    \[ \nabla^2 \vec{E} = \mu_0 \epsilon_0 \frac{\partial^2 \vec{E}}{\partial t^2} \]
+                    <p>これは波動方程式の標準形 \(\nabla^2 f = \frac{1}{v^2}\frac{\partial^2 f}{\partial t^2}\) と比較すると、波の速度が：</p>
+                    \[ v = \frac{1}{\sqrt{\mu_0 \epsilon_0}} = c \]
+                    <p>であることがわかる。</p>
+                </div>
+            </div>
+
+            <div class="equation-box important">
+                <div class="title">電磁波の波動方程式</div>
+                <p><strong>電場の波動方程式:</strong></p>
+                \[ \nabla^2 \vec{E} - \frac{1}{c^2}\frac{\partial^2 \vec{E}}{\partial t^2} = 0 \]
+                <p><strong>磁場の波動方程式:</strong></p>
+                \[ \nabla^2 \vec{B} - \frac{1}{c^2}\frac{\partial^2 \vec{B}}{\partial t^2} = 0 \]
+                <p>ここで \(c = \frac{1}{\sqrt{\mu_0 \epsilon_0}} = 2.998 \times 10^8\) m/s（真空中の光速）</p>
+            </div>
+
+            <div class="derivation">
+                <h4>導出: 光速の数値計算</h4>
+                <div class="derivation-step">
+                    <span class="step-num">1</span>
+                    <strong>定数の値</strong>
+                    \[ \epsilon_0 = 8.854 \times 10^{-12} \text{ F/m} \]
+                    \[ \mu_0 = 4\pi \times 10^{-7} \text{ H/m} = 1.257 \times 10^{-6} \text{ H/m} \]
+                </div>
+                <div class="derivation-step">
+                    <span class="step-num">2</span>
+                    <strong>光速の計算</strong>
+                    \[ c = \frac{1}{\sqrt{\mu_0 \epsilon_0}} = \frac{1}{\sqrt{1.257 \times 10^{-6} \times 8.854 \times 10^{-12}}} \]
+                    \[ c = \frac{1}{\sqrt{1.113 \times 10^{-17}}} = \frac{1}{3.336 \times 10^{-9}} \]
+                    \[ c = 2.998 \times 10^8 \text{ m/s} \]
+                </div>
+                <div class="derivation-step">
+                    <span class="step-num">3</span>
+                    <strong>歴史的意義</strong>
+                    <p>マクスウェルがこの計算を行った1865年、光速は既にフィゾー（1849年）やフーコー（1862年）により独立に測定されており、約3×10⁸ m/s であることが知られていた。電磁気学の定数から導かれる値がこれと一致したことは、光が電磁波であることの強力な証拠となった。</p>
+                </div>
+            </div>
+
+            <h4>9.3.2 1次元波動方程式</h4>
+            <p>電磁波が z 方向に伝播する場合（平面波）、電場が x 方向のみに成分を持つとすると：</p>
+
+            <div class="equation-box">
+                <div class="title">1次元波動方程式</div>
+                \[ \frac{\partial^2 E_x}{\partial z^2} - \frac{1}{c^2}\frac{\partial^2 E_x}{\partial t^2} = 0 \]
+                <p>一般解はダランベールの解：</p>
+                \[ E_x(z,t) = f(z - ct) + g(z + ct) \]
+                <p>\(f\)：+z方向に進む波、\(g\)：-z方向に進む波</p>
+            </div>
+
+            <div class="example-box">
+                <h4>例題9.3: 波動方程式の解の確認</h4>
+                <p><strong>問題:</strong> \(E_x = E_0 \cos(kz - \omega t)\) が波動方程式を満たすことを示し、位相速度を求めよ。</p>
+                <div class="solution">
+                    <p><strong>解答:</strong></p>
+                    <p>空間微分：</p>
+                    \[ \frac{\partial E_x}{\partial z} = -kE_0 \sin(kz - \omega t) \]
+                    \[ \frac{\partial^2 E_x}{\partial z^2} = -k^2 E_0 \cos(kz - \omega t) = -k^2 E_x \]
+                    <p>時間微分：</p>
+                    \[ \frac{\partial E_x}{\partial t} = \omega E_0 \sin(kz - \omega t) \]
+                    \[ \frac{\partial^2 E_x}{\partial t^2} = -\omega^2 E_0 \cos(kz - \omega t) = -\omega^2 E_x \]
+                    <p>波動方程式に代入：</p>
+                    \[ -k^2 E_x - \frac{1}{c^2}(-\omega^2 E_x) = \left(-k^2 + \frac{\omega^2}{c^2}\right)E_x = 0 \]
+                    <p>これがゼロになる条件：</p>
+                    \[ k^2 = \frac{\omega^2}{c^2} \quad \Rightarrow \quad \frac{\omega}{k} = c \]
+                    <p>位相速度 \(v_p = \omega/k = c\) であり、真空中の電磁波は光速で伝播することが確認された。</p>
+                </div>
+            </div>
+
+            <h4>9.3.3 複素表示</h4>
+            <p>計算の便宜上、電磁波を複素数で表すことが多い：</p>
+
+            <div class="equation-box">
+                <div class="title">複素平面波表示</div>
+                \[ \tilde{E}_x(z,t) = \tilde{E}_0 e^{i(kz - \omega t)} \]
+                <p>実際の物理量は実部を取る：\(E_x = \text{Re}[\tilde{E}_x]\)</p>
+                <p>複素振幅 \(\tilde{E}_0 = E_0 e^{i\phi}\) は振幅と初期位相を含む。</p>
+            </div>
+
+            <p>複素表示の利点：</p>
+            <ul>
+                <li>時間微分が \(\partial/\partial t \rightarrow -i\omega\) に置き換わる</li>
+                <li>空間微分が \(\partial/\partial z \rightarrow ik\) に置き換わる</li>
+                <li>位相の取り扱いが容易（複素数の積で表現）</li>
+                <li>線形演算（加算、微分）後に実部を取れば良い</li>
+            </ul>
+        </section>
+
+        <!-- セクション4: 電磁波の性質 -->
+        <section class="content-section">
+            <h3>9.4 電磁波の基本的性質</h3>
+
+            <h4>9.4.1 横波性</h4>
+            <p>電磁波は<strong>横波</strong>であり、電場と磁場は波の進行方向に垂直に振動する。これはマクスウェル方程式から直接導かれる。</p>
+
+            <div class="derivation">
+                <h4>導出: 電磁波の横波性</h4>
+                <div class="derivation-step">
+                    <span class="step-num">1</span>
+                    <strong>平面波の仮定</strong>
+                    <p>z 方向に伝播する平面波：\(\vec{E} = \vec{E}_0 e^{i(kz - \omega t)}\)</p>
+                    <p>電場は z, t にのみ依存：\(\frac{\partial}{\partial x} = \frac{\partial}{\partial y} = 0\)</p>
+                </div>
+                <div class="derivation-step">
+                    <span class="step-num">2</span>
+                    <strong>ガウスの法則を適用</strong>
+                    \[ \nabla \cdot \vec{E} = \frac{\partial E_x}{\partial x} + \frac{\partial E_y}{\partial y} + \frac{\partial E_z}{\partial z} = 0 \]
+                    <p>平面波の条件より：</p>
+                    \[ \frac{\partial E_z}{\partial z} = ikE_z = 0 \]
+                </div>
+                <div class="derivation-step">
+                    <span class="step-num">3</span>
+                    <strong>結論</strong>
+                    <p>\(k \neq 0\) なので \(E_z = 0\)。つまり、進行方向（z方向）の電場成分はゼロである。</p>
+                    <p>同様に磁場についても \(B_z = 0\) が導かれる。</p>
+                    <p>したがって、電場と磁場は進行方向に垂直な面内（xy平面）でのみ振動する。</p>
+                </div>
+            </div>
+
+            <h4>9.4.2 電場と磁場の関係</h4>
+            <p>電磁波において、電場と磁場は互いに垂直であり、その振幅には特定の関係がある。</p>
+
+            <div class="derivation">
+                <h4>導出: E と B の関係</h4>
+                <div class="derivation-step">
+                    <span class="step-num">1</span>
+                    <strong>ファラデーの法則を適用</strong>
+                    <p>\(\vec{E} = E_0 e^{i(kz-\omega t)} \hat{x}\) として：</p>
+                    \[ \nabla \times \vec{E} = \begin{vmatrix} \hat{x} & \hat{y} & \hat{z} \\ \frac{\partial}{\partial x} & \frac{\partial}{\partial y} & \frac{\partial}{\partial z} \\ E_x & 0 & 0 \end{vmatrix} \]
+                </div>
+                <div class="derivation-step">
+                    <span class="step-num">2</span>
+                    <strong>回転の計算</strong>
+                    \[ \nabla \times \vec{E} = \frac{\partial E_x}{\partial z} \hat{y} = ikE_0 e^{i(kz-\omega t)} \hat{y} \]
+                </div>
+                <div class="derivation-step">
+                    <span class="step-num">3</span>
+                    <strong>磁場との関係</strong>
+                    <p>ファラデーの法則 \(\nabla \times \vec{E} = -\frac{\partial \vec{B}}{\partial t}\) より：</p>
+                    \[ ikE_0 e^{i(kz-\omega t)} \hat{y} = i\omega B_y \hat{y} \]
+                    <p>したがって：</p>
+                    \[ B_y = \frac{k}{\omega}E_x = \frac{E_x}{c} \]
+                </div>
+                <div class="derivation-step">
+                    <span class="step-num">4</span>
+                    <strong>まとめ</strong>
+                    <ul style="text-align: left;">
+                        <li>\(\vec{E}\) と \(\vec{B}\) は互いに垂直</li>
+                        <li>\(\vec{E} \times \vec{B}\) は進行方向を向く</li>
+                        <li>振幅の関係：\(E_0 = cB_0\)</li>
+                        <li>同位相で振動</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="equation-box important">
+                <div class="title">電磁波の基本関係</div>
+                <p><strong>電場と磁場の振幅関係:</strong></p>
+                \[ \frac{E_0}{B_0} = c \]
+                <p><strong>ベクトル関係:</strong></p>
+                \[ \vec{B} = \frac{1}{c}\hat{k} \times \vec{E} \]
+                <p>ここで \(\hat{k}\) は波の進行方向の単位ベクトル</p>
+            </div>
+
+            <h4>9.4.3 位相速度と群速度</h4>
+            <p>真空中の電磁波では、位相速度と群速度は共に光速 c に等しい。しかし、物質中ではこれらが異なることがある。</p>
+
+            <div class="equation-box">
+                <div class="title">位相速度と群速度</div>
+                <p><strong>位相速度:</strong> 等位相面の移動速度</p>
+                \[ v_p = \frac{\omega}{k} \]
+                <p><strong>群速度:</strong> 波束（エネルギー）の伝播速度</p>
+                \[ v_g = \frac{d\omega}{dk} \]
+                <p>分散関係 \(\omega = ck\) の場合（真空中）：\(v_p = v_g = c\)</p>
+            </div>
+
+            <div class="example-box">
+                <h4>例題9.4: 電磁波の電場と磁場</h4>
+                <p><strong>問題:</strong> +z 方向に伝播する周波数 100 MHz の電磁波がある。電場振幅が 10 V/m で x 方向を向いているとき、(a) 波長、(b) 波数、(c) 電場の式、(d) 磁場の式を求めよ。</p>
+                <div class="solution">
+                    <p><strong>解答:</strong></p>
+                    <p>(a) 波長：</p>
+                    \[ \lambda = \frac{c}{f} = \frac{3 \times 10^8}{100 \times 10^6} = 3 \text{ m} \]
+                    <p>(b) 波数：</p>
+                    \[ k = \frac{2\pi}{\lambda} = \frac{2\pi}{3} \approx 2.09 \text{ rad/m} \]
+                    <p>(c) 角周波数：</p>
+                    \[ \omega = 2\pi f = 2\pi \times 100 \times 10^6 = 6.28 \times 10^8 \text{ rad/s} \]
+                    <p>電場：</p>
+                    \[ \vec{E} = 10 \cos(2.09z - 6.28 \times 10^8 t) \hat{x} \text{ V/m} \]
+                    <p>(d) 磁場振幅：</p>
+                    \[ B_0 = \frac{E_0}{c} = \frac{10}{3 \times 10^8} = 3.33 \times 10^{-8} \text{ T} \]
+                    <p>\(\vec{E}\) が x 方向、\(\vec{k}\) が z 方向なので、\(\vec{B}\) は y 方向：</p>
+                    \[ \vec{B} = 3.33 \times 10^{-8} \cos(2.09z - 6.28 \times 10^8 t) \hat{y} \text{ T} \]
+                </div>
+            </div>
+        </section>
+
+        <!-- セクション5: 電磁波のエネルギー -->
+        <section class="content-section">
+            <h3>9.5 電磁波のエネルギーと運動量</h3>
+
+            <h4>9.5.1 電磁場のエネルギー密度</h4>
+            <p>電磁場はエネルギーを蓄える。電場と磁場のエネルギー密度は：</p>
+
+            <div class="equation-box">
+                <div class="title">電磁場のエネルギー密度</div>
+                <p><strong>電場のエネルギー密度:</strong></p>
+                \[ u_E = \frac{1}{2}\epsilon_0 E^2 \]
+                <p><strong>磁場のエネルギー密度:</strong></p>
+                \[ u_B = \frac{1}{2\mu_0} B^2 \]
+                <p><strong>全エネルギー密度:</strong></p>
+                \[ u = u_E + u_B = \frac{1}{2}\epsilon_0 E^2 + \frac{1}{2\mu_0} B^2 \]
+            </div>
+
+            <div class="derivation">
+                <h4>導出: 電磁波のエネルギー等分配</h4>
+                <div class="derivation-step">
+                    <span class="step-num">1</span>
+                    <strong>電磁波での E と B の関係を用いる</strong>
+                    <p>\(B = E/c\) を代入：</p>
+                    \[ u_B = \frac{1}{2\mu_0} B^2 = \frac{1}{2\mu_0} \frac{E^2}{c^2} = \frac{E^2}{2\mu_0 c^2} \]
+                </div>
+                <div class="derivation-step">
+                    <span class="step-num">2</span>
+                    <strong>\(c^2 = 1/(\mu_0\epsilon_0)\) を代入</strong>
+                    \[ u_B = \frac{E^2 \mu_0 \epsilon_0}{2\mu_0} = \frac{\epsilon_0 E^2}{2} = u_E \]
+                </div>
+                <div class="derivation-step">
+                    <span class="step-num">3</span>
+                    <strong>結論</strong>
+                    <p>電磁波では、電場と磁場のエネルギー密度は等しい：</p>
+                    \[ u_E = u_B \]
+                    \[ u = 2u_E = \epsilon_0 E^2 = \frac{B^2}{\mu_0} \]
+                </div>
+            </div>
+
+            <h4>9.5.2 ポインティングベクトル</h4>
+            <p><strong>ポインティングベクトル</strong>は、電磁場によるエネルギーの流れ（単位面積・単位時間あたりのエネルギー）を表す。</p>
+
+            <div class="equation-box important">
+                <div class="title">ポインティングベクトル</div>
+                \[ \vec{S} = \frac{1}{\mu_0}\vec{E} \times \vec{B} \]
+                <p>単位: [W/m²]（エネルギーフラックス密度）</p>
+            </div>
+
+            <div class="derivation">
+                <h4>導出: エネルギー保存則とポインティングベクトル</h4>
+                <div class="derivation-step">
+                    <span class="step-num">1</span>
+                    <strong>エネルギー密度の時間変化</strong>
+                    \[ \frac{\partial u}{\partial t} = \frac{\partial}{\partial t}\left(\frac{\epsilon_0 E^2}{2} + \frac{B^2}{2\mu_0}\right) = \epsilon_0 \vec{E} \cdot \frac{\partial \vec{E}}{\partial t} + \frac{1}{\mu_0}\vec{B} \cdot \frac{\partial \vec{B}}{\partial t} \]
+                </div>
+                <div class="derivation-step">
+                    <span class="step-num">2</span>
+                    <strong>マクスウェル方程式を用いた変形</strong>
+                    <p>ファラデーの法則より：\(\frac{\partial \vec{B}}{\partial t} = -\nabla \times \vec{E}\)</p>
+                    <p>アンペール-マクスウェルの法則より：\(\frac{\partial \vec{E}}{\partial t} = \frac{1}{\mu_0\epsilon_0}\nabla \times \vec{B} - \frac{\vec{J}}{\epsilon_0}\)</p>
+                </div>
+                <div class="derivation-step">
+                    <span class="step-num">3</span>
+                    <strong>代入と変形</strong>
+                    \[ \frac{\partial u}{\partial t} = \frac{1}{\mu_0}\vec{E} \cdot (\nabla \times \vec{B}) - \frac{1}{\mu_0}\vec{B} \cdot (\nabla \times \vec{E}) - \vec{J} \cdot \vec{E} \]
+                    <p>ベクトル恒等式 \(\nabla \cdot (\vec{A} \times \vec{B}) = \vec{B} \cdot (\nabla \times \vec{A}) - \vec{A} \cdot (\nabla \times \vec{B})\) を用いて：</p>
+                    \[ \frac{\partial u}{\partial t} = -\nabla \cdot \left(\frac{\vec{E} \times \vec{B}}{\mu_0}\right) - \vec{J} \cdot \vec{E} \]
+                </div>
+                <div class="derivation-step">
+                    <span class="step-num">4</span>
+                    <strong>エネルギー保存の連続方程式</strong>
+                    \[ \frac{\partial u}{\partial t} + \nabla \cdot \vec{S} = -\vec{J} \cdot \vec{E} \]
+                    <p>左辺：電磁場エネルギーの時間変化 + エネルギー流出</p>
+                    <p>右辺：電流への仕事率（ジュール熱など）</p>
+                </div>
+            </div>
+
+            <h4>9.5.3 電磁波の強度</h4>
+            <p>電磁波の強度（時間平均のエネルギーフラックス）は以下で与えられる：</p>
+
+            <div class="equation-box">
+                <div class="title">電磁波の強度</div>
+                <p>瞬時のポインティングベクトルの大きさ：</p>
+                \[ S = \frac{E \cdot B}{\mu_0} = \frac{E^2}{\mu_0 c} = c\epsilon_0 E^2 \]
+                <p>時間平均（\(E = E_0\cos(\omega t - kz)\) の場合）：</p>
+                \[ I = \langle S \rangle = \frac{1}{2}c\epsilon_0 E_0^2 = \frac{E_0^2}{2\mu_0 c} = \frac{c B_0^2}{2\mu_0} \]
+            </div>
+
+            <div class="example-box">
+                <h4>例題9.5: レーザー光の電場強度</h4>
+                <p><strong>問題:</strong> 出力 1 mW、ビーム直径 1 mm のレーザー光の(a) 強度、(b) 電場振幅、(c) 磁場振幅を求めよ。</p>
+                <div class="solution">
+                    <p><strong>解答:</strong></p>
+                    <p>(a) 強度：</p>
+                    \[ I = \frac{P}{A} = \frac{1 \times 10^{-3}}{\pi (0.5 \times 10^{-3})^2} = \frac{10^{-3}}{7.85 \times 10^{-7}} = 1.27 \times 10^3 \text{ W/m}^2 \]
+                    <p>(b) 電場振幅：</p>
+                    \[ E_0 = \sqrt{\frac{2I}{c\epsilon_0}} = \sqrt{\frac{2 \times 1270}{3 \times 10^8 \times 8.85 \times 10^{-12}}} \]
+                    \[ E_0 = \sqrt{\frac{2540}{2.66 \times 10^{-3}}} = \sqrt{9.55 \times 10^5} = 977 \text{ V/m} \]
+                    <p>(c) 磁場振幅：</p>
+                    \[ B_0 = \frac{E_0}{c} = \frac{977}{3 \times 10^8} = 3.26 \times 10^{-6} \text{ T} = 3.26 \text{ μT} \]
+                </div>
+            </div>
+
+            <h4>9.5.4 電磁波の運動量と放射圧</h4>
+            <p>電磁波は運動量も運ぶ。単位体積あたりの運動量密度は：</p>
+
+            <div class="equation-box">
+                <div class="title">電磁波の運動量密度</div>
+                \[ \vec{g} = \frac{\vec{S}}{c^2} = \frac{1}{\mu_0 c^2}\vec{E} \times \vec{B} = \epsilon_0 (\vec{E} \times \vec{B}) \]
+                <p>単位: [kg/(m²·s)] = [N·s/m³]</p>
+            </div>
+
+            <p>電磁波が物体に吸収または反射されると、運動量の授受により力（放射圧）が生じる：</p>
+
+            <div class="equation-box">
+                <div class="title">放射圧</div>
+                <p><strong>完全吸収の場合:</strong></p>
+                \[ P_{abs} = \frac{I}{c} \]
+                <p><strong>完全反射の場合:</strong></p>
+                \[ P_{ref} = \frac{2I}{c} \]
+            </div>
+
+            <div class="column application">
+                <h4>コラム: ソーラーセイル（太陽帆）</h4>
+                <p>放射圧を推進力として利用する宇宙船が<strong>ソーラーセイル</strong>である。太陽光の放射圧は非常に小さいが、燃料なしで持続的な加速が可能なため、長距離宇宙航行に適している。</p>
+                <p>地球軌道での太陽光強度は約 1361 W/m²（太陽定数）。完全反射帆の場合：</p>
+                \[ P = \frac{2I}{c} = \frac{2 \times 1361}{3 \times 10^8} = 9.1 \times 10^{-6} \text{ Pa} \approx 9 \text{ μPa} \]
+                <p>100 m × 100 m の帆で受ける力は約 0.09 N。宇宙空間では摩擦がないため、この微小な力でも長時間かければ大きな速度変化が得られる。</p>
+                <p>日本のIKAROS（2010年）は世界初の実用ソーラーセイル実証機として、金星近傍を通過した。NASAのNEA Scout、LightSail 2 など、複数のソーラーセイルミッションが実施・計画されている。</p>
+            </div>
+        </section>
+
+        <!-- セクション6: 物質中のマクスウェル方程式 -->
+        <section class="content-section">
+            <h3>9.6 物質中のマクスウェル方程式</h3>
+
+            <h4>9.6.1 分極と磁化</h4>
+            <p>物質中では、外部電磁場に応じて原子・分子が電気分極（\(\vec{P}\)）や磁化（\(\vec{M}\)）を示す。これらを考慮したマクスウェル方程式が必要となる。</p>
+
+            <div class="equation-box">
+                <div class="title">補助場の定義</div>
+                <p><strong>電束密度（電気変位）:</strong></p>
+                \[ \vec{D} = \epsilon_0 \vec{E} + \vec{P} \]
+                <p><strong>磁場強度:</strong></p>
+                \[ \vec{H} = \frac{\vec{B}}{\mu_0} - \vec{M} \]
+            </div>
+
+            <h4>9.6.2 線形等方性媒質</h4>
+            <p>多くの物質では、分極と磁化は外部場に比例する（線形応答）：</p>
+
+            <div class="equation-box">
+                <div class="title">構成関係式（線形等方性媒質）</div>
+                \[ \vec{D} = \epsilon \vec{E} = \epsilon_0 \epsilon_r \vec{E} \]
+                \[ \vec{B} = \mu \vec{H} = \mu_0 \mu_r \vec{H} \]
+                <p>\(\epsilon_r\)：比誘電率（誘電率）、\(\mu_r\)：比透磁率</p>
+            </div>
+
+            <h4>9.6.3 物質中のマクスウェル方程式</h4>
+
+            <div class="equation-box">
+                <div class="title">物質中のマクスウェル方程式</div>
+                \[ \nabla \cdot \vec{D} = \rho_f \]
+                \[ \nabla \cdot \vec{B} = 0 \]
+                \[ \nabla \times \vec{E} = -\frac{\partial \vec{B}}{\partial t} \]
+                \[ \nabla \times \vec{H} = \vec{J}_f + \frac{\partial \vec{D}}{\partial t} \]
+                <p>\(\rho_f\)：自由電荷密度、\(\vec{J}_f\)：自由電流密度</p>
+            </div>
+
+            <h4>9.6.4 物質中の電磁波の速度</h4>
+            <p>物質中の電磁波の位相速度は：</p>
+
+            <div class="equation-box">
+                <div class="title">物質中の電磁波速度</div>
+                \[ v = \frac{1}{\sqrt{\mu\epsilon}} = \frac{c}{\sqrt{\mu_r \epsilon_r}} = \frac{c}{n} \]
+                <p>ここで n は屈折率：</p>
+                \[ n = \sqrt{\mu_r \epsilon_r} \approx \sqrt{\epsilon_r} \quad (\mu_r \approx 1 \text{ の場合}) \]
+            </div>
+
+            <div class="derivation">
+                <h4>導出: 物質中の波動方程式</h4>
+                <div class="derivation-step">
+                    <span class="step-num">1</span>
+                    <strong>電荷・電流のない物質中</strong>
+                    <p>\(\rho_f = 0\)、\(\vec{J}_f = 0\) として、真空中と同様の手順で波動方程式を導く。</p>
+                </div>
+                <div class="derivation-step">
+                    <span class="step-num">2</span>
+                    <strong>波動方程式</strong>
+                    \[ \nabla^2 \vec{E} = \mu\epsilon \frac{\partial^2 \vec{E}}{\partial t^2} \]
+                </div>
+                <div class="derivation-step">
+                    <span class="step-num">3</span>
+                    <strong>伝播速度</strong>
+                    \[ v = \frac{1}{\sqrt{\mu\epsilon}} = \frac{1}{\sqrt{\mu_0\mu_r \epsilon_0\epsilon_r}} = \frac{c}{\sqrt{\mu_r\epsilon_r}} \]
+                </div>
+            </div>
+
+            <div class="example-box">
+                <h4>例題9.6: ガラス中の光速</h4>
+                <p><strong>問題:</strong> 比誘電率 \(\epsilon_r = 2.25\)、比透磁率 \(\mu_r = 1\) のガラス中を伝播する光の(a) 屈折率、(b) 位相速度、(c) 波長 500 nm の可視光の物質中での波長を求めよ。</p>
+                <div class="solution">
+                    <p><strong>解答:</strong></p>
+                    <p>(a) 屈折率：</p>
+                    \[ n = \sqrt{\mu_r \epsilon_r} = \sqrt{1 \times 2.25} = 1.5 \]
+                    <p>(b) 位相速度：</p>
+                    \[ v = \frac{c}{n} = \frac{3 \times 10^8}{1.5} = 2 \times 10^8 \text{ m/s} \]
+                    <p>(c) 物質中の波長（周波数は変化しない）：</p>
+                    \[ \lambda_{glass} = \frac{\lambda_0}{n} = \frac{500}{1.5} = 333 \text{ nm} \]
+                </div>
+            </div>
+
+            <div class="column tip">
+                <h4>コラム: 誘電率と屈折率の周波数依存性</h4>
+                <p>実際の物質では、誘電率（したがって屈折率）は光の周波数に依存する。これを<strong>分散</strong>という。</p>
+                <p>分散の起源は、物質中の束縛電子が入射光の電場に応答する際の共鳴現象である。共鳴周波数付近では誘電率の変化が激しく、異常分散を示す。</p>
+                <p>ローレンツモデルによる複素誘電率：</p>
+                \[ \epsilon_r(\omega) = 1 + \frac{f\omega_p^2}{\omega_0^2 - \omega^2 - i\gamma\omega} \]
+                <p>ここで \(\omega_0\)：共鳴周波数、\(\gamma\)：減衰定数、\(\omega_p\)：プラズマ周波数、f：振動子強度</p>
+                <p>誘電率が複素数になると、屈折率も複素数となり、虚部が光の吸収を表す：</p>
+                \[ \tilde{n} = n + i\kappa \]
+                <p>\(\kappa\)（消衰係数）が光の吸収係数を決定する。</p>
+            </div>
+        </section>
+
+        <!-- セクション7: 境界条件 -->
+        <section class="content-section">
+            <h3>9.7 境界条件</h3>
+
+            <h4>9.7.1 電磁場の境界条件</h4>
+            <p>2つの異なる媒質の境界面では、マクスウェル方程式から電磁場の接続条件（境界条件）が導かれる。</p>
+
+            <div class="equation-box">
+                <div class="title">電磁場の境界条件</div>
+                <table style="width: 100%; text-align: left;">
+                    <tr>
+                        <td><strong>D の法線成分:</strong></td>
+                        <td>\(D_{1n} - D_{2n} = \sigma_f\)（表面自由電荷密度）</td>
+                    </tr>
+                    <tr>
+                        <td><strong>B の法線成分:</strong></td>
+                        <td>\(B_{1n} = B_{2n}\)（連続）</td>
+                    </tr>
+                    <tr>
+                        <td><strong>E の接線成分:</strong></td>
+                        <td>\(E_{1t} = E_{2t}\)（連続）</td>
+                    </tr>
+                    <tr>
+                        <td><strong>H の接線成分:</strong></td>
+                        <td>\(H_{1t} - H_{2t} = K_f\)（表面自由電流密度）</td>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="derivation">
+                <h4>導出: 電場の接線成分の連続性</h4>
+                <div class="derivation-step">
+                    <span class="step-num">1</span>
+                    <strong>ファラデーの法則の積分形</strong>
+                    \[ \oint_C \vec{E} \cdot d\vec{l} = -\frac{d\Phi_B}{dt} \]
+                </div>
+                <div class="derivation-step">
+                    <span class="step-num">2</span>
+                    <strong>境界面を横切る長方形ループ</strong>
+                    <p>境界面に沿った長さ \(\ell\)、境界面に垂直な高さ \(h \to 0\) の長方形ループを考える。</p>
+                </div>
+                <div class="derivation-step">
+                    <span class="step-num">3</span>
+                    <strong>ループ積分の評価</strong>
+                    <p>\(h \to 0\) の極限で、ループを貫く磁束は 0 に近づく。また、h 方向の線積分も消える。</p>
+                    \[ E_{1t} \ell - E_{2t} \ell = 0 \]
+                </div>
+                <div class="derivation-step">
+                    <span class="step-num">4</span>
+                    <strong>結論</strong>
+                    \[ E_{1t} = E_{2t} \]
+                    <p>電場の接線成分は境界面で連続である。</p>
+                </div>
+            </div>
+
+            <h4>9.7.2 スネルの法則の導出</h4>
+            <p>境界条件から、電磁波の反射・屈折の法則（スネルの法則）を導くことができる。</p>
+
+            <div class="derivation">
+                <h4>導出: 屈折の法則</h4>
+                <div class="derivation-step">
+                    <span class="step-num">1</span>
+                    <strong>平面波の設定</strong>
+                    <p>媒質1（屈折率 \(n_1\)）から媒質2（\(n_2\)）への入射を考える。</p>
+                    <ul>
+                        <li>入射波：\(\vec{E}_i = \vec{E}_{0i} e^{i(\vec{k}_i \cdot \vec{r} - \omega t)}\)</li>
+                        <li>反射波：\(\vec{E}_r = \vec{E}_{0r} e^{i(\vec{k}_r \cdot \vec{r} - \omega t)}\)</li>
+                        <li>屈折波：\(\vec{E}_t = \vec{E}_{0t} e^{i(\vec{k}_t \cdot \vec{r} - \omega t)}\)</li>
+                    </ul>
+                </div>
+                <div class="derivation-step">
+                    <span class="step-num">2</span>
+                    <strong>境界面での位相整合条件</strong>
+                    <p>境界条件が任意の位置・時刻で成立するためには、全ての波の位相が境界面上で等しくなければならない：</p>
+                    \[ (\vec{k}_i \cdot \vec{r})_{surface} = (\vec{k}_r \cdot \vec{r})_{surface} = (\vec{k}_t \cdot \vec{r})_{surface} \]
+                </div>
+                <div class="derivation-step">
+                    <span class="step-num">3</span>
+                    <strong>波数ベクトルの境界面接線成分</strong>
+                    <p>境界面に沿った波数成分が等しい：</p>
+                    \[ k_i \sin\theta_i = k_r \sin\theta_r = k_t \sin\theta_t \]
+                </div>
+                <div class="derivation-step">
+                    <span class="step-num">4</span>
+                    <strong>反射の法則</strong>
+                    <p>同じ媒質中なので \(k_i = k_r\)：</p>
+                    \[ \theta_i = \theta_r \]
+                </div>
+                <div class="derivation-step">
+                    <span class="step-num">5</span>
+                    <strong>屈折の法則（スネルの法則）</strong>
+                    <p>\(k = n\omega/c\) を用いて：</p>
+                    \[ n_1 \sin\theta_i = n_2 \sin\theta_t \]
+                </div>
+            </div>
+
+            <div class="example-box">
+                <h4>例題9.7: 全反射の臨界角</h4>
+                <p><strong>問題:</strong> 屈折率 1.5 のガラスから空気（n = 1）への光の入射を考える。全反射が起こる臨界角を求めよ。</p>
+                <div class="solution">
+                    <p><strong>解答:</strong></p>
+                    <p>スネルの法則：\(n_1 \sin\theta_1 = n_2 \sin\theta_2\)</p>
+                    <p>全反射の臨界角は \(\theta_2 = 90°\) となる入射角：</p>
+                    \[ n_1 \sin\theta_c = n_2 \sin 90° = n_2 \]
+                    \[ \sin\theta_c = \frac{n_2}{n_1} = \frac{1}{1.5} = 0.667 \]
+                    \[ \theta_c = \sin^{-1}(0.667) = 41.8° \]
+                    <p>入射角が 41.8° より大きいとき、光は全反射する。これが光ファイバーの動作原理である。</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 演習問題 -->
+        <section class="content-section exercises">
+            <h3>演習問題</h3>
+
+            <div class="exercise">
+                <h4>問題9.1 基礎</h4>
+                <p>電磁波 \(\vec{E} = E_0 \sin(kz - \omega t)\hat{x}\) について、(a) 対応する磁場 \(\vec{B}\) を求めよ。(b) ポインティングベクトルを計算し、その時間平均を求めよ。</p>
+            </div>
+
+            <div class="exercise">
+                <h4>問題9.2 応用</h4>
+                <p>内半径 a、外半径 b の同軸ケーブルを考える。内導体と外導体の間に電圧 V、電流 I がある場合、(a) 導体間の電場と磁場を求め、(b) ポインティングベクトルを計算し、(c) これを積分して伝送電力 P = VI を確認せよ。</p>
+            </div>
+
+            <div class="exercise">
+                <h4>問題9.3 発展</h4>
+                <p>円偏光の電磁波を考える：\(\vec{E} = E_0[\cos(kz-\omega t)\hat{x} + \sin(kz-\omega t)\hat{y}]\)。(a) この電磁波の電場ベクトルの軌跡を説明せよ。(b) 対応する磁場を求めよ。(c) ポインティングベクトルを計算し、直線偏光の場合と比較せよ。</p>
+            </div>
+
+            <div class="exercise">
+                <h4>問題9.4 考察</h4>
+                <p>マクスウェル方程式において変位電流項がなかったとしたら（元のアンペールの法則のみ）、どのような問題が生じるか。具体的に(a) 電磁波は存在できるか、(b) コンデンサの充電はどう記述されるか、の観点から考察せよ。</p>
+            </div>
+
+            <div class="exercise">
+                <h4>問題9.5 総合</h4>
+                <p>地球-月間（約38万km）をレーザー光で通信することを考える。波長532 nm、平均出力1 Wのレーザーを直径10 cmの望遠鏡で送信する。(a) 回折限界のビーム広がり角を求めよ。(b) 月面でのビーム直径を概算せよ。(c) 月面での強度と電場振幅を求めよ。(d) 地球から送られた光子が月面に到達するまでの時間を求めよ。</p>
+            </div>
+        </section>
+
+        <!-- まとめ -->
+        <section class="content-section summary">
+            <h3>第9回のまとめ</h3>
+            <div class="summary-box">
+                <h4>学習した主要概念</h4>
+                <ul>
+                    <li>マクスウェル方程式は電磁気学のすべての古典的現象を記述する4つの基本方程式からなる</li>
+                    <li>ガウスの法則は電場/磁場の湧き出し・吸い込みを、ファラデー/アンペール-マクスウェルの法則は時間変化による誘導を記述する</li>
+                    <li>変位電流の導入により、電磁波の存在が予言され、光が電磁波であることが判明した</li>
+                    <li>電磁波は横波であり、E と B は互いに垂直で、振幅比は \(E/B = c\)</li>
+                    <li>真空中の電磁波速度は \(c = 1/\sqrt{\mu_0\epsilon_0} = 2.998 \times 10^8\) m/s</li>
+                    <li>ポインティングベクトル \(\vec{S} = \frac{1}{\mu_0}\vec{E} \times \vec{B}\) は電磁波のエネルギー流を表す</li>
+                    <li>物質中では \(v = c/n\)、境界条件からスネルの法則が導かれる</li>
+                </ul>
+            </div>
+
+            <div class="summary-box">
+                <h4>重要公式</h4>
+                <div class="formula-list">
+                    <p>波動方程式: \(\nabla^2 \vec{E} - \frac{1}{c^2}\frac{\partial^2 \vec{E}}{\partial t^2} = 0\)</p>
+                    <p>光速: \(c = \frac{1}{\sqrt{\mu_0 \epsilon_0}} = 2.998 \times 10^8\) m/s</p>
+                    <p>E-B関係: \(E_0 = cB_0\)</p>
+                    <p>ポインティングベクトル: \(\vec{S} = \frac{1}{\mu_0}\vec{E} \times \vec{B}\)</p>
+                    <p>電磁波強度: \(I = \frac{1}{2}c\epsilon_0 E_0^2 = \frac{cB_0^2}{2\mu_0}\)</p>
+                    <p>物質中の速度: \(v = c/n\)、\(n = \sqrt{\epsilon_r \mu_r}\)</p>
+                    <p>スネルの法則: \(n_1 \sin\theta_1 = n_2 \sin\theta_2\)</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ナビゲーション -->
+        <nav class="lecture-nav">
+            <a href="lecture08.html" class="nav-prev">← 第8回: 電子スピン共鳴（応用）</a>
+            <a href="lecture10.html" class="nav-next">第10回: 電磁波の伝播・回折 →</a>
+        </nav>
+    </main>
+
+    <footer>
+        <p>福井大学 共通教育科目 B2032 電磁波と物質</p>
+        <p>担当: 福成 雅史 / 石川 裕也</p>
+    </footer>
+
+    <script src="../js/lecture.js"></script>
+</body>
+</html>

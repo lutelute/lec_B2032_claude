@@ -1,0 +1,909 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>第15回: 光と電波の境目・ミリ波とジャイロトロン - 電磁波と物質</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/lecture.css">
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+    <header class="main-header">
+        <h1>電磁波と物質</h1>
+        <p class="subtitle">第15回: 光と電波の境目・ミリ波とジャイロトロン</p>
+    </header>
+
+    <nav class="main-nav">
+        <a href="../index.html">ダッシュボード</a>
+        <a href="../lecture.html">講義一覧</a>
+        <a href="../interactive.html">インタラクティブ学習</a>
+    </nav>
+
+    <main class="lecture-content">
+        <div class="lecture-header">
+            <div class="lecture-meta">
+                <span class="lecture-number">Lecture 15</span>
+                <span class="lecture-duration">学習時間目安: 120-150分</span>
+            </div>
+            <h2>光と電波の境目・ミリ波とジャイロトロン</h2>
+            <p class="lecture-objectives">
+                <strong>学習目標:</strong> テラヘルツ波（ミリ波・サブミリ波）の特性と応用を理解する。光と電波の境界領域であるこの周波数帯の発生・検出の困難さ（テラヘルツギャップ）と、それを克服するジャイロトロンの原理を学ぶ。福井大学遠赤外領域開発研究センター（FIR-UF）の研究成果を通じて、最先端のテラヘルツ科学技術を理解する。
+            </p>
+        </div>
+
+        <!-- セクション1: 電磁波スペクトルの「谷間」 -->
+        <section class="content-section">
+            <h3>15.1 テラヘルツ帯 - 光と電波の境界領域</h3>
+
+            <h4>15.1.1 テラヘルツ波とは</h4>
+            <p>テラヘルツ（THz）波は、周波数0.1〜10 THz（波長30 μm〜3 mm）の電磁波である。マイクロ波と赤外線の間に位置し、「遠赤外線」「サブミリ波」「ミリ波」などとも呼ばれる。</p>
+
+            <div class="equation-box">
+                <div class="title">テラヘルツ帯の定義</div>
+                <p><strong>周波数範囲:</strong> 0.1 THz - 10 THz</p>
+                <p><strong>波長範囲:</strong> 30 μm - 3 mm</p>
+                <p><strong>光子エネルギー:</strong> 0.4 meV - 40 meV</p>
+                <p><strong>対応する温度:</strong> 5 K - 500 K（\(E = k_B T\) より）</p>
+            </div>
+
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>周波数</th>
+                        <th>波長</th>
+                        <th>呼称</th>
+                        <th>光子エネルギー</th>
+                        <th>代表的な発生源</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>30 GHz - 300 GHz</td>
+                        <td>1 mm - 10 mm</td>
+                        <td>ミリ波（EHF）</td>
+                        <td>0.12 - 1.2 meV</td>
+                        <td>ジャイロトロン、IMPATT</td>
+                    </tr>
+                    <tr>
+                        <td>0.3 THz - 1 THz</td>
+                        <td>0.3 mm - 1 mm</td>
+                        <td>サブミリ波</td>
+                        <td>1.2 - 4.1 meV</td>
+                        <td>ジャイロトロン、BWO</td>
+                    </tr>
+                    <tr>
+                        <td>1 THz - 3 THz</td>
+                        <td>0.1 mm - 0.3 mm</td>
+                        <td>テラヘルツ波（中心帯域）</td>
+                        <td>4.1 - 12 meV</td>
+                        <td>量子カスケードレーザー</td>
+                    </tr>
+                    <tr>
+                        <td>3 THz - 10 THz</td>
+                        <td>30 μm - 0.1 mm</td>
+                        <td>遠赤外線</td>
+                        <td>12 - 41 meV</td>
+                        <td>CO2レーザー励起、FEL</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h4>15.1.2 テラヘルツギャップ</h4>
+            <p>テラヘルツ帯は長らく「テラヘルツギャップ」と呼ばれ、発生・検出が困難な周波数領域であった。</p>
+
+            <div class="key-point">
+                <h4>テラヘルツギャップの原因</h4>
+                <p><strong>電子デバイス側からの限界（低周波数側）:</strong></p>
+                <ul>
+                    <li>トランジスタの動作周波数上限：〜数百GHz</li>
+                    <li>電子の走行時間が周期より長くなる</li>
+                    <li>寄生容量・インダクタンスの影響が顕著に</li>
+                </ul>
+                <p><strong>光学デバイス側からの限界（高周波数側）:</strong></p>
+                <ul>
+                    <li>半導体レーザーのバンドギャップ：〜数THz以上</li>
+                    <li>テラヘルツ光子エネルギーが室温の熱エネルギー（〜26 meV）と同程度</li>
+                    <li>熱雑音が支配的になる</li>
+                </ul>
+            </div>
+
+            <div class="derivation">
+                <h4>導出: 電子デバイスの周波数限界</h4>
+                <div class="derivation-step">
+                    <span class="step-num">1</span>
+                    <strong>走行時間の制限</strong>
+                    <p>電子が距離 \(L\) を速度 \(v\) で走行する時間：</p>
+                    \[ \tau_{transit} = \frac{L}{v} \]
+                    <p>電子がソースからドレインまで移動する間に、信号の位相が大きく変化すると増幅できない。</p>
+                </div>
+                <div class="derivation-step">
+                    <span class="step-num">2</span>
+                    <strong>カットオフ周波数</strong>
+                    <p>おおよそ \(\tau_{transit} < T/2\)（半周期）が必要：</p>
+                    \[ f_T \approx \frac{v}{2\pi L} \]
+                </div>
+                <div class="derivation-step">
+                    <span class="step-num">3</span>
+                    <strong>数値例（GaAs HEMT）</strong>
+                    <p>電子速度 \(v \approx 2 \times 10^5\) m/s、ゲート長 \(L = 50\) nm として：</p>
+                    \[ f_T = \frac{2 \times 10^5}{2\pi \times 50 \times 10^{-9}} = 640 \text{ GHz} \]
+                    <p>実際には寄生素子の影響でこれより低くなる。最先端のInP HEMTで \(f_T \approx 700\) GHz程度。</p>
+                </div>
+            </div>
+
+            <h4>15.1.3 テラヘルツ波の特性</h4>
+            <p>テラヘルツ波は、光と電波の両方の性質を併せ持つ独特の特性を示す。</p>
+
+            <div class="equation-box">
+                <div class="title">テラヘルツ波の特徴的な性質</div>
+                <p><strong>1. 多くの非金属物質を透過:</strong></p>
+                <p>紙、布、プラスチック、木材、セラミックスなど</p>
+
+                <p><strong>2. 水による強い吸収:</strong></p>
+                <p>水分子の回転モードと結合。生体組織のイメージングに利用可能</p>
+
+                <p><strong>3. 分子の振動・回転スペクトル:</strong></p>
+                <p>多くの分子の特徴的な吸収線がテラヘルツ帯に存在（指紋領域）</p>
+
+                <p><strong>4. 非電離放射線:</strong></p>
+                <p>光子エネルギーが低く（〜meV）、X線のように分子を壊さない</p>
+
+                <p><strong>5. 比較的高い空間分解能:</strong></p>
+                <p>波長が短いため、マイクロ波より高分解能イメージングが可能</p>
+            </div>
+
+            <div class="example-box">
+                <h4>例題15.1: テラヘルツ波の波長と分解能</h4>
+                <p><strong>問題:</strong> 周波数 1 THz のテラヘルツ波を用いたイメージングの回折限界分解能を見積もれ。開口数 NA = 0.5 の光学系を仮定する。</p>
+                <div class="solution">
+                    <p><strong>解答:</strong></p>
+                    <p>波長：</p>
+                    \[ \lambda = \frac{c}{f} = \frac{3 \times 10^8}{10^{12}} = 3 \times 10^{-4} \text{ m} = 300 \text{ μm} \]
+
+                    <p>回折限界分解能（レイリー基準）：</p>
+                    \[ d = \frac{0.61\lambda}{NA} = \frac{0.61 \times 300}{0.5} = 366 \text{ μm} \approx 0.37 \text{ mm} \]
+
+                    <p>テラヘルツ波イメージングは、サブミリメートルの分解能を持つ。X線CTよりは粗いが、マイクロ波レーダーよりは高分解能である。</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- セクション2: テラヘルツ波の発生方法 -->
+        <section class="content-section">
+            <h3>15.2 テラヘルツ波の発生方法</h3>
+
+            <h4>15.2.1 テラヘルツ波源の分類</h4>
+            <p>テラヘルツ波の発生方法は大きく分けて3つのアプローチがある：</p>
+
+            <ul>
+                <li><strong>電子デバイスの高周波化（ボトムアップ）:</strong> ジャイロトロン、BWO、倍周器</li>
+                <li><strong>光学デバイスの低周波化（トップダウン）:</strong> 量子カスケードレーザー、差周波発生</li>
+                <li><strong>超短パルス技術:</strong> フェムト秒レーザー励起、光伝導アンテナ</li>
+            </ul>
+
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>発生方式</th>
+                        <th>周波数範囲</th>
+                        <th>出力</th>
+                        <th>特徴</th>
+                        <th>用途</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>ジャイロトロン</td>
+                        <td>30 GHz - 1.5 THz</td>
+                        <td>kW - MW</td>
+                        <td>最高出力、CW可能</td>
+                        <td>核融合加熱、材料加工</td>
+                    </tr>
+                    <tr>
+                        <td>後進波管（BWO）</td>
+                        <td>30 GHz - 1.5 THz</td>
+                        <td>mW - W</td>
+                        <td>周波数可変</td>
+                        <td>分光、計測</td>
+                    </tr>
+                    <tr>
+                        <td>倍周器チェーン</td>
+                        <td>0.1 - 3 THz</td>
+                        <td>μW - mW</td>
+                        <td>コヒーレント、小型</td>
+                        <td>ヘテロダイン受信機LO</td>
+                    </tr>
+                    <tr>
+                        <td>量子カスケードレーザー</td>
+                        <td>1.5 - 5 THz</td>
+                        <td>mW - W</td>
+                        <td>小型、要冷却</td>
+                        <td>分光、イメージング</td>
+                    </tr>
+                    <tr>
+                        <td>光伝導アンテナ</td>
+                        <td>0.1 - 5 THz</td>
+                        <td>μW（平均）</td>
+                        <td>広帯域パルス</td>
+                        <td>THz-TDS分光</td>
+                    </tr>
+                    <tr>
+                        <td>自由電子レーザー</td>
+                        <td>0.1 - 100 THz</td>
+                        <td>kW - MW（パルス）</td>
+                        <td>高出力、大型施設</td>
+                        <td>基礎研究</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h4>15.2.2 光伝導アンテナによるテラヘルツ発生</h4>
+            <p>フェムト秒レーザーパルスを半導体（GaAsなど）に照射すると、光励起されたキャリアが急速に加速され、テラヘルツパルスが放射される。</p>
+
+            <div class="derivation">
+                <h4>導出: 光伝導アンテナのテラヘルツ発生</h4>
+                <div class="derivation-step">
+                    <span class="step-num">1</span>
+                    <strong>キャリア生成</strong>
+                    <p>フェムト秒レーザー（パルス幅 〜100 fs）が半導体に照射されると、バンドギャップ以上のエネルギーを持つ光子により電子-正孔対が生成される。</p>
+                </div>
+                <div class="derivation-step">
+                    <span class="step-num">2</span>
+                    <strong>キャリアの加速</strong>
+                    <p>電極間にバイアス電圧を印加しておくと、生成されたキャリアは電場により加速される：</p>
+                    \[ a = \frac{eE_{bias}}{m^*} \]
+                </div>
+                <div class="derivation-step">
+                    <span class="step-num">3</span>
+                    <strong>過渡電流とテラヘルツ放射</strong>
+                    <p>急速に変化する電流（過渡電流）が双極子放射を生じる：</p>
+                    \[ E_{THz}(t) \propto \frac{dJ(t)}{dt} \]
+                </div>
+                <div class="derivation-step">
+                    <span class="step-num">4</span>
+                    <strong>周波数成分</strong>
+                    <p>パルス幅 \(\tau_p\) の過渡電流のフーリエ変換は、周波数 \(f \sim 1/\tau_p\) まで成分を持つ。</p>
+                    <p>\(\tau_p = 100\) fs の場合：</p>
+                    \[ f_{max} \sim \frac{1}{10^{-13}} = 10 \text{ THz} \]
+                </div>
+            </div>
+
+            <h4>15.2.3 量子カスケードレーザー（QCL）</h4>
+            <p>量子カスケードレーザーは、半導体超格子構造中の電子のサブバンド間遷移を利用したレーザーである。</p>
+
+            <div class="equation-box">
+                <div class="title">量子カスケードレーザーの原理</div>
+                <p><strong>エネルギー準位間隔:</strong></p>
+                \[ \Delta E = h\nu \]
+                <p>テラヘルツQCLでは \(\Delta E \sim 4\) - \(20\) meV（1-5 THz）</p>
+
+                <p><strong>カスケード構造:</strong></p>
+                <p>1つの電子が複数回の遷移を行い、複数個の光子を放出する。これにより量子効率が1を超える。</p>
+
+                <p><strong>動作温度の制限:</strong></p>
+                <p>テラヘルツ光子エネルギーが熱エネルギー \(k_B T\) と同程度のため、室温動作が困難：</p>
+                \[ T < \frac{h\nu}{k_B} \approx 48 \times \nu[\text{THz}] \text{ K} \]
+                <p>1 THz では約 50 K 以下での動作が必要。</p>
+            </div>
+
+            <div class="column history">
+                <h4>コラム: テラヘルツ科学の歴史</h4>
+                <p><strong>1960年代:</strong> 分子気体レーザー（HCN、H2O）によるサブミリ波発振</p>
+                <p><strong>1970年代:</strong> Josephson接合によるテラヘルツ検出、FTSによる遠赤外分光</p>
+                <p><strong>1980年代:</strong> フェムト秒レーザーの発展、テラヘルツパルス発生の実証</p>
+                <p><strong>1990年代:</strong> テラヘルツ時間領域分光（THz-TDS）の確立、イメージング応用</p>
+                <p><strong>2000年代:</strong> 量子カスケードレーザーのテラヘルツ帯への展開</p>
+                <p><strong>2010年代以降:</strong> CMOS技術による低コスト化、産業応用の拡大</p>
+            </div>
+        </section>
+
+        <!-- セクション3: ジャイロトロンの原理 -->
+        <section class="content-section">
+            <h3>15.3 ジャイロトロンの原理</h3>
+
+            <h4>15.3.1 ジャイロトロンとは</h4>
+            <p>ジャイロトロン（gyrotron）は、磁場中を螺旋運動する電子ビームからサイクロトロン放射を取り出す真空電子管である。ミリ波・サブミリ波領域で最も高出力を達成できるデバイスである。</p>
+
+            <div class="key-point">
+                <h4>ジャイロトロンの特徴</h4>
+                <ul>
+                    <li><strong>高出力:</strong> MW級の連続発振が可能（他の方式の数桁上）</li>
+                    <li><strong>高効率:</strong> 30-50%以上の効率を達成</li>
+                    <li><strong>広い周波数範囲:</strong> 30 GHz - 1.5 THz をカバー</li>
+                    <li><strong>高周波安定性:</strong> 周波数の精密制御が可能</li>
+                    <li><strong>長寿命:</strong> 数万時間の動作実績</li>
+                </ul>
+            </div>
+
+            <h4>15.3.2 サイクロトロン共鳴メーザー（CRM）の原理</h4>
+            <p>ジャイロトロンは、サイクロトロン共鳴メーザー（Cyclotron Resonance Maser, CRM）効果に基づいている。</p>
+
+            <div class="derivation">
+                <h4>導出: ジャイロトロンの動作原理</h4>
+                <div class="derivation-step">
+                    <span class="step-num">1</span>
+                    <strong>電子のサイクロトロン運動</strong>
+                    <p>磁場 \(B\) 中の電子は角周波数 \(\omega_c\) で円運動する：</p>
+                    \[ \omega_c = \frac{eB}{\gamma m_e} \]
+                    <p>ここで \(\gamma\) は相対論的因子。電子の運動エネルギーが変わると \(\gamma\) が変化し、\(\omega_c\) も変化する。</p>
+                </div>
+                <div class="derivation-step">
+                    <span class="step-num">2</span>
+                    <strong>位相集群（バンチング）効果</strong>
+                    <p>空洞共振器内の高周波電場との相互作用を考える。</p>
+                    <ul>
+                        <li>電場から加速された電子：エネルギー増加 → \(\gamma\) 増加 → \(\omega_c\) 減少 → 位相が遅れる</li>
+                        <li>電場で減速された電子：エネルギー減少 → \(\gamma\) 減少 → \(\omega_c\) 増加 → 位相が進む</li>
+                    </ul>
+                    <p>結果として、電子は特定の位相に集まる（位相集群）。</p>
+                </div>
+                <div class="derivation-step">
+                    <span class="step-num">3</span>
+                    <strong>コヒーレント放射</strong>
+                    <p>位相が揃った電子群は、コヒーレントな電磁波を放射する。電子のエネルギーが電磁波に変換される。</p>
+                </div>
+                <div class="derivation-step">
+                    <span class="step-num">4</span>
+                    <strong>発振条件</strong>
+                    <p>共振器モードの周波数 \(\omega\) とサイクロトロン周波数の関係：</p>
+                    \[ \omega \approx s \omega_c + k_z v_z \]
+                    <p>\(s\): 高調波次数（通常 s = 1 または 2）</p>
+                    <p>\(k_z v_z\): ドップラーシフト項</p>
+                </div>
+            </div>
+
+            <div class="equation-box important">
+                <div class="title">ジャイロトロンの基本公式</div>
+                <p><strong>発振周波数:</strong></p>
+                \[ f = s \cdot f_c = s \cdot \frac{eB}{2\pi \gamma m_e} \]
+                <p>\(s\): 高調波次数（基本波 s=1、第2高調波 s=2）</p>
+
+                <p><strong>実用的な公式（電子温度 keV 単位）:</strong></p>
+                \[ f[\text{GHz}] = \frac{28 \cdot s \cdot B[\text{T}]}{1 + V[\text{kV}]/511} \]
+                <p>\(V\): 電子ビームの加速電圧</p>
+            </div>
+
+            <h4>15.3.3 ジャイロトロンの構造</h4>
+
+            <div class="equation-box">
+                <div class="title">ジャイロトロンの主要構成要素</div>
+                <p><strong>1. 電子銃（MIG: Magnetron Injection Gun）:</strong></p>
+                <p>環状の電子ビームを生成し、らせん運動を与える</p>
+
+                <p><strong>2. 超伝導磁石:</strong></p>
+                <p>数T〜十数Tの強磁場を発生。周波数を決定</p>
+
+                <p><strong>3. 空洞共振器（キャビティ）:</strong></p>
+                <p>電子ビームと電磁波の相互作用領域。モード選択</p>
+
+                <p><strong>4. 準光学モード変換器:</strong></p>
+                <p>空洞内の回転モードをガウスビームに変換</p>
+
+                <p><strong>5. 出力窓:</strong></p>
+                <p>ミリ波を真空から取り出す。サファイア、CVDダイヤモンドなど</p>
+
+                <p><strong>6. コレクタ:</strong></p>
+                <p>使用後の電子ビームを回収。エネルギー回収も可能</p>
+            </div>
+
+            <div class="example-box">
+                <h4>例題15.2: ジャイロトロンの設計</h4>
+                <p><strong>問題:</strong> 周波数 170 GHz のジャイロトロンを設計する。基本波（s=1）発振に必要な磁場強度と、加速電圧 80 kV での相対論的補正を計算せよ。</p>
+                <div class="solution">
+                    <p><strong>解答:</strong></p>
+                    <p>相対論的因子：</p>
+                    \[ \gamma = 1 + \frac{eV}{m_e c^2} = 1 + \frac{80}{511} = 1.157 \]
+
+                    <p>必要な磁場強度：</p>
+                    \[ B = \frac{2\pi \gamma m_e f}{e} = \frac{2\pi \times 1.157 \times 9.11 \times 10^{-31} \times 170 \times 10^9}{1.6 \times 10^{-19}} \]
+                    \[ B = \frac{1.13 \times 10^{-18}}{1.6 \times 10^{-19}} = 7.06 \text{ T} \]
+
+                    <p>非相対論的な場合（\(\gamma = 1\)）では：</p>
+                    \[ B_{non-rel} = \frac{2\pi m_e f}{e} = \frac{170}{28} = 6.07 \text{ T} \]
+
+                    <p>相対論的補正により、約16%高い磁場が必要となる。</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- セクション4: 福井大学遠赤外領域開発研究センター -->
+        <section class="content-section">
+            <h3>15.4 福井大学遠赤外領域開発研究センター（FIR-UF）</h3>
+
+            <h4>15.4.1 FIR-UFの概要</h4>
+            <p>福井大学遠赤外領域開発研究センター（Far Infrared Research Center, FIR-UF）は、テラヘルツ・サブテラヘルツ帯の電磁波（遠赤外線）に関する世界的な研究拠点である。</p>
+
+            <div class="column application">
+                <h4>コラム: FIR-UFの沿革と成果</h4>
+                <p><strong>1984年:</strong> 遠赤外領域開発研究センター設立</p>
+                <p><strong>主な研究分野:</strong></p>
+                <ul>
+                    <li>高出力ジャイロトロンの開発</li>
+                    <li>テラヘルツ分光・イメージング</li>
+                    <li>核融合プラズマ加熱用マイクロ波源</li>
+                    <li>材料プロセシング</li>
+                    <li>ビーミング推進</li>
+                </ul>
+
+                <p><strong>世界的成果:</strong></p>
+                <ul>
+                    <li>300 GHz 帯で 1 MW 発振を達成</li>
+                    <li>サブテラヘルツ帯ジャイロトロンで世界最高出力</li>
+                    <li>ITER（国際熱核融合実験炉）用ジャイロトロン開発に貢献</li>
+                    <li>独自の準光学モード変換技術</li>
+                </ul>
+            </div>
+
+            <h4>15.4.2 高出力ジャイロトロンの開発</h4>
+            <p>FIR-UFは、核融合プラズマ加熱や材料加工に必要な高出力ミリ波・サブミリ波源として、世界最高水準のジャイロトロンを開発している。</p>
+
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>パラメータ</th>
+                        <th>FIR-UF ジャイロトロン</th>
+                        <th>世界最高水準（参考）</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>周波数</td>
+                        <td>28 GHz - 1 THz</td>
+                        <td>〜300 GHz（MW級）</td>
+                    </tr>
+                    <tr>
+                        <td>出力（CW）</td>
+                        <td>〜1 MW @ 300 GHz</td>
+                        <td>〜2 MW @ 170 GHz</td>
+                    </tr>
+                    <tr>
+                        <td>効率</td>
+                        <td>30-50%</td>
+                        <td>〜55%（エネルギー回収込み）</td>
+                    </tr>
+                    <tr>
+                        <td>パルス長</td>
+                        <td>秒〜連続</td>
+                        <td>〜1時間（ITER用）</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h4>15.4.3 核融合プラズマ加熱への応用</h4>
+            <p>ジャイロトロンの最も重要な応用の一つは、核融合プラズマの加熱（電子サイクロトロン共鳴加熱、ECRH）である。</p>
+
+            <div class="derivation">
+                <h4>導出: 電子サイクロトロン共鳴加熱（ECRH）</h4>
+                <div class="derivation-step">
+                    <span class="step-num">1</span>
+                    <strong>共鳴条件</strong>
+                    <p>プラズマ中の電子が、入射するマイクロ波と共鳴するためには：</p>
+                    \[ \omega = s\omega_{ce} + k_\parallel v_\parallel \]
+                    <p>\(\omega_{ce} = eB/(\gamma m_e)\): 電子サイクロトロン周波数</p>
+                </div>
+                <div class="derivation-step">
+                    <span class="step-num">2</span>
+                    <strong>必要周波数</strong>
+                    <p>磁場強度 \(B\) のトカマクでの基本波ECRH周波数：</p>
+                    \[ f_{ECRH} = \frac{eB}{2\pi m_e} = 28B[\text{T}] \text{ GHz} \]
+                    <p>例：ITER（\(B = 5.3\) T）では \(f \approx 170\) GHz</p>
+                </div>
+                <div class="derivation-step">
+                    <span class="step-num">3</span>
+                    <strong>吸収と加熱</strong>
+                    <p>共鳴層でマイクロ波は電子に吸収され、電子温度が上昇する。局所的な加熱が可能なため、プラズマ電流の分布制御などにも利用される。</p>
+                </div>
+                <div class="derivation-step">
+                    <span class="step-num">4</span>
+                    <strong>必要パワー</strong>
+                    <p>ITERでは、計24 MWのECRH加熱が計画されている。170 GHz、1 MW級のジャイロトロンが24基必要。</p>
+                </div>
+            </div>
+
+            <h4>15.4.4 材料加工への応用</h4>
+            <p>ジャイロトロンからのミリ波は、材料加工にも応用されている。</p>
+
+            <div class="key-point">
+                <h4>ミリ波材料加工の利点</h4>
+                <ul>
+                    <li><strong>体積加熱:</strong> マイクロ波より深く浸透し、均一加熱が可能</li>
+                    <li><strong>選択加熱:</strong> 材料の誘電特性に応じた選択的加熱</li>
+                    <li><strong>急速加熱:</strong> 表面からの熱伝導に依らない</li>
+                    <li><strong>高温達成:</strong> 2000°C以上の高温処理が可能</li>
+                </ul>
+                <p><strong>応用例:</strong></p>
+                <ul>
+                    <li>セラミックスの焼結</li>
+                    <li>複合材料の製造</li>
+                    <li>金属粉末の焼結（3Dプリンティング）</li>
+                    <li>廃棄物処理</li>
+                </ul>
+            </div>
+
+            <div class="example-box">
+                <h4>例題15.3: ミリ波加熱の浸透深さ</h4>
+                <p><strong>問題:</strong> 誘電体材料（比誘電率 \(\epsilon_r = 5\)、損失正接 \(\tan\delta = 0.01\)）に対する周波数 28 GHz ミリ波の浸透深さを計算せよ。</p>
+                <div class="solution">
+                    <p><strong>解答:</strong></p>
+                    <p>浸透深さ（スキンデプス）は、損失が小さい場合：</p>
+                    \[ \delta = \frac{\lambda_0}{\pi\sqrt{\epsilon_r}\tan\delta} \]
+
+                    <p>自由空間波長：</p>
+                    \[ \lambda_0 = \frac{c}{f} = \frac{3 \times 10^8}{28 \times 10^9} = 0.0107 \text{ m} = 10.7 \text{ mm} \]
+
+                    <p>浸透深さ：</p>
+                    \[ \delta = \frac{0.0107}{\pi \times \sqrt{5} \times 0.01} = \frac{0.0107}{0.0702} = 0.152 \text{ m} = 15.2 \text{ cm} \]
+
+                    <p>28 GHzミリ波は、この材料中を約15 cmまで浸透して加熱できる。これは2.45 GHz（電子レンジ周波数）の浸透深さ（数cm〜10cm程度）より深い。</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- セクション5: テラヘルツ技術の応用 -->
+        <section class="content-section">
+            <h3>15.5 テラヘルツ技術の応用</h3>
+
+            <h4>15.5.1 テラヘルツ分光</h4>
+            <p>テラヘルツ波は、多くの分子の回転スペクトルや低周波振動モードと共鳴するため、物質同定に有用である。</p>
+
+            <div class="equation-box">
+                <div class="title">テラヘルツ時間領域分光（THz-TDS）</div>
+                <p><strong>原理:</strong></p>
+                <p>フェムト秒レーザーパルスでテラヘルツパルスを発生させ、試料透過後の電場波形を時間領域で測定する。</p>
+
+                <p><strong>測定量:</strong></p>
+                <p>電場 \(E(t)\) のフーリエ変換から、振幅と位相の両方の周波数スペクトル \(\tilde{E}(\omega)\) が得られる。</p>
+
+                <p><strong>複素屈折率の決定:</strong></p>
+                \[ \tilde{n}(\omega) = n(\omega) + i\kappa(\omega) \]
+                <p>実部：屈折率、虚部：消衰係数</p>
+            </div>
+
+            <h4>15.5.2 テラヘルツイメージング</h4>
+            <p>テラヘルツ波の物質透過性と非電離性を利用した、非破壊検査・セキュリティ応用が進んでいる。</p>
+
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>応用分野</th>
+                        <th>検出対象</th>
+                        <th>特徴</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>セキュリティ検査</td>
+                        <td>隠匿武器、爆発物</td>
+                        <td>衣服を透過、人体に無害</td>
+                    </tr>
+                    <tr>
+                        <td>品質管理</td>
+                        <td>内部欠陥、層構造</td>
+                        <td>非破壊、非接触</td>
+                    </tr>
+                    <tr>
+                        <td>医療診断</td>
+                        <td>皮膚がん、虫歯</td>
+                        <td>水分による造影効果</td>
+                    </tr>
+                    <tr>
+                        <td>美術品鑑定</td>
+                        <td>絵画の下絵、修復箇所</td>
+                        <td>絵の具層を透過</td>
+                    </tr>
+                    <tr>
+                        <td>半導体検査</td>
+                        <td>ドーピング分布、欠陥</td>
+                        <td>シリコンを透過</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="column application">
+                <h4>コラム: テラヘルツボディスキャナー</h4>
+                <p>空港のセキュリティゲートで使用されるボディスキャナーの多くは、ミリ波（30-300 GHz）を使用している。</p>
+                <p><strong>原理:</strong></p>
+                <p>人体から反射されるミリ波を検出し、体表面の3D画像を構築。衣服の下に隠された物体を検出する。</p>
+                <p><strong>安全性:</strong></p>
+                <p>ミリ波の光子エネルギーは約 0.1 meV であり、X線（keV級）の1000万分の1以下。DNAを損傷する能力はなく、熱効果も無視できるレベル。</p>
+                <p><strong>プライバシー対策:</strong></p>
+                <p>最新のシステムでは、人体の詳細な画像を表示せず、異常箇所のみを図式化して表示する。</p>
+            </div>
+
+            <h4>15.5.3 天文学への応用</h4>
+            <p>宇宙からのテラヘルツ波（サブミリ波）観測は、宇宙の塵に隠された天体や分子雲の研究に不可欠である。</p>
+
+            <div class="equation-box">
+                <div class="title">サブミリ波天文学</div>
+                <p><strong>観測対象:</strong></p>
+                <ul style="text-align: left;">
+                    <li>低温の塵・分子雲（T = 10-50 K）からの熱放射</li>
+                    <li>分子の回転スペクトル線（CO, H2O, O2 など）</li>
+                    <li>高赤方偏移銀河からの遠赤外線</li>
+                </ul>
+
+                <p><strong>大気の吸収:</strong></p>
+                <p>水蒸気がテラヘルツ波を強く吸収するため、高山や宇宙空間での観測が必要。</p>
+
+                <p><strong>主な施設:</strong></p>
+                <ul style="text-align: left;">
+                    <li>ALMA（チリ、標高5000 m）</li>
+                    <li>Herschel宇宙望遠鏡（運用終了）</li>
+                    <li>SOFIA（成層圏天文台、運用終了）</li>
+                </ul>
+            </div>
+
+            <h4>15.5.4 通信への応用</h4>
+            <p>テラヘルツ帯は、次世代（6G以降）の無線通信帯域として注目されている。</p>
+
+            <div class="key-point">
+                <h4>テラヘルツ通信の可能性と課題</h4>
+                <p><strong>利点:</strong></p>
+                <ul>
+                    <li>広帯域：数十〜数百GHzの帯域幅が利用可能</li>
+                    <li>高データレート：100 Gbps以上の伝送が理論的に可能</li>
+                    <li>小型アンテナ：波長が短いため高利得アンテナが小型化</li>
+                </ul>
+                <p><strong>課題:</strong></p>
+                <ul>
+                    <li>大気吸収：水蒸気による減衰が大きい</li>
+                    <li>送信出力：高出力デバイスの開発が必要</li>
+                    <li>伝搬距離：見通し内通信に限定される</li>
+                </ul>
+            </div>
+
+            <div class="example-box">
+                <h4>例題15.4: テラヘルツ通信の帯域と容量</h4>
+                <p><strong>問題:</strong> 300 GHz 帯で帯域幅 50 GHz を使用するテラヘルツ通信システムを考える。シャノン限界に基づき、信号対雑音比（SNR）が 30 dB のときの最大データレートを見積もれ。</p>
+                <div class="solution">
+                    <p><strong>解答:</strong></p>
+                    <p>シャノンの通信路容量定理：</p>
+                    \[ C = B \log_2(1 + SNR) \]
+
+                    <p>SNR = 30 dB = 1000 として：</p>
+                    \[ C = 50 \times 10^9 \times \log_2(1001) \]
+                    \[ C = 50 \times 10^9 \times 9.97 \]
+                    \[ C \approx 500 \text{ Gbps} \]
+
+                    <p>理論上、500 Gbps（毎秒約60 GB）のデータ伝送が可能。4K動画なら毎秒約1500本分に相当する。</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- セクション6: テラヘルツ技術の将来 -->
+        <section class="content-section">
+            <h3>15.6 テラヘルツ技術の将来展望</h3>
+
+            <h4>15.6.1 デバイス技術の進展</h4>
+            <p>テラヘルツデバイスは急速に発展しており、「テラヘルツギャップ」は徐々に埋まりつつある。</p>
+
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>技術</th>
+                        <th>現状</th>
+                        <th>将来展望</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>CMOS発振器</td>
+                        <td>〜0.5 THz、μW級</td>
+                        <td>1 THz以上、mW級</td>
+                    </tr>
+                    <tr>
+                        <td>量子カスケードレーザー</td>
+                        <td>要冷却（〜200 K）</td>
+                        <td>室温動作（課題大）</td>
+                    </tr>
+                    <tr>
+                        <td>共鳴トンネルダイオード</td>
+                        <td>〜2 THz、μW級</td>
+                        <td>mW級、アレイ化</td>
+                    </tr>
+                    <tr>
+                        <td>ジャイロトロン</td>
+                        <td>〜1 THz、kW級</td>
+                        <td>高周波化、小型化</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h4>15.6.2 FIR-UFの将来研究</h4>
+
+            <div class="column tip">
+                <h4>コラム: FIR-UFの将来ビジョン</h4>
+                <p><strong>核融合関連:</strong></p>
+                <ul>
+                    <li>ITERおよび次世代核融合炉（DEMO）向け高性能ジャイロトロン</li>
+                    <li>高周波数化（〜300 GHz）による高磁場トカマク対応</li>
+                    <li>長パルス・連続発振技術の高度化</li>
+                </ul>
+
+                <p><strong>産業応用:</strong></p>
+                <ul>
+                    <li>ミリ波による新材料・複合材料の製造技術</li>
+                    <li>3Dプリンティングへの応用</li>
+                    <li>廃棄物処理・リサイクル技術</li>
+                </ul>
+
+                <p><strong>宇宙推進:</strong></p>
+                <ul>
+                    <li>ミリ波ビーミング推進の実証実験</li>
+                    <li>小型衛星打ち上げシステムの開発</li>
+                </ul>
+
+                <p><strong>基礎科学:</strong></p>
+                <ul>
+                    <li>サブテラヘルツ分光の高感度化</li>
+                    <li>新奇量子現象の探索</li>
+                    <li>生体分子のテラヘルツ動力学研究</li>
+                </ul>
+            </div>
+
+            <h4>15.6.3 社会への波及効果</h4>
+            <p>テラヘルツ技術は、以下の分野で社会に大きな影響を与えると期待される：</p>
+
+            <ul>
+                <li><strong>安全・セキュリティ:</strong> 非侵襲的な検査技術による安全な社会</li>
+                <li><strong>医療:</strong> 早期がん診断、非侵襲血糖測定</li>
+                <li><strong>通信:</strong> 超高速無線通信（6G以降）</li>
+                <li><strong>製造:</strong> 品質管理の高度化、新材料開発</li>
+                <li><strong>環境:</strong> 大気汚染モニタリング</li>
+                <li><strong>エネルギー:</strong> 核融合発電の実現に貢献</li>
+            </ul>
+        </section>
+
+        <!-- セクション7: 総括 -->
+        <section class="content-section">
+            <h3>15.7 本講義の総括 - 電磁波と物質の相互作用</h3>
+
+            <h4>15.7.1 電磁波スペクトルの統一的理解</h4>
+            <p>本講義では、ガンマ線から長波に至る電磁波スペクトル全体を学んできた。すべての電磁波は同じマクスウェル方程式に従うが、周波数（波長）によって物質との相互作用は大きく異なる。</p>
+
+            <div class="equation-box">
+                <div class="title">電磁波の周波数と相互作用のまとめ</div>
+                <table style="width: 100%; text-align: left;">
+                    <tr>
+                        <td><strong>ガンマ線・X線</strong></td>
+                        <td>原子核・内殻電子との相互作用</td>
+                    </tr>
+                    <tr>
+                        <td><strong>紫外線・可視光</strong></td>
+                        <td>価電子遷移、化学結合</td>
+                    </tr>
+                    <tr>
+                        <td><strong>赤外線</strong></td>
+                        <td>分子振動</td>
+                    </tr>
+                    <tr>
+                        <td><strong>テラヘルツ波</strong></td>
+                        <td>分子回転、格子振動、自由電子</td>
+                    </tr>
+                    <tr>
+                        <td><strong>マイクロ波</strong></td>
+                        <td>分子回転、自由電子（プラズマ）</td>
+                    </tr>
+                    <tr>
+                        <td><strong>電波</strong></td>
+                        <td>自由電子、電気回路</td>
+                    </tr>
+                </table>
+            </div>
+
+            <h4>15.7.2 学んだ主要概念の関連性</h4>
+
+            <div class="key-point">
+                <h4>講義全体を貫く基本原理</h4>
+                <ol>
+                    <li><strong>マクスウェル方程式:</strong> 電磁波の発生・伝播・吸収のすべてを記述</li>
+                    <li><strong>光子の概念:</strong> \(E = h\nu\)、\(p = h/\lambda\) による波動・粒子二重性</li>
+                    <li><strong>特殊相対性理論:</strong> 光速不変、電場と磁場の統一</li>
+                    <li><strong>量子力学:</strong> 物質のエネルギー準位と電磁波の共鳴吸収</li>
+                    <li><strong>荷電粒子と電磁場:</strong> ローレンツ力、サイクロトロン運動、放射</li>
+                </ol>
+            </div>
+
+            <h4>15.7.3 福井大学遠赤外領域開発研究センターの役割</h4>
+            <p>本講義を通じて、FIR-UFの研究が電磁波科学の最前線にあることを学んだ。ジャイロトロン技術を中核として：</p>
+            <ul>
+                <li>核融合エネルギーの実現に向けたプラズマ加熱技術</li>
+                <li>テラヘルツ科学の新しい応用開拓</li>
+                <li>宇宙推進技術の革新</li>
+                <li>材料科学への貢献</li>
+            </ul>
+            <p>など、多岐にわたる分野で社会に貢献している。</p>
+        </section>
+
+        <!-- 演習問題 -->
+        <section class="content-section exercises">
+            <h3>演習問題</h3>
+
+            <div class="exercise">
+                <h4>問題15.1 基礎</h4>
+                <p>周波数 1 THz の電磁波について、(1) 波長、(2) 光子エネルギー [meV]、(3) 対応する温度 [K] を求めよ。</p>
+            </div>
+
+            <div class="exercise">
+                <h4>問題15.2 基礎</h4>
+                <p>ジャイロトロンで周波数 140 GHz を発振させるために必要な磁場強度を、(1) 非相対論的な場合、(2) 加速電圧 70 kV の場合について求めよ。</p>
+            </div>
+
+            <div class="exercise">
+                <h4>問題15.3 応用</h4>
+                <p>電子の走行時間効果により、トランジスタの動作周波数には上限がある。ゲート長 20 nm、電子速度 \(3 \times 10^5\) m/s の HEMT のカットオフ周波数を見積もれ。</p>
+            </div>
+
+            <div class="exercise">
+                <h4>問題15.4 応用</h4>
+                <p>ITER用ジャイロトロン（170 GHz、1 MW）の1パルス（1000秒）で放出されるエネルギーを計算し、これが何世帯の一日の電力消費量に相当するか見積もれ。（1世帯の平均電力消費：300 W と仮定）</p>
+            </div>
+
+            <div class="exercise">
+                <h4>問題15.5 発展</h4>
+                <p>量子カスケードレーザーが周波数 3 THz で室温動作するための条件を検討せよ。光子エネルギーと室温の熱エネルギーを比較し、何が困難の本質かを論じよ。</p>
+            </div>
+
+            <div class="exercise">
+                <h4>問題15.6 発展</h4>
+                <p>テラヘルツ波が水を強く吸収する理由を、水分子の回転スペクトルの観点から説明せよ。水分子の回転定数から特徴的な吸収周波数を見積もれ。</p>
+            </div>
+
+            <div class="exercise">
+                <h4>問題15.7 考察</h4>
+                <p>テラヘルツ帯が「光と電波の境目」と呼ばれる理由を、発生・検出技術、物質との相互作用、伝搬特性の観点から説明せよ。</p>
+            </div>
+
+            <div class="exercise">
+                <h4>問題15.8 総合</h4>
+                <p>本講義で学んだ電磁波技術（X線、可視光、赤外線、マイクロ波、ミリ波など）から一つを選び、その社会的応用と将来展望について、物理的原理に基づいて論じよ（800字程度）。</p>
+            </div>
+        </section>
+
+        <!-- まとめ -->
+        <section class="content-section summary">
+            <h3>第15回のまとめ</h3>
+            <div class="summary-box">
+                <h4>学習した主要概念</h4>
+                <ul>
+                    <li>テラヘルツ波（0.1-10 THz）は光と電波の境界領域であり、「テラヘルツギャップ」と呼ばれる発生・検出が困難な領域</li>
+                    <li>テラヘルツ波は非金属を透過し、分子の指紋スペクトルを持つため、分光・イメージングに有用</li>
+                    <li>ジャイロトロンは、相対論的電子ビームのサイクロトロン放射を利用した高出力ミリ波・サブミリ波源</li>
+                    <li>福井大学FIR-UFは、ジャイロトロン技術の世界的拠点であり、核融合加熱や材料加工に貢献</li>
+                    <li>テラヘルツ技術は、セキュリティ、医療、通信、天文学など多分野で応用が進んでいる</li>
+                </ul>
+            </div>
+
+            <div class="summary-box">
+                <h4>重要公式</h4>
+                <div class="formula-list">
+                    <p><strong>テラヘルツ帯:</strong> 0.1-10 THz（波長 30 μm - 3 mm）</p>
+                    <p><strong>サイクロトロン周波数:</strong> \(f_c = eB/(2\pi \gamma m_e) = 28B[\text{T}]/\gamma\) GHz</p>
+                    <p><strong>光子エネルギー:</strong> \(E[\text{meV}] = 4.14 \times f[\text{THz}]\)</p>
+                    <p><strong>対応温度:</strong> \(T[\text{K}] = 48 \times f[\text{THz}]\)</p>
+                </div>
+            </div>
+
+            <div class="summary-box">
+                <h4>講義全体の総括</h4>
+                <p>本講義「電磁波と物質」では、電磁波の基礎から最先端応用まで、幅広い内容を学んだ。マクスウェル方程式に始まり、可視光の色、電磁波の発生と検出、物質との相互作用、特殊相対性理論との関係、プラズマ物理、そしてテラヘルツ科学へと至る旅であった。電磁波は現代文明の基盤技術であり、通信、医療、エネルギー、安全など、あらゆる分野で不可欠な役割を果たしている。本講義で得た知識を基に、さらなる探求と応用を期待する。</p>
+            </div>
+        </section>
+
+        <!-- ナビゲーション -->
+        <nav class="lecture-nav">
+            <a href="lecture14.html" class="nav-prev">← 第14回: ビーミング推進</a>
+            <a href="../lecture.html" class="nav-next">講義一覧へ →</a>
+        </nav>
+    </main>
+
+    <footer>
+        <p>福井大学 共通教育科目 B2032 電磁波と物質</p>
+        <p>担当: 福成 雅史 / 石川 裕也</p>
+    </footer>
+
+    <script src="../js/lecture.js"></script>
+</body>
+</html>

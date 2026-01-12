@@ -1,0 +1,817 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>第14回: ビーミング推進 - 電磁波と物質</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/lecture.css">
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+    <header class="main-header">
+        <h1>電磁波と物質</h1>
+        <p class="subtitle">第14回: ビーミング推進</p>
+    </header>
+
+    <nav class="main-nav">
+        <a href="../index.html">ダッシュボード</a>
+        <a href="../lecture.html">講義一覧</a>
+        <a href="../interactive.html">インタラクティブ学習</a>
+    </nav>
+
+    <main class="lecture-content">
+        <div class="lecture-header">
+            <div class="lecture-meta">
+                <span class="lecture-number">Lecture 14</span>
+                <span class="lecture-duration">学習時間目安: 120-150分</span>
+            </div>
+            <h2>ビーミング推進</h2>
+            <p class="lecture-objectives">
+                <strong>学習目標:</strong> 電磁波のエネルギーと運動量を用いた宇宙推進技術（ビーミング推進）の原理を理解する。光圧（放射圧）の物理、ソーラーセイル、レーザー推進、マイクロ波推進の各方式の特徴と理論的限界を学ぶ。福井大学遠赤外領域開発研究センターのジャイロトロンを用いたマイクロ波推進研究についても詳しく解説する。
+            </p>
+        </div>
+
+        <!-- セクション1: 電磁波の運動量と放射圧 -->
+        <section class="content-section">
+            <h3>14.1 電磁波の運動量と放射圧</h3>
+
+            <h4>14.1.1 光子の運動量</h4>
+            <p>電磁波はエネルギーだけでなく運動量も運ぶ。量子力学的には、光子1個の運動量は：</p>
+
+            <div class="equation-box important">
+                <div class="title">光子の運動量</div>
+                \[ p = \frac{E}{c} = \frac{h\nu}{c} = \frac{h}{\lambda} \]
+                <p>\(E\)：光子のエネルギー、\(\nu\)：周波数、\(\lambda\)：波長</p>
+                <p>\(h = 6.63 \times 10^{-34}\) J·s：プランク定数</p>
+            </div>
+
+            <p>古典電磁気学では、電磁波の運動量密度はポインティングベクトルを用いて：</p>
+            \[ \vec{g} = \frac{\vec{S}}{c^2} = \frac{\vec{E} \times \vec{B}}{\mu_0 c^2} \]
+
+            <h4>14.1.2 放射圧（光圧）の導出</h4>
+
+            <div class="derivation">
+                <h4>導出: 放射圧の基本公式</h4>
+                <div class="derivation-step">
+                    <span class="step-num">1</span>
+                    <strong>運動量の流れ</strong>
+                    <p>強度 \(I\) [W/m²] の電磁波が面積 \(A\) を通過するとき、単位時間あたりに運ばれる運動量は：</p>
+                    \[ \frac{dp}{dt} = \frac{IA}{c} \]
+                </div>
+                <div class="derivation-step">
+                    <span class="step-num">2</span>
+                    <strong>完全吸収面の場合</strong>
+                    <p>電磁波が完全に吸収されると、すべての運動量が面に移される。力は運動量変化率に等しいので：</p>
+                    \[ F = \frac{dp}{dt} = \frac{IA}{c} \]
+                    <p>圧力（単位面積あたりの力）：</p>
+                    \[ P_{abs} = \frac{F}{A} = \frac{I}{c} \]
+                </div>
+                <div class="derivation-step">
+                    <span class="step-num">3</span>
+                    <strong>完全反射面の場合</strong>
+                    <p>電磁波が完全に反射されると、運動量の向きが反転する。運動量変化は2倍になる：</p>
+                    \[ F = 2\frac{IA}{c} \]
+                    \[ P_{ref} = \frac{2I}{c} \]
+                </div>
+                <div class="derivation-step">
+                    <span class="step-num">4</span>
+                    <strong>一般の場合</strong>
+                    <p>反射率 \(R\)、吸収率 \(A = 1 - R\) の面に対して：</p>
+                    \[ P = \frac{I}{c}(1 + R) = \frac{I}{c}(2 - A) \]
+                </div>
+            </div>
+
+            <div class="equation-box important">
+                <div class="title">放射圧</div>
+                <p><strong>完全吸収面:</strong></p>
+                \[ P = \frac{I}{c} \]
+                <p><strong>完全反射面:</strong></p>
+                \[ P = \frac{2I}{c} \]
+                <p><strong>一般の場合（反射率 R）:</strong></p>
+                \[ P = \frac{I}{c}(1 + R) \]
+            </div>
+
+            <div class="example-box">
+                <h4>例題14.1: 太陽光の放射圧</h4>
+                <p><strong>問題:</strong> 地球軌道での太陽定数（太陽放射強度）は約 \(I = 1361\) W/m² である。完全反射面に対する放射圧を計算し、大気圧と比較せよ。</p>
+                <div class="solution">
+                    <p><strong>解答:</strong></p>
+                    <p>完全反射面に対する放射圧：</p>
+                    \[ P = \frac{2I}{c} = \frac{2 \times 1361}{3 \times 10^8} = 9.07 \times 10^{-6} \text{ Pa} \approx 9 \text{ μPa} \]
+
+                    <p>大気圧との比較：</p>
+                    \[ \frac{P}{P_{atm}} = \frac{9 \times 10^{-6}}{1.01 \times 10^5} = 8.9 \times 10^{-11} \]
+
+                    <p>太陽光の放射圧は大気圧の約900億分の1である。極めて小さいが、宇宙空間では長時間作用することで大きな速度変化を生み出せる。</p>
+                </div>
+            </div>
+
+            <h4>14.1.3 光圧の歴史と実験的検証</h4>
+
+            <div class="column history">
+                <h4>コラム: 光圧の発見と検証</h4>
+                <p>光圧の存在はケプラー（1619年）が彗星の尾が太陽と反対側を向くことから最初に予想した。マクスウェル（1873年）は電磁気学の理論から光圧を理論的に予言した。</p>
+                <p><strong>レベデフの実験（1900年）：</strong></p>
+                <p>ロシアの物理学者ピョートル・レベデフは、真空中で薄い金属薄膜に光を当て、ねじり秤で放射圧を初めて実験的に測定した。これはマクスウェルの理論の重要な検証となった。</p>
+                <p><strong>ニコルスとハルの実験（1901年）：</strong></p>
+                <p>より精密な測定により、放射圧がマクスウェルの理論と一致することを確認した。</p>
+                <p><strong>現代の測定：</strong></p>
+                <p>原子間力顕微鏡（AFM）やレーザートラップ技術により、フェムトニュートン（10⁻¹⁵ N）レベルの光圧が精密に測定できるようになっている。</p>
+            </div>
+
+            <h4>14.1.4 斜め入射の場合</h4>
+            <p>電磁波が面に対して角度 \(\theta\) で入射する場合、放射圧の法線成分と接線成分を考える必要がある。</p>
+
+            <div class="equation-box">
+                <div class="title">斜め入射時の放射圧</div>
+                <p>完全反射面に対して、入射角 \(\theta\) で電磁波が入射するとき：</p>
+                <p><strong>法線方向の圧力:</strong></p>
+                \[ P_n = \frac{2I\cos^2\theta}{c} \]
+                <p><strong>実効的な断面積:</strong> \(A_{eff} = A\cos\theta\)</p>
+                <p><strong>法線方向の力:</strong></p>
+                \[ F_n = \frac{2I A \cos^2\theta}{c} \]
+            </div>
+        </section>
+
+        <!-- セクション2: ソーラーセイル -->
+        <section class="content-section">
+            <h3>14.2 ソーラーセイル（太陽帆）</h3>
+
+            <h4>14.2.1 ソーラーセイルの原理</h4>
+            <p>ソーラーセイルは、太陽光の放射圧を推進力として利用する宇宙船である。燃料を消費せずに連続的な加速が可能であり、長期間のミッションに適している。</p>
+
+            <div class="key-point">
+                <h4>ソーラーセイルの利点と課題</h4>
+                <p><strong>利点：</strong></p>
+                <ul>
+                    <li>推進剤（燃料）が不要</li>
+                    <li>理論上、無限の速度変化（Δv）が可能</li>
+                    <li>長寿命ミッションに適する</li>
+                    <li>環境にやさしい（汚染物質を放出しない）</li>
+                </ul>
+                <p><strong>課題：</strong></p>
+                <ul>
+                    <li>加速度が極めて小さい</li>
+                    <li>大面積の軽量帆が必要</li>
+                    <li>太陽から遠ざかると推力が急減（距離の2乗に反比例）</li>
+                    <li>帆の展開・姿勢制御の技術的困難さ</li>
+                </ul>
+            </div>
+
+            <h4>14.2.2 ソーラーセイルの加速度</h4>
+
+            <div class="derivation">
+                <h4>導出: ソーラーセイルの特性加速度</h4>
+                <div class="derivation-step">
+                    <span class="step-num">1</span>
+                    <strong>太陽からの距離 \(r\) での放射強度</strong>
+                    <p>太陽光度を \(L_\odot = 3.83 \times 10^{26}\) W とすると：</p>
+                    \[ I(r) = \frac{L_\odot}{4\pi r^2} \]
+                    <p>地球軌道（\(r = 1\) AU = 1.50 × 10¹¹ m）では \(I = 1361\) W/m²</p>
+                </div>
+                <div class="derivation-step">
+                    <span class="step-num">2</span>
+                    <strong>帆に働く力</strong>
+                    <p>面積 \(A\)、反射率 \(R\) の帆に対して：</p>
+                    \[ F = \frac{I(r) A (1+R)}{c} \]
+                </div>
+                <div class="derivation-step">
+                    <span class="step-num">3</span>
+                    <strong>帆の質量</strong>
+                    <p>帆の面密度を \(\sigma\) [kg/m²]、ペイロード質量を \(m_p\) とすると：</p>
+                    \[ m_{total} = \sigma A + m_p \]
+                </div>
+                <div class="derivation-step">
+                    <span class="step-num">4</span>
+                    <strong>加速度</strong>
+                    \[ a = \frac{F}{m_{total}} = \frac{I(r) A (1+R)}{c(\sigma A + m_p)} \]
+                </div>
+                <div class="derivation-step">
+                    <span class="step-num">5</span>
+                    <strong>特性加速度</strong>
+                    <p>帆のみ（\(m_p = 0\)）の場合、地球軌道（1 AU）での加速度：</p>
+                    \[ a_c = \frac{I_\oplus (1+R)}{c \sigma} = \frac{1361 \times (1+R)}{3 \times 10^8 \times \sigma} \]
+                    <p>完全反射（\(R = 1\)）、\(\sigma = 10\) g/m² = 0.01 kg/m² の場合：</p>
+                    \[ a_c = \frac{1361 \times 2}{3 \times 10^8 \times 0.01} = 9.1 \times 10^{-4} \text{ m/s}^2 \]
+                </div>
+            </div>
+
+            <div class="equation-box important">
+                <div class="title">ソーラーセイルの特性加速度</div>
+                \[ a_c = \frac{2I_\oplus}{c\sigma} = \frac{9.1 \times 10^{-6}}{\sigma[\text{kg/m}^2]} \text{ m/s}^2 \]
+                <p>（完全反射、地球軌道、太陽に正対した場合）</p>
+                <p>距離 \(r\) [AU] での加速度：\(a(r) = a_c / r^2\)</p>
+            </div>
+
+            <div class="example-box">
+                <h4>例題14.2: ソーラーセイルの性能計算</h4>
+                <p><strong>問題:</strong> 面積 1000 m²、質量 5 kg（面密度 5 g/m²）のソーラーセイルについて、(1) 地球軌道での推力と加速度、(2) 1年間で得られる速度変化を計算せよ。</p>
+                <div class="solution">
+                    <p><strong>解答:</strong></p>
+                    <p>(1) 推力：</p>
+                    \[ F = \frac{2 I A}{c} = \frac{2 \times 1361 \times 1000}{3 \times 10^8} = 9.1 \times 10^{-3} \text{ N} = 9.1 \text{ mN} \]
+
+                    <p>加速度：</p>
+                    \[ a = \frac{F}{m} = \frac{9.1 \times 10^{-3}}{5} = 1.82 \times 10^{-3} \text{ m/s}^2 \]
+
+                    <p>(2) 1年間の速度変化（簡略化のため一定加速度と仮定）：</p>
+                    \[ \Delta v = a \cdot t = 1.82 \times 10^{-3} \times (365 \times 24 \times 3600) \]
+                    \[ \Delta v = 1.82 \times 10^{-3} \times 3.15 \times 10^7 = 57,400 \text{ m/s} \approx 57 \text{ km/s} \]
+
+                    <p>1年間で約57 km/sの速度変化が得られる。これは化学ロケットの典型的なΔv（数km/s）を大幅に上回る。</p>
+                </div>
+            </div>
+
+            <h4>14.2.3 ソーラーセイルの軌道力学</h4>
+            <p>ソーラーセイルは帆の向きを変えることで、様々な軌道制御が可能である。</p>
+
+            <div class="equation-box">
+                <div class="title">ソーラーセイルの操船</div>
+                <p><strong>螺旋状外向き軌道（太陽から離れる）:</strong></p>
+                <p>帆を太陽に正対させる。推力は太陽から離れる方向。</p>
+
+                <p><strong>螺旋状内向き軌道（太陽に近づく）:</strong></p>
+                <p>帆を傾けて、推力の一部を軌道速度と反対方向に向ける。これにより軌道エネルギーが減少し、太陽に落ちていく。</p>
+
+                <p><strong>軌道面変更:</strong></p>
+                <p>帆を軌道面外に傾けることで、軌道傾斜角を変更できる。</p>
+            </div>
+
+            <h4>14.2.4 実際のソーラーセイルミッション</h4>
+
+            <div class="column application">
+                <h4>コラム: ソーラーセイルの実証ミッション</h4>
+                <p><strong>IKAROS（イカロス）- JAXA, 2010年</strong></p>
+                <p>世界初の本格的なソーラーセイル実証機。14 m × 14 m の正方形帆を展開し、金星フライバイに成功。帆には薄膜太陽電池が組み込まれ、推進と発電を同時に行う「ソーラー電力セイル」の概念を実証した。</p>
+                <ul>
+                    <li>帆の厚さ：7.5 μm（アルミニウムコーティングポリイミド）</li>
+                    <li>帆の質量：約15 kg</li>
+                    <li>得られた加速度：約 1.12 mN（光圧のみ）</li>
+                </ul>
+
+                <p><strong>LightSail 2 - The Planetary Society, 2019年</strong></p>
+                <p>市民からの寄付で開発された小型ソーラーセイル。32 m²の帆を地球周回軌道で展開し、光圧による軌道上昇を実証した。</p>
+
+                <p><strong>NEA Scout - NASA, 2022年</strong></p>
+                <p>86 m²のソーラーセイルで小惑星探査を目指した（通信途絶で失敗）。</p>
+
+                <p><strong>将来計画：</strong></p>
+                <ul>
+                    <li>OKEANOS（JAXA）：木星トロヤ群小惑星探査</li>
+                    <li>Sunjammer（中止）：1200 m²の大型ソーラーセイル</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- セクション3: レーザー推進 -->
+        <section class="content-section">
+            <h3>14.3 レーザー推進</h3>
+
+            <h4>14.3.1 レーザー推進の原理</h4>
+            <p>レーザー推進は、地上または宇宙ステーションからの高出力レーザーを宇宙船に照射し、その放射圧または加熱効果を利用して推進する方式である。太陽光よりもはるかに高い強度を得られるため、より大きな加速度が可能である。</p>
+
+            <div class="key-point">
+                <h4>レーザー推進の方式</h4>
+                <ul>
+                    <li><strong>光帆式（Laser Sail）:</strong> ソーラーセイルと同様に、レーザーの放射圧を直接利用</li>
+                    <li><strong>レーザーアブレーション推進:</strong> レーザーで推進剤を加熱・蒸発させて推力を得る</li>
+                    <li><strong>レーザー熱推進:</strong> レーザーでガスを加熱し、熱膨張で推進</li>
+                    <li><strong>レーザープラズマ推進:</strong> レーザーで推進剤をプラズマ化して加速</li>
+                </ul>
+            </div>
+
+            <h4>14.3.2 レーザー光帆の性能</h4>
+
+            <div class="derivation">
+                <h4>導出: レーザー推進による恒星間航行</h4>
+                <div class="derivation-step">
+                    <span class="step-num">1</span>
+                    <strong>必要なレーザー出力</strong>
+                    <p>質量 \(m\) の宇宙船を加速度 \(a\) で推進するには、反射率 \(R \approx 1\) として：</p>
+                    \[ F = ma = \frac{2P_{laser}}{c} \]
+                    \[ P_{laser} = \frac{mac}{2} \]
+                </div>
+                <div class="derivation-step">
+                    <span class="step-num">2</span>
+                    <strong>数値例</strong>
+                    <p>質量 1 g の超軽量探査機を 1 g（= 9.8 m/s²）で加速する場合：</p>
+                    \[ P_{laser} = \frac{10^{-3} \times 9.8 \times 3 \times 10^8}{2} = 1.47 \times 10^6 \text{ W} = 1.47 \text{ MW} \]
+                </div>
+                <div class="derivation-step">
+                    <span class="step-num">3</span>
+                    <strong>加速距離と最終速度</strong>
+                    <p>加速度 \(a\) で時間 \(t\) 加速した場合の最終速度：</p>
+                    \[ v = at \]
+                    <p>移動距離：</p>
+                    \[ d = \frac{1}{2}at^2 = \frac{v^2}{2a} \]
+                </div>
+                <div class="derivation-step">
+                    <span class="step-num">4</span>
+                    <strong>光速の20%に達するために</strong>
+                    <p>\(v = 0.2c = 6 \times 10^7\) m/s、\(a = 10\) m/s² とすると：</p>
+                    \[ t = \frac{v}{a} = \frac{6 \times 10^7}{10} = 6 \times 10^6 \text{ s} \approx 69 \text{ days} \]
+                    \[ d = \frac{(6 \times 10^7)^2}{2 \times 10} = 1.8 \times 10^{14} \text{ m} \approx 1200 \text{ AU} \]
+                </div>
+            </div>
+
+            <h4>14.3.3 Breakthrough Starshotプロジェクト</h4>
+
+            <div class="column application">
+                <h4>コラム: Breakthrough Starshot</h4>
+                <p>2016年に発表された、最も野心的なレーザー推進計画。最も近い恒星系であるアルファ・ケンタウリ（約4.37光年）への探査機送出を目指す。</p>
+
+                <p><strong>システム概要：</strong></p>
+                <ul>
+                    <li>探査機質量：約1 g（「StarChip」と呼ばれる）</li>
+                    <li>帆の面積：約16 m²（厚さ数百nm）</li>
+                    <li>地上レーザーアレイ出力：100 GW</li>
+                    <li>目標速度：光速の20%（約 60,000 km/s）</li>
+                    <li>アルファ・ケンタウリ到達時間：約20年</li>
+                </ul>
+
+                <p><strong>技術的課題：</strong></p>
+                <ul>
+                    <li>100 GWクラスのレーザーアレイの建設</li>
+                    <li>大気揺らぎの補正（補償光学）</li>
+                    <li>1 gの質量に搭載可能なカメラ・通信機器・電源</li>
+                    <li>光速の20%での宇宙塵との衝突対策</li>
+                    <li>4光年先からの微弱な信号の受信</li>
+                </ul>
+
+                <p><strong>レーザーアレイのビーム発散問題：</strong></p>
+                <p>レーザービームは回折により広がる。直径 \(D\) のアレイから距離 \(d\) でのビーム直径は：</p>
+                \[ d_{beam} \approx \frac{2.44 \lambda d}{D} \]
+                <p>波長 \(\lambda = 1\) μm、\(d = 10^{14}\) m（加速終了時）、ビーム径を10 m以下に抑えるには：</p>
+                \[ D > \frac{2.44 \times 10^{-6} \times 10^{14}}{10} = 24 \text{ km} \]
+                <p>直径約24 kmのレーザーアレイが必要となる。</p>
+            </div>
+
+            <h4>14.3.4 レーザーアブレーション推進</h4>
+            <p>レーザーで固体推進剤を蒸発・プラズマ化させて推力を得る方式。光帆式よりも高い推力が得られる。</p>
+
+            <div class="equation-box">
+                <div class="title">レーザーアブレーション推進</div>
+                <p><strong>比推力:</strong></p>
+                \[ I_{sp} = \frac{v_e}{g_0} \]
+                <p>\(v_e\)：排気速度、\(g_0 = 9.8\) m/s²</p>
+
+                <p><strong>推力:</strong></p>
+                \[ F = \dot{m} v_e = C_m P_{laser} \]
+                <p>\(\dot{m}\)：質量流量、\(C_m\)：運動量結合係数 [N/W]</p>
+
+                <p>典型的な値：\(C_m \sim 10^{-4}\) - \(10^{-3}\) N/W</p>
+                <p>比較：光圧による \(C_m = 2/c = 6.7 \times 10^{-9}\) N/W</p>
+            </div>
+
+            <div class="example-box">
+                <h4>例題14.3: レーザーアブレーション推進の比較</h4>
+                <p><strong>問題:</strong> 1 MWのレーザーを使用する場合、(1) 光帆式、(2) レーザーアブレーション式（\(C_m = 10^{-4}\) N/W）でそれぞれ得られる推力を比較せよ。</p>
+                <div class="solution">
+                    <p><strong>解答:</strong></p>
+                    <p>(1) 光帆式：</p>
+                    \[ F = \frac{2P}{c} = \frac{2 \times 10^6}{3 \times 10^8} = 6.7 \times 10^{-3} \text{ N} = 6.7 \text{ mN} \]
+
+                    <p>(2) レーザーアブレーション式：</p>
+                    \[ F = C_m P = 10^{-4} \times 10^6 = 100 \text{ N} \]
+
+                    <p>レーザーアブレーション式は光帆式の約15,000倍の推力を得られる。ただし、推進剤を消費するため、ミッション全体のΔvは推進剤質量に制限される。</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- セクション4: マイクロ波推進 -->
+        <section class="content-section">
+            <h3>14.4 マイクロ波推進</h3>
+
+            <h4>14.4.1 マイクロ波推進の原理</h4>
+            <p>マイクロ波推進は、レーザーの代わりにマイクロ波（ミリ波を含む）を用いるビーミング推進方式である。レーザーに比べていくつかの利点がある。</p>
+
+            <div class="key-point">
+                <h4>マイクロ波推進の利点</h4>
+                <ul>
+                    <li><strong>高い電力効率:</strong> ジャイロトロンなどのマイクロ波源は50%以上の効率を達成</li>
+                    <li><strong>大気透過性:</strong> 特定の周波数帯は大気をよく透過する</li>
+                    <li><strong>大出力化が容易:</strong> 複数の発振器の位相同期が比較的容易</li>
+                    <li><strong>熱的問題が緩和:</strong> 波長が長いため、帆面での吸収による加熱が少ない</li>
+                </ul>
+            </div>
+
+            <h4>14.4.2 マイクロ波熱推進（Microwave Thermal Propulsion）</h4>
+            <p>マイクロ波で推進剤（主に水素）を加熱し、熱膨張による推進力を得る方式。</p>
+
+            <div class="equation-box">
+                <div class="title">マイクロ波熱推進の性能</div>
+                <p><strong>排気速度（理想気体近似）:</strong></p>
+                \[ v_e = \sqrt{\frac{2\gamma}{\gamma - 1} \frac{k_B T}{m}} \]
+                <p>\(\gamma\)：比熱比、\(T\)：加熱温度、\(m\)：推進剤分子の質量</p>
+
+                <p><strong>水素（\(\gamma = 7/5\)）の場合:</strong></p>
+                \[ v_e \approx 6400 \sqrt{T[\text{K}]} \text{ m/s} \]
+
+                <p><strong>比推力:</strong></p>
+                \[ I_{sp} = \frac{v_e}{g_0} \approx 650 \sqrt{T[\text{K}]} \text{ s} \]
+            </div>
+
+            <div class="example-box">
+                <h4>例題14.4: マイクロ波熱推進の性能</h4>
+                <p><strong>問題:</strong> マイクロ波で水素を2500 Kまで加熱する推進システムの比推力を求めよ。また、化学ロケット（液体水素/液体酸素、\(I_{sp} \approx 450\) s）と比較せよ。</p>
+                <div class="solution">
+                    <p><strong>解答:</strong></p>
+                    <p>排気速度：</p>
+                    \[ v_e = 6400\sqrt{2500} = 6400 \times 50 = 320,000 \text{ m/s} = 320 \text{ km/s} \]
+
+                    <p>比推力：</p>
+                    \[ I_{sp} = \frac{320,000}{9.8} \approx 32,600 \text{ s} \]
+
+                    <p>化学ロケットとの比較：</p>
+                    \[ \frac{I_{sp,\mu wave}}{I_{sp,chemical}} = \frac{32600}{450} \approx 72 \]
+
+                    <p>マイクロ波熱推進は化学ロケットの約72倍の比推力を達成できる。ただし、推力密度は小さいため、宇宙空間での使用に適する。</p>
+                </div>
+            </div>
+
+            <h4>14.4.3 マイクロ波プラズマ推進</h4>
+            <p>マイクロ波でプラズマを生成・加熱し、電磁力または熱膨張で加速する方式。</p>
+
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>推進方式</th>
+                        <th>比推力 [s]</th>
+                        <th>推力効率</th>
+                        <th>特徴</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>マイクロ波電熱推進（MET）</td>
+                        <td>500-1000</td>
+                        <td>30-50%</td>
+                        <td>シンプル、実績あり</td>
+                    </tr>
+                    <tr>
+                        <td>ECR推進</td>
+                        <td>1000-3000</td>
+                        <td>20-40%</td>
+                        <td>高比推力、要磁場</td>
+                    </tr>
+                    <tr>
+                        <td>ヘリコン推進</td>
+                        <td>1000-5000</td>
+                        <td>30-60%</td>
+                        <td>高密度プラズマ</td>
+                    </tr>
+                    <tr>
+                        <td>VASIMR（参考）</td>
+                        <td>3000-30000</td>
+                        <td>50-70%</td>
+                        <td>可変比推力</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <!-- セクション5: 福井大学のマイクロ波推進研究 -->
+        <section class="content-section">
+            <h3>14.5 福井大学遠赤外領域開発研究センターのマイクロ波推進研究</h3>
+
+            <h4>14.5.1 ジャイロトロンによるビーミング推進</h4>
+            <p>福井大学遠赤外領域開発研究センター（FIR-UF）では、世界最高出力クラスのジャイロトロン（大出力ミリ波発振器）を開発・保有しており、これを用いたビーミング推進の研究を進めている。</p>
+
+            <div class="column application">
+                <h4>コラム: 福井大学のジャイロトロン技術</h4>
+                <p>福井大学は、ジャイロトロン開発において世界的な拠点である。主な成果：</p>
+                <ul>
+                    <li>300 GHz帯で1 MW級の発振に成功</li>
+                    <li>サブテラヘルツ帯（0.3-1 THz）の高出力源として世界をリード</li>
+                    <li>連続発振（CW）モードでの長時間運転技術</li>
+                    <li>位相制御による複数ジャイロトロンの同期技術</li>
+                </ul>
+                <p><strong>ジャイロトロンの特徴：</strong></p>
+                <ul>
+                    <li>高効率（30-50%以上）でミリ波を発生</li>
+                    <li>1本のジャイロトロンで MW 級の出力が可能</li>
+                    <li>ミリ波は大気の「窓」（透過帯）を利用可能</li>
+                </ul>
+            </div>
+
+            <h4>14.5.2 ミリ波ロケットの原理</h4>
+            <p>福井大学で研究されているミリ波ロケットは、地上から照射されるミリ波ビームを推進力に変換する。</p>
+
+            <div class="equation-box">
+                <div class="title">ミリ波ロケットの動作原理</div>
+                <p><strong>1. ミリ波吸収と加熱:</strong></p>
+                <p>ロケットに搭載された推進剤（または大気）がミリ波を吸収し、高温に加熱される。</p>
+
+                <p><strong>2. プラズマ生成:</strong></p>
+                <p>十分に高い強度では、空気などがブレークダウンしてプラズマが生成される。</p>
+
+                <p><strong>3. 熱膨張による推進:</strong></p>
+                <p>加熱されたガス/プラズマが急速に膨張し、推力が発生する。</p>
+
+                <p><strong>推力結合係数:</strong></p>
+                \[ C_m = \frac{F}{P} \sim 10^{-4} \text{ - } 10^{-3} \text{ N/W} \]
+            </div>
+
+            <h4>14.5.3 ビーマー推進の実験研究</h4>
+
+            <div class="derivation">
+                <h4>導出: ミリ波ビーム推進の設計パラメータ</h4>
+                <div class="derivation-step">
+                    <span class="step-num">1</span>
+                    <strong>ビームの回折限界</strong>
+                    <p>直径 \(D\) のアンテナから距離 \(L\) でのビーム径：</p>
+                    \[ d_{beam} \approx 2.44 \frac{\lambda L}{D} \]
+                    <p>周波数 100 GHz（\(\lambda = 3\) mm）、\(D = 10\) m、\(L = 100\) km の場合：</p>
+                    \[ d_{beam} = 2.44 \times \frac{0.003 \times 10^5}{10} = 73 \text{ m} \]
+                </div>
+                <div class="derivation-step">
+                    <span class="step-num">2</span>
+                    <strong>ビーム強度</strong>
+                    <p>ビーム出力 \(P\)、ビーム断面積 \(A_{beam} = \pi(d_{beam}/2)^2\) として：</p>
+                    \[ I = \frac{P}{A_{beam}} = \frac{4P}{\pi d_{beam}^2} \]
+                    <p>\(P = 10\) MW の場合：</p>
+                    \[ I = \frac{4 \times 10^7}{\pi \times 73^2} = 2.4 \text{ kW/m}^2 \]
+                </div>
+                <div class="derivation-step">
+                    <span class="step-num">3</span>
+                    <strong>推力の見積もり</strong>
+                    <p>推力結合係数 \(C_m = 5 \times 10^{-4}\) N/W、ビーム出力 10 MW として：</p>
+                    \[ F = C_m \times P = 5 \times 10^{-4} \times 10^7 = 5000 \text{ N} \]
+                </div>
+                <div class="derivation-step">
+                    <span class="step-num">4</span>
+                    <strong>加速度</strong>
+                    <p>ロケット質量 100 kg の場合：</p>
+                    \[ a = \frac{F}{m} = \frac{5000}{100} = 50 \text{ m/s}^2 \approx 5g \]
+                </div>
+            </div>
+
+            <h4>14.5.4 大気圏内でのミリ波推進</h4>
+            <p>ミリ波推進の特に興味深い応用は、大気圏内での空気吸入式推進である。</p>
+
+            <div class="key-point">
+                <h4>空気吸入式ミリ波推進の利点</h4>
+                <ul>
+                    <li><strong>推進剤不要:</strong> 大気中の空気を推進剤として使用</li>
+                    <li><strong>高い加速度:</strong> 打ち上げ初期の重力損失を低減</li>
+                    <li><strong>再利用性:</strong> 機体に複雑なエンジンが不要</li>
+                    <li><strong>環境負荷:</strong> 化学推進剤による汚染がない</li>
+                </ul>
+            </div>
+
+            <div class="example-box">
+                <h4>例題14.5: ミリ波ロケットの打ち上げシナリオ</h4>
+                <p><strong>問題:</strong> 質量 10 kg の小型衛星を地上からのミリ波ビームで打ち上げることを考える。必要なビーム出力と、高度 100 km までの加速に要する時間を見積もれ。推力結合係数 \(C_m = 10^{-3}\) N/W、加速度 3g と仮定する。</p>
+                <div class="solution">
+                    <p><strong>解答:</strong></p>
+                    <p>必要な推力：</p>
+                    \[ F = ma = 10 \times (3 \times 9.8 + 9.8) = 10 \times 39.2 = 392 \text{ N} \]
+                    <p>（重力に打ち勝つために追加の 1g が必要）</p>
+
+                    <p>必要なビーム出力：</p>
+                    \[ P = \frac{F}{C_m} = \frac{392}{10^{-3}} = 392 \text{ kW} \approx 400 \text{ kW} \]
+
+                    <p>正味加速度：\(a_{net} = 3g = 29.4\) m/s²</p>
+
+                    <p>高度 100 km に達する時間（等加速度と仮定）：</p>
+                    \[ h = \frac{1}{2}a_{net}t^2 \]
+                    \[ t = \sqrt{\frac{2h}{a_{net}}} = \sqrt{\frac{2 \times 10^5}{29.4}} = 82.5 \text{ s} \]
+
+                    <p>最終速度：</p>
+                    \[ v = a_{net} \times t = 29.4 \times 82.5 = 2430 \text{ m/s} \approx 2.4 \text{ km/s} \]
+
+                    <p>軌道速度（約7.8 km/s）には追加の加速が必要だが、大気抵抗の大きい低高度での加速をビーミングで行うことで効率化できる。</p>
+                </div>
+            </div>
+
+            <h4>14.5.5 将来展望</h4>
+
+            <div class="column tip">
+                <h4>コラム: ミリ波推進の将来展望</h4>
+                <p><strong>近い将来（10年以内）：</strong></p>
+                <ul>
+                    <li>小型衛星（CubeSat）の軌道投入実証</li>
+                    <li>宇宙デブリ除去への応用（ビームで減速して大気圏再突入）</li>
+                    <li>静止衛星の軌道維持（ステーションキーピング）</li>
+                </ul>
+
+                <p><strong>中期的展望（10-30年）：</strong></p>
+                <ul>
+                    <li>小型ペイロードの安価な打ち上げシステム</li>
+                    <li>月・火星への物資輸送</li>
+                    <li>地上-宇宙間のエネルギー伝送との統合</li>
+                </ul>
+
+                <p><strong>長期的展望（30年以上）：</strong></p>
+                <ul>
+                    <li>大型宇宙構造物の軌道変更</li>
+                    <li>太陽系外縁部への探査機送出</li>
+                    <li>恒星間探査の前段階技術として</li>
+                </ul>
+
+                <p>福井大学では、これらの実現に向けた基礎研究として、ジャイロトロンの高出力化・高効率化、ビーム制御技術、推進剤との相互作用の解明などを進めている。</p>
+            </div>
+        </section>
+
+        <!-- セクション6: ビーミング推進の比較と将来 -->
+        <section class="content-section">
+            <h3>14.6 ビーミング推進技術の比較と将来展望</h3>
+
+            <h4>14.6.1 各方式の比較</h4>
+
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>方式</th>
+                        <th>エネルギー源</th>
+                        <th>推力機構</th>
+                        <th>比推力 [s]</th>
+                        <th>加速度</th>
+                        <th>適用範囲</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>ソーラーセイル</td>
+                        <td>太陽光</td>
+                        <td>放射圧（直接）</td>
+                        <td>∞</td>
+                        <td>〜1 mm/s²</td>
+                        <td>太陽系内長期ミッション</td>
+                    </tr>
+                    <tr>
+                        <td>レーザー光帆</td>
+                        <td>レーザー</td>
+                        <td>放射圧（直接）</td>
+                        <td>∞</td>
+                        <td>〜10 m/s²</td>
+                        <td>恒星間探査（超軽量）</td>
+                    </tr>
+                    <tr>
+                        <td>レーザーアブレーション</td>
+                        <td>レーザー</td>
+                        <td>質量噴射</td>
+                        <td>1000-3000</td>
+                        <td>〜10 m/s²</td>
+                        <td>軌道変更、デブリ除去</td>
+                    </tr>
+                    <tr>
+                        <td>マイクロ波熱推進</td>
+                        <td>マイクロ波</td>
+                        <td>熱膨張</td>
+                        <td>500-1000</td>
+                        <td>〜50 m/s²</td>
+                        <td>打ち上げ、軌道間輸送</td>
+                    </tr>
+                    <tr>
+                        <td>ミリ波ロケット</td>
+                        <td>ミリ波</td>
+                        <td>熱膨張/プラズマ</td>
+                        <td>300-1000</td>
+                        <td>〜100 m/s²</td>
+                        <td>地上打ち上げ</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h4>14.6.2 送電効率とビーム制御</h4>
+
+            <div class="equation-box">
+                <div class="title">ビーム伝送効率</div>
+                <p><strong>レイリー長（ビームが広がらずに伝播できる距離）:</strong></p>
+                \[ z_R = \frac{\pi w_0^2}{\lambda} \]
+                <p>\(w_0\)：ビームウエスト（最小ビーム径）</p>
+
+                <p><strong>距離 \(z\) でのビーム径:</strong></p>
+                \[ w(z) = w_0\sqrt{1 + \left(\frac{z}{z_R}\right)^2} \]
+
+                <p><strong>送電効率（ターゲット径 \(a\)、距離 \(d\)）:</strong></p>
+                \[ \eta = 1 - \exp\left(-2\frac{a^2}{w(d)^2}\right) \]
+            </div>
+
+            <div class="example-box">
+                <h4>例題14.6: ビーム伝送効率の計算</h4>
+                <p><strong>問題:</strong> 波長 3 mm（100 GHz）、送信アンテナ径 10 m のマイクロ波ビームを距離 1000 km 先のターゲット（径 100 m）に送る場合のビーム径と送電効率を計算せよ。</p>
+                <div class="solution">
+                    <p><strong>解答:</strong></p>
+                    <p>回折による広がりを考慮したビーム径（遠方界近似）：</p>
+                    \[ w \approx \frac{1.22 \lambda d}{D} = \frac{1.22 \times 0.003 \times 10^6}{10} = 366 \text{ m} \]
+
+                    <p>送電効率：</p>
+                    \[ \eta = 1 - \exp\left(-2\frac{50^2}{366^2}\right) = 1 - \exp(-0.037) = 1 - 0.964 = 0.036 \]
+
+                    <p>効率は約3.6%と低い。効率を上げるには：</p>
+                    <ul>
+                        <li>アンテナ径を大きくする（\(D = 100\) m なら \(\eta \approx 97\%\)）</li>
+                        <li>より短い波長を使用する</li>
+                        <li>ターゲット径を大きくする</li>
+                        <li>距離を短くする</li>
+                    </ul>
+                </div>
+            </div>
+
+            <h4>14.6.3 経済性と実現可能性</h4>
+
+            <div class="key-point">
+                <h4>ビーミング推進の経済的メリット</h4>
+                <p>従来のロケット打ち上げは、推進剤の質量がペイロードの数十倍から数百倍必要（ツィオルコフスキーの式による制約）。</p>
+                <p>ビーミング推進では：</p>
+                <ul>
+                    <li>エネルギー源が地上にあるため、打ち上げ質量が大幅に削減</li>
+                    <li>地上設備は複数回使用可能（限界費用の低減）</li>
+                    <li>推進システムの簡素化による信頼性向上</li>
+                    <li>打ち上げ頻度の向上が可能</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- 演習問題 -->
+        <section class="content-section exercises">
+            <h3>演習問題</h3>
+
+            <div class="exercise">
+                <h4>問題14.1 基礎</h4>
+                <p>波長 532 nm の緑色レーザー（出力 5 W）を完全反射面に照射したとき、放射圧による力を計算せよ。</p>
+            </div>
+
+            <div class="exercise">
+                <h4>問題14.2 基礎</h4>
+                <p>面積 100 m²、質量 1 kg のソーラーセイルが地球軌道で太陽に正対しているとき、加速度を求めよ。反射率は 90% とする。</p>
+            </div>
+
+            <div class="exercise">
+                <h4>問題14.3 応用</h4>
+                <p>Breakthrough Starshot の探査機（質量 1 g、帆面積 16 m²）を光速の 20% まで加速するために必要なレーザー出力と加速時間を見積もれ。加速度を 100 m/s² とする。</p>
+            </div>
+
+            <div class="exercise">
+                <h4>問題14.4 応用</h4>
+                <p>周波数 140 GHz のミリ波ビーム（出力 1 MW）を直径 5 m のアンテナから送信する。距離 50 km でのビーム径と、その位置での強度を計算せよ。</p>
+            </div>
+
+            <div class="exercise">
+                <h4>問題14.5 発展</h4>
+                <p>ミリ波ロケットで質量 50 kg のペイロードを高度 200 km の軌道に投入することを考える。推力結合係数 \(C_m = 5 \times 10^{-4}\) N/W として、(1) 3g の加速度を得るのに必要なビーム出力、(2) 軌道速度（約 7.8 km/s）に達するまでの時間を見積もれ。</p>
+            </div>
+
+            <div class="exercise">
+                <h4>問題14.6 発展</h4>
+                <p>太陽からの距離 \(r\) でのソーラーセイルの加速度が \(a(r) = a_0/r^2\)（\(r\) は AU 単位、\(a_0\) は 1 AU での加速度）で与えられるとき、太陽に向かう螺旋軌道の最適な帆の傾き角を求める問題を考察せよ。（ヒント：軌道エネルギーを減少させるには、速度と反対向きの力成分が必要）</p>
+            </div>
+
+            <div class="exercise">
+                <h4>問題14.7 考察</h4>
+                <p>レーザー推進とマイクロ波推進の利点と欠点を比較し、それぞれがどのようなミッションに適しているか考察せよ。</p>
+            </div>
+
+            <div class="exercise">
+                <h4>問題14.8 発展</h4>
+                <p>火星（地球からの距離 約 0.5-2.5 AU）への物資輸送にソーラーセイルを使用する場合と、地球軌道からのマイクロ波ビームを使用する場合を比較検討せよ。それぞれの方式の実現可能性と課題を論じよ。</p>
+            </div>
+        </section>
+
+        <!-- まとめ -->
+        <section class="content-section summary">
+            <h3>第14回のまとめ</h3>
+            <div class="summary-box">
+                <h4>学習した主要概念</h4>
+                <ul>
+                    <li>電磁波は運動量 \(p = E/c\) を持ち、物体に放射圧 \(P = I/c\)（吸収）または \(P = 2I/c\)（反射）を及ぼす</li>
+                    <li>ソーラーセイルは太陽光の放射圧で推進する。燃料不要だが加速度は小さい</li>
+                    <li>レーザー推進は高強度ビームにより大きな加速度が可能。恒星間探査への応用が検討されている</li>
+                    <li>マイクロ波推進はジャイロトロンなどの高効率発振器を利用。大気中での推進に有利</li>
+                    <li>福井大学では、世界最高クラスのジャイロトロンを用いたミリ波推進の研究を進めている</li>
+                    <li>ビーミング推進は、エネルギー源を地上に置くことで打ち上げ質量を大幅に削減できる</li>
+                </ul>
+            </div>
+
+            <div class="summary-box">
+                <h4>重要公式</h4>
+                <div class="formula-list">
+                    <p><strong>放射圧（完全反射）:</strong> \(P = 2I/c\)</p>
+                    <p><strong>光子の運動量:</strong> \(p = h/\lambda = E/c\)</p>
+                    <p><strong>ソーラーセイル特性加速度:</strong> \(a_c = 9.1 \times 10^{-6}/\sigma\) m/s²</p>
+                    <p><strong>推力結合係数:</strong> \(F = C_m \cdot P\)</p>
+                    <p><strong>ビーム回折広がり:</strong> \(d_{beam} \approx 2.44\lambda L/D\)</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ナビゲーション -->
+        <nav class="lecture-nav">
+            <a href="lecture13.html" class="nav-prev">← 第13回: 荷電粒子・プラズマ</a>
+            <a href="lecture15.html" class="nav-next">第15回: 光と電波の境目・ミリ波とジャイロトロン →</a>
+        </nav>
+    </main>
+
+    <footer>
+        <p>福井大学 共通教育科目 B2032 電磁波と物質</p>
+        <p>担当: 福成 雅史 / 石川 裕也</p>
+    </footer>
+
+    <script src="../js/lecture.js"></script>
+</body>
+</html>
