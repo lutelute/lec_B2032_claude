@@ -1,0 +1,1317 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>講義資料 - 電磁波と物質</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+    <header class="main-header">
+        <h1>電磁波と物質</h1>
+        <p class="subtitle">講義資料 - 技術解説書</p>
+    </header>
+
+    <nav class="main-nav">
+        <a href="index.html">ダッシュボード</a>
+        <a href="lecture.html" class="active">講義資料</a>
+        <a href="interactive.html">インタラクティブ学習</a>
+    </nav>
+
+    <main class="lecture-content">
+        <!-- 第1回: 電磁波とは -->
+        <section class="lecture-section" id="lecture1">
+            <h2>第1回: 電磁波とは</h2>
+
+            <h3>1.1 電磁波の定義と基本概念</h3>
+            <p>電磁波とは、電場と磁場が互いに誘導し合いながら空間を伝播する波動現象である。真空中でも伝播可能であり、光速 c = 2.998 × 10⁸ m/s で進行する。</p>
+
+            <div class="equation-box">
+                <div class="title">電磁波の基本関係式</div>
+                \[ c = f \lambda \]
+                <p>c: 光速、f: 周波数、λ: 波長</p>
+            </div>
+
+            <h3>1.2 電磁波スペクトル</h3>
+            <p>電磁波は波長によって以下のように分類される:</p>
+
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>種類</th>
+                        <th>波長範囲</th>
+                        <th>周波数範囲</th>
+                        <th>主な用途</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>γ線</td>
+                        <td>&lt; 10 pm</td>
+                        <td>&gt; 30 EHz</td>
+                        <td>医療・滅菌</td>
+                    </tr>
+                    <tr>
+                        <td>X線</td>
+                        <td>10 pm - 10 nm</td>
+                        <td>30 PHz - 30 EHz</td>
+                        <td>医療診断・結晶構造解析</td>
+                    </tr>
+                    <tr>
+                        <td>紫外線</td>
+                        <td>10 nm - 400 nm</td>
+                        <td>750 THz - 30 PHz</td>
+                        <td>殺菌・半導体製造</td>
+                    </tr>
+                    <tr>
+                        <td>可視光</td>
+                        <td>400 nm - 700 nm</td>
+                        <td>430 THz - 750 THz</td>
+                        <td>照明・通信</td>
+                    </tr>
+                    <tr>
+                        <td>赤外線</td>
+                        <td>700 nm - 1 mm</td>
+                        <td>300 GHz - 430 THz</td>
+                        <td>暖房・リモコン</td>
+                    </tr>
+                    <tr>
+                        <td>マイクロ波</td>
+                        <td>1 mm - 1 m</td>
+                        <td>300 MHz - 300 GHz</td>
+                        <td>電子レンジ・通信</td>
+                    </tr>
+                    <tr>
+                        <td>電波</td>
+                        <td>&gt; 1 m</td>
+                        <td>&lt; 300 MHz</td>
+                        <td>放送・無線通信</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="column history">
+                <h4>コラム: 電磁波発見の歴史</h4>
+                <p>1864年、ジェームズ・クラーク・マクスウェルは電磁気学の4つの方程式を統合し、電磁波の存在を理論的に予言した。1887年、ハインリヒ・ヘルツは実験により電磁波の存在を実証。この功績により周波数の単位「Hz（ヘルツ）」が名付けられた。</p>
+                <p>マクスウェルは電磁波の速度が光速と一致することから「光は電磁波の一種である」と結論づけた。これは物理学史上最も重要な発見の一つである。</p>
+            </div>
+
+            <h3>1.3 電磁波のエネルギー</h3>
+            <p>電磁波は光子（フォトン）としてエネルギーを運ぶ。1つの光子が持つエネルギーは:</p>
+
+            <div class="equation-box">
+                <div class="title">光子のエネルギー（プランクの関係式）</div>
+                \[ E = hf = \frac{hc}{\lambda} \]
+                <p>h: プランク定数 (6.626 × 10⁻³⁴ J·s)</p>
+            </div>
+
+            <div class="key-point">
+                <h4>重要ポイント</h4>
+                <p>波長が短いほど（周波数が高いほど）、光子のエネルギーは大きくなる。これがγ線やX線が生体に有害である理由である。</p>
+            </div>
+
+            <div class="lecture-nav">
+                <span></span>
+                <a href="#lecture2">次回: 可視光の色 →</a>
+            </div>
+        </section>
+
+        <!-- 第2回: 可視光の色 -->
+        <section class="lecture-section" id="lecture2">
+            <h2>第2回: 可視光の色</h2>
+
+            <h3>2.1 色の物理学</h3>
+            <p>人間の目は約380nm〜780nmの波長の電磁波を光として認識する。この範囲を可視光線と呼ぶ。</p>
+
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>色</th>
+                        <th>波長 (nm)</th>
+                        <th>周波数 (THz)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td style="color: violet;">紫</td><td>380-450</td><td>670-790</td></tr>
+                    <tr><td style="color: blue;">青</td><td>450-495</td><td>605-670</td></tr>
+                    <tr><td style="color: cyan;">シアン</td><td>495-520</td><td>575-605</td></tr>
+                    <tr><td style="color: green;">緑</td><td>520-565</td><td>530-575</td></tr>
+                    <tr><td style="color: yellow;">黄</td><td>565-590</td><td>510-530</td></tr>
+                    <tr><td style="color: orange;">橙</td><td>590-625</td><td>480-510</td></tr>
+                    <tr><td style="color: red;">赤</td><td>625-780</td><td>385-480</td></tr>
+                </tbody>
+            </table>
+
+            <h3>2.2 物体の色が見える仕組み</h3>
+            <p>物体の色は、その物体が吸収する光と反射する光によって決まる。</p>
+            <ul>
+                <li><strong>白色</strong>: すべての波長を反射</li>
+                <li><strong>黒色</strong>: すべての波長を吸収</li>
+                <li><strong>赤色</strong>: 赤以外の波長を吸収し、赤を反射</li>
+            </ul>
+
+            <div class="derivation">
+                <h4>導出: 反射率と吸収率の関係</h4>
+                <div class="derivation-step">
+                    <span class="step-num">1</span>
+                    入射光の強度を I₀、反射光を Iᵣ、透過光を Iₜ、吸収を Iₐ とする
+                </div>
+                <div class="derivation-step">
+                    <span class="step-num">2</span>
+                    エネルギー保存則より: \( I_0 = I_r + I_t + I_a \)
+                </div>
+                <div class="derivation-step">
+                    <span class="step-num">3</span>
+                    各比率を定義: 反射率 R = Iᵣ/I₀、透過率 T = Iₜ/I₀、吸収率 A = Iₐ/I₀
+                </div>
+                <div class="derivation-step">
+                    <span class="step-num">4</span>
+                    従って: \( R + T + A = 1 \)
+                </div>
+            </div>
+
+            <h3>2.3 色の三原色と混色</h3>
+            <p><strong>加法混色（光の三原色）:</strong> 赤(R)、緑(G)、青(B) - ディスプレイなどで使用</p>
+            <p><strong>減法混色（色料の三原色）:</strong> シアン(C)、マゼンタ(M)、イエロー(Y) - 印刷で使用</p>
+
+            <div class="column application">
+                <h4>コラム: なぜ空は青いのか？</h4>
+                <p><strong>レイリー散乱</strong>により、波長の短い青い光は大気中の分子によって強く散乱される。散乱強度は波長の4乗に反比例する:</p>
+                \[ I \propto \frac{1}{\lambda^4} \]
+                <p>青い光（λ≈450nm）は赤い光（λ≈700nm）の約5.7倍散乱されるため、空は青く見える。夕焼けが赤いのは、光が大気中を長距離進むことで青い光が散乱し尽くし、赤い光が残るからである。</p>
+            </div>
+
+            <div class="lecture-nav">
+                <a href="#lecture1">← 前回: 電磁波とは</a>
+                <a href="#lecture3">次回: 電磁波発生と応用 →</a>
+            </div>
+        </section>
+
+        <!-- 第3回: 電磁波発生と応用 -->
+        <section class="lecture-section" id="lecture3">
+            <h2>第3回: 電磁波発生と応用</h2>
+
+            <h3>3.1 電磁波の発生メカニズム</h3>
+            <p>電磁波は加速する電荷から発生する。電荷が加速度運動をすると、電場と磁場の変化が波として空間を伝播する。</p>
+
+            <div class="equation-box">
+                <div class="title">ラーモアの公式（放射パワー）</div>
+                \[ P = \frac{q^2 a^2}{6\pi\epsilon_0 c^3} \]
+                <p>q: 電荷、a: 加速度、ε₀: 真空の誘電率</p>
+            </div>
+
+            <h3>3.2 各波長領域の発生方法</h3>
+
+            <h4>電波の発生</h4>
+            <ul>
+                <li><strong>アンテナ</strong>: 高周波電流を流すことで電磁波を放射</li>
+                <li><strong>LC発振回路</strong>: 共振周波数 \( f = \frac{1}{2\pi\sqrt{LC}} \)</li>
+            </ul>
+
+            <h4>マイクロ波の発生</h4>
+            <ul>
+                <li><strong>マグネトロン</strong>: 電子レンジに使用（2.45 GHz）</li>
+                <li><strong>クライストロン</strong>: レーダー・粒子加速器</li>
+                <li><strong>ジャイロトロン</strong>: 核融合炉の加熱</li>
+            </ul>
+
+            <h4>可視光・赤外線の発生</h4>
+            <ul>
+                <li><strong>熱放射</strong>: 高温物体からの黒体放射</li>
+                <li><strong>LED</strong>: pn接合での電子-正孔再結合</li>
+                <li><strong>レーザー</strong>: 誘導放出による光増幅</li>
+            </ul>
+
+            <div class="derivation">
+                <h4>導出: 黒体放射のピーク波長（ウィーンの変位則）</h4>
+                <div class="derivation-step">
+                    <span class="step-num">1</span>
+                    プランクの放射則から、スペクトル放射輝度: \( B(\lambda, T) = \frac{2hc^2}{\lambda^5} \cdot \frac{1}{e^{hc/\lambda k_B T} - 1} \)
+                </div>
+                <div class="derivation-step">
+                    <span class="step-num">2</span>
+                    ピーク波長を求めるため \( \frac{\partial B}{\partial \lambda} = 0 \) を解く
+                </div>
+                <div class="derivation-step">
+                    <span class="step-num">3</span>
+                    超越方程式を数値的に解くと: \( \lambda_{max} T = b \)
+                </div>
+                <div class="derivation-step">
+                    <span class="step-num">4</span>
+                    ウィーン定数: b = 2.898 × 10⁻³ m·K
+                </div>
+            </div>
+
+            <div class="column tip">
+                <h4>コラム: なぜ電子レンジは2.45GHzなのか？</h4>
+                <p>2.45GHzは水分子の回転運動と共鳴しやすい周波数であり、食品中の水分子を効率的に振動させて熱を発生させる。また、この周波数帯はISMバンド（産業・科学・医療用）として国際的に割り当てられており、無線通信への干渉を避けることができる。</p>
+            </div>
+
+            <div class="lecture-nav">
+                <a href="#lecture2">← 前回: 可視光の色</a>
+                <a href="#lecture4">次回: 電磁波と物質との相互作用 →</a>
+            </div>
+        </section>
+
+        <!-- 第4回: 電磁波と物質との相互作用 -->
+        <section class="lecture-section" id="lecture4">
+            <h2>第4回: 電磁波と物質との相互作用</h2>
+
+            <h3>4.1 光と物質の相互作用の種類</h3>
+            <p>電磁波が物質と相互作用する際、主に以下の現象が起こる:</p>
+            <ul>
+                <li><strong>吸収</strong>: 光子のエネルギーが物質に移動</li>
+                <li><strong>放出</strong>: 物質から光子が放出</li>
+                <li><strong>散乱</strong>: 光の進行方向が変化</li>
+                <li><strong>反射・屈折</strong>: 界面での進路変化</li>
+            </ul>
+
+            <h3>4.2 エネルギー準位と吸収</h3>
+            <p>原子・分子は離散的なエネルギー準位を持ち、準位間のエネルギー差に対応する光子のみを吸収する。</p>
+
+            <div class="equation-box">
+                <div class="title">光吸収の条件（ボーアの条件）</div>
+                \[ E_2 - E_1 = hf \]
+                <p>E₁: 低いエネルギー準位、E₂: 高いエネルギー準位</p>
+            </div>
+
+            <h3>4.3 ランベルト・ベールの法則</h3>
+            <p>物質を通過する光の強度は、物質の濃度と光路長に従って減少する。</p>
+
+            <div class="derivation">
+                <h4>導出: ランベルト・ベールの法則</h4>
+                <div class="derivation-step">
+                    <span class="step-num">1</span>
+                    微小厚さ dx を通過する際の光強度の減少: \( dI = -\alpha I dx \)
+                </div>
+                <div class="derivation-step">
+                    <span class="step-num">2</span>
+                    両辺を積分: \( \int_{I_0}^{I} \frac{dI}{I} = -\alpha \int_0^{l} dx \)
+                </div>
+                <div class="derivation-step">
+                    <span class="step-num">3</span>
+                    解を得る: \( \ln\frac{I}{I_0} = -\alpha l \)
+                </div>
+                <div class="derivation-step">
+                    <span class="step-num">4</span>
+                    指数形式に変換: \( I = I_0 e^{-\alpha l} \)
+                </div>
+                <div class="derivation-step">
+                    <span class="step-num">5</span>
+                    吸収係数 α がモル濃度 c に比例する場合: \( A = \epsilon c l \)（吸光度）
+                </div>
+            </div>
+
+            <div class="key-point">
+                <h4>重要ポイント</h4>
+                <p>吸光度 A は濃度 c と光路長 l に比例する。これが分光分析による定量分析の基礎となる。</p>
+            </div>
+
+            <div class="column application">
+                <h4>コラム: 分光分析の応用</h4>
+                <p>ランベルト・ベールの法則は、化学分析において広く利用されている:</p>
+                <ul>
+                    <li><strong>UV-Vis分光法</strong>: 有機化合物の定量分析</li>
+                    <li><strong>赤外分光法</strong>: 分子構造の同定</li>
+                    <li><strong>原子吸光分析</strong>: 金属元素の定量</li>
+                </ul>
+                <p>血液検査における各種成分の測定も、この原理に基づいている。</p>
+            </div>
+
+            <div class="lecture-nav">
+                <a href="#lecture3">← 前回: 電磁波発生と応用</a>
+                <a href="#lecture5">次回: 固体と電子スピン →</a>
+            </div>
+        </section>
+
+        <!-- 第5回: 固体と電子スピン -->
+        <section class="lecture-section" id="lecture5">
+            <h2>第5回: 固体と電子スピン</h2>
+
+            <h3>5.1 電子スピンとは</h3>
+            <p>電子は質量と電荷に加えて、「スピン」と呼ばれる固有の角運動量を持つ。スピンは古典的な自転とは異なる純粋に量子力学的な性質である。</p>
+
+            <div class="equation-box">
+                <div class="title">電子のスピン角運動量</div>
+                \[ S = \frac{\hbar}{2} \]
+                \[ S_z = \pm\frac{\hbar}{2} \]
+                <p>ℏ = h/2π（ディラック定数）</p>
+            </div>
+
+            <h3>5.2 スピン磁気モーメント</h3>
+            <p>電子のスピンには磁気モーメントが伴う。この磁気モーメントは外部磁場と相互作用する。</p>
+
+            <div class="equation-box">
+                <div class="title">スピン磁気モーメント</div>
+                \[ \mu_s = -g_e \frac{e}{2m_e} S = -g_e \mu_B \frac{S}{\hbar} \]
+                <p>gₑ ≈ 2.002（g因子）、μB（ボーア磁子）= 9.274 × 10⁻²⁴ J/T</p>
+            </div>
+
+            <h3>5.3 固体中の磁性</h3>
+            <p>固体の磁性は電子スピンの配列によって決まる:</p>
+
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>磁性の種類</th>
+                        <th>スピン配列</th>
+                        <th>磁化率 χ</th>
+                        <th>代表例</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>反磁性</td>
+                        <td>対を形成（打ち消し）</td>
+                        <td>χ &lt; 0（小）</td>
+                        <td>銅、ビスマス</td>
+                    </tr>
+                    <tr>
+                        <td>常磁性</td>
+                        <td>ランダム配向</td>
+                        <td>χ &gt; 0（小）</td>
+                        <td>アルミニウム、白金</td>
+                    </tr>
+                    <tr>
+                        <td>強磁性</td>
+                        <td>平行配列</td>
+                        <td>χ &gt;&gt; 0</td>
+                        <td>鉄、コバルト、ニッケル</td>
+                    </tr>
+                    <tr>
+                        <td>反強磁性</td>
+                        <td>反平行配列</td>
+                        <td>χ &gt; 0（小）</td>
+                        <td>酸化マンガン</td>
+                    </tr>
+                    <tr>
+                        <td>フェリ磁性</td>
+                        <td>反平行（異なる大きさ）</td>
+                        <td>χ &gt; 0</td>
+                        <td>フェライト</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="derivation">
+                <h4>導出: 常磁性の磁化率（キュリーの法則）</h4>
+                <div class="derivation-step">
+                    <span class="step-num">1</span>
+                    磁場中の2つの状態のエネルギー: \( E_\pm = \pm \mu_B B \)
+                </div>
+                <div class="derivation-step">
+                    <span class="step-num">2</span>
+                    ボルツマン分布より占有確率: \( P_\pm = \frac{e^{\mp\mu_B B/k_B T}}{e^{+\mu_B B/k_B T} + e^{-\mu_B B/k_B T}} \)
+                </div>
+                <div class="derivation-step">
+                    <span class="step-num">3</span>
+                    平均磁化: \( M = N\mu_B(P_+ - P_-) = N\mu_B \tanh\left(\frac{\mu_B B}{k_B T}\right) \)
+                </div>
+                <div class="derivation-step">
+                    <span class="step-num">4</span>
+                    高温近似（μ_B B ≪ k_B T）: \( M \approx \frac{N\mu_B^2 B}{k_B T} \)
+                </div>
+                <div class="derivation-step">
+                    <span class="step-num">5</span>
+                    キュリーの法則: \( \chi = \frac{M}{H} = \frac{C}{T} \)（C: キュリー定数）
+                </div>
+            </div>
+
+            <div class="column history">
+                <h4>コラム: スピンの発見</h4>
+                <p>1925年、ウーレンベックとハウトスミットは、原子スペクトルの微細構造を説明するために電子スピンの概念を提案した。当初、電子が自転していると解釈されたが、古典的に計算すると電子表面の速度が光速を超えてしまう。パウリは「非古典的な2値自由度」と呼び、これがスピンの本質的な量子性を示している。</p>
+            </div>
+
+            <div class="lecture-nav">
+                <a href="#lecture4">← 前回: 電磁波と物質との相互作用</a>
+                <a href="#lecture6">次回: 磁気共鳴 →</a>
+            </div>
+        </section>
+
+        <!-- 第6回: 磁気共鳴 -->
+        <section class="lecture-section" id="lecture6">
+            <h2>第6回: 磁気共鳴</h2>
+
+            <h3>6.1 磁気共鳴の原理</h3>
+            <p>磁気モーメントを持つ粒子が外部磁場中に置かれると、エネルギー準位が分裂する（ゼーマン分裂）。この準位間の遷移を誘起する現象が磁気共鳴である。</p>
+
+            <div class="equation-box">
+                <div class="title">ゼーマンエネルギー</div>
+                \[ E = -\vec{\mu} \cdot \vec{B} = -\gamma \hbar m B_0 \]
+                <p>γ: 磁気回転比、m: 磁気量子数、B₀: 静磁場</p>
+            </div>
+
+            <h3>6.2 共鳴条件</h3>
+            <p>電磁波の周波数が準位間のエネルギー差に対応するとき、共鳴吸収が起こる:</p>
+
+            <div class="equation-box">
+                <div class="title">ラーモア周波数（共鳴条件）</div>
+                \[ \omega_0 = \gamma B_0 \]
+                \[ f_0 = \frac{\gamma B_0}{2\pi} \]
+            </div>
+
+            <h3>6.3 核磁気共鳴（NMR）</h3>
+            <p>原子核のスピンを利用した磁気共鳴。医療用MRIや化学分析に広く用いられる。</p>
+
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>核種</th>
+                        <th>スピン I</th>
+                        <th>磁気回転比 γ/2π (MHz/T)</th>
+                        <th>天然存在比 (%)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>¹H</td>
+                        <td>1/2</td>
+                        <td>42.58</td>
+                        <td>99.98</td>
+                    </tr>
+                    <tr>
+                        <td>¹³C</td>
+                        <td>1/2</td>
+                        <td>10.71</td>
+                        <td>1.11</td>
+                    </tr>
+                    <tr>
+                        <td>¹⁹F</td>
+                        <td>1/2</td>
+                        <td>40.05</td>
+                        <td>100</td>
+                    </tr>
+                    <tr>
+                        <td>³¹P</td>
+                        <td>1/2</td>
+                        <td>17.24</td>
+                        <td>100</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="derivation">
+                <h4>導出: 化学シフトの原理</h4>
+                <div class="derivation-step">
+                    <span class="step-num">1</span>
+                    核の周りの電子が作る遮蔽磁場: \( B_{eff} = B_0(1 - \sigma) \)
+                </div>
+                <div class="derivation-step">
+                    <span class="step-num">2</span>
+                    遮蔽定数 σ は核の化学環境に依存
+                </div>
+                <div class="derivation-step">
+                    <span class="step-num">3</span>
+                    実効的な共鳴周波数: \( f = \frac{\gamma B_0(1-\sigma)}{2\pi} \)
+                </div>
+                <div class="derivation-step">
+                    <span class="step-num">4</span>
+                    化学シフト: \( \delta = \frac{f - f_{ref}}{f_{ref}} \times 10^6 \) (ppm)
+                </div>
+            </div>
+
+            <div class="column application">
+                <h4>コラム: MRIの原理</h4>
+                <p>磁気共鳴画像法（MRI）は、人体中の水分子（¹H）のNMRシグナルを利用して断層画像を得る技術である。</p>
+                <ul>
+                    <li><strong>傾斜磁場</strong>: 位置情報をエンコード</li>
+                    <li><strong>T₁緩和</strong>: スピン-格子緩和（縦緩和）</li>
+                    <li><strong>T₂緩和</strong>: スピン-スピン緩和（横緩和）</li>
+                </ul>
+                <p>異なる組織は異なる緩和時間を持つため、コントラストのある画像が得られる。放射線を使用しないため、人体への侵襲性が低い。</p>
+            </div>
+
+            <div class="lecture-nav">
+                <a href="#lecture5">← 前回: 固体と電子スピン</a>
+                <a href="#lecture7">次回: 電子スピン共鳴 →</a>
+            </div>
+        </section>
+
+        <!-- 第7回: 電子スピン共鳴 -->
+        <section class="lecture-section" id="lecture7">
+            <h2>第7回: 電子スピン共鳴</h2>
+
+            <h3>7.1 ESR/EPRの基礎</h3>
+            <p>電子スピン共鳴（ESR）または電子常磁性共鳴（EPR）は、不対電子を持つ物質の研究に用いられる分光法である。</p>
+
+            <div class="equation-box">
+                <div class="title">ESRの共鳴条件</div>
+                \[ h\nu = g\mu_B B \]
+                \[ \nu = \frac{g\mu_B B}{h} = \frac{g \times 9.274 \times 10^{-24} \times B}{6.626 \times 10^{-34}} \]
+            </div>
+
+            <h3>7.2 ESRスペクトルの解釈</h3>
+            <p>ESRスペクトルから以下の情報が得られる:</p>
+            <ul>
+                <li><strong>g値</strong>: 電子の化学環境を反映（自由電子: g = 2.0023）</li>
+                <li><strong>超微細構造</strong>: 近傍核スピンとの相互作用</li>
+                <li><strong>線幅</strong>: 緩和過程や運動性の情報</li>
+            </ul>
+
+            <h3>7.3 超微細相互作用</h3>
+            <p>電子スピンが近傍の核スピンと相互作用すると、ESRスペクトルは分裂する。</p>
+
+            <div class="derivation">
+                <h4>導出: 超微細分裂パターン</h4>
+                <div class="derivation-step">
+                    <span class="step-num">1</span>
+                    核スピン I を持つ核 n 個と等価に相互作用する場合
+                </div>
+                <div class="derivation-step">
+                    <span class="step-num">2</span>
+                    分裂本数: 2nI + 1
+                </div>
+                <div class="derivation-step">
+                    <span class="step-num">3</span>
+                    例: ¹H（I = 1/2）1個との相互作用 → 2本に分裂
+                </div>
+                <div class="derivation-step">
+                    <span class="step-num">4</span>
+                    例: ¹H 2個と等価に相互作用 → 3本（強度比 1:2:1）
+                </div>
+                <div class="derivation-step">
+                    <span class="step-num">5</span>
+                    強度比はパスカルの三角形に従う
+                </div>
+            </div>
+
+            <div class="key-point">
+                <h4>重要ポイント</h4>
+                <p>ESRはNMRに比べて約1000倍感度が高い（電子の磁気モーメントが核より大きいため）。しかし、不対電子を持つ試料に限定される。</p>
+            </div>
+
+            <div class="column application">
+                <h4>コラム: ESRの応用分野</h4>
+                <ul>
+                    <li><strong>ラジカル検出</strong>: 化学反応中間体の研究</li>
+                    <li><strong>金属錯体</strong>: 遷移金属イオンの電子状態解析</li>
+                    <li><strong>生体分子</strong>: 酵素活性中心の研究</li>
+                    <li><strong>材料科学</strong>: 半導体中の欠陥評価</li>
+                    <li><strong>年代測定</strong>: 歯のエナメル質の放射線損傷評価</li>
+                </ul>
+            </div>
+
+            <div class="lecture-nav">
+                <a href="#lecture6">← 前回: 磁気共鳴</a>
+                <a href="#lecture8">次回: 電子スピン共鳴（応用） →</a>
+            </div>
+        </section>
+
+        <!-- 第8回: 電子スピン共鳴（応用） -->
+        <section class="lecture-section" id="lecture8">
+            <h2>第8回: 電子スピン共鳴（応用）</h2>
+
+            <h3>8.1 パルスESR</h3>
+            <p>連続波（CW）ESRに対し、パルスESRはマイクロ波パルスを用いてスピンダイナミクスを直接観測する手法である。</p>
+
+            <h4>主要なパルスシーケンス</h4>
+            <ul>
+                <li><strong>FID（自由誘導減衰）</strong>: 90°パルス後の信号減衰</li>
+                <li><strong>スピンエコー</strong>: 90°-τ-180°-τ-エコー</li>
+                <li><strong>ESEEM</strong>: 電子スピンエコーエンベロープ変調</li>
+                <li><strong>ENDOR</strong>: 電子-核二重共鳴</li>
+            </ul>
+
+            <div class="equation-box">
+                <div class="title">スピンエコーの信号強度</div>
+                \[ S(2\tau) = S_0 \exp\left(-\frac{2\tau}{T_2}\right) \]
+                <p>T₂: スピン-スピン緩和時間</p>
+            </div>
+
+            <h3>8.2 高周波ESR</h3>
+            <p>従来のX-band（9-10 GHz）より高い周波数を用いるESR。分解能と感度が向上する。</p>
+
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>バンド名</th>
+                        <th>周波数</th>
+                        <th>磁場（g=2の場合）</th>
+                        <th>特徴</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>X-band</td>
+                        <td>9-10 GHz</td>
+                        <td>0.34 T</td>
+                        <td>最も普及</td>
+                    </tr>
+                    <tr>
+                        <td>Q-band</td>
+                        <td>33-35 GHz</td>
+                        <td>1.2 T</td>
+                        <td>高分解能</td>
+                    </tr>
+                    <tr>
+                        <td>W-band</td>
+                        <td>94 GHz</td>
+                        <td>3.4 T</td>
+                        <td>超高分解能</td>
+                    </tr>
+                    <tr>
+                        <td>D-band</td>
+                        <td>130-150 GHz</td>
+                        <td>4.7 T</td>
+                        <td>特殊用途</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>8.3 最新の研究動向</h3>
+
+            <h4>量子コンピューティング</h4>
+            <p>電子スピンは量子ビット（qubit）として利用可能。ダイヤモンド中のNV中心が注目されている。</p>
+
+            <div class="derivation">
+                <h4>導出: スピンコヒーレンス時間</h4>
+                <div class="derivation-step">
+                    <span class="step-num">1</span>
+                    量子ビットとして機能するには、コヒーレンス時間 T₂ が操作時間より長いことが必要
+                </div>
+                <div class="derivation-step">
+                    <span class="step-num">2</span>
+                    デコヒーレンスの主因: スピン-格子緩和、スピン-スピン相互作用
+                </div>
+                <div class="derivation-step">
+                    <span class="step-num">3</span>
+                    動的デカップリング: \( T_2^{DD} = T_2 \times N^{2/3} \)（N: パルス数）
+                </div>
+            </div>
+
+            <div class="column tip">
+                <h4>コラム: NV中心と量子センシング</h4>
+                <p>ダイヤモンド中の窒素-空孔（NV）中心は、室温で長いコヒーレンス時間を持つ電子スピン系である。</p>
+                <ul>
+                    <li><strong>超高感度磁場測定</strong>: ナノスケールの磁場マッピング</li>
+                    <li><strong>温度センシング</strong>: 細胞内温度の非侵襲測定</li>
+                    <li><strong>電場センシング</strong>: 単一電荷の検出</li>
+                </ul>
+                <p>これらの技術は、量子コンピュータだけでなく、バイオイメージングや材料評価への応用が期待されている。</p>
+            </div>
+
+            <div class="lecture-nav">
+                <a href="#lecture7">← 前回: 電子スピン共鳴</a>
+                <a href="#lecture9">次回: マクスウェル方程式と波動方程式 →</a>
+            </div>
+        </section>
+
+        <!-- 第9回: マクスウェル方程式と波動方程式 -->
+        <section class="lecture-section" id="lecture9">
+            <h2>第9回: マクスウェル方程式と波動方程式</h2>
+
+            <h3>9.1 マクスウェル方程式</h3>
+            <p>電磁気学の基本法則をまとめた4つの方程式。電磁波の存在を理論的に予言する。</p>
+
+            <div class="equation-box">
+                <div class="title">マクスウェル方程式（微分形式）</div>
+                <p><strong>① ガウスの法則（電場）:</strong></p>
+                \[ \nabla \cdot \vec{E} = \frac{\rho}{\epsilon_0} \]
+                <p><strong>② ガウスの法則（磁場）:</strong></p>
+                \[ \nabla \cdot \vec{B} = 0 \]
+                <p><strong>③ ファラデーの法則:</strong></p>
+                \[ \nabla \times \vec{E} = -\frac{\partial \vec{B}}{\partial t} \]
+                <p><strong>④ アンペール-マクスウェルの法則:</strong></p>
+                \[ \nabla \times \vec{B} = \mu_0 \vec{J} + \mu_0 \epsilon_0 \frac{\partial \vec{E}}{\partial t} \]
+            </div>
+
+            <h3>9.2 波動方程式の導出</h3>
+
+            <div class="derivation">
+                <h4>導出: 電磁波の波動方程式</h4>
+                <div class="derivation-step">
+                    <span class="step-num">1</span>
+                    真空中（ρ = 0, J = 0）のファラデーの法則の回転を取る:
+                    \[ \nabla \times (\nabla \times \vec{E}) = -\frac{\partial}{\partial t}(\nabla \times \vec{B}) \]
+                </div>
+                <div class="derivation-step">
+                    <span class="step-num">2</span>
+                    ベクトル恒等式を適用:
+                    \[ \nabla \times (\nabla \times \vec{E}) = \nabla(\nabla \cdot \vec{E}) - \nabla^2 \vec{E} \]
+                </div>
+                <div class="derivation-step">
+                    <span class="step-num">3</span>
+                    真空中では ∇·E = 0 より:
+                    \[ -\nabla^2 \vec{E} = -\frac{\partial}{\partial t}(\nabla \times \vec{B}) \]
+                </div>
+                <div class="derivation-step">
+                    <span class="step-num">4</span>
+                    アンペール-マクスウェルの法則を代入:
+                    \[ \nabla^2 \vec{E} = \mu_0 \epsilon_0 \frac{\partial^2 \vec{E}}{\partial t^2} \]
+                </div>
+                <div class="derivation-step">
+                    <span class="step-num">5</span>
+                    波動方程式の標準形との比較より:
+                    \[ c = \frac{1}{\sqrt{\mu_0 \epsilon_0}} = 2.998 \times 10^8 \text{ m/s} \]
+                </div>
+            </div>
+
+            <div class="key-point">
+                <h4>重要ポイント</h4>
+                <p>マクスウェルは、計算された電磁波の速度が当時知られていた光速と一致することから、「光は電磁波である」と結論づけた。これは物理学史上最も重要な理論的発見の一つである。</p>
+            </div>
+
+            <h3>9.3 平面波解</h3>
+            <p>波動方程式の最も単純な解は平面波である:</p>
+
+            <div class="equation-box">
+                <div class="title">平面波の表式</div>
+                \[ \vec{E} = \vec{E}_0 \cos(kz - \omega t) \]
+                \[ \vec{B} = \vec{B}_0 \cos(kz - \omega t) \]
+                <p>k = 2π/λ（波数）、ω = 2πf（角周波数）</p>
+            </div>
+
+            <div class="column history">
+                <h4>コラム: マクスウェルの「変位電流」</h4>
+                <p>オリジナルのアンペールの法則には問題があった。コンデンサの充電過程で、電流の連続性が破れてしまう。マクスウェルは「変位電流」（∂E/∂t に比例する項）を導入することでこの問題を解決した。この項こそが、電磁波の存在を可能にする鍵であった。</p>
+                <p>数学的な整合性の要請から導入された項が、実在する物理現象（電磁波）を予言したことは、物理学における数学の威力を示す好例である。</p>
+            </div>
+
+            <div class="lecture-nav">
+                <a href="#lecture8">← 前回: 電子スピン共鳴（応用）</a>
+                <a href="#lecture10">次回: 電磁波の伝播・回折 →</a>
+            </div>
+        </section>
+
+        <!-- 第10回: 電磁波の伝播・回折 -->
+        <section class="lecture-section" id="lecture10">
+            <h2>第10回: 電磁波の伝播・回折</h2>
+
+            <h3>10.1 自由空間での伝播</h3>
+            <p>真空中の電磁波は直進し、エネルギーは距離の2乗に反比例して減衰する。</p>
+
+            <div class="equation-box">
+                <div class="title">ポインティングベクトル</div>
+                \[ \vec{S} = \frac{1}{\mu_0} \vec{E} \times \vec{B} \]
+                <p>単位面積あたりのエネルギー流束 [W/m²]</p>
+            </div>
+
+            <h3>10.2 導波管内の伝播</h3>
+            <p>導波管は金属壁で囲まれた構造で、電磁波を閉じ込めて伝送する。</p>
+
+            <h4>矩形導波管のTE₁₀モード</h4>
+            <div class="derivation">
+                <h4>導出: カットオフ周波数</h4>
+                <div class="derivation-step">
+                    <span class="step-num">1</span>
+                    境界条件: 金属壁で電場の接線成分がゼロ
+                </div>
+                <div class="derivation-step">
+                    <span class="step-num">2</span>
+                    許容される波数: \( k_x = \frac{m\pi}{a}, \quad k_y = \frac{n\pi}{b} \)
+                </div>
+                <div class="derivation-step">
+                    <span class="step-num">3</span>
+                    分散関係: \( k_z^2 = k^2 - k_x^2 - k_y^2 \)
+                </div>
+                <div class="derivation-step">
+                    <span class="step-num">4</span>
+                    k_z² > 0 の条件から、カットオフ周波数:
+                    \[ f_c = \frac{c}{2}\sqrt{\left(\frac{m}{a}\right)^2 + \left(\frac{n}{b}\right)^2} \]
+                </div>
+            </div>
+
+            <h3>10.3 回折現象</h3>
+            <p>電磁波が障害物の端を回り込む現象。波長と障害物のサイズの関係で顕著さが変わる。</p>
+
+            <h4>フラウンホーファー回折（単スリット）</h4>
+            <div class="equation-box">
+                <div class="title">単スリット回折パターン</div>
+                \[ I(\theta) = I_0 \left(\frac{\sin \beta}{\beta}\right)^2 \]
+                \[ \beta = \frac{\pi a \sin\theta}{\lambda} \]
+                <p>a: スリット幅、θ: 回折角</p>
+            </div>
+
+            <h4>回折限界（レイリー基準）</h4>
+            <div class="equation-box">
+                <div class="title">角度分解能の限界</div>
+                \[ \theta_{min} \approx 1.22 \frac{\lambda}{D} \]
+                <p>D: 開口径</p>
+            </div>
+
+            <div class="key-point">
+                <h4>重要ポイント</h4>
+                <p>回折限界は光学機器の分解能を制限する。より高い分解能を得るには、短い波長を使用するか、開口径を大きくする必要がある。電子顕微鏡は電子の短いド・ブロイ波長を利用して高分解能を実現している。</p>
+            </div>
+
+            <div class="column application">
+                <h4>コラム: アレシボ電波望遠鏡</h4>
+                <p>かつてプエルトリコにあったアレシボ電波望遠鏡は、直径305mの巨大なパラボラアンテナを持っていた。電波の波長は可視光より約100万倍長いため、同等の角度分解能を得るには巨大な開口が必要となる。</p>
+                <p>現代では、複数の電波望遠鏡を組み合わせる「干渉計」技術により、地球規模の仮想的な開口を実現している（VLBI: 超長基線電波干渉法）。</p>
+            </div>
+
+            <div class="lecture-nav">
+                <a href="#lecture9">← 前回: マクスウェル方程式と波動方程式</a>
+                <a href="#lecture11">次回: 量子力学の始まり →</a>
+            </div>
+        </section>
+
+        <!-- 第11回: 量子力学の始まり -->
+        <section class="lecture-section" id="lecture11">
+            <h2>第11回: 量子力学の始まり</h2>
+
+            <h3>11.1 古典物理学の危機</h3>
+            <p>19世紀末、古典物理学では説明できない現象が次々と発見された:</p>
+            <ul>
+                <li><strong>黒体放射</strong>: 紫外発散（レイリー・ジーンズの法則の破綻）</li>
+                <li><strong>光電効果</strong>: 光の振動数依存性</li>
+                <li><strong>原子スペクトル</strong>: 離散的な輝線</li>
+            </ul>
+
+            <h3>11.2 プランクの量子仮説</h3>
+            <p>1900年、プランクは黒体放射を説明するため、エネルギーが離散的な値をとると仮定した。</p>
+
+            <div class="equation-box">
+                <div class="title">エネルギー量子化</div>
+                \[ E_n = nhf \quad (n = 0, 1, 2, ...) \]
+                <p>h = 6.626 × 10⁻³⁴ J·s（プランク定数）</p>
+            </div>
+
+            <div class="derivation">
+                <h4>導出: プランクの放射則</h4>
+                <div class="derivation-step">
+                    <span class="step-num">1</span>
+                    各振動子のエネルギーは E = nhf に量子化
+                </div>
+                <div class="derivation-step">
+                    <span class="step-num">2</span>
+                    ボルツマン分布より、エネルギー E の確率: \( P(E) \propto e^{-E/k_BT} \)
+                </div>
+                <div class="derivation-step">
+                    <span class="step-num">3</span>
+                    平均エネルギーを計算:
+                    \[ \langle E \rangle = \frac{\sum_{n=0}^{\infty} nhf \cdot e^{-nhf/k_BT}}{\sum_{n=0}^{\infty} e^{-nhf/k_BT}} \]
+                </div>
+                <div class="derivation-step">
+                    <span class="step-num">4</span>
+                    等比級数の公式を適用:
+                    \[ \langle E \rangle = \frac{hf}{e^{hf/k_BT} - 1} \]
+                </div>
+                <div class="derivation-step">
+                    <span class="step-num">5</span>
+                    状態密度を掛けてプランクの放射則を得る
+                </div>
+            </div>
+
+            <h3>11.3 アインシュタインの光量子仮説</h3>
+            <p>1905年、アインシュタインは光電効果を説明するため、光自体がエネルギー hf を持つ粒子（光子）であると提案した。</p>
+
+            <div class="equation-box">
+                <div class="title">光電効果の方程式</div>
+                \[ hf = W + \frac{1}{2}m_e v^2_{max} \]
+                <p>W: 仕事関数、½mₑv²ₘₐₓ: 放出電子の最大運動エネルギー</p>
+            </div>
+
+            <h3>11.4 ボーアの原子模型</h3>
+            <p>1913年、ボーアは水素原子のスペクトルを説明する模型を提案した。</p>
+
+            <div class="equation-box">
+                <div class="title">ボーアの量子条件</div>
+                \[ L = m_e v r = n\hbar \quad (n = 1, 2, 3, ...) \]
+                <p>角運動量が ℏ の整数倍に量子化</p>
+            </div>
+
+            <div class="derivation">
+                <h4>導出: 水素原子のエネルギー準位</h4>
+                <div class="derivation-step">
+                    <span class="step-num">1</span>
+                    円運動の条件: \( \frac{m_e v^2}{r} = \frac{e^2}{4\pi\epsilon_0 r^2} \)
+                </div>
+                <div class="derivation-step">
+                    <span class="step-num">2</span>
+                    量子条件: \( m_e v r = n\hbar \)
+                </div>
+                <div class="derivation-step">
+                    <span class="step-num">3</span>
+                    2式から v を消去して軌道半径:
+                    \[ r_n = \frac{4\pi\epsilon_0 n^2\hbar^2}{m_e e^2} = n^2 a_0 \]
+                </div>
+                <div class="derivation-step">
+                    <span class="step-num">4</span>
+                    エネルギー（運動 + ポテンシャル）:
+                    \[ E_n = -\frac{m_e e^4}{32\pi^2\epsilon_0^2\hbar^2} \cdot \frac{1}{n^2} = -\frac{13.6 \text{ eV}}{n^2} \]
+                </div>
+            </div>
+
+            <div class="column history">
+                <h4>コラム: プランクの苦悩</h4>
+                <p>プランクは保守的な物理学者であり、量子仮説を「絶望的な行為」と呼んだ。彼は何年もの間、古典論的な説明を見つけようとしたが失敗した。皮肉にも、この「暫定的な」仮説が現代物理学の基礎となった。</p>
+                <p>彼は1918年にノーベル物理学賞を受賞したが、その受賞理由は「エネルギー量子の発見による物理学の発展への貢献」であった。</p>
+            </div>
+
+            <div class="lecture-nav">
+                <a href="#lecture10">← 前回: 電磁波の伝播・回折</a>
+                <a href="#lecture12">次回: 電磁波と特殊相対性理論 →</a>
+            </div>
+        </section>
+
+        <!-- 第12回: 電磁波と特殊相対性理論 -->
+        <section class="lecture-section" id="lecture12">
+            <h2>第12回: 電磁波と特殊相対性理論</h2>
+
+            <h3>12.1 光速度不変の原理</h3>
+            <p>1887年のマイケルソン-モーレーの実験により、光の速度が観測者の運動状態によらず一定であることが示された。</p>
+
+            <div class="key-point">
+                <h4>重要ポイント</h4>
+                <p>この結果は古典力学のガリレイ変換と矛盾する。光速度 c は全ての慣性系で同じ値を持つ普遍定数である。</p>
+            </div>
+
+            <h3>12.2 特殊相対性理論の2つの公準</h3>
+            <ol>
+                <li><strong>相対性原理</strong>: 物理法則は全ての慣性系で同じ形式を持つ</li>
+                <li><strong>光速度不変の原理</strong>: 真空中の光速度は全ての慣性系で c</li>
+            </ol>
+
+            <h3>12.3 ローレンツ変換</h3>
+
+            <div class="equation-box">
+                <div class="title">ローレンツ変換</div>
+                \[ x' = \gamma(x - vt) \]
+                \[ t' = \gamma\left(t - \frac{vx}{c^2}\right) \]
+                \[ \gamma = \frac{1}{\sqrt{1 - v^2/c^2}} \]
+                <p>γ: ローレンツ因子</p>
+            </div>
+
+            <h3>12.4 相対論的効果</h3>
+
+            <div class="derivation">
+                <h4>導出: 時間の遅れ</h4>
+                <div class="derivation-step">
+                    <span class="step-num">1</span>
+                    静止系で同じ場所で起こる2つの事象: Δx = 0
+                </div>
+                <div class="derivation-step">
+                    <span class="step-num">2</span>
+                    固有時間: Δτ = Δt（静止系での時間間隔）
+                </div>
+                <div class="derivation-step">
+                    <span class="step-num">3</span>
+                    運動系での時間間隔:
+                    \[ \Delta t' = \gamma \Delta \tau \]
+                </div>
+                <div class="derivation-step">
+                    <span class="step-num">4</span>
+                    γ > 1 より、運動する時計はゆっくり進む
+                </div>
+            </div>
+
+            <h4>長さの収縮</h4>
+            <div class="equation-box">
+                <div class="title">ローレンツ収縮</div>
+                \[ L = \frac{L_0}{\gamma} = L_0\sqrt{1 - \frac{v^2}{c^2}} \]
+                <p>L₀: 固有長さ（静止系での長さ）</p>
+            </div>
+
+            <h3>12.5 ドップラー効果（相対論的）</h3>
+
+            <div class="equation-box">
+                <div class="title">相対論的ドップラー効果</div>
+                \[ f_{obs} = f_s \sqrt{\frac{1 - \beta}{1 + \beta}} \quad (\text{遠ざかる場合}) \]
+                <p>β = v/c</p>
+            </div>
+
+            <div class="column application">
+                <h4>コラム: GPSと相対性理論</h4>
+                <p>GPS衛星は高度約20,200kmを秒速約3.9km/sで周回している。相対性理論の効果:</p>
+                <ul>
+                    <li><strong>特殊相対論（速度による時間の遅れ）</strong>: 衛星の時計は地上より1日あたり約7μs遅れる</li>
+                    <li><strong>一般相対論（重力による時間の遅れ）</strong>: 衛星の時計は地上より1日あたり約45μs進む</li>
+                    <li><strong>正味の効果</strong>: 1日あたり約38μs進む</li>
+                </ul>
+                <p>この補正を行わないと、位置誤差は1日あたり約10kmに達する。GPSは相対性理論の「日常的な」応用例である。</p>
+            </div>
+
+            <div class="lecture-nav">
+                <a href="#lecture11">← 前回: 量子力学の始まり</a>
+                <a href="#lecture13">次回: 荷電粒子・プラズマ →</a>
+            </div>
+        </section>
+
+        <!-- 第13回: 荷電粒子・プラズマ -->
+        <section class="lecture-section" id="lecture13">
+            <h2>第13回: 荷電粒子・プラズマ</h2>
+
+            <h3>13.1 プラズマとは</h3>
+            <p>プラズマは、気体が高温になり電離した状態で、正イオンと電子が混在している。物質の第4の状態とも呼ばれる。</p>
+
+            <ul>
+                <li>宇宙の可視物質の99%以上はプラズマ状態</li>
+                <li>例: 太陽、雷、蛍光灯、核融合炉</li>
+            </ul>
+
+            <h3>13.2 プラズマの基本パラメータ</h3>
+
+            <div class="equation-box">
+                <div class="title">デバイ長</div>
+                \[ \lambda_D = \sqrt{\frac{\epsilon_0 k_B T_e}{n_e e^2}} \]
+                <p>電荷の遮蔽が起こる特徴的な長さ</p>
+            </div>
+
+            <div class="equation-box">
+                <div class="title">プラズマ周波数</div>
+                \[ \omega_p = \sqrt{\frac{n_e e^2}{\epsilon_0 m_e}} \]
+                <p>電子の集団振動の周波数</p>
+            </div>
+
+            <h3>13.3 電磁波とプラズマの相互作用</h3>
+
+            <div class="derivation">
+                <h4>導出: プラズマの誘電率</h4>
+                <div class="derivation-step">
+                    <span class="step-num">1</span>
+                    電子の運動方程式: \( m_e \frac{d^2x}{dt^2} = -eE_0 e^{-i\omega t} \)
+                </div>
+                <div class="derivation-step">
+                    <span class="step-num">2</span>
+                    解: \( x = \frac{eE_0}{m_e \omega^2} e^{-i\omega t} \)
+                </div>
+                <div class="derivation-step">
+                    <span class="step-num">3</span>
+                    分極: \( P = -n_e ex = -\frac{n_e e^2}{m_e \omega^2} E \)
+                </div>
+                <div class="derivation-step">
+                    <span class="step-num">4</span>
+                    誘電率: \( \epsilon = 1 - \frac{\omega_p^2}{\omega^2} \)
+                </div>
+            </div>
+
+            <div class="key-point">
+                <h4>重要ポイント</h4>
+                <p>ω < ω_p の電磁波はプラズマ中を伝播できない（反射される）。これが電離層による短波の反射の原理である。</p>
+            </div>
+
+            <h3>13.4 サイクロトロン運動</h3>
+            <p>磁場中の荷電粒子は螺旋運動を行う。</p>
+
+            <div class="equation-box">
+                <div class="title">サイクロトロン周波数</div>
+                \[ \omega_c = \frac{eB}{m} \]
+                <p>粒子が磁場に垂直な面で円運動する周波数</p>
+            </div>
+
+            <div class="column application">
+                <h4>コラム: 核融合とプラズマ閉じ込め</h4>
+                <p>核融合発電では、1億度以上の超高温プラズマを閉じ込める必要がある。</p>
+                <ul>
+                    <li><strong>トカマク</strong>: トロイダル磁場とポロイダル磁場で閉じ込め</li>
+                    <li><strong>ヘリカル/ステラレータ</strong>: ねじれた磁場で閉じ込め</li>
+                    <li><strong>レーザー核融合</strong>: レーザーでペレットを圧縮・加熱</li>
+                </ul>
+                <p>ITERプロジェクトは、世界初の核融合実験炉として2025年のファーストプラズマを目指している。</p>
+            </div>
+
+            <div class="lecture-nav">
+                <a href="#lecture12">← 前回: 電磁波と特殊相対性理論</a>
+                <a href="#lecture14">次回: ビーミング推進 →</a>
+            </div>
+        </section>
+
+        <!-- 第14回: ビーミング推進 -->
+        <section class="lecture-section" id="lecture14">
+            <h2>第14回: ビーミング推進</h2>
+
+            <h3>14.1 宇宙推進の基礎</h3>
+            <p>従来のロケットは燃料を搭載するため、ツィオルコフスキーの公式に従う質量比の制限がある。</p>
+
+            <div class="equation-box">
+                <div class="title">ツィオルコフスキーの公式</div>
+                \[ \Delta v = v_e \ln\frac{m_0}{m_f} \]
+                <p>Δv: 速度増分、vₑ: 排気速度、m₀/mf: 質量比</p>
+            </div>
+
+            <h3>14.2 ビーミング推進の原理</h3>
+            <p>ビーミング推進では、エネルギー源を宇宙機外部に置き、電磁波（レーザーやマイクロ波）で推力を得る。</p>
+
+            <h4>推進方式の分類</h4>
+            <ul>
+                <li><strong>光圧推進</strong>: 光の反射による放射圧を利用</li>
+                <li><strong>レーザーアブレーション推進</strong>: レーザーで推進剤を蒸発させる</li>
+                <li><strong>マイクロ波推進</strong>: マイクロ波で推進剤を加熱</li>
+            </ul>
+
+            <h3>14.3 光圧と放射圧</h3>
+
+            <div class="derivation">
+                <h4>導出: 光の運動量と放射圧</h4>
+                <div class="derivation-step">
+                    <span class="step-num">1</span>
+                    光子の運動量: \( p = \frac{E}{c} = \frac{hf}{c} = \frac{h}{\lambda} \)
+                </div>
+                <div class="derivation-step">
+                    <span class="step-num">2</span>
+                    完全吸収面での放射圧: \( P = \frac{I}{c} \)
+                </div>
+                <div class="derivation-step">
+                    <span class="step-num">3</span>
+                    完全反射面での放射圧: \( P = \frac{2I}{c} \)
+                </div>
+                <div class="derivation-step">
+                    <span class="step-num">4</span>
+                    I = 1 GW/m² の場合: P ≈ 6.7 N/m²（反射面）
+                </div>
+            </div>
+
+            <h3>14.4 ソーラーセイル</h3>
+            <p>太陽光の放射圧を利用した推進システム。燃料不要で長期間の加速が可能。</p>
+
+            <div class="equation-box">
+                <div class="title">ソーラーセイルの加速度</div>
+                \[ a = \frac{2\eta I A}{mc} \]
+                <p>η: 反射率、I: 太陽放射強度、A: セイル面積、m: 質量</p>
+            </div>
+
+            <h3>14.5 レーザー推進</h3>
+            <p>地上または軌道上の強力なレーザーで宇宙機を加速する方式。</p>
+
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>プロジェクト</th>
+                        <th>方式</th>
+                        <th>目標</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Breakthrough Starshot</td>
+                        <td>レーザー光圧</td>
+                        <td>0.2c で恒星間航行</td>
+                    </tr>
+                    <tr>
+                        <td>Lightcraft</td>
+                        <td>レーザーアブレーション</td>
+                        <td>軌道投入</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="column tip">
+                <h4>コラム: Breakthrough Starshotプロジェクト</h4>
+                <p>2016年に発表されたこのプロジェクトは、グラムスケールの超小型探査機を光速の20%まで加速し、アルファ・ケンタウリ（約4.37光年）に約20年で到達することを目指している。</p>
+                <p>課題:</p>
+                <ul>
+                    <li>100GW級のレーザーアレイの構築</li>
+                    <li>超軽量セイル（数平方メートル、数グラム）の開発</li>
+                    <li>星間物質との衝突への対策</li>
+                    <li>目的地でのデータ送信（光年単位の通信）</li>
+                </ul>
+            </div>
+
+            <div class="lecture-nav">
+                <a href="#lecture13">← 前回: 荷電粒子・プラズマ</a>
+                <a href="#lecture15">次回: 光と電波の境目・ミリ波とジャイロトロン →</a>
+            </div>
+        </section>
+
+        <!-- 第15回: 光と電波の境目・ミリ波とジャイロトロン -->
+        <section class="lecture-section" id="lecture15">
+            <h2>第15回: 光と電波の境目・ミリ波とジャイロトロン</h2>
+
+            <h3>15.1 テラヘルツ帯とは</h3>
+            <p>周波数0.1〜10THz（波長30μm〜3mm）の電磁波領域。光と電波の境界に位置する。</p>
+
+            <ul>
+                <li>光学的手法と電子デバイスの両方が困難な「テラヘルツギャップ」</li>
+                <li>近年、発生・検出技術が急速に発展</li>
+            </ul>
+
+            <h3>15.2 ミリ波の特性と応用</h3>
+            <p>波長1〜10mm（周波数30〜300GHz）の電磁波。</p>
+
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>特性</th>
+                        <th>内容</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>高い方向性</td>
+                        <td>アンテナサイズに対して波長が短い</td>
+                    </tr>
+                    <tr>
+                        <td>広帯域</td>
+                        <td>大容量通信が可能</td>
+                    </tr>
+                    <tr>
+                        <td>雨・霧の影響</td>
+                        <td>水分子による吸収</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h4>応用分野</h4>
+            <ul>
+                <li><strong>5G/6G通信</strong>: 高速・大容量通信</li>
+                <li><strong>自動車レーダー</strong>: 77GHz帯を使用</li>
+                <li><strong>セキュリティ</strong>: ボディスキャナー</li>
+                <li><strong>核融合加熱</strong>: ジャイロトロンによるプラズマ加熱</li>
+            </ul>
+
+            <h3>15.3 ジャイロトロン</h3>
+            <p>高出力ミリ波を発生する真空電子デバイス。核融合プラズマの加熱に不可欠。</p>
+
+            <div class="equation-box">
+                <div class="title">ジャイロトロンの動作周波数</div>
+                \[ f = n\frac{eB}{2\pi \gamma m_e} \]
+                <p>n: 高調波次数、γ: 相対論的因子、B: 磁場</p>
+            </div>
+
+            <h4>動作原理</h4>
+            <div class="derivation">
+                <h4>導出: サイクロトロン共鳴メーザー作用</h4>
+                <div class="derivation-step">
+                    <span class="step-num">1</span>
+                    電子は磁場中でサイクロトロン運動
+                </div>
+                <div class="derivation-step">
+                    <span class="step-num">2</span>
+                    相対論効果により、速い電子ほど周期が長い
+                </div>
+                <div class="derivation-step">
+                    <span class="step-num">3</span>
+                    電磁波と相互作用し、位相がそろう（位相バンチング）
+                </div>
+                <div class="derivation-step">
+                    <span class="step-num">4</span>
+                    バンチした電子がコヒーレントに電磁波を放出
+                </div>
+            </div>
+
+            <h3>15.4 福井大学の研究</h3>
+            <p>福井大学遠赤外領域開発研究センター（FIR-UF）は、ジャイロトロンとテラヘルツ技術の世界的な研究拠点である。</p>
+
+            <ul>
+                <li>高出力サブテラヘルツジャイロトロンの開発</li>
+                <li>核融合研究への貢献（LHD、ITER等）</li>
+                <li>テラヘルツ分光・イメージング応用</li>
+            </ul>
+
+            <div class="column application">
+                <h4>コラム: 核融合炉とジャイロトロン</h4>
+                <p>核融合炉では、プラズマを1億度以上に加熱する必要がある。電子サイクロトロン共鳴加熱（ECRH）は、ジャイロトロンで発生したミリ波をプラズマに照射し、電子を効率的に加熱する方式である。</p>
+                <p>ITERでは、170GHz、1MW級のジャイロトロンを24台使用し、計24MWの加熱パワーを投入する計画である。福井大学の技術はこの開発に貢献している。</p>
+            </div>
+
+            <div class="key-point">
+                <h4>講義のまとめ</h4>
+                <p>本講義では、電磁波の基礎から最先端の応用まで幅広く学んだ。電磁波は現代社会のあらゆる場面で利用されており、その理解は科学技術のリテラシーとして不可欠である。</p>
+            </div>
+
+            <div class="lecture-nav">
+                <a href="#lecture14">← 前回: ビーミング推進</a>
+                <a href="index.html">ダッシュボードへ戻る →</a>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>福井大学 共通教育科目 B2032 電磁波と物質</p>
+        <p>担当: 福成 雅史 / 石川 裕也</p>
+    </footer>
+</body>
+</html>

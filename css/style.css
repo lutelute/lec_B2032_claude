@@ -1,0 +1,933 @@
+/* ========================================
+   電磁波と物質 - 講義サイト スタイルシート
+   ======================================== */
+
+:root {
+    --primary-color: #2563eb;
+    --primary-dark: #1d4ed8;
+    --secondary-color: #7c3aed;
+    --accent-color: #f59e0b;
+    --success-color: #10b981;
+    --danger-color: #ef4444;
+    --text-color: #1f2937;
+    --text-light: #6b7280;
+    --bg-color: #f8fafc;
+    --card-bg: #ffffff;
+    --border-color: #e5e7eb;
+    --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Hiragino Kaku Gothic ProN', 'Noto Sans JP', sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    line-height: 1.7;
+}
+
+/* ========================================
+   Header & Navigation
+   ======================================== */
+
+.main-header {
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    color: white;
+    padding: 2rem;
+    text-align: center;
+}
+
+.main-header h1 {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.main-header .subtitle {
+    opacity: 0.9;
+    font-size: 1.1rem;
+}
+
+.main-nav {
+    background: var(--card-bg);
+    padding: 1rem;
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    box-shadow: var(--shadow);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.main-nav a {
+    text-decoration: none;
+    color: var(--text-color);
+    padding: 0.5rem 1.5rem;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    font-weight: 500;
+}
+
+.main-nav a:hover,
+.main-nav a.active {
+    background: var(--primary-color);
+    color: white;
+}
+
+/* ========================================
+   Dashboard
+   ======================================== */
+
+.dashboard {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+.overview-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.card {
+    background: var(--card-bg);
+    padding: 1.5rem;
+    border-radius: 12px;
+    box-shadow: var(--shadow);
+    text-align: center;
+    transition: transform 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
+
+.card h3 {
+    font-size: 2rem;
+    color: var(--primary-color);
+    margin-bottom: 0.5rem;
+}
+
+.card p {
+    color: var(--text-light);
+}
+
+/* Progress Section */
+.progress-section {
+    background: var(--card-bg);
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: var(--shadow);
+    margin-bottom: 2rem;
+}
+
+.progress-section h2 {
+    margin-bottom: 1rem;
+    color: var(--text-color);
+}
+
+.progress-container {
+    background: var(--border-color);
+    border-radius: 10px;
+    height: 30px;
+    overflow: hidden;
+}
+
+.progress-bar {
+    background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+    height: 100%;
+    width: 0%;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: bold;
+    transition: width 0.5s ease;
+}
+
+.progress-detail {
+    margin-top: 1rem;
+    color: var(--text-light);
+}
+
+/* Lecture Grid */
+.lecture-grid {
+    margin-bottom: 2rem;
+}
+
+.lecture-grid h2 {
+    margin-bottom: 1.5rem;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1.5rem;
+}
+
+.lecture-card {
+    background: var(--card-bg);
+    padding: 1.5rem;
+    border-radius: 12px;
+    box-shadow: var(--shadow);
+    border-left: 4px solid var(--primary-color);
+    transition: all 0.3s ease;
+}
+
+.lecture-card:hover {
+    box-shadow: var(--shadow-lg);
+    transform: translateY(-3px);
+}
+
+.lecture-card.completed {
+    border-left-color: var(--success-color);
+    background: linear-gradient(135deg, #ecfdf5, var(--card-bg));
+}
+
+.lecture-num {
+    display: inline-block;
+    background: var(--primary-color);
+    color: white;
+    padding: 0.25rem 0.75rem;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    margin-bottom: 0.75rem;
+}
+
+.lecture-card h4 {
+    margin-bottom: 0.5rem;
+    color: var(--text-color);
+}
+
+.lecture-card p {
+    color: var(--text-light);
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+}
+
+.card-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.btn-primary {
+    background: var(--primary-color);
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: background 0.3s ease;
+}
+
+.btn-primary:hover {
+    background: var(--primary-dark);
+}
+
+/* Checkbox styling */
+.checkbox-container {
+    display: block;
+    position: relative;
+    cursor: pointer;
+    user-select: none;
+}
+
+.checkbox-container input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+
+.checkmark {
+    position: relative;
+    display: inline-block;
+    height: 24px;
+    width: 24px;
+    background-color: var(--border-color);
+    border-radius: 6px;
+    transition: all 0.3s ease;
+}
+
+.checkbox-container:hover input ~ .checkmark {
+    background-color: #d1d5db;
+}
+
+.checkbox-container input:checked ~ .checkmark {
+    background-color: var(--success-color);
+}
+
+.checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+    left: 8px;
+    top: 4px;
+    width: 6px;
+    height: 12px;
+    border: solid white;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+}
+
+.checkbox-container input:checked ~ .checkmark:after {
+    display: block;
+}
+
+/* Spectrum Chart */
+.spectrum-overview {
+    background: var(--card-bg);
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: var(--shadow);
+    margin-bottom: 2rem;
+}
+
+.spectrum-overview h2 {
+    margin-bottom: 1rem;
+}
+
+.spectrum-chart {
+    height: 300px;
+}
+
+/* Quick Links */
+.quick-links {
+    margin-bottom: 2rem;
+}
+
+.quick-links h2 {
+    margin-bottom: 1.5rem;
+}
+
+.links-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 1rem;
+}
+
+.link-card {
+    background: var(--card-bg);
+    padding: 1.5rem;
+    border-radius: 12px;
+    box-shadow: var(--shadow);
+    text-decoration: none;
+    color: var(--text-color);
+    text-align: center;
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.link-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-lg);
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    color: white;
+}
+
+.link-card .icon {
+    font-size: 2rem;
+}
+
+/* ========================================
+   Lecture Page
+   ======================================== */
+
+.lecture-content {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+.lecture-section {
+    background: var(--card-bg);
+    padding: 2.5rem;
+    border-radius: 12px;
+    box-shadow: var(--shadow);
+    margin-bottom: 2rem;
+}
+
+.lecture-section h2 {
+    color: var(--primary-color);
+    border-bottom: 3px solid var(--primary-color);
+    padding-bottom: 0.5rem;
+    margin-bottom: 1.5rem;
+    font-size: 1.8rem;
+}
+
+.lecture-section h3 {
+    color: var(--secondary-color);
+    margin: 1.5rem 0 1rem;
+    font-size: 1.3rem;
+}
+
+.lecture-section h4 {
+    color: var(--text-color);
+    margin: 1.2rem 0 0.8rem;
+    font-size: 1.1rem;
+}
+
+.lecture-section p {
+    margin-bottom: 1rem;
+    text-align: justify;
+}
+
+.lecture-section ul,
+.lecture-section ol {
+    margin: 1rem 0 1rem 2rem;
+}
+
+.lecture-section li {
+    margin-bottom: 0.5rem;
+}
+
+/* Math equations */
+.equation {
+    background: #f1f5f9;
+    padding: 1.5rem;
+    border-radius: 8px;
+    margin: 1.5rem 0;
+    overflow-x: auto;
+    text-align: center;
+    font-family: 'Times New Roman', serif;
+    font-size: 1.2rem;
+}
+
+.equation-box {
+    background: linear-gradient(135deg, #eff6ff, #f0fdf4);
+    border: 2px solid var(--primary-color);
+    padding: 1.5rem;
+    border-radius: 8px;
+    margin: 1.5rem 0;
+    text-align: center;
+}
+
+.equation-box .title {
+    font-weight: bold;
+    color: var(--primary-color);
+    margin-bottom: 0.5rem;
+}
+
+/* Derivation box */
+.derivation {
+    background: linear-gradient(135deg, #fefce8, #fef3c7);
+    border-left: 4px solid var(--accent-color);
+    padding: 1.5rem;
+    border-radius: 0 8px 8px 0;
+    margin: 1.5rem 0;
+}
+
+.derivation h4 {
+    color: var(--accent-color);
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.derivation h4::before {
+    content: "📐";
+}
+
+.derivation-step {
+    background: white;
+    padding: 1rem;
+    border-radius: 8px;
+    margin: 0.5rem 0;
+    border: 1px solid #fcd34d;
+}
+
+.derivation-step .step-num {
+    display: inline-block;
+    background: var(--accent-color);
+    color: white;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 24px;
+    font-size: 0.8rem;
+    margin-right: 0.5rem;
+}
+
+/* Column box */
+.column {
+    background: linear-gradient(135deg, #f0f9ff, #e0f2fe);
+    border: 2px solid var(--primary-color);
+    border-radius: 12px;
+    padding: 1.5rem;
+    margin: 2rem 0;
+}
+
+.column h4 {
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 1.1rem;
+}
+
+.column h4::before {
+    content: "📚";
+}
+
+.column.history h4::before {
+    content: "🏛️";
+}
+
+.column.application h4::before {
+    content: "🔬";
+}
+
+.column.tip h4::before {
+    content: "💡";
+}
+
+/* Key point box */
+.key-point {
+    background: linear-gradient(135deg, #fdf2f8, #fce7f3);
+    border-left: 4px solid #ec4899;
+    padding: 1.5rem;
+    border-radius: 0 8px 8px 0;
+    margin: 1.5rem 0;
+}
+
+.key-point h4 {
+    color: #ec4899;
+    margin-bottom: 0.5rem;
+}
+
+.key-point h4::before {
+    content: "⭐ ";
+}
+
+/* Table styling */
+.data-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.5rem 0;
+    background: white;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: var(--shadow);
+}
+
+.data-table th {
+    background: var(--primary-color);
+    color: white;
+    padding: 1rem;
+    text-align: left;
+}
+
+.data-table td {
+    padding: 0.75rem 1rem;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.data-table tr:hover {
+    background: #f8fafc;
+}
+
+/* Figure styling */
+.figure {
+    margin: 2rem 0;
+    text-align: center;
+}
+
+.figure img {
+    max-width: 100%;
+    border-radius: 8px;
+    box-shadow: var(--shadow);
+}
+
+.figure figcaption {
+    margin-top: 0.75rem;
+    color: var(--text-light);
+    font-size: 0.9rem;
+}
+
+/* Navigation between lectures */
+.lecture-nav {
+    display: flex;
+    justify-content: space-between;
+    margin: 2rem 0;
+    padding: 1rem 0;
+    border-top: 1px solid var(--border-color);
+}
+
+.lecture-nav a {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    text-decoration: none;
+    color: var(--primary-color);
+    padding: 0.75rem 1.5rem;
+    border-radius: 8px;
+    background: var(--card-bg);
+    box-shadow: var(--shadow);
+    transition: all 0.3s ease;
+}
+
+.lecture-nav a:hover {
+    background: var(--primary-color);
+    color: white;
+}
+
+/* ========================================
+   Interactive Page
+   ======================================== */
+
+.interactive-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+.tool-section {
+    background: var(--card-bg);
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: var(--shadow);
+    margin-bottom: 2rem;
+}
+
+.tool-section h2 {
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.tool-description {
+    color: var(--text-light);
+    margin-bottom: 1.5rem;
+}
+
+/* Canvas for simulations */
+.simulation-canvas {
+    width: 100%;
+    height: 400px;
+    background: #1e293b;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+}
+
+/* Controls */
+.controls {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    padding: 1rem;
+    background: #f1f5f9;
+    border-radius: 8px;
+}
+
+.control-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.control-group label {
+    font-weight: 500;
+    color: var(--text-color);
+    font-size: 0.9rem;
+}
+
+.control-group input[type="range"] {
+    width: 200px;
+    cursor: pointer;
+}
+
+.control-group select {
+    padding: 0.5rem;
+    border-radius: 6px;
+    border: 1px solid var(--border-color);
+    background: white;
+    cursor: pointer;
+}
+
+.control-value {
+    font-size: 0.85rem;
+    color: var(--text-light);
+}
+
+/* Buttons */
+.btn {
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.btn-start {
+    background: var(--success-color);
+    color: white;
+}
+
+.btn-start:hover {
+    background: #059669;
+}
+
+.btn-stop {
+    background: var(--danger-color);
+    color: white;
+}
+
+.btn-stop:hover {
+    background: #dc2626;
+}
+
+.btn-reset {
+    background: var(--text-light);
+    color: white;
+}
+
+.btn-reset:hover {
+    background: #4b5563;
+}
+
+/* Spectrum visualization */
+.spectrum-vis {
+    height: 80px;
+    background: linear-gradient(to right,
+        #7c0000 0%,
+        #ff0000 10%,
+        #ff7f00 15%,
+        #ffff00 20%,
+        #00ff00 30%,
+        #00ffff 45%,
+        #0000ff 55%,
+        #4b0082 65%,
+        #9400d3 75%,
+        #000033 100%
+    );
+    border-radius: 8px;
+    margin: 1rem 0;
+    position: relative;
+}
+
+.spectrum-labels {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.5rem;
+    font-size: 0.8rem;
+    color: var(--text-light);
+}
+
+.spectrum-marker {
+    position: absolute;
+    top: -10px;
+    width: 3px;
+    height: calc(100% + 20px);
+    background: white;
+    box-shadow: 0 0 5px rgba(0,0,0,0.5);
+    transition: left 0.3s ease;
+}
+
+/* Quiz section */
+.quiz-container {
+    background: var(--card-bg);
+    border-radius: 12px;
+    padding: 2rem;
+}
+
+.quiz-question {
+    margin-bottom: 2rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.quiz-question:last-child {
+    border-bottom: none;
+}
+
+.quiz-question h4 {
+    margin-bottom: 1rem;
+    color: var(--text-color);
+}
+
+.quiz-options {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.quiz-option {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 1rem;
+    background: #f8fafc;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+}
+
+.quiz-option:hover {
+    background: #f1f5f9;
+    border-color: var(--primary-color);
+}
+
+.quiz-option.correct {
+    background: #dcfce7;
+    border-color: var(--success-color);
+}
+
+.quiz-option.incorrect {
+    background: #fee2e2;
+    border-color: var(--danger-color);
+}
+
+.quiz-option input {
+    width: 20px;
+    height: 20px;
+}
+
+.quiz-feedback {
+    margin-top: 1rem;
+    padding: 1rem;
+    border-radius: 8px;
+    display: none;
+}
+
+.quiz-feedback.show {
+    display: block;
+}
+
+.quiz-feedback.correct {
+    background: #dcfce7;
+    color: #166534;
+}
+
+.quiz-feedback.incorrect {
+    background: #fee2e2;
+    color: #991b1b;
+}
+
+.quiz-result {
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    color: white;
+    padding: 2rem;
+    border-radius: 12px;
+    text-align: center;
+    margin-top: 2rem;
+}
+
+.quiz-result h3 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.score-display {
+    font-size: 3rem;
+    font-weight: bold;
+}
+
+/* ========================================
+   Footer
+   ======================================== */
+
+footer {
+    background: var(--text-color);
+    color: white;
+    padding: 2rem;
+    text-align: center;
+    margin-top: 2rem;
+}
+
+footer p {
+    margin: 0.25rem 0;
+    opacity: 0.9;
+}
+
+/* ========================================
+   Responsive Design
+   ======================================== */
+
+@media (max-width: 768px) {
+    .main-header h1 {
+        font-size: 1.8rem;
+    }
+
+    .main-nav {
+        flex-wrap: wrap;
+        gap: 0.5rem;
+    }
+
+    .main-nav a {
+        padding: 0.5rem 1rem;
+        font-size: 0.9rem;
+    }
+
+    .dashboard,
+    .lecture-content,
+    .interactive-content {
+        padding: 1rem;
+    }
+
+    .grid {
+        grid-template-columns: 1fr;
+    }
+
+    .controls {
+        flex-direction: column;
+    }
+
+    .control-group input[type="range"] {
+        width: 100%;
+    }
+
+    .lecture-nav {
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .lecture-nav a {
+        justify-content: center;
+    }
+}
+
+/* ========================================
+   Print styles
+   ======================================== */
+
+@media print {
+    .main-nav,
+    .card-actions,
+    .quick-links,
+    footer {
+        display: none;
+    }
+
+    .lecture-section {
+        box-shadow: none;
+        border: 1px solid #ddd;
+        page-break-inside: avoid;
+    }
+
+    .equation-box,
+    .derivation,
+    .column,
+    .key-point {
+        page-break-inside: avoid;
+    }
+}

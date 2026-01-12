@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>電磁波と物質 - 講義ダッシュボード</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <header class="main-header">
+        <h1>電磁波と物質</h1>
+        <p class="subtitle">B2032 | 福井大学 共通教育科目</p>
+    </header>
+
+    <nav class="main-nav">
+        <a href="index.html" class="active">ダッシュボード</a>
+        <a href="lecture.html">講義資料</a>
+        <a href="interactive.html">インタラクティブ学習</a>
+    </nav>
+
+    <main class="dashboard">
+        <section class="overview-cards">
+            <div class="card">
+                <h3>全15回</h3>
+                <p>講義回数</p>
+            </div>
+            <div class="card">
+                <h3>120分</h3>
+                <p>総学習時間目安</p>
+            </div>
+            <div class="card">
+                <h3>2単位</h3>
+                <p>取得単位</p>
+            </div>
+            <div class="card">
+                <h3>5つ</h3>
+                <p>インタラクティブツール</p>
+            </div>
+        </section>
+
+        <section class="progress-section">
+            <h2>学習進捗</h2>
+            <div class="progress-container">
+                <div class="progress-bar" id="progressBar">
+                    <span id="progressText">0%</span>
+                </div>
+            </div>
+            <p class="progress-detail">完了した講義: <span id="completedCount">0</span> / 15</p>
+        </section>
+
+        <section class="lecture-grid">
+            <h2>講義一覧</h2>
+            <div class="grid">
+                <div class="lecture-card" data-lecture="1">
+                    <span class="lecture-num">第1回</span>
+                    <h4>電磁波とは</h4>
+                    <p>電磁波についての序論及びガイダンス</p>
+                    <div class="card-actions">
+                        <a href="lecture.html#lecture1" class="btn-primary">学習する</a>
+                        <label class="checkbox-container">
+                            <input type="checkbox" class="lecture-check" data-id="1">
+                            <span class="checkmark"></span>
+                        </label>
+                    </div>
+                </div>
+                <div class="lecture-card" data-lecture="2">
+                    <span class="lecture-num">第2回</span>
+                    <h4>可視光の色</h4>
+                    <p>われわれが見る物体の色について</p>
+                    <div class="card-actions">
+                        <a href="lecture.html#lecture2" class="btn-primary">学習する</a>
+                        <label class="checkbox-container">
+                            <input type="checkbox" class="lecture-check" data-id="2">
+                            <span class="checkmark"></span>
+                        </label>
+                    </div>
+                </div>
+                <div class="lecture-card" data-lecture="3">
+                    <span class="lecture-num">第3回</span>
+                    <h4>電磁波発生と応用</h4>
+                    <p>各波長領域の電磁波の発生と応用</p>
+                    <div class="card-actions">
+                        <a href="lecture.html#lecture3" class="btn-primary">学習する</a>
+                        <label class="checkbox-container">
+                            <input type="checkbox" class="lecture-check" data-id="3">
+                            <span class="checkmark"></span>
+                        </label>
+                    </div>
+                </div>
+                <div class="lecture-card" data-lecture="4">
+                    <span class="lecture-num">第4回</span>
+                    <h4>電磁波と物質との相互作用</h4>
+                    <p>なぜ物質が特定の電磁波を吸収するのか</p>
+                    <div class="card-actions">
+                        <a href="lecture.html#lecture4" class="btn-primary">学習する</a>
+                        <label class="checkbox-container">
+                            <input type="checkbox" class="lecture-check" data-id="4">
+                            <span class="checkmark"></span>
+                        </label>
+                    </div>
+                </div>
+                <div class="lecture-card" data-lecture="5">
+                    <span class="lecture-num">第5回</span>
+                    <h4>固体と電子スピン</h4>
+                    <p>固体の電子スピンの示す物性について</p>
+                    <div class="card-actions">
+                        <a href="lecture.html#lecture5" class="btn-primary">学習する</a>
+                        <label class="checkbox-container">
+                            <input type="checkbox" class="lecture-check" data-id="5">
+                            <span class="checkmark"></span>
+                        </label>
+                    </div>
+                </div>
+                <div class="lecture-card" data-lecture="6">
+                    <span class="lecture-num">第6回</span>
+                    <h4>磁気共鳴</h4>
+                    <p>一般的な磁気共鳴について（核磁気共鳴など）</p>
+                    <div class="card-actions">
+                        <a href="lecture.html#lecture6" class="btn-primary">学習する</a>
+                        <label class="checkbox-container">
+                            <input type="checkbox" class="lecture-check" data-id="6">
+                            <span class="checkmark"></span>
+                        </label>
+                    </div>
+                </div>
+                <div class="lecture-card" data-lecture="7">
+                    <span class="lecture-num">第7回</span>
+                    <h4>電子スピン共鳴</h4>
+                    <p>電子スピン共鳴について</p>
+                    <div class="card-actions">
+                        <a href="lecture.html#lecture7" class="btn-primary">学習する</a>
+                        <label class="checkbox-container">
+                            <input type="checkbox" class="lecture-check" data-id="7">
+                            <span class="checkmark"></span>
+                        </label>
+                    </div>
+                </div>
+                <div class="lecture-card" data-lecture="8">
+                    <span class="lecture-num">第8回</span>
+                    <h4>電子スピン共鳴（応用）</h4>
+                    <p>電子スピン共鳴に関する最近の話題</p>
+                    <div class="card-actions">
+                        <a href="lecture.html#lecture8" class="btn-primary">学習する</a>
+                        <label class="checkbox-container">
+                            <input type="checkbox" class="lecture-check" data-id="8">
+                            <span class="checkmark"></span>
+                        </label>
+                    </div>
+                </div>
+                <div class="lecture-card" data-lecture="9">
+                    <span class="lecture-num">第9回</span>
+                    <h4>マクスウェル方程式と波動方程式</h4>
+                    <p>電磁気の基本方程式と波動について</p>
+                    <div class="card-actions">
+                        <a href="lecture.html#lecture9" class="btn-primary">学習する</a>
+                        <label class="checkbox-container">
+                            <input type="checkbox" class="lecture-check" data-id="9">
+                            <span class="checkmark"></span>
+                        </label>
+                    </div>
+                </div>
+                <div class="lecture-card" data-lecture="10">
+                    <span class="lecture-num">第10回</span>
+                    <h4>電磁波の伝播・回折</h4>
+                    <p>自由空間と導波管を伝わる電磁波について</p>
+                    <div class="card-actions">
+                        <a href="lecture.html#lecture10" class="btn-primary">学習する</a>
+                        <label class="checkbox-container">
+                            <input type="checkbox" class="lecture-check" data-id="10">
+                            <span class="checkmark"></span>
+                        </label>
+                    </div>
+                </div>
+                <div class="lecture-card" data-lecture="11">
+                    <span class="lecture-num">第11回</span>
+                    <h4>量子力学の始まり</h4>
+                    <p>光と波動から生まれた疑問</p>
+                    <div class="card-actions">
+                        <a href="lecture.html#lecture11" class="btn-primary">学習する</a>
+                        <label class="checkbox-container">
+                            <input type="checkbox" class="lecture-check" data-id="11">
+                            <span class="checkmark"></span>
+                        </label>
+                    </div>
+                </div>
+                <div class="lecture-card" data-lecture="12">
+                    <span class="lecture-num">第12回</span>
+                    <h4>電磁波と特殊相対性理論</h4>
+                    <p>不変の光速度から生まれた疑問</p>
+                    <div class="card-actions">
+                        <a href="lecture.html#lecture12" class="btn-primary">学習する</a>
+                        <label class="checkbox-container">
+                            <input type="checkbox" class="lecture-check" data-id="12">
+                            <span class="checkmark"></span>
+                        </label>
+                    </div>
+                </div>
+                <div class="lecture-card" data-lecture="13">
+                    <span class="lecture-num">第13回</span>
+                    <h4>荷電粒子・プラズマ</h4>
+                    <p>プラズマについて</p>
+                    <div class="card-actions">
+                        <a href="lecture.html#lecture13" class="btn-primary">学習する</a>
+                        <label class="checkbox-container">
+                            <input type="checkbox" class="lecture-check" data-id="13">
+                            <span class="checkmark"></span>
+                        </label>
+                    </div>
+                </div>
+                <div class="lecture-card" data-lecture="14">
+                    <span class="lecture-num">第14回</span>
+                    <h4>ビーミング推進</h4>
+                    <p>電磁波を用いたロケット・宇宙推進</p>
+                    <div class="card-actions">
+                        <a href="lecture.html#lecture14" class="btn-primary">学習する</a>
+                        <label class="checkbox-container">
+                            <input type="checkbox" class="lecture-check" data-id="14">
+                            <span class="checkmark"></span>
+                        </label>
+                    </div>
+                </div>
+                <div class="lecture-card" data-lecture="15">
+                    <span class="lecture-num">第15回</span>
+                    <h4>光と電波の境目・ミリ波とジャイロトロン</h4>
+                    <p>ミリ波の発生について</p>
+                    <div class="card-actions">
+                        <a href="lecture.html#lecture15" class="btn-primary">学習する</a>
+                        <label class="checkbox-container">
+                            <input type="checkbox" class="lecture-check" data-id="15">
+                            <span class="checkmark"></span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="spectrum-overview">
+            <h2>電磁波スペクトル概要</h2>
+            <div class="spectrum-chart">
+                <canvas id="spectrumChart"></canvas>
+            </div>
+        </section>
+
+        <section class="quick-links">
+            <h2>クイックアクセス</h2>
+            <div class="links-grid">
+                <a href="interactive.html#wave-simulator" class="link-card">
+                    <span class="icon">🌊</span>
+                    <span>波動シミュレータ</span>
+                </a>
+                <a href="interactive.html#spectrum-explorer" class="link-card">
+                    <span class="icon">🌈</span>
+                    <span>スペクトル探索</span>
+                </a>
+                <a href="interactive.html#maxwell-viz" class="link-card">
+                    <span class="icon">⚡</span>
+                    <span>マクスウェル方程式</span>
+                </a>
+                <a href="interactive.html#spin-resonance" class="link-card">
+                    <span class="icon">🔄</span>
+                    <span>スピン共鳴</span>
+                </a>
+                <a href="interactive.html#quiz" class="link-card">
+                    <span class="icon">📝</span>
+                    <span>理解度チェック</span>
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>福井大学 共通教育科目 B2032 電磁波と物質</p>
+        <p>担当: 福成 雅史 / 石川 裕也</p>
+    </footer>
+
+    <script src="js/dashboard.js"></script>
+</body>
+</html>
